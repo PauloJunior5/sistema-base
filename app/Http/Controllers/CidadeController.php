@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 class CidadeController extends Controller
 {
 
+    public function __construct()
+    {
+
+    }
+
     public function index(Cidade $model)
     {
         return view('cidades.index', ['cidades' => $model->paginate(15)]);
@@ -65,4 +70,16 @@ class CidadeController extends Controller
             return redirect()->route('cidade.index')->withStatus(__('Cidade successfully deleted.'));
         }
     }
+
+    public function getEstados(Request $request)
+    {
+        $estados = Estado::all()->where('pais', $request->id_pais);
+        $options = "<option>Select</option>";
+        foreach($estados as $estado){
+            $options .= "<option value='".$estado->id."'>".$estado->nome."</option>";
+        }
+        return $options;
+
+    }
+
 }

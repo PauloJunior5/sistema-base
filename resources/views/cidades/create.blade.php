@@ -22,7 +22,7 @@
 
             <div class="card ">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Add Cidade') }}</h4>
+                <h4 class="card-title">{{ __('Add Cidade')}}</h4>
                 <p class="card-category"></p>
               </div>
               <div class="card-body ">
@@ -70,7 +70,7 @@
                     <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
                      
                       <select class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required="true" />
-                        <option> Select </option>
+                        <option value="Select"> Select </option>
                         <?php foreach ($paises as $key => $pais) { ?>
                           <option value="{{$pais->id}}" >{{$pais->nome}}</option>
                         <?php } ?>
@@ -92,11 +92,11 @@
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
                      
-                      <select class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" name="estado" id="input-estado" type="text" placeholder="{{ __('Estado') }}" value="{{ old('estado') }}" required="true" />
-                        <option> Select </option>
-                        <?php foreach ($estados as $key => $estado) { ?>
+                      <select class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" name="estado" id="input-estado" type="text" placeholder="{{ __('Estado') }}" value="{{ old('estado') }}" required="true" disabled="" />
+                        <option value="Select"> Select </option>
+                        <!-- <?php foreach ($estados as $key => $estado) { ?>
                           <option value="{{$estado->id}}" >{{$estado->nome}}</option>
-                        <?php } ?>
+                        <?php } ?> -->
                       </select>
 
                     </div>
@@ -146,7 +146,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Codigo') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-name" type="text" placeholder="{{ __('Codigo') }}" value="{{ old('codigo') }}" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" type="text" placeholder="{{ __('Codigo') }}" value="" required="true" aria-required="true"/>
                       @if ($errors->has('codigo'))
                         <span id="name-error" class="error text-danger" for="input-codigo">{{ $errors->first('name') }}</span>
                       @endif
@@ -157,7 +157,7 @@
                   <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" id="input-nome" type="text" placeholder="{{ __('Nome') }}" value="{{ old('nome') }}" required />
+                      <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" type="text" placeholder="{{ __('Nome') }}" value="" required />
                       @if ($errors->has('nome'))
                         <span id="email-error" class="error text-danger" for="input-nome">{{ $errors->first('nome') }}</span>
                       @endif
@@ -175,7 +175,48 @@
   </div>
 </div>  
 
-@endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
 
+    $(document).ready(function(){
+
+        var url_atual = '<?php echo URL::to('/'); ?>';
+
+        $('#input-pais').change(function(){
+
+            var id_pais = $(this).val();
+
+            // $.ajax({
+            //     url : url_atual + '/cidade/getEstados',
+            //     dataType : 'html',
+            //     type : 'POST',
+            //     data : {id_pais : id_pais}
+            // });
+
+            var id_pais = $(this).val();
+            $.post( url_atual + '/cidade/getEstados', {
+                id_pais : id_pais }, function(data){
+
+                    $('#input-estado').html(data);
+                    $('#input-estado').removeAttr('disabled');
+            });
+            
+
+            if ($(this).val() != "Select") {
+                $("#input-estado").removeAttr("disabled");
+                $("#input-estado").focus();
+            } else {
+                document.getElementById("input-estado").selectedIndex = "0";
+                $("#input-estado").attr('disabled', 'disabled');
+                $("#input-estado").focus();
+            }
+
+        });
+
+    });
+
+</script>
+
+@endsection
 
 
