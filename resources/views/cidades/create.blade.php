@@ -185,15 +185,6 @@
         $('#input-pais').change(function(){
 
             var id_pais = $(this).val();
-
-            // $.ajax({
-            //     url : url_atual + '/cidade/getEstados',
-            //     dataType : 'html',
-            //     type : 'POST',
-            //     data : {id_pais : id_pais}
-            // });
-
-            var id_pais = $(this).val();
             $.post( url_atual + '/cidade/getEstados', {
                 id_pais : id_pais }, function(data){
 
