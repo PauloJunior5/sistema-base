@@ -12,7 +12,16 @@
 */
 
 Route::get('/', function () {
+
+	/**
+     * @author [Paulo Junior] <[<pjunior.live@gmail.com>]>
+     */			
+    
+	if (session('logged') == 'true') {
+		return redirect('/home');
+	}
     return view('welcome');
+    
 });
 
 Auth::routes();

@@ -1,10 +1,14 @@
 <div class="sidebar" data-color="orange" data-background-color="white" >
-  <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+  
+  <?php
+     try {
+        $url = explode('/', Request::url())[3];
+    } catch (Exception $e) {
+        report($e);
+        $url = '/home';
+    }
+  ?>
 
-      Tip 2: you can also add an image using data-image tag
-  -->
-  <?php $url = explode('/', Request::url())[3]; ?>
   <div class="logo">
     <a href="{{ route('home') }}" class="simple-text logo-normal">
       {{ __('Sistema Base') }}

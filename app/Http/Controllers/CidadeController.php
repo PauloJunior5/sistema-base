@@ -10,11 +10,6 @@ use Illuminate\Http\Request;
 class CidadeController extends Controller
 {
 
-    public function __construct()
-    {
-
-    }
-
     public function index(Cidade $model)
     {
         return view('cidades.index', ['cidades' => $model->paginate(15)]);

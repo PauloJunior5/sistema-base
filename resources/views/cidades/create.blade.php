@@ -93,7 +93,7 @@
                     <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
                      
                       <select class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" name="estado" id="input-estado" type="text" placeholder="{{ __('Estado') }}" value="{{ old('estado') }}" required="true" disabled="" />
-                        <option value="Select"> Select </option>
+                        <option> Select </option>
                         <!-- <?php foreach ($estados as $key => $estado) { ?>
                           <option value="{{$estado->id}}" >{{$estado->nome}}</option>
                         <?php } ?> -->
@@ -185,23 +185,13 @@
         $('#input-pais').change(function(){
 
             var id_pais = $(this).val();
+
             $.post( url_atual + '/cidade/getEstados', {
                 id_pais : id_pais }, function(data){
-
                     $('#input-estado').html(data);
                     $('#input-estado').removeAttr('disabled');
             });
             
-
-            if ($(this).val() != "Select") {
-                $("#input-estado").removeAttr("disabled");
-                $("#input-estado").focus();
-            } else {
-                document.getElementById("input-estado").selectedIndex = "0";
-                $("#input-estado").attr('disabled', 'disabled');
-                $("#input-estado").focus();
-            }
-
         });
 
     });
