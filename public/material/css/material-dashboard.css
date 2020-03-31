@@ -16287,6 +16287,7 @@ thead.thead-inverse th,
 }
 
 body {
+  background-image: url('../img/nova01.jpg');
   background-color: #eee;
   color: #3C4858;
   font-weight: 300;
@@ -18827,7 +18828,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .page-header > .container {
-  flex-grow: 1;
+  /*flex-grow: 1;*/
 }
 
 .page-header {

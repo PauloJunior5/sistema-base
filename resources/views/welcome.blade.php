@@ -1,11 +1,10 @@
 @extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'home', 'title' => __('Material Dashboard')])
 
 @section('content')
-<div class="container" style="height: auto;">
-  <div class="row justify-content-center">
-      <div class="col-lg-7 col-md-8">
-          <h1 class="text-white text-center">{{ __('Bem Vindo ao Sistema Base') }}</h1>
-      </div>
-  </div>
-</div>
+<div class="container text-center my-auto">
+      <h1 class="mb-1">{{ __('Bem Vindo ao Sistema Base') }}</h1>
+      <h3 class="mb-5">
+        <em>Vírus de computadores são uma lenda urbana.</em>
+      </h3>
+      <!-- <img src="{{ asset('material') }}/icons/fogo.png" width=60 height=40> -->
 @endsection
