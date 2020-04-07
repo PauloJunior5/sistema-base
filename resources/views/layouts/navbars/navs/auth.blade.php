@@ -11,8 +11,18 @@
     <span class="navbar-toggler-icon icon-bar"></span>
     <span class="navbar-toggler-icon icon-bar"></span>
     </button>
-    <li class="navbar-toggle">
-      <a class="nav-link" href="{{ route('logout') }}" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+    <div class="d-flex">
+      <div class="dropdown mr-1">
+          <a href="{{ route('logout') }}" style="color: #3c4858" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons your-div" style="font-size: 30">exit_to_app</i></a>
+      </div>
+    </div>
+
+
+
+
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="nav-link" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="material-icons">person</i>
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownProfile">
@@ -21,7 +31,7 @@
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Sair') }}</a>
       </div>
-    </li>
+    </button> -->
 
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
@@ -59,3 +69,14 @@
     </div>
   </div>
 </nav>
+
+<style type="text/css">
+  
+  @media (min-width: 1000px) {
+   .your-div {
+      display: none;
+    }
+  }
+
+
+</style>
