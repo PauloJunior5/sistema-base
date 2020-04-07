@@ -13149,7 +13149,7 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar .navbar-brand {
   position: relative;
-  color: inherit;
+  color: #3C4858;
   height: 50px;
   font-size: 1.125rem;
   line-height: 30px;
@@ -13335,6 +13335,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .navbar .collapse .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
+  color: #3C4858;
   margin-top: -3px;
   top: 0px;
   position: relative;
@@ -13352,7 +13353,7 @@ fieldset[disabled] .form-group .form-control {
   font-size: 12px;
   text-transform: uppercase;
   border-radius: 3px;
-  color: #fff;
+  color: #3C4858;
   margin: 0 15px;
 }
 
@@ -16287,7 +16288,7 @@ thead.thead-inverse th,
 }
 
 body {
-  background-image: url('../img/nova01.jpg');
+  /*background-image: url('../img/nova01.jpg');*/
   background-color: #eee;
   color: #3C4858;
   font-weight: 300;
@@ -18225,6 +18226,7 @@ Copyright (c) 2015 Daniel Eden
     box-shadow: none;
   }
   .sidebar .sidebar-wrapper {
+    background: white;
     padding-bottom: 60px;
   }
   .sidebar .nav-mobile-menu {
@@ -18374,6 +18376,7 @@ Copyright (c) 2015 Daniel Eden
   }
   .sidebar .logo,
   .off-canvas-sidebar nav .navbar-collapse .logo {
+    background: white;
     position: relative;
     z-index: 4;
   }
@@ -18427,7 +18430,7 @@ Copyright (c) 2015 Daniel Eden
   .navbar-toggler .icon-bar {
     display: block;
     position: relative;
-    background: #555 !important;
+    background: #3C4858 !important;
     width: 24px;
     height: 2px;
     border-radius: 1px;
@@ -18847,7 +18850,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .off-canvas-sidebar .navbar-collapse:after {
-  background-color: #282828;
+  background-color: white;
 }
 
 .off-canvas-sidebar .wrapper-full-page .page-header {
