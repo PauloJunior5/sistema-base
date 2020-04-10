@@ -98,4 +98,28 @@
       </div>
     </div>
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+
+      $(document).ready(function(){
+
+          var url_atual = '<?php echo URL::to('/'); ?>';
+
+          $('#input-pais').change(function(){
+
+              var id_pais = $(this).val();
+
+              $.post( url_atual + '/cidade/getEstados', {
+                  id_pais : id_pais }, function(data){
+                      $('#input-estado').html(data);
+                      $('#input-estado').removeAttr('disabled');
+              });
+              
+          });
+
+      });
+
+  </script>
+  
 @endsection
