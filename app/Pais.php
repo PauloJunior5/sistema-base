@@ -12,9 +12,9 @@ class Pais extends Model
         'id', 'codigo', 'nome', 'updated_at', 'created_at'
     ];
 
-    public function Estado()
+    public function Estados()
     {
-        return $this->hasMany('App\Estado');
+        return $this->hasMany('App\Estado', 'pais', 'id');
     }
 
 }

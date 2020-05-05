@@ -13,14 +13,9 @@ class Cidade extends Model
         'id', 'codigo', 'nome', 'pais', 'estado','created_at', 'updated_at'
     ];
 
-    public function pais()
-    {
-        return $this->hasOne('App\Pais');
-    }
-
     public function estado()
     {
-        return $this->hasOne('App\Estado');
+        return $this->belongsTo('App\Estado');
     }
 
 }

@@ -14790,7 +14790,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar[data-color="orange"] li.active>a {
   background: #ffa500;
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #caa46d;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #afaeac;
 }
 
 .sidebar[data-color="danger"] li.active>a {
@@ -16837,37 +16837,37 @@ label {
 .card .card-header-primary .card-icon,
 .card .card-header-primary:not(.card-header-icon):not(.card-header-text),
 .card .card-header-primary .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #ff9800;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #afaeac;
 }
 
 .card .card-header-danger .card-icon,
 .card .card-header-danger:not(.card-header-icon):not(.card-header-text),
 .card .card-header-danger .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #ff9800;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #afaeac;
 }
 
 .card .card-header-rose .card-icon,
 .card .card-header-rose:not(.card-header-icon):not(.card-header-text),
 .card .card-header-rose .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #ff9800;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #afaeac;
 }
 
 .card .card-header-warning .card-icon,
 .card .card-header-warning:not(.card-header-icon):not(.card-header-text),
 .card .card-header-warning .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #ff9800;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #afaeac;
 }
 
 .card .card-header-info .card-icon,
 .card .card-header-info:not(.card-header-icon):not(.card-header-text),
 .card .card-header-info .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #ff9800;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #afaeac;
 }
 
 .card .card-header-success .card-icon,
 .card .card-header-success:not(.card-header-icon):not(.card-header-text),
 .card .card-header-success .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #ff9800;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #afaeac;
 }
 
 .card [class*="card-header-"],

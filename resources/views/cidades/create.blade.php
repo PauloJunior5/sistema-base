@@ -81,7 +81,7 @@
                   <div class="col-sm-2"> 
                     <div class="row col-6">
                       <div class="col-12 text-right">
-                          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal">Add + </button>
+                          <button type="button" class="btn btn-sm btn-primary" data-toggle="" data-target="">Add + </button>
                       </div>
                     </div>
                   </div>
@@ -101,11 +101,11 @@
 
                     </div>
                   </div>
-
+                  
                   <div class="col-sm-2"> 
                     <div class="row col-6">
                       <div class="col-12 text-right">
-                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal">Add + </button>
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="" data-target="">Add + </button>
                       </div>
                     </div>
                   </div>
@@ -121,59 +121,6 @@
       </div>
     </div>
   </div>
-
-<!-- Modal -->
-<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-        <!-- <form method="post" action="{{ route('pais.store') }}" autocomplete="off" class="form-horizontal"> -->
-            @csrf
-            @method('post')
-            <div class="card ">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title">{{ __('Add Pais') }}</h4>
-                <p class="card-category"></p>
-              </div>
-              <div class="card-body ">
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Codigo') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" type="text" placeholder="{{ __('Codigo') }}" value="" required="true" aria-required="true"/>
-                      @if ($errors->has('codigo'))
-                        <span id="name-error" class="error text-danger" for="input-codigo">{{ $errors->first('name') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" type="text" placeholder="{{ __('Nome') }}" value="" required />
-                      @if ($errors->has('nome'))
-                        <span id="email-error" class="error text-danger" for="input-nome">{{ $errors->first('nome') }}</span>
-                      @endif
-                    </div>
-                  </div>
-                </div>
-              <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Add Pais') }}</button>
-              </div>
-            </div>
-          <!-- </form> -->
-      
-      </div>
-    </div>
-  </div>
-</div>  
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>

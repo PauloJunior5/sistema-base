@@ -15,7 +15,12 @@ class Estado extends Model
 
     public function pais()
     {
-        return $this->hasOne('App\Pais');
+        return $this->belongsTo('App\Pais');
+    }
+
+    public function cidades()
+    {
+        return $this->hasMany('App\Cidade', 'estado', 'id');
     }
 
 }

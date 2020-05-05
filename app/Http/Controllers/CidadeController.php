@@ -68,7 +68,8 @@ class CidadeController extends Controller
 
     public function getEstados(Request $request)
     {
-        $estados = Estado::all()->where('pais', $request->id_pais);
+        $estados = Pais::find($request->id_pais)->estados; // usando relacionamentos na model - laravel
+        // $estados = Estado::all()->where('pais', $request->id_pais);
         $options = "<option>Select</option>";
         foreach($estados as $estado){
             $options .= "<option value='".$estado->id."'>".$estado->nome."</option>";

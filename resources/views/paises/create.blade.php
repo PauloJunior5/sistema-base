@@ -69,7 +69,8 @@
                 <button type="submit" class="btn btn-primary">{{ __('Add Pais') }}</button>
               </div>
             </div>
-          </form>
+          </div>
+        </form>
         </div>
       </div>
     </div>
