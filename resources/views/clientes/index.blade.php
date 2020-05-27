@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'paises-management', 'titlePage' => __('Pais Management')])
+@extends('layouts.app', ['activePage' => 'clientes-management', 'titlePage' => __('Cliente Management')])
 
 @section('content')
 <div class="content">
@@ -7,8 +7,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paises') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <h4 class="card-title ">{{ __('Clientes') }}</h4>
+                        <p class="card-category"> {{ __('Here you can manage clientes') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -46,6 +46,7 @@
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Creation date') }}</th>
+                                    <th>{{ __('Update date') }}</th>
                                     <th class="text-right">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
@@ -55,6 +56,7 @@
                                         <td>{{ $pais->codigo }}</td>
                                         <td>{{ $pais->nome }}</td>
                                         <td>{{ $pais->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('pais.destroy', $pais->id) }}" method="post">
                                                 @csrf

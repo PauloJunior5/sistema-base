@@ -12,16 +12,10 @@
 */
 
 Route::get('/', function () {
-
-	/**
-     * @author [Paulo Junior] <[<pjunior.live@gmail.com>]>
-     */			
-    
-	if (session('logged') == 'true') {
-		return redirect('/home');
-	}
+    if (session('logged') == 'true') {
+        return redirect('/home');
+    }
     return view('welcome');
-    
 });
 
 Auth::routes();
@@ -29,62 +23,30 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('table-list', function () {
-		return view('pages.table_list');
-	})->name('table');
-
-	Route::get('typography', function () {
-		return view('pages.typography');
-	})->name('typography');
-
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
-
-	Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');
-
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-
-	Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');
-
-	Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');
-});
-
-
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('pais', 'PaisController', ['except' => ['show']]);
-	Route::put('pais', ['as' => 'pais.update', 'uses' => 'PaisController@update']);
-
-	
+    Route::resource('cliente', 'ClienteController', ['except' => ['show']]);
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('estado', 'EstadoController', ['except' => ['show']]);
-	Route::post('estado/destroy', 'EstadoController@destroy');
-	Route::get('estado/destroy', 'EstadoController@destroy');
-	
-});
-	
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
-	Route::post('cidade/destroy', 'CidadeController@destroy');
-	Route::get('cidade/destroy', 'CidadeController@destroy');
-	Route::post('cidade/getEstados', 'CidadeController@getEstados');
-	
+    Route::resource('pais', 'PaisController', ['except' => ['show']]);
+    Route::put('pais', ['as' => 'pais.update', 'uses' => 'PaisController@update']);
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    Route::resource('estado', 'EstadoController', ['except' => ['show']]);
+    Route::post('estado/destroy', 'EstadoController@destroy');
+    Route::get('estado/destroy', 'EstadoController@destroy');
 });
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
+    Route::post('cidade/destroy', 'CidadeController@destroy');
+    Route::get('cidade/destroy', 'CidadeController@destroy');
+    Route::post('cidade/getEstados', 'CidadeController@getEstados');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('user', 'UserController', ['except' => ['show']]);
+    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+    Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
