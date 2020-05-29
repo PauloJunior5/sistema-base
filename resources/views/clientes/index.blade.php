@@ -36,7 +36,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('pais.create') }}" class="btn btn-sm btn-primary">{{ __('Add Pais') }}</a>
+                                <a href="{{ route('cliente.create') }}" class="btn btn-sm btn-primary">{{ __('Add Cliente') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
