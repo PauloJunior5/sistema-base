@@ -27,9 +27,10 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::count();
-        $paises = Pais::count();
-        $estados = Estado::count();
-        $cidades = Cidade::count();
-        return view('dashboard', compact('users', 'paises', 'estados', 'cidades'));
+        // $paises = Pais::count();
+        // $estados = Estado::count();
+        // $cidades = Cidade::count();
+
+        return view('dashboard', compact('users'));
     }
 }

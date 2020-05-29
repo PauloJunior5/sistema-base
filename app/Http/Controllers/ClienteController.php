@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
-use App\Pais;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
 
-    public function index(Pais $model) // FALTA CRIAR MODEL CLIENTE !!!
+    public function index() // FALTA CRIAR MODEL CLIENTE !!!
     {
-        return view('clientes.index', ['paises' => $model->paginate(15)]);
+        return view('clientes.index');
     }
 
     public function create()

@@ -83,33 +83,6 @@
                     </ul>
                 </div>
 
-                <!-- <div class="collapse <?= ($url == 'pais' || $url == 'estado' || $url == 'cidade') ? 'show' : '' ?>" id="cadastro">
-                    <ul class="nav">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pais.index') }}">
-                                <span class="sidebar-mini"> P </span>
-                                <span class="sidebar-normal">{{ __('Países') }} </span>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('estado.index') }}">
-                                <span class="sidebar-mini"> E </span>
-                                <span class="sidebar-normal">{{ __('Estados') }} </span>
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cidade.index') }}">
-                                <span class="sidebar-mini"> C </span>
-                                <span class="sidebar-normal">{{ __('Cidades') }} </span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div> -->
             </li>
 
         </ul>

@@ -50,29 +50,7 @@
                                     <th class="text-right">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($paises as $pais)
-                                    <tr>
-                                        <td>{{ $pais->id }}</td>
-                                        <td>{{ $pais->codigo }}</td>
-                                        <td>{{ $pais->nome }}</td>
-                                        <td>{{ $pais->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
-                                        <td class="td-actions text-right">
-                                            <form action="{{ route('pais.destroy', $pais->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('pais.edit', $pais) }}" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this país?") }}') ? this.parentElement.submit() : ''">
-                                                    <i class="material-icons">close</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                   
                                 </tbody>
                             </table>
                         </div>
