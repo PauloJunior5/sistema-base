@@ -18,12 +18,5 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
-    protected $except = [
-        
-        /**
-         * @author [Paulo Junior] <[<pjunior.live@gmail.com>]>
-         */
-        
-        '/cidade/getEstados',
-    ];
+    protected $except = [];
 }

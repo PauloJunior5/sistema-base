@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('cliente', 'ClienteController', ['except' => ['show']]);
+    // Route::post('cliente', 'ClienteController@store')->name('cliente.store');
 });
 
 Route::group(['middleware' => 'auth'], function () {

@@ -20,6 +20,8 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
+        die;
         $validatedData = $request->validate([
             'nome' => 'unique:clientes,nome',
         ]);
