@@ -23,107 +23,131 @@
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-md-12 text-right">
-                                    <a href="" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
+                                <div class="col-md-1">
+                                    <label for="id">Id</label>
+                                    <input type="text" class="form-control" name="id" id="id_input" placeholder="" disabled>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-3">
                                     <label for="tipo">Pessoa Física ou Juridica?</label>
-                                    <select class="form-control" name="tipo" id="tipo-input">
+                                    <select class="form-control" name="tipo" id="tipo_input">
                                         <option value="" selected disabled>Selecione</option>
                                         <option value="1">Física</option>
                                         <option value="2">Juridica</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="aniversario">Aniversario</label>
-                                    <input type="date" class="form-control" name="aniversario" id="aniversario-input" placeholder="">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
                                     <label for="tipo">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="nome-input" placeholder="">
+                                    <input type="text" class="form-control" name="nome" id="nome_input" placeholder="">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <label for="tipo">Apelido</label>
-                                    <input type="text" class="form-control" name="apelido" id="apelido-input" placeholder="">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label for="tipo">CPF</label>
-                                    <input type="text" class="form-control" name="cpf" id="cpf-input" placeholder="">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="tipo">RG</label>
-                                    <input type="text" class="form-control" name="rg" id="rg-input" placeholder="">
+                                    <input type="text" class="form-control" name="apelido" id="apelido_input" placeholder="">
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">Emissor</label>
-                                    <input type="text" class="form-control" name="emissor" id="emissor-input" placeholder="">
+                                    <label for="estao_civil">Estado Civíl</label>
+                                    <input type="text" class="form-control" name="estao_civil" id="estao_civil_input" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="tipo">Endereço</label>
+                                    <input type="text" class="form-control" name="endereco" id="endereco_input" placeholder="">
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="tipo">UF</label>
-                                    <input type="text" class="form-control" name="uf" id="uf-input" placeholder="">
+                                    <label for="tipo">nº</label>
+                                    <input type="text" class="form-control" name="numero" id="numero_input" placeholder="">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="tipo">Complemento</label>
+                                    <input type="text" class="form-control" name="complemento" id="complemento_input" placeholder="">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="tipo">Bairro</label>
+                                    <input type="text" class="form-control" name="bairro" id="bairro_input" placeholder="">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="tipo">CEP</label>
+                                    <input type="text" class="form-control" name="cep" id="telefone_input" placeholder="">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="tipo">Cidade</label>
+                                    <input type="text" class="form-control" name="cidade" id="cidade_input" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label for="tipo">Telefone</label>
+                                    <input type="text" class="form-control" name="telefone" id="telefone-input" placeholder="">
                                 </div>
                                 <div class="col-md-3">
+                                    <label for="tipo">Email</label>
+                                    <input type="text" class="form-control" name="email" id="email_input" placeholder="">
+                                </div>
+                                <div class="col-md-2">
                                     <label for="tipo">Sexo</label>
-                                    <select class="form-control" name="sexo" id="sexo-input">
+                                    <select class="form-control" name="sexo" id="sexo_input">
                                         <option value="" selected disabled>Selecione</option>
                                         <option value="1">Maculino</option>
                                         <option value="2">Feminino</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label for="tipo">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" id="telefone-input" placeholder="">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="tipo">Celular</label>
-                                    <input type="text" class="form-control" name="celular" id="celular-input" placeholder="">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="tipo">Email</label>
-                                    <input type="text" class="form-control" name="email" id="email-input" placeholder="">
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-2">
-                                    <label for="tipo">CEP</label>
-                                    <input type="text" class="form-control" name="cep" id="telefone-input" placeholder="">
+                                    <label for="tipo">Nacionalidade</label>
+                                    <input type="text" class="form-control" name="nacionalidade" id="nacionalidade" placeholder="">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="aniversario">Aniversario</label>
+                                    <input type="date" class="form-control" name="aniversario" id="aniversario_input" placeholder="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="tipo">CPF</label>
+                                    <input type="text" class="form-control" name="cpf" id="cpf_input" placeholder="">
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Endereço</label>
-                                    <input type="text" class="form-control" name="endereco" id="endereco-input" placeholder="">
+                                    <label for="tipo">RG</label>
+                                    <input type="text" class="form-control" name="rg" id="rg_input" placeholder="">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="tipo">Emissor</label>
+                                    <input type="text" class="form-control" name="emissor" id="emissor_input" placeholder="">
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="tipo">nº</label>
-                                    <input type="text" class="form-control" name="numero" id="numero-input" placeholder="">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="tipo">Complemento</label>
-                                    <input type="text" class="form-control" name="complemento" id="complemento-input" placeholder="">
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="tipo">Bairro</label>
-                                    <input type="text" class="form-control" name="bairro" id="bairro-input" placeholder="">
+                                    <label for="tipo">UF</label>
+                                    <input type="text" class="form-control" name="uf" id="uf_input" placeholder="">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-7">
                                     <label for="tipo">Observação</label>
-                                    <input type="text" class="form-control" name="observacao" id="observacao-input" placeholder="">
+                                    <input type="text" class="form-control" name="observacao" id="observacao_input" placeholder="">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="tipo">Limite de Crédito</label>
-                                    <input type="number" class="form-control" name="limite-credito" id="limite-credito-input" placeholder="">
+                                    <input type="number" class="form-control" name="limite_credito" id="limite_credito_input" placeholder="">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="tipo">Condição de Pagamento</label>
+                                    <select class="form-control" name="condicao_pagamento" id="condicao_pagamento_input">
+                                        <option value="" selected disabled>Selecione</option>
+                                        <option value="1">Tipo 1</option>
+                                        <option value="2">Tipo 2</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="card-footer ml-auto mr-auto">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="Created_at">Created_at</label>
+                                    <input type="date" class="form-control" name="Created_at" id="Created_at_input" placeholder="" disabled>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="Updated_at">Updated_at</label>
+                                    <input type="date" class="form-control" name="Updated_at" id="Updated_at_input" placeholder="" disabled>
+                                </div>
+                            </div>
+                            <div class="card-footer ml-auto mr-auto float-right">
+                                <a href="{{route('cliente.index')}}" class="btn btn-danger">{{ __('Back to list') }}</a>
                                 <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                             </div>
                         </div>
