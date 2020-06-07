@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cidade;
+use App\Cliente;
 use App\Estado;
 use App\Pais;
 use App\User;
@@ -30,7 +31,8 @@ class HomeController extends Controller
         // $paises = Pais::count();
         // $estados = Estado::count();
         // $cidades = Cidade::count();
+        $clientes = Cliente::count();
 
-        return view('dashboard', compact('users'));
+        return view('dashboard', compact('users', 'clientes'));
     }
 }

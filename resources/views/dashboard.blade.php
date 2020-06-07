@@ -29,7 +29,7 @@
                 <i class="material-icons">apartment</i>
               </div>
               <p class="card-category">Clientes</p>
-              <h3 class="card-title"></h3>
+              <h3 class="card-title">{{$clientes}}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -45,7 +45,7 @@
                 <i class="material-icons">apartment</i>
               </div>
               <p class="card-category">Fornecedores</p>
-              <h3 class="card-title"></h3>
+              <h3 class="card-title">{{ (isset($transportadoras) ? $transportadoras : 0) }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
@@ -61,7 +61,7 @@
                 <i class="material-icons">apartment</i>
               </div>
               <p class="card-category">Transportadoras</p>
-              <h3 class="card-title"></h3>
+              <h3 class="card-title">{{ (isset($transportadoras) ? $transportadoras : 0) }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
