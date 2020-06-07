@@ -1,6 +1,6 @@
 <?php
 
-$DATABASE_URL=parse_url('postgres://vdsvrknimxcdns:ad972708a33cfc84837a6fda3bb60f6a7eb685614faa1b71e6136576d4f3704d@ec2-54-197-48-79.compute-1.amazonaws.com:5432/dfu567std3sjgf');
+$DATABASE_URL = parse_url('postgres://vdsvrknimxcdns:ad972708a33cfc84837a6fda3bb60f6a7eb685614faa1b71e6136576d4f3704d@ec2-54-197-48-79.compute-1.amazonaws.com:5432/dfu567std3sjgf');
 
 use Illuminate\Support\Str;
 
@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -50,10 +50,10 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
+            'database' => env('DB_DATABASE', 'laravel'),
+            'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'unix_socket' => env('DB_SOCKET', '/Applications/MAMP/tmp/mysql/mysql.sock'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -125,7 +125,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
