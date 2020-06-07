@@ -35,4 +35,9 @@ class HomeController extends Controller
 
         return view('dashboard', compact('users', 'clientes'));
     }
+
+    public function welcome()
+    {
+     dd("teste");
+    }
 }

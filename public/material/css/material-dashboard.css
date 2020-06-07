@@ -3988,7 +3988,7 @@ tbody.collapse.show {
     font-size       : 1rem;
     font-weight     : 400;
     line-height     : 1.5;
-    color           : #495057;
+    /* color           : #495057; */
     text-align      : center;
     white-space     : nowrap;
     background-color: transparent;
@@ -9442,7 +9442,7 @@ a.text-dark:focus {
     letter-spacing  : 0;
     cursor          : pointer;
     background-color: transparent;
-    border          : 0;
+    /* border          : 0; */
     border-radius   : 0.2rem;
     outline         : 0;
     transition      : box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -9961,6 +9961,7 @@ a.text-dark:focus {
 .btn.btn-danger.btn-link:active {
     background-color: transparent;
     color: #db3737;
+    border-color: #962626;
 }
 
 .btn.btn-rose {
@@ -10173,7 +10174,7 @@ a.text-dark:focus {
 .btn.btn-default.btn-link:focus,
 .btn.btn-default.btn-link:active {
     background-color: transparent;
-    color           : #999999;
+    /* color           : #999999; */
 }
 
 .btn.btn-white,
@@ -13795,7 +13796,7 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar .navbar-brand {
     position   : relative;
-    color      : #3C4858;
+    color      : #fff;
     height     : 50px;
     font-size  : 1.125rem;
     line-height: 30px;
@@ -13981,7 +13982,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .navbar .collapse .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
-    color       : #3C4858;
+    color       : #fff;
     margin-top  : -3px;
     top         : 0px;
     position    : relative;
@@ -14001,6 +14002,14 @@ fieldset[disabled] .form-group .form-control {
     border-radius : 3px;
     color         : #3C4858;
     margin        : 0 15px;
+}
+
+.welcome {
+    color: #fff !important;
+}
+
+.welcome-navbar {
+    color: #fff !important;
 }
 
 .off-canvas-sidebar .navbar .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
@@ -16947,7 +16956,7 @@ thead.thead-inverse th,
 
 body {
     /*background-image: url('../img/nova01.jpg');*/
-    background-color: #eee;
+    background-color: #1f2020;
     color           : #3C4858;
     font-weight     : 300;
 }
@@ -16992,7 +17001,7 @@ a .material-icons {
 label {
     font-size  : 14px;
     line-height: 1.42857;
-    color      : #AAAAAA;
+    color      : #fff;
     font-weight: 400;
 }
 
