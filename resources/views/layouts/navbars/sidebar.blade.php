@@ -30,15 +30,15 @@
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse <?= ($url == 'user' || $url == 'profile') ? 'show' : '' ?>" id="usuarios">
+                <div class="collapse {{ ($activePage == 'user-management' || $activePage == 'profile') ? ' show' : '' }}" id="usuarios">
                     <ul class="nav">
-                        <li class="nav-item{">
+                        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('profile.edit') }}">
                                 <span class="sidebar-mini"> P </span>
                                 <span class="sidebar-normal">{{ __('Perfil do Usuário') }} </span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('user.index') }}">
                                 <span class="sidebar-mini"> N </span>
                                 <span class="sidebar-normal"> {{ __('Usuários') }} </span>
@@ -48,24 +48,24 @@
                 </div>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#cadastro" aria-expanded="true">
                     <i class="material-icons">reorder</i>
                     <p>{{ __('Cadastro') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse <?= ($url == 'clientes' || $url == 'fornecedores' || $url == 'transportadoras') ? 'show' : '' ?>" id="cadastro">
+                <div class="collapse {{ $activePage == 'cliente-management' ? ' show' : '' }}" id="cadastro">
                     <ul class="nav">
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('cliente.index') }}">
                                 <span class="sidebar-mini"> C </span>
                                 <span class="sidebar-normal">{{ __('Clientes') }} </span>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ $activePage == 'fornecedor-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('cliente.index') }}">
                                 <span class="sidebar-mini"> F </span>
                                 <span class="sidebar-normal">{{ __('Fornecedores') }} </span>
@@ -73,7 +73,7 @@
                         </li>
 
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ $activePage == 'transportador-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('cliente.index') }}">
                                 <span class="sidebar-mini"> T </span>
                                 <span class="sidebar-normal">{{ __('Transportadoras') }} </span>
