@@ -2150,7 +2150,7 @@ pre code {
     padding: 0.4375rem 0;
     font-size: 1rem;
     line-height: 1.5;
-    color: #495057;
+    color: #AAAAAA;
     background-color: rgba(0, 0, 0, 0);
     background-clip: padding-box;
     border: 1px solid #d2d2d2;
@@ -2165,7 +2165,7 @@ pre code {
 }
 
 .form-control:focus {
-    color: #495057;
+    color: #fff;
     background-color: rgba(0, 0, 0, 0);
     border-color: #9acffa;
     outline: 0;
@@ -2179,7 +2179,7 @@ pre code {
 
 .form-control:disabled,
 .form-control[readonly] {
-    background-color: #e9ecef;
+    /* background-color: #e9ecef; */
     opacity: 1;
 }
 
@@ -9489,7 +9489,7 @@ a.text-dark:focus {
 .btn.btn-link,
 .btn.btn-default.btn-link {
     background-color: transparent;
-    color: #999999;
+    color: #fff;
     box-shadow: none;
 }
 
@@ -13442,7 +13442,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .alert.alert-danger {
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+    /* box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4); */
 }
 
 .alert.alert-danger i {
@@ -13450,7 +13450,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .alert.alert-warning {
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4);
+    /* box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4); */
 }
 
 .alert.alert-warning i {
@@ -13458,7 +13458,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .alert.alert-success {
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4);
+    /* box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4); */
 }
 
 .alert.alert-success i {
@@ -16590,7 +16590,7 @@ label {
     margin-bottom: 30px;
     margin-top: 30px;
     border-radius: 6px;
-    color: #333333;
+    color: #fff;
     background: #333;
     width: 100%;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
@@ -16978,7 +16978,7 @@ label {
 .card .card-header.card-header-icon .card-title,
 .card .card-header.card-header-text .card-title {
     margin-top: 15px;
-    color: #3C4858;
+    color: #fff;
 }
 
 .card .card-header.card-header-icon h4,
@@ -17276,7 +17276,7 @@ label {
 }
 
 .card-stats .card-header .card-category:not([class*="text-"]) {
-    color: #999999;
+    color: #fff;
     font-size: 14px;
 }
 

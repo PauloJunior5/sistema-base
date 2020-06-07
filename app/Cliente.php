@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-    protected $table = 'cliente';
-    
     protected $fillable = [
-        'id', 'codigo', 'nome', 'updated_at', 'created_at'
+        'tipo', 'nome', 'apelido', 'estado_civil',
+        'endereco', 'numero', 'complemento', 'bairro', 'cep', 'cidade',
+        'telefone', 'email', 'sexo', 'nacionalidade', 'aniversario',
+        'cpf', 'rg', 'emissor', 'uf',
+        'observacao', 'limite_credito', 'condicao_pagamento'
     ];
-
 }

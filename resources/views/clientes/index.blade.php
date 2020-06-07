@@ -1,5 +1,4 @@
 @extends('layouts.app', ['activePage' => 'clientes-management', 'titlePage' => __('Cliente Management')])
-
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -43,14 +42,46 @@
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>{{ __('Id') }}</th>
-                                    <th>{{ __('Código') }}</th>
+                                    <th>{{ __('CPF') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Update date') }}</th>
                                     <th class="text-right">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                   
+                                    @foreach($clientes as $cliente)
+                                    <tr>
+                                        <td>
+                                            {{ $cliente->id }}
+                                        </td>
+                                        <td>
+                                            {{ $cliente->cpf }}
+                                        </td>
+                                        <td>
+                                            {{ $cliente->nome }}
+                                        </td>
+                                        <td>
+                                            {{ $cliente->created_at->format('Y-m-d') }}
+                                        </td>
+                                        <td>
+                                            {{ $cliente->updated_at->format('Y-m-d') }}
+                                        </td>
+                                        <td class="td-actions text-right">
+                                            <form action="{{ route('cliente.destroy', $cliente) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente) }}" data-original-title="" title="">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                    <i class="material-icons">close</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -31,21 +31,21 @@
                                     <label for="tipo">Pessoa Física ou Juridica?</label>
                                     <select class="form-control" name="tipo" id="tipo_input">
                                         <option value="" selected disabled>Selecione</option>
-                                        <option value="1">Física</option>
-                                        <option value="2">Juridica</option>
+                                        <option value="<?= config('constants.fisica'); ?>">Física</option>
+                                        <option value="<?= config('constants.juridica'); ?>">Juridica</option>
                                     </select>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="tipo">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="nome_input" placeholder="">
+                                    <input type="text" class="form-control" name="nome" id="nome_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="tipo">Apelido</label>
                                     <input type="text" class="form-control" name="apelido" id="apelido_input" placeholder="">
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="estao_civil">Estado Civíl</label>
-                                    <input type="text" class="form-control" name="estao_civil" id="estao_civil_input" placeholder="">
+                                    <label for="estado_civil">Estado Civíl</label>
+                                    <input type="text" class="form-control" name="estado_civil" id="estado_civil_input" placeholder="">
                                 </div>
                             </div>
                             <div class="row">
@@ -87,8 +87,8 @@
                                     <label for="tipo">Sexo</label>
                                     <select class="form-control" name="sexo" id="sexo_input">
                                         <option value="" selected disabled>Selecione</option>
-                                        <option value="1">Maculino</option>
-                                        <option value="2">Feminino</option>
+                                        <option value="<?= config('constants.masculino'); ?>">Maculino</option>
+                                        <option value="<?= config('constants.feminino'); ?>">Feminino</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
@@ -138,12 +138,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label for="Created_at">Created_at</label>
-                                    <input type="date" class="form-control" name="Created_at" id="Created_at_input" placeholder="" disabled>
+                                    <label for="ureated_at">Created_at</label>
+                                    <input type="date" class="form-control" name="created_at" id="created_at_input" placeholder="" disabled>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="Updated_at">Updated_at</label>
-                                    <input type="date" class="form-control" name="Updated_at" id="Updated_at_input" placeholder="" disabled>
+                                    <label for="updated_at">Updated_at</label>
+                                    <input type="date" class="form-control" name="updated_at" id="updated_at_input" placeholder="" disabled>
                                 </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto float-right">
