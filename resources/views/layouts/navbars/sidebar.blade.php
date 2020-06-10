@@ -1,5 +1,4 @@
 <div class="sidebar" data-color="orange" data-background-color="white">
-
     <?php
     try {
         $url = explode('/', Request::url())[3];
@@ -8,7 +7,6 @@
         $url = '/home';
     }
     ?>
-
     <div class="logo">
         <a href="{{ route('home') }}" class="simple-text logo-normal">
             {{ __('Sistema Base') }}
@@ -22,7 +20,6 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="true">
                     <i class="material-icons">person</i>
@@ -47,44 +44,53 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
+                                    $activePage == 'pais-management' || $activePage == 'estado-management' ||
+                                    $activePage == 'cidade-management') ? ' active' : '' }}">
 
-            <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#cadastro" aria-expanded="true">
                     <i class="material-icons">reorder</i>
                     <p>{{ __('Cadastro') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ $activePage == 'cliente-management' ? ' show' : '' }}" id="cadastro">
+                <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
+                                    $activePage == 'pais-management' || $activePage == 'estado-management' ||
+                                    $activePage == 'cidade-management') ? ' show' : '' }}" id="cadastro">
                     <ul class="nav">
-
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('cliente.index') }}">
                                 <span class="sidebar-mini"> C </span>
                                 <span class="sidebar-normal">{{ __('Clientes') }} </span>
                             </a>
                         </li>
-
                         <li class="nav-item {{ $activePage == 'fornecedor-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('cliente.index') }}">
                                 <span class="sidebar-mini"> F </span>
                                 <span class="sidebar-normal">{{ __('Fornecedores') }} </span>
                             </a>
                         </li>
-
-
-                        <li class="nav-item {{ $activePage == 'transportador-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('cliente.index') }}">
-                                <span class="sidebar-mini"> T </span>
-                                <span class="sidebar-normal">{{ __('Transportadoras') }} </span>
+                        <li class="nav-item {{ $activePage == 'pais-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('pais.index') }}">
+                                <span class="sidebar-mini"> P </span>
+                                <span class="sidebar-normal">{{ __('Países') }} </span>
                             </a>
                         </li>
-
+                        <li class="nav-item {{ $activePage == 'estado-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('estado.index') }}">
+                                <span class="sidebar-mini"> E </span>
+                                <span class="sidebar-normal">{{ __('Estados') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'cidade-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('cidade.index') }}">
+                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-normal">{{ __('Cidades') }} </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-
             </li>
-
         </ul>
     </div>
 </div>

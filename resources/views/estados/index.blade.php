@@ -1,5 +1,5 @@
 
-@extends('layouts.app', ['activePage' => 'estados-management', 'titlePage' => __('Estado Management')])
+@extends('layouts.app', ['activePage' => 'estado-management', 'titlePage' => __('Estado Management')])
 
 @section('content')
   <div class="content">

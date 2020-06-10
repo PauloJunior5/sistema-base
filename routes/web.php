@@ -29,6 +29,24 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::resource('pais', 'PaisController', ['except' => ['show']]);
+    Route::put('pais', ['as' => 'pais.update', 'uses' => 'PaisController@update']);
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('estado', 'EstadoController', ['except' => ['show']]);
+    Route::post('estado/destroy', 'EstadoController@destroy');
+    Route::get('estado/destroy', 'EstadoController@destroy');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
+    Route::post('cidade/destroy', 'CidadeController@destroy');
+    Route::get('cidade/destroy', 'CidadeController@destroy');
+    Route::post('cidade/getEstados', 'CidadeController@getEstados');
+});
+
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('user', 'UserController', ['except' => ['show']]);
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
