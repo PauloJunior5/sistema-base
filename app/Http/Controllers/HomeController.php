@@ -28,12 +28,12 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::count();
-        // $paises = Pais::count();
-        // $estados = Estado::count();
-        // $cidades = Cidade::count();
+        $paises = Pais::count();
+        $estados = Estado::count();
+        $cidades = Cidade::count();
         $clientes = Cliente::count();
 
-        return view('dashboard', compact('users', 'clientes'));
+        return view('dashboard', compact('users', 'clientes', 'paises', 'estados', 'cidades'));
     }
 
     public function welcome()
