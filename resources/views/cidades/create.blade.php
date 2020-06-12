@@ -108,7 +108,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('País') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
-                                        <select class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required="true" />
+                                        <select class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required="true" />
                                         <option value="Select"> Select </option>
                                         <?php foreach ($paises as $key => $pais) { ?>
                                         <option value="{{$pais->id}}">{{$pais->nome}}</option>
@@ -154,7 +154,7 @@
 <script>
     $(document).ready(function() {
         var url_atual = '<?php echo URL::to(''); ?>';
-        $('#input-pais').change(function() {
+        $('#input-pais-pais').change(function() {
             var id_pais = $(this).val();
             $.post(url_atual + '/cidade/getEstados', {
                 id_pais: id_pais
