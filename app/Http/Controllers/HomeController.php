@@ -19,7 +19,6 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -32,12 +31,6 @@ class HomeController extends Controller
         $estados = Estado::count();
         $cidades = Cidade::count();
         $clientes = Cliente::count();
-
         return view('dashboard', compact('users', 'clientes', 'paises', 'estados', 'cidades'));
-    }
-
-    public function welcome()
-    {
-     dd("teste");
     }
 }

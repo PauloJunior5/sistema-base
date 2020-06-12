@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Estado;
 use App\Pais;
 use Illuminate\Http\Request;
 
 class EstadoController extends Controller
 {
-
     public function index(Estado $model)
     {
         return view('estados.index', ['estados' => $model->paginate(15)]);
     }
-
-
     public function create()
     {
         $paises = Pais::all();
@@ -24,29 +20,38 @@ class EstadoController extends Controller
 
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'pais' => 'exists:paises,id',
-            'nome' => 'unique:estados,nome', 
+            'nome' => 'unique:estados,nome',
         ]);
-
-        $estado = Estado::create($request->all());
-        if ($estado) {
-            return redirect()->route('estado.index')->with('Success', 'Estado successfully created.');
+        
+        if ($validatedData) {
+            if (isset($_POST["modalEstado"])) {
+                $estado = Estado::create($request->all());
+                if ($estado) {
+                    return redirect()->route('cidade.create')->with('Success', 'Estado successfully created.');
+                }
+            } else {
+                $estado = Estado::create($request->all());
+                if ($estado) {
+                    return redirect()->route('estado.index')->with('Success', 'Estado successfully created.');
+                }
+            }
         }
+
     }
 
     public function edit($estado_id)
     {
         $estado = Estado::findOrFail($estado_id);
         $paises = Pais::all();
-
         if ($estado) {
-            return view('estados.edit', compact('estado','paises'));
+            return view('estados.edit', compact('estado', 'paises'));
         } else {
             return redirect()->back();
         }
     }
-
     public function update(Request $request)
     {
         $estado = Estado::whereId($request->get('id'))->update($request->except('_token', '_method'));
@@ -54,18 +59,15 @@ class EstadoController extends Controller
             return redirect()->route('estado.index')->with('Success', 'Estado successfully updated.');
         }
     }
-
     public function destroy($estado_id)
     {
-        try { 
+        try {
             $estado = Estado::where('id', $estado_id)->delete();
-        } catch(\Illuminate\Database\QueryException $ex){ 
+        } catch (\Illuminate\Database\QueryException $ex) {
             return redirect()->route('estado.index')->with('Warning', 'Estado unsuccessfully deleted. Esse estado possui vínculo com cidades.');
         }
-        
         if ($estado) {
             return redirect()->route('estado.index')->with('Success', 'Estado successfully deleted.');
         }
-
     }
 }
