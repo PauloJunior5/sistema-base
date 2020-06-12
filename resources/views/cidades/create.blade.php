@@ -75,7 +75,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="id" id="input-name" type="text" placeholder="{{ __('Id') }}" value="{{ old('id') }}" required="true" aria-required="true" readonly />
+                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" readonly />
                                         @if ($errors->has('id'))
                                         <span id="name-error" class="error text-danger" for="input-id">{{ $errors->first('id') }}</span>
                                         @endif

@@ -25,7 +25,7 @@
                             <div class="row">
                                 <div class="col-md-1">
                                     <label for="id">Id</label>
-                                    <input type="text" class="form-control" name="id" id="id_input" placeholder="" readonly>
+                                    <input type="text" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="tipo">Pessoa Física ou Juridica?</label>
