@@ -31,17 +31,17 @@
                       <a href="{{ route('pais.index') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                   </div>
                 </div>
-                <!-- <div class="row">
+                <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="id" id="input-name" type="text" placeholder="{{ __('Id') }}" value="{{ old('id') }}" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="id" id="input-name" type="text" placeholder="{{ __('Id') }}" value="{{ old('id') }}" required="true" aria-required="true" readonly/>
                       @if ($errors->has('id'))
                         <span id="name-error" class="error text-danger" for="input-id">{{ $errors->first('id') }}</span>
                       @endif
                     </div>
                   </div>
-                </div> -->
+                </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Codigo') }}</label>
                   <div class="col-sm-7">
