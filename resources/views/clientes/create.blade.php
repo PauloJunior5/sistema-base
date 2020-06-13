@@ -137,17 +137,17 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label for="ureated_at">Created_at</label>
                                     <input type="date" class="form-control" name="created_at" id="created_at_input" placeholder="" readonly>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label for="updated_at">Updated_at</label>
                                     <input type="date" class="form-control" name="updated_at" id="updated_at_input" placeholder="" readonly>
                                 </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto float-right">
-                                <a href="{{route('cliente.index')}}" class="btn btn-danger">{{ __('Back to list') }}</a>
+                                <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                                 <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                             </div>
                         </div>

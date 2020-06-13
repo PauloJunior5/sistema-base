@@ -25,21 +25,19 @@ class EstadoController extends Controller
             'pais' => 'exists:paises,id',
             'nome' => 'unique:estados,nome',
         ]);
-        
+
         if ($validatedData) {
+            $estado = Estado::create($request->all());
             if (isset($_POST["modalEstado"])) {
-                $estado = Estado::create($request->all());
                 if ($estado) {
-                    return redirect()->route('cidade.create')->with('Success', 'Estado successfully created.');
+                    return redirect()->route('cidade.create')->with('Success', 'Pais successfully created.');
                 }
             } else {
-                $estado = Estado::create($request->all());
                 if ($estado) {
-                    return redirect()->route('estado.index')->with('Success', 'Estado successfully created.');
+                    return redirect()->route('estado.index')->with('Success', 'Pais successfully created.');
                 }
             }
         }
-
     }
 
     public function edit($estado_id)

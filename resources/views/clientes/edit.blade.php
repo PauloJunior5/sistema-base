@@ -150,7 +150,7 @@
                                 </div>
                             </div>
                             <div class="card-footer ml-auto mr-auto float-right">
-                                <a href="{{route('cliente.index')}}" class="btn btn-danger">{{ __('Back to list') }}</a>
+                                <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                                 <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                             </div>
                         </div>

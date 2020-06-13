@@ -24,18 +24,24 @@ class PaisController extends Controller
         ]);
 
         if ($validatedData) {
+            $pais = Pais::create($request->all());
             if (isset($_POST["modalPais"])) {
-                $pais = Pais::create($request->all());
-                if ($pais) {
-                    return redirect()->route('cidade.create')->with('Success', 'Pais successfully created.');
+                if ($request->input('modalPais') == 1) {
+                    if ($pais) {
+                        return redirect()->route('estado.create')->with('Success', 'Pais successfully created.');
+                    }
+                } elseif ($request->input('modalPais') == 2) {
+                    if ($pais) {
+                        return redirect()->route('cidade.create')->with('Success', 'Pais successfully created.');
+                    }
                 }
             } else {
-                $pais = Pais::create($request->all());
                 if ($pais) {
-                    return redirect()->route('cidade.create')->with('Success', 'Pais successfully created.');
+                    return redirect()->route('pais.index')->with('Success', 'Pais successfully created.');
                 }
             }
         }
+
     }
 
     public function edit($pais_id)

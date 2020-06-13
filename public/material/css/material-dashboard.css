@@ -16979,6 +16979,7 @@
   .card .card-body {
     padding: 0.9375rem 20px;
     position: relative;
+    margin: 3% 3% 3% 3%;
   }
   
   .card .card-body .form-group {

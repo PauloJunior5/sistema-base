@@ -26,7 +26,7 @@
                             <i class="material-icons">apartment</i>
                         </div>
                         <p class="card-category">Clientes</p>
-                        <h3 class="card-title">{{$clientes}}</h3>
+                        <h3 class="card-title">{{ (isset($clientes) ? $clientes : 0) }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
