@@ -29,22 +29,24 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Add Estado') }}</h4>
+                            @php
+                                echo "URI PATH - " . Request::path();
+                            @endphp
+                            <h4 class="card-title">{{ __('Add Estado ') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <label class="col-form-label">{{ __('Id') }}</label>
-                                    <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" readonly />
-                                        @if ($errors->has('id'))
-                                        <span id="name-error" class="error text-danger" for="input-id">{{ $errors->first('id') }}</span>
-                                        @endif
+                                <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <input class="form-control" readonly />
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <label class="col-form-label">{{ __('Codigo') }}</label>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Codigo') }}</label>
+                                <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-codigo" type="text" placeholder="{{ __('Codigo') }}" value="{{ old('codigo') }}" required="true" aria-required="true" />
                                         @if ($errors->has('codigo'))
@@ -52,8 +54,10 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <label class="col-form-label">{{ __('Nome') }}</label>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
+                                <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" id="input-nome" type="text" placeholder="{{ __('Nome') }}" value="{{ old('nome') }}" required />
                                         @if ($errors->has('nome'))
@@ -63,8 +67,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">{{ __('País') }}</label>
+                                <label class="col-sm-2 col-form-label">{{ __('País') }}</label>
+                                <div class="col-sm-6">
                                     <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
                                         <select class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required="true" />
                                         <option value="Select"> Select </option>
@@ -76,26 +80,30 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="row col-6">
-                                        <div class="col-12 text-right">
-                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal" style="margin-top: 3rem;">Add + </button>
-                                        </div>
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal">Add + </button>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
-                                    <label for="ureated_at">Created_at</label>
-                                    <input type="date" class="form-control" readonly>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="updated_at">Updated_at</label>
-                                    <input type="date" class="form-control" readonly>
+                                <label class="col-sm-2 col-form-label">Created_at</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" readonly>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-footer ml-auto mr-auto pull-right">
-                                <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                                <button type="submit" class="btn btn-primary">{{ __('Add Estado') }}</button>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Updated_at</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" readonly>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="card-footer ml-auto pull-right">
+                            <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Add Estado') }}</button>
                         </div>
                     </div>
                 </form>

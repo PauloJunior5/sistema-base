@@ -16,11 +16,8 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
                                 <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('id') ? ' is-invalid' : '' }}" name="id" id="input-id" type="text" placeholder="{{ __('Id') }}" value="{{ old('id', $pais->id) }}" required="true" aria-required="true" readonly=“true” />
-                                        @if ($errors->has('name'))
-                                        <span id="id-error" class="error text-danger" for="input-id">{{ $errors->first('id') }}</span>
-                                        @endif
+                                    <div class="form-group">
+                                        <input class="form-control" value="{{ old('id', $pais->id) }}" readonly/>
                                     </div>
                                 </div>
                             </div>
@@ -46,9 +43,23 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Created_at</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" value="{{ old('created_at', $pais->created_at->format('Y-m-d')) }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label">Updated_at</label>
+                                <div class="col-sm-7">
+                                    <input type="date" class="form-control" value="{{ old('updated_at', $pais->updated_at->format('Y-m-d')) }}" readonly>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('pais.index') }}" class="btn btn-sm btn-secondary">{{ __('Back to list') }}</a>
+                            <a href="{{ route('pais.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                         </div>
                     </div>

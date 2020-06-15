@@ -9,7 +9,7 @@ class ClienteController extends Controller
 {
     public function index(Cliente $clientes)
     {
-        return view('clientes.index', ['clientes' => $clientes->paginate(15)]);
+        return view('clientes.index', ['clientes' => $clientes->paginate(10)]);
     }
     public function create()
     {

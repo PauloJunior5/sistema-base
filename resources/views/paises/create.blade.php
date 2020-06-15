@@ -26,7 +26,7 @@
                                 <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" readonly />
+                                        <input class="form-control" readonly />
                                     </div>
                                 </div>
                             </div>

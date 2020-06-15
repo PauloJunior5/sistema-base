@@ -10,22 +10,19 @@ class EstadoController extends Controller
 {
     public function index(Estado $model)
     {
-        return view('estados.index', ['estados' => $model->paginate(15)]);
+        return view('estados.index', ['estados' => $model->paginate(10)]);
     }
     public function create()
     {
         $paises = Pais::all();
         return view('estados.create', compact('paises'));
     }
-
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'pais' => 'exists:paises,id',
             'nome' => 'unique:estados,nome',
         ]);
-
         if ($validatedData) {
             $estado = Estado::create($request->all());
             if (isset($_POST["modalEstado"])) {
@@ -39,13 +36,13 @@ class EstadoController extends Controller
             }
         }
     }
-
     public function edit($estado_id)
     {
         $estado = Estado::findOrFail($estado_id);
+        $pais = Pais::findOrFail($estado->pais);
         $paises = Pais::all();
         if ($estado) {
-            return view('estados.edit', compact('estado', 'paises'));
+            return view('estados.edit', compact('estado', 'pais', 'paises'));
         } else {
             return redirect()->back();
         }

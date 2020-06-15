@@ -14,9 +14,7 @@
                 <form method="post" action="{{ route('estado.store') }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
-
                     <input type="hidden" id="modalEstado" name="modalEstado" value="1">
-
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -30,7 +28,7 @@
                                 <label class="col-sm-3 col-form-label">{{ __('Id') }}</label>
                                 <div class="col-sm-9">
                                     <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" readonly/>
+                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" readonly />
                                         @if ($errors->has('id'))
                                         <span id="name-error" class="error text-danger" for="input-id">{{ $errors->first('id') }}</span>
                                         @endif
@@ -61,7 +59,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-sm-3 col-form-label">{{ __('País') }}</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
                                         <select class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required="true" />
                                         <option value="Select"> Select </option>
@@ -73,9 +71,7 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="row col-6">
-                                        <div class="col-12 text-right">
-                                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal" style="margin-top: 3rem;">Add + </button>
-                                        </div>
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal">Add + </button>
                                     </div>
                                 </div>
                             </div>
@@ -95,9 +91,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer ml-auto mr-auto pull-right">
-                                <button type="submit" class="btn btn-primary">{{ __('Add Estado') }}</button>
-                            </div>
+                        </div>
+                        <div class="card-footer ml-auto pull-right">
+                            <button type="submit" class="btn btn-primary">{{ __('Add Estado') }}</button>
                         </div>
                     </div>
                 </form>

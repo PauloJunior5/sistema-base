@@ -42,19 +42,22 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Id') }}</th>
+                                    <th>{{ __('#') }}</th>
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Creation date') }}</th>
+                                    <th>{{ __('Change date') }}</th>
                                     <th class="text-right">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
+                                    @php $count = 1; @endphp
                                     @foreach($paises as $pais)
                                     <tr>
-                                        <td>{{ $pais->id }}</td>
+                                        <td>{{ $count++ }}</td>
                                         <td>{{ $pais->codigo }}</td>
                                         <td>{{ $pais->nome }}</td>
                                         <td>{{ $pais->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('pais.destroy', $pais->id) }}" method="post">
                                                 @csrf
@@ -73,6 +76,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{$paises->links()}}
                         </div>
                     </div>
                 </div>

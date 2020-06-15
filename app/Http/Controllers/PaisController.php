@@ -9,20 +9,17 @@ class PaisController extends Controller
 {
     public function index(Pais $model)
     {
-        return view('paises.index', ['paises' => $model->paginate(15)]);
+        return view('paises.index', ['paises' => $model->paginate(10)]);
     }
     public function create()
     {
         return view('paises.create');
     }
-
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'nome' => 'unique:paises,nome',
         ]);
-
         if ($validatedData) {
             $pais = Pais::create($request->all());
             if (isset($_POST["modalPais"])) {
@@ -41,9 +38,7 @@ class PaisController extends Controller
                 }
             }
         }
-
     }
-
     public function edit($pais_id)
     {
         $pais = Pais::findOrFail($pais_id);
