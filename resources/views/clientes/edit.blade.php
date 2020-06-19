@@ -19,16 +19,36 @@
                                     <input type="text" class="form-control" name="id" id="id_input" placeholder="" value="{{$cliente->id}}" readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Pessoa Física ou Juridica?</label>
-                                    <select class="form-control" name="tipo" id="tipo_input">
+                                    <label for="tipo">Tipo</label>
+                                    <div class="form-check">
                                         <?php if ($cliente->tipo == config('constants.fisica')) { ?>
-                                            <option value="{{config('constants.fisica')}}" selected>Física</option>
-                                            <option value="{{config('constants.juridica')}}">Juridica</option>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.fisica'); ?>" checked> Física
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.juridica');?>"> Jurídica
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
                                         <?php } else { ?>
-                                            <option value="{{config('constants.fisica')}}">Física</option>
-                                            <option value="{{config('constants.juridica')}}" selected>Juridica</option>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.fisica'); ?>"> Física
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.juridica');?>" checked> Jurídica
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
                                         <?php } ?>
-                                    </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="nome">Nome</label>
@@ -82,11 +102,11 @@
                                     <label for="sexo">Sexo</label>
                                     <select class="form-control" name="sexo" id="sexo_input">
                                         <?php if ($cliente->sexo == config('constants.masculino')) { ?>
-                                            <option value="<?= config('constants.masculino'); ?>" selected>Maculino</option>
-                                            <option value="<?= config('constants.feminino'); ?>">Feminino</option>
+                                        <option value="<?= config('constants.masculino'); ?>" selected>Maculino</option>
+                                        <option value="<?= config('constants.feminino'); ?>">Feminino</option>
                                         <?php } else { ?>
-                                            <option value="<?= config('constants.masculino'); ?>">Maculino</option>
-                                            <option value="<?= config('constants.feminino'); ?>" selected>Feminino</option>
+                                        <option value="<?= config('constants.masculino'); ?>">Maculino</option>
+                                        <option value="<?= config('constants.feminino'); ?>" selected>Feminino</option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -130,11 +150,11 @@
                                     <label for="condicao_pagamento">Condição de Pagamento</label>
                                     <select class="form-control" name="condicao_pagamento" id="condicao_pagamento_input" placeholder="" value="{{$cliente->condicao_pagamento}}">
                                         <?php if ($cliente->condicao_pagamento == 1) { ?>
-                                            <option value="1" selected>Tipo 1</option>
-                                            <option value="2">Tipo 2</option>
+                                        <option value="1" selected>Tipo 1</option>
+                                        <option value="2">Tipo 2</option>
                                         <?php } else { ?>
-                                            <option value="1">Tipo 1</option>
-                                            <option value="2" selected>Tipo 2</option>
+                                        <option value="1">Tipo 1</option>
+                                        <option value="2" selected>Tipo 2</option>
                                         <?php } ?>
                                     </select>
                                 </div>

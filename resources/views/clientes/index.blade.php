@@ -38,8 +38,15 @@
                                 <a href="{{ route('cliente.create') }}" class="btn btn-sm btn-primary">{{ __('Add Cliente') }}</a>
                             </div>
                         </div>
+
+                        <script>
+                            $(document).ready(function() {
+                                $('#myTable').DataTable();
+                            });
+                        </script>
+                        
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="myTable">
                                 <thead class=" text-primary">
                                     <th>{{ __('Id') }}</th>
                                     <th>{{ __('CPF') }}</th>

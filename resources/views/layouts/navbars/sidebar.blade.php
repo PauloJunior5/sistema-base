@@ -44,10 +44,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
-                                    $activePage == 'pais-management' || $activePage == 'estado-management' ||
-                                    $activePage == 'cidade-management') ? ' active' : '' }}">
-
+            <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#cadastro" aria-expanded="true">
                     <i class="material-icons">reorder</i>
                     <p>{{ __('Cadastro') }}

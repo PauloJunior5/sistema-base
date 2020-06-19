@@ -30,10 +30,18 @@
                                 <div class="col-md-3">
                                     <label for="tipo">Tipo</label>
                                     <div class="form-check">
-                                        <label class="form-check-label">Física</label>
-                                        <input type="radio" name="tipo" id="tipo_input" value="<?= config('constants.fisica'); ?>" checked="checked">
-                                        <label class="form-check-label">Juridica</label>
-                                        <input type="radio" name="tipo" id="tipo_input" value="<?= config('constants.juridica'); ?>">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.fisica'); ?>" checked> Física
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.juridica');?>"> Jurídica
+                                            <span class="circle">
+                                                <span class="check"></span>
+                                            </span>
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

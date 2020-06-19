@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
+                                <label class="col-sm-2 col-form-label">{{ __('Código de Referência') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group">
                                         <input class="form-control" readonly />
@@ -31,10 +31,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Codigo') }}</label>
+                                <label class="col-sm-2 col-form-label">{{ __('Código do País') }}</label>
                                 <div class="col-sm-7">
                                     <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-name" type="text" placeholder="{{ __('Codigo') }}" value="{{ old('codigo') }}" required="true" aria-required="true" />
+                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-name" type="text" placeholder="{{ __('Código do País') }}" value="{{ old('codigo') }}" required="true" aria-required="true" />
                                         @if ($errors->has('codigo'))
                                         <span id="name-error" class="error text-danger" for="input-codigo">{{ $errors->first('name') }}</span>
                                         @endif
