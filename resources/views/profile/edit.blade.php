@@ -50,7 +50,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card-footer ml-auto mr-auto">
+              <div class="card-footer ml-auto pull-right">
                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
               </div>
             </div>
@@ -112,7 +112,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card-footer ml-auto mr-auto">
+              <div class="card-footer ml-auto pull-right">
                 <button type="submit" class="btn btn-primary">{{ __('Change password') }}</button>
               </div>
             </div>

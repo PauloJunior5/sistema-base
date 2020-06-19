@@ -24,23 +24,24 @@
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label for="id">Id</label>
+                                    <label for="codigo">Código</label>
                                     <input type="text" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Pessoa Física ou Juridica?</label>
-                                    <select class="form-control" name="tipo" id="tipo_input" required>
-                                        <option value="" selected disabled>Selecione</option>
-                                        <option value="<?= config('constants.fisica'); ?>">Física</option>
-                                        <option value="<?= config('constants.juridica'); ?>">Juridica</option>
-                                    </select>
+                                    <label for="tipo">Tipo</label>
+                                    <div class="form-check">
+                                        <label class="form-check-label">Física</label>
+                                        <input type="radio" name="tipo" id="tipo_input" value="<?= config('constants.fisica'); ?>" checked="checked">
+                                        <label class="form-check-label">Juridica</label>
+                                        <input type="radio" name="tipo" id="tipo_input" value="<?= config('constants.juridica'); ?>">
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="nome_input" placeholder="" required>
+                                    <label for="cliente">Cliente</label>
+                                    <input type="text" class="form-control" name="cliente" id="cliente_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Apelido</label>
+                                    <label for="apelido">Apelido</label>
                                     <input type="text" class="form-control" name="apelido" id="apelido_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
@@ -50,41 +51,41 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label for="tipo">Endereço</label>
+                                    <label for="endereco">Endereço</label>
                                     <input type="text" class="form-control" name="endereco" id="endereco_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="tipo">nº</label>
+                                    <label for="numero">nº</label>
                                     <input type="text" class="form-control" name="numero" id="numero_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">Complemento</label>
+                                    <label for="complemento">Complemento</label>
                                     <input type="text" class="form-control" name="complemento" id="complemento_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">Bairro</label>
+                                    <label for="bairro">Bairro</label>
                                     <input type="text" class="form-control" name="bairro" id="bairro_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">CEP</label>
+                                    <label for="cep">CEP</label>
                                     <input type="text" class="form-control" name="cep" id="telefone_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">Cidade</label>
+                                    <label for="cidade">Cidade</label>
                                     <input type="text" class="form-control" name="cidade" id="cidade_input" placeholder="" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label for="tipo">Telefone</label>
+                                    <label for="telefone">Telefone</label>
                                     <input type="text" class="form-control" name="telefone" id="telefone-input" placeholder="" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Email</label>
+                                    <label for="email">Email</label>
                                     <input type="text" class="form-control" name="email" id="email_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">Sexo</label>
+                                    <label for="sexo">Sexo</label>
                                     <select class="form-control" name="sexo" id="sexo_input" required>
                                         <option value="" selected disabled>Selecione</option>
                                         <option value="<?= config('constants.masculino'); ?>">Maculino</option>
@@ -92,43 +93,43 @@
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">Nacionalidade</label>
+                                    <label for="nacionalidade">Nacionalidade</label>
                                     <input type="text" class="form-control" name="nacionalidade" id="nacionalidade" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="aniversario">Aniversario</label>
-                                    <input type="date" class="form-control" name="aniversario" id="aniversario_input" placeholder="" required>
+                                    <label for="nascimento">Nascimento</label>
+                                    <input type="date" class="form-control" name="nascimento" id="nascimento_input" placeholder="" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label for="tipo">CPF</label>
+                                    <label for="cpf">CPF</label>
                                     <input type="text" class="form-control" name="cpf" id="cpf_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">RG</label>
+                                    <label for="rg">RG</label>
                                     <input type="text" class="form-control" name="rg" id="rg_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">Emissor</label>
+                                    <label for="emissor">Emissor</label>
                                     <input type="text" class="form-control" name="emissor" id="emissor_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="tipo">UF</label>
+                                    <label for="uf">UF</label>
                                     <input type="text" class="form-control" name="uf" id="uf_input" placeholder="" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-7">
-                                    <label for="tipo">Observação</label>
+                                    <label for="observacao">Observação</label>
                                     <input type="text" class="form-control" name="observacao" id="observacao_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="tipo">Limite de Crédito</label>
+                                    <label for="limite_credito">Limite de Crédito</label>
                                     <input type="number" class="form-control" name="limite_credito" id="limite_credito_input" placeholder="" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Condição de Pagamento</label>
+                                    <label for="condicao_pagamento">Condição de Pagamento</label>
                                     <select class="form-control" name="condicao_pagamento" id="condicao_pagamento_input" required>
                                         <option value="" selected disabled>Selecione</option>
                                         <option value="1">Tipo 1</option>
@@ -138,7 +139,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label for="ureated_at">Created_at</label>
+                                    <label for="created_at">Created_at</label>
                                     <input type="date" class="form-control" name="created_at" id="created_at_input" placeholder="" readonly>
                                 </div>
                                 <div class="col-md-2">
