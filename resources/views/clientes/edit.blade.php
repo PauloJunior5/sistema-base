@@ -51,8 +51,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="nome_input" placeholder="" value="{{$cliente->nome}}">
+                                    <label for="nome">Cliente</label>
+                                    <input type="text" class="form-control" name="cliente" id="cliente_input" placeholder="" value="{{$cliente->cliente}}">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="apelido">Apelido</label>

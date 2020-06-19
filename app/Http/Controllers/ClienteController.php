@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    public function index(Cliente $clientes)
+    public function index()
     {
-        return view('clientes.index', ['clientes' => $clientes->paginate(10)]);
+        $clientes = Cliente::all();
+        return view('clientes.index', ['clientes' => $clientes]);
     }
     public function create()
     {

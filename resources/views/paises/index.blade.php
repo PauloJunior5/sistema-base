@@ -76,7 +76,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{$paises->links()}}
                         </div>
                     </div>
                 </div>
