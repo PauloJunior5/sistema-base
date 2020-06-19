@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('pais.update') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('pais.update', $pais) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -16,8 +16,11 @@
                             <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
                                 <div class="col-sm-7">
-                                    <div class="form-group">
-                                        <input class="form-control" value="{{ old('id', $pais->id) }}" readonly/>
+                                    <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('id') ? ' is-invalid' : '' }}" name="id" id="input-id" type="text" placeholder="{{ __('Id') }}" value="{{ old('id', $pais->id) }}" required="true" aria-required="true" readonly=“true” />
+                                        @if ($errors->has('id'))
+                                        <span id="id-error" class="error text-danger" for="input-id">{{ $errors->first('id') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

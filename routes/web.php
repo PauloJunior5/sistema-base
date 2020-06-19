@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('pais', 'PaisController', ['except' => ['show']]);
-    Route::put('pais', ['as' => 'pais.update', 'uses' => 'PaisController@update']);
+    // Route::put('pais', ['as' => 'pais.update', 'uses' => 'PaisController@update']);
 });
 
 Route::group(['middleware' => 'auth'], function () {
