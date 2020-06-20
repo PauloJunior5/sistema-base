@@ -2350,7 +2350,7 @@ pre code {
   box-shadow      : none, 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
 }
 
-.form-control::placeholder {
+.form-control::placeholder {    
   color  : #6c757d;
   opacity: 1;
 }
@@ -5075,27 +5075,29 @@ tbody.collapse.show {
 }
 
 .page-link {
-  position        : relative;
-  display         : block;
-  padding         : 0.5rem 0.75rem;
-  margin-left     : 0;
-  line-height     : 1.25;
-  color           : #2196f3;
-  background-color: transparent;
-  border          : 0 solid #dee2e6;
+  border: 0;
+  border-radius: 30px !important;
+  transition: all .3s;
+  padding: 7px 11px;
+  margin: 0 3px;
+  min-width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: #999;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: transparent;
+  text-align: center;
 }
 
 .page-link:hover {
-  color           : #0a6ebd;
-  text-decoration : none;
-  background-color: #e9ecef;
-  border-color    : #dee2e6;
+  
+
 }
 
 .page-link:focus {
-  z-index   : 2;
-  outline   : 0;
-  box-shadow: 0 0 0 0.2rem rgba(33, 150, 243, 0.25);
+
 }
 
 .page-link:not(:disabled):not(.disabled) {
@@ -5114,13 +5116,10 @@ tbody.collapse.show {
 }
 
 .page-item.active .page-link {
-  color           : #fff;
+  color: #fff;
   background-color: #39f;
-  border-color    : #39f;
-  box-shadow      : 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #c1bbbb;
-  font-size       : 0.6875rem;
-  line-height     : 1.5;
-  border-radius   : 0.2rem;
+  border-color: #39f;
+  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #c1bbbb;
 }
 
 .page-item.disabled .page-link {
