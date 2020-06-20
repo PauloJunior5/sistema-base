@@ -49,18 +49,15 @@
                         <div class="table-responsive">
                             <table class="table" id="myTable">
                                 <thead class=" text-primary">
-                                    <th>{{ __('#') }}</th>
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
-                                    <th class="text-right">{{ __('Actions') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @php $count = 1; @endphp
                                     @foreach($paises as $pais)
                                     <tr>
-                                        <td>{{ $count++ }}</td>
                                         <td>{{ $pais->codigo }}</td>
                                         <td>{{ $pais->pais }}</td>
                                         <td>{{ $pais->created_at->format('Y-m-d') }}</td>
