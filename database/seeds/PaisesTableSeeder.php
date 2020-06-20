@@ -12,19 +12,27 @@ class PaisesTableSeeder extends Seeder
         DB::table('paises')->insert(
             [
                 'codigo' => '55',
-                'pais' => 'Brasil'
+                'pais' => 'Brasil',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'codigo' => '44',
-                'pais' => 'Inglaterra'
+                'pais' => 'Inglaterra',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'codigo' => '47',
-                'pais' => 'Noruega'
+                'pais' => 'Noruega',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'codigo' => '595',
-                'pais' => 'Paraguai'
+                'pais' => 'Paraguai',
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         );
     }
