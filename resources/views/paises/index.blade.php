@@ -39,8 +39,15 @@
                                 <a href="{{ route('pais.create') }}" class="btn btn-sm btn-primary">{{ __('Add Pais') }}</a>
                             </div>
                         </div>
+
+                        <script>
+                            $(document).ready(function() {
+                                $('#myTable').DataTable();
+                            });
+                        </script>
+
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="myTable">
                                 <thead class=" text-primary">
                                     <th>{{ __('#') }}</th>
                                     <th>{{ __('Código') }}</th>
@@ -55,7 +62,7 @@
                                     <tr>
                                         <td>{{ $count++ }}</td>
                                         <td>{{ $pais->codigo }}</td>
-                                        <td>{{ $pais->nome }}</td>
+                                        <td>{{ $pais->pais }}</td>
                                         <td>{{ $pais->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
