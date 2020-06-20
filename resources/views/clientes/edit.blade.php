@@ -115,8 +115,8 @@
                                     <input type="text" class="form-control" name="nacionalidade" id="nacionalidade" placeholder="" value="{{$cliente->nacionalidade}}">
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="aniversario">Aniversario</label>
-                                    <input type="date" class="form-control" name="aniversario" id="aniversario_input" placeholder="" value="{{$cliente->aniversario}}">
+                                    <label for="nascimento">Nascimento</label>
+                                    <input type="date" class="form-control" name="nascimento" id="nascimento_input" placeholder="" value="{{$cliente->nascimento}}">
                                 </div>
                             </div>
                             <div class="row">

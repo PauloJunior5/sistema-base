@@ -5092,12 +5092,24 @@ tbody.collapse.show {
 }
 
 .page-link:hover {
-  
-
+  background: aliceblue;
 }
 
 .page-link:focus {
-
+  border: 0;
+  border-radius: 30px !important;
+  transition: all .3s;
+  padding: 7px 11px;
+  margin: 0 3px;
+  min-width: 30px;
+  height: 30px;
+  line-height: 30px;
+  color: #999;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: transparent;
+  text-align: center;
 }
 
 .page-link:not(:disabled):not(.disabled) {
@@ -17016,7 +17028,7 @@ a {
 
 a:hover,
 a:focus {
-  color          : #89229b;
+  color          : #0a6ebd;
   text-decoration: none;
 }
 
