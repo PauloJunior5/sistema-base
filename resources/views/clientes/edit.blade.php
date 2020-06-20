@@ -51,8 +51,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="nome_input" placeholder="" value="{{$cliente->nome}}">
+                                    <label for="nome">Cliente</label>
+                                    <input type="text" class="form-control" name="cliente" id="cliente_input" placeholder="" value="{{$cliente->cliente}}">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="apelido">Apelido</label>
@@ -169,10 +169,10 @@
                                     <input type="date" class="form-control" name="updated_at" id="Updated_at_input" placeholder="" value="{{$cliente->updated_at->format('Y-m-d')}}" readonly>
                                 </div>
                             </div>
-                            <div class="card-footer ml-auto mr-auto float-right">
-                                <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                                <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
-                            </div>
+                        </div>
+                        <div class="card-footer ml-auto pull-right">
+                            <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
                 </form>

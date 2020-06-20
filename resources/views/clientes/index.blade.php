@@ -48,24 +48,20 @@
                         <div class="table-responsive">
                             <table class="table" id="myTable">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Id') }}</th>
                                     <th>{{ __('CPF') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Update date') }}</th>
-                                    <th class="text-right">{{ __('Actions') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($clientes as $cliente)
                                     <tr>
                                         <td>
-                                            {{ $cliente->id }}
-                                        </td>
-                                        <td>
                                             {{ $cliente->cpf }}
                                         </td>
                                         <td>
-                                            {{ $cliente->nome }}
+                                            {{ $cliente->cliente }}
                                         </td>
                                         <td>
                                             {{ $cliente->created_at->format('Y-m-d') }}

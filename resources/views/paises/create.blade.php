@@ -23,16 +23,14 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Código de Referência') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">{{ __('Código de Referência') }}</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Código do País') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">{{ __('Código do País') }}</label>
                                     <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-name" type="text" placeholder="{{ __('Código do País') }}" value="{{ old('codigo') }}" required="true" aria-required="true" />
                                         @if ($errors->has('codigo'))
@@ -40,30 +38,28 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" id="input-nome" type="text" placeholder="{{ __('Nome') }}" value="{{ old('nome') }}" required />
-                                        @if ($errors->has('nome'))
-                                        <span id="email-error" class="error text-danger" for="input-nome">{{ $errors->first('nome') }}</span>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">{{ __('País') }}</label>
+                                    <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required />
+                                        @if ($errors->has('pais'))
+                                        <span id="email-error" class="error text-danger" for="input-pais">{{ $errors->first('nome') }}</span>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Created_at</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Updated_at</label>
-                                <div class="col-sm-7">
-                                    <input type="date" class="form-control" readonly>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Updated_at</label>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" readonly>
+                                    </div>
                                 </div>
                             </div>
                         </div>
