@@ -169,10 +169,10 @@
                                     <input type="date" class="form-control" name="updated_at" id="Updated_at_input" placeholder="" value="{{$cliente->updated_at->format('Y-m-d')}}" readonly>
                                 </div>
                             </div>
-                            <div class="card-footer ml-auto mr-auto float-right">
-                                <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                                <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
-                            </div>
+                        </div>
+                        <div class="card-footer ml-auto pull-right">
+                            <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
                 </form>

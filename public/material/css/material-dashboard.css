@@ -1035,8 +1035,7 @@ pre code {
 .row {
   display     : flex;
   flex-wrap   : wrap;
-  margin-right: -15px;
-  margin-left : -15px;
+  margin-bottom: 3%;
 }
 
 .no-gutters {
@@ -2363,7 +2362,7 @@ pre code {
 }
 
 select.form-control:not([size]):not([multiple]) {
-  height: calc(2.4375rem + 2px);
+  /* height: calc(2.4375rem + 2px); */
 }
 
 select.form-control:focus::-ms-value {
@@ -17327,7 +17326,6 @@ label {
 .card {
   border       : 0;
   margin-bottom: 30px;
-  margin-top   : 30px;
   border-radius: 6px;
   color        : #333333;
   background   : #fff;
@@ -17674,7 +17672,7 @@ label {
 .card .card-body {
   padding : 0.9375rem 20px;
   position: relative;
-  margin  : 3% 3% 3% 3%;
+  margin  : 3% 3% 0 3%;
 }
 
 .card .card-body .form-group {
