@@ -18,7 +18,7 @@ class PaisController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nome' => 'unique:paises,nome',
+            'pais' => 'unique:paises,pais',
         ]);
         if ($validatedData) {
             $pais = Pais::create($request->all());
