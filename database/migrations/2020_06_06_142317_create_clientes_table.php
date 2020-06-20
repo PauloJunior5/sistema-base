@@ -17,7 +17,7 @@ class CreateClientesTable extends Migration
             $table->bigIncrements('id');
 
             $table->integer('tipo')->nullable();
-            $table->string('nome')->nullable();
+            $table->string('cliente')->nullable();
             $table->string('apelido')->nullable();
             $table->string('estado_civil')->nullable();
 
