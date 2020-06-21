@@ -14,8 +14,8 @@
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Código de Referência') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">{{ __('Código de Referência') }}</label>
                                     <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('id') ? ' is-invalid' : '' }}" name="id" id="input-id" type="text" placeholder="{{ __('Código de Referência') }}" value="{{ old('id', $pais->id) }}" required="true" aria-required="true" readonly=“true” />
                                         @if ($errors->has('id'))
@@ -23,10 +23,8 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Código do País') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">{{ __('Código do País') }}</label>
                                     <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-codigo" type="text" placeholder="{{ __('Código do País') }}" value="{{ old('codigo', $pais->codigo) }}" required />
                                         @if ($errors->has('codigo'))
@@ -34,10 +32,8 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">{{ __('Nome') }}</label>
                                     <div class="form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
                                         <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" id="input-nome" type="text" placeholder="{{ __('Código') }}" value="{{ old('nome', $pais->nome) }}" required />
                                         @if ($errors->has('nome'))
@@ -47,17 +43,17 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Created_at</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ old('created_at', $pais->created_at->format('Y-m-d')) }}" readonly>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Updated_at</label>
-                                <div class="col-sm-7">
-                                    <input type="date" class="form-control" value="{{ old('updated_at', $pais->updated_at->format('Y-m-d')) }}" readonly>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Updated_at</label>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" value="{{ old('updated_at', $pais->updated_at->format('Y-m-d')) }}" readonly>
+                                    </div>
                                 </div>
                             </div>
                         </div>

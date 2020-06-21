@@ -37,8 +37,6 @@ class ClienteController extends Controller
     }
     public function update(Request $request)
     {
-        // dd($request->all());
-
         $cliente = Cliente::whereId($request->get('id'))->update($request->except('_token', '_method'));
         
         if ($cliente) {
