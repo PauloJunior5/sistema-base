@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Estado;
 use App\Pais;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class EstadoController extends Controller
 {
@@ -21,18 +20,21 @@ class EstadoController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'pais' => 'exists:paises,id',
+            'id_pais' => 'exists:paises,id',
             'estado' => 'unique:estados,estado',
         ]);
 
-        if ($estado) {
-            return redirect()->route('estado.index')->with('Success', 'Estado successfully created.');
+        if ($validatedData) {
+            $estado = Estado::create($request->all());
+            if ($estado) {
+                return redirect()->route('estado.index')->with('Success', 'Estado successfully created.');
+            }
         }
     }
     public function edit($estado_id)
     {
         $estado = Estado::findOrFail($estado_id);
-        $pais = Pais::findOrFail($estado->pais);
+        $pais = Pais::findOrFail($estado->id_pais);
         $paises = Pais::all();
         if ($estado) {
             return view('estados.edit', compact('estado', 'pais', 'paises'));
@@ -59,10 +61,9 @@ class EstadoController extends Controller
         }
     }
 
-    public function getPais($pais_id)
+    public function getPais(Request $request)
     {
-        $paises = Pais::all();
-        $pais = Pais::findOrFail($pais_id);
-        return view('estados.create', compact('pais', 'paises'));
+        $pais = Pais::find($request->id_pais);
+        return $pais;
     }
 }

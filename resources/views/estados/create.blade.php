@@ -65,7 +65,7 @@ $(function() {
                                 <div class="col-sm-4">
                                     <label class="col-form-label">{{ __('Estado') }}</label>
                                     <div class="form-group{{ $errors->has('estado') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" name="estado" id="input-estado" type="text" placeholder="{{ __('Estado') }}" value="{{ old('estado') }}" required />
+                                        <input class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" name="estado" id="input-estado" type="text" placeholder="{{ __('Estado') }}" value="" required />
                                         @if ($errors->has('estado'))
                                         <span id="estado-error" class="error text-danger" for="input-estado">{{ $errors->first('estado') }}</span>
                                         @endif
@@ -76,7 +76,7 @@ $(function() {
                                 <div class="col-sm-2">
                                     <label class="col-form-label">{{ __('Codigo') }}</label>
                                     <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-codigo" type="text" placeholder="{{ __('Codigo') }}" value="{{ (isset($pais)) ? $pais->codigo : "" }}" required="true" aria-required="true" />
+                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo_pais" id="input-codigo-pais" type="text" placeholder="{{ __('Codigo') }}" value="" required/>
                                         @if ($errors->has('codigo'))
                                         <span id="codigo-error" class="error text-danger" for="input-codigo">{{ $errors->first('name') }}</span>
                                         @endif
@@ -85,8 +85,8 @@ $(function() {
                                 <div class="col-sm-4">
                                     <label class="col-form-label">{{ __('País') }}</label>
                                     <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
-                                        <input class="form-control" placeholder="{{ (isset($pais)) ? $pais->pais : "" }}" readonly />
-                                        <input type="hidden" id="input-pais" name="pais" value="{{ (isset($pais)) ? $pais->id : "" }}">
+                                        <input class="form-control" id="input-pais" value="" readonly />
+                                        <input type="hidden" id="input-id-pais" name="id_pais" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -120,4 +120,24 @@ $(function() {
         </div>
     </div>
 </div>
+<script>
+
+    var url_atual = '<?php echo URL::to(''); ?>';
+    $('.id').click(function() {
+        var id_pais = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/estado/getPais',
+            data: { id_pais : id_pais },
+            dataType: "JSON",
+            success: function(response){
+                $('#input-codigo-pais').val(response.codigo);
+                $('#input-pais').val(response.pais);
+                $('#input-id-pais').val(response.id);
+                $('#paisModal').modal('hide')
+            }
+        });
+    });
+</script>
 @endsection
+

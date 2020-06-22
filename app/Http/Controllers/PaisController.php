@@ -17,25 +17,15 @@ class PaisController extends Controller
     }
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'pais' => 'unique:paises,pais',
         ]);
+
         if ($validatedData) {
             $pais = Pais::create($request->all());
-            if (isset($_POST["modalPais"])) {
-                if ($request->input('modalPais') == 1) {
-                    if ($pais) {
-                        return redirect()->route('estado.create')->with('Success', 'Pais successfully created.');
-                    }
-                } elseif ($request->input('modalPais') == 2) {
-                    if ($pais) {
-                        return redirect()->route('cidade.create')->with('Success', 'Pais successfully created.');
-                    }
-                }
-            } else {
-                if ($pais) {
-                    return redirect()->route('pais.index')->with('Success', 'Pais successfully created.');
-                }
+            if ($pais) {
+                return redirect()->route('pais.index')->with('Success', 'Pais successfully created.');
             }
         }
     }

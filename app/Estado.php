@@ -10,7 +10,7 @@ class Estado extends Model
     protected $table = 'estados';
     
     protected $fillable = [
-        'id', 'codigo', 'nome', 'pais', 'updated_at', 'created_at'
+        'id', 'codigo', 'estado', 'codigo_pais', 'id_pais', 'updated_at', 'created_at'
     ];
 
     public function pais()

@@ -1,15 +1,3 @@
-<!-- Start Modal -->
-<div class="modal fade" id="createPaisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.createPaisModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -45,7 +33,6 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                {{-- <a href="{{ route('pais.create') }}" class="btn btn-sm btn-primary">{{ __('Add Pais') }}</a> --}}
                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#createPaisModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
                             </div>
                         </div>
@@ -71,10 +58,10 @@
                                         <td>{{ $pais->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('estado.getPais', $pais) }}" data-original-title="" title="">
+                                        <button rel="tooltip" class="btn btn-success btn-link id" value="{{$pais->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>
                                                 <div class="ripple-container"></div>
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach

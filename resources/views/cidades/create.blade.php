@@ -144,8 +144,8 @@
             $.post(url_atual + '/cidade/getEstados', {
                 id_pais: id_pais
             }, function(data) {
-                $('#input-estado').html(data);
-                $('#input-estado').removeAttr('disabled');
+                // $('#input-estado').html(data);
+                // $('#input-estado').removeAttr('disabled');
             });
         });
     });

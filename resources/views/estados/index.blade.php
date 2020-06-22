@@ -55,8 +55,8 @@
                                     <tr>
                                         <td>{{ $count++ }}</td>
                                         <td>{{ $estado->codigo }}</td>
-                                        <td>{{ $estado->nome }}</td>
-                                        <td>{{ $pais = App\Pais::where('id', $estado->pais)->get()->first()->pais }}</td>
+                                        <td>{{ $estado->estado }}</td>
+                                        <td>{{ $pais = App\Pais::where('id', $estado->id_pais)->get()->first()->pais }}</td>
                                         <td>{{ $estado->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $estado->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
