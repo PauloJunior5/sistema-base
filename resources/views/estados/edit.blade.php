@@ -59,9 +59,9 @@
                                 <div class="col-sm-6">
                                     <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
                                         <select class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required="true" />
-                                        <option value="{{$pais->id}}"> {{$pais->nome}} </option>
+                                        <option value="{{$pais->id}}"> {{$pais->pais}} </option>
                                         <?php foreach ($paises as $key => $pais) { ?>
-                                        <option value="{{$pais->id}}">{{$pais->nome}}</option>
+                                        <option value="{{$pais->id}}">{{$pais->pais}}</option>
                                         <?php } ?>
                                         </select>
                                     </div>

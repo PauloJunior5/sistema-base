@@ -66,4 +66,22 @@ class PaisController extends Controller
             return redirect()->route('pais.index')->with('Success', 'Pais successfully deleted.');
         }
     }
+
+    public function createPais(Request $request)
+    {
+        $validatedData = $request->validate([
+            'pais' => 'exists:paises,id',
+            'estado' => 'unique:estados,estado',
+        ]);
+
+        if ($validatedData) {
+            $pais = Pais::create($request->all());
+        }
+
+        dd($pais);
+
+        if ($pais) {
+            return Redirect::back();
+        }
+    }
 }

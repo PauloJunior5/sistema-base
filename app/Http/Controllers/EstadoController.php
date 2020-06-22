@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Estado;
 use App\Pais;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class EstadoController extends Controller
 {
@@ -21,19 +22,11 @@ class EstadoController extends Controller
     {
         $validatedData = $request->validate([
             'pais' => 'exists:paises,id',
-            'nome' => 'unique:estados,nome',
+            'estado' => 'unique:estados,estado',
         ]);
-        if ($validatedData) {
-            $estado = Estado::create($request->all());
-            if (isset($_POST["modalEstado"])) {
-                if ($estado) {
-                    return redirect()->route('cidade.create')->with('Success', 'Pais successfully created.');
-                }
-            } else {
-                if ($estado) {
-                    return redirect()->route('estado.index')->with('Success', 'Pais successfully created.');
-                }
-            }
+
+        if ($estado) {
+            return redirect()->route('estado.index')->with('Success', 'Estado successfully created.');
         }
     }
     public function edit($estado_id)
@@ -64,5 +57,12 @@ class EstadoController extends Controller
         if ($estado) {
             return redirect()->route('estado.index')->with('Success', 'Estado successfully deleted.');
         }
+    }
+
+    public function getPais($pais_id)
+    {
+        $paises = Pais::all();
+        $pais = Pais::findOrFail($pais_id);
+        return view('estados.create', compact('pais', 'paises'));
     }
 }

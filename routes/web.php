@@ -29,16 +29,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('pais', 'PaisController', ['except' => ['show']]);
-    // Route::put('pais', ['as' => 'pais.update', 'uses' => 'PaisController@update']);
+    Route::post('pais/createPais','PaisController@createPais' )->name('pais.createPais');
 });
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('estado', 'EstadoController', ['except' => ['show']]);
     Route::post('estado/destroy', 'EstadoController@destroy');
     Route::get('estado/destroy', 'EstadoController@destroy');
+    Route::get('estado/create/{id}','EstadoController@getPais' )->name('estado.getPais');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'auth'], function () {    
     Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
     Route::post('cidade/destroy', 'CidadeController@destroy');
     Route::get('cidade/destroy', 'CidadeController@destroy');
