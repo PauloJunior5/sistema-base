@@ -39,14 +39,14 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="myTable">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableEstados">
                                 <thead class=" text-primary">
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Pais') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
-                                    <th class="text-right">{{ __('Actions') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($estados as $estado)
@@ -84,7 +84,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#tableEstados').DataTable();
     });
 </script>
 @endsection

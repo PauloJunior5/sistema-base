@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="myTable">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePaises">
                                 <thead class=" text-primary">
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
@@ -83,7 +83,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#tablePaises').DataTable();
     });
 </script>
 @endsection

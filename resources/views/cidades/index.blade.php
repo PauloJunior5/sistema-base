@@ -28,9 +28,8 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="tableCidades">
                                 <thead class=" text-primary">
-                                    <th>{{ __('#') }}</th>
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Pais') }}</th>
@@ -40,10 +39,8 @@
                                     <th class="text-right">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @php $count = 1; @endphp
                                     @foreach($cidades as $cidade)
                                     <tr>
-                                        <td>{{ $count++ }}</td>
                                         <td>{{ $cidade->codigo }}</td>
                                         <td>{{ $cidade->nome }}</td>
                                         <td>{{ $pais = App\Pais::where('id', $cidade->pais)->get()->first()->nome }}</td>
@@ -75,4 +72,9 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#tableCidades').DataTable();
+    });
+</script>
 @endsection
