@@ -46,7 +46,7 @@
                         </script>
                         
                         <div class="table-responsive">
-                            <table class="table" id="myTable">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="myTable">
                                 <thead class=" text-primary">
                                     <th>{{ __('CPF') }}</th>
                                     <th>{{ __('Nome') }}</th>

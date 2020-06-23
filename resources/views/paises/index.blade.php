@@ -1,5 +1,4 @@
 @extends('layouts.app', ['activePage' => 'pais-management', 'titlePage' => __('Pais Management')])
-
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -36,18 +35,10 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('pais.create') }}" class="btn btn-sm btn-primary">{{ __('Add Pais') }}</a>
                             </div>
                         </div>
-
-                        <script>
-                            $(document).ready(function() {
-                                $('#myTable').DataTable();
-                            });
-                        </script>
-
                         <div class="table-responsive">
-                            <table class="table" id="myTable">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="myTable">
                                 <thead class=" text-primary">
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
@@ -82,9 +73,17 @@
                             </table>
                         </div>
                     </div>
+                    <div class="card-footer ml-auto pull-right">
+                        <a href="{{ route('pais.create') }}" class="btn btn-primary">{{ __('Add Pais') }}</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
 @endsection

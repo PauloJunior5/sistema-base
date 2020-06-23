@@ -33,11 +33,11 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="col-form-label">{{ __('Nome') }}</label>
-                                    <div class="form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" id="input-nome" type="text" placeholder="{{ __('Código') }}" value="{{ old('nome', $pais->nome) }}" required />
-                                        @if ($errors->has('nome'))
-                                        <span id="nome-error" class="error text-danger" for="input-nome">{{ $errors->first('nome') }}</span>
+                                    <label class="col-form-label">{{ __('País') }}</label>
+                                    <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
+                                        <input class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais', $pais->pais) }}" required />
+                                        @if ($errors->has('pais'))
+                                        <span id="pais-error" class="error text-danger" for="input-pais">{{ $errors->first('pais') }}</span>
                                         @endif
                                     </div>
                                 </div>
