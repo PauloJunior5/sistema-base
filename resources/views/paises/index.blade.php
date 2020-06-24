@@ -35,6 +35,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
+                                <a href="{{ route('pais.create') }}" class="btn btn-sm btn-primary">{{ __('Add Pais') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -72,9 +73,6 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <div class="card-footer ml-auto pull-right">
-                        <a href="{{ route('pais.create') }}" class="btn btn-primary">{{ __('Add Pais') }}</a>
                     </div>
                 </div>
             </div>

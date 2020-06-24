@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use App\Cidade;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -14,7 +15,8 @@ class ClienteController extends Controller
     }
     public function create()
     {
-        return view('clientes.create');
+        $cidades = Cidade::all();
+        return view('clientes.create', compact('cidades'));
     }
     public function store(Request $request)
     {

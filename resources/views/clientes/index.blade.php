@@ -33,6 +33,11 @@
                             </div>
                         </div>
                         @endif
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <a href="{{ route('cliente.create') }}" class="btn btn-sm btn-primary">{{ __('Add Cliente') }}</a>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
                                 <thead class=" text-primary">
@@ -75,11 +80,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{$clientes->links()}}
+                            <div class="pull-right">
+                                {{$clientes->links()}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer ml-auto pull-right">
-                        <a href="{{ route('cliente.create') }}" class="btn btn-primary">{{ __('Add Cliente') }}</a>
                     </div>
                 </div>
             </div>
@@ -89,9 +93,10 @@
 <script>
     $(document).ready(function() {
         $('#tableClientes').DataTable({
-            "paging":   false,
-            "info":     false
+            "paging": false
+            , "info": false
         });
     });
+
 </script>
 @endsection

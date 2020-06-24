@@ -4,56 +4,49 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paises') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <h4 class="card-title ">{{ __('Cidades') }}</h4>
+                        <p class="card-category"> {{ __('Here you can manage cidades') }}</p>
                     </div>
                     <div class="card-body">
-                        @if (session('Success'))
+                        @if (session('status'))
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="alert alert-success">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <i class="material-icons">close</i>
                                     </button>
-                                    <span>{{ session('Success') }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        @elseif (session('Warning'))
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="alert alert-warning">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <i class="material-icons">close</i>
-                                    </button>
-                                    <span>{{ session('Warning') }}</span>
+                                    <span>{{ session('status') }}</span>
                                 </div>
                             </div>
                         </div>
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#createPaisModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
+                                <a href="#" class="btn btn-sm btn-primary">{{ __('Add Cidade') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" id="myTable">
+                            <table class="table" id="tableCidades">
                                 <thead class=" text-primary">
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
+                                    <th>{{ __('Pais') }}</th>
+                                    <th>{{ __('Estado') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
-                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
+                                    <th class="text-right">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($paises as $pais)
+                                    @foreach($cidades as $cidade)
                                     <tr>
-                                        <td>{{ $pais->codigo }}</td>
-                                        <td>{{ $pais->pais }}</td>
-                                        <td>{{ $pais->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $cidade->codigo }}</td>
+                                        <td>{{ $cidade->nome }}</td>
+                                        <td>{{ $pais = App\Pais::where('id', $cidade->pais)->get()->first()->nome }}</td>
+                                        <td>{{ $estado = App\Estado::where('id', $cidade->estado)->get()->first()->nome }}</td>
+                                        <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link id" value="{{$pais->id}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link id" value="{{$cidade->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>
                                                 <div class="ripple-container"></div>
                                             </button>
@@ -71,7 +64,6 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#tableCidades').DataTable();
     });
-
 </script>
