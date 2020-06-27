@@ -42,49 +42,40 @@ $(function() {
                             @php
                                 // echo "URI PATH - " . Request::path();
                             @endphp
-                            <h4 class="card-title">{{ __('Add Estado ') }}</h4>
+                            <h4 class="card-title">Add Estado</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-sm-2">
-                                    <label class="col-form-label">{{ __('Id') }}</label>
+                                <div class="col-sm-1">
+                                    <label class="col-form-label">Id</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">{{ __('Codigo') }}</label>
-                                    <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-codigo" type="text" placeholder="{{ __('Codigo') }}" value="{{ old('codigo') }}" required="true" aria-required="true" />
-                                        @if ($errors->has('codigo'))
-                                        <span id="codigo-error" class="error text-danger" for="input-codigo">{{ $errors->first('name') }}</span>
-                                        @endif
+                                    <label class="col-form-label">Código do Estado</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="codigo" id="input-codigo" type="text" placeholder="Código do Estado" value="" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="col-form-label">{{ __('Estado') }}</label>
-                                    <div class="form-group{{ $errors->has('estado') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" name="estado" id="input-estado" type="text" placeholder="{{ __('Estado') }}" value="" required />
-                                        @if ($errors->has('estado'))
-                                        <span id="estado-error" class="error text-danger" for="input-estado">{{ $errors->first('estado') }}</span>
-                                        @endif
+                                    <label class="col-form-label">Estado</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="estado" id="input-estado" type="text" placeholder="Estado" value="" required />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">{{ __('Codigo') }}</label>
-                                    <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo_pais" id="input-codigo-pais" type="text" placeholder="{{ __('Codigo') }}" value="" required/>
-                                        @if ($errors->has('codigo'))
-                                        <span id="codigo-error" class="error text-danger" for="input-codigo">{{ $errors->first('name') }}</span>
-                                        @endif
+                                    <label class="col-form-label">Código do País</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="codigo_pais" id="input-codigo-pais" type="text" placeholder="Código do País" value="" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="col-form-label">{{ __('País') }}</label>
-                                    <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
+                                    <label class="col-form-label">País</label>
+                                    <div class="form-group">
                                         <input class="form-control" id="input-pais" value="" readonly />
                                         <input type="hidden" id="input-id-pais" name="id_pais" value="">
                                     </div>

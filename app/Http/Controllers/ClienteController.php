@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use App\Cidade;
+use App\Estado;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -31,8 +32,11 @@ class ClienteController extends Controller
     public function edit($cliente_id)
     {
         $cliente = Cliente::findOrFail($cliente_id);
+        $cidade = Cidade::findOrFail($cliente->id_cidade);
+        $estado = Estado::findOrFail($cidade->estado);
+        $cidades = Cidade::all();
         if ($cliente) {
-            return view('clientes.edit', compact('cliente'));
+            return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades'));
         } else {
             return redirect()->back();
         }
@@ -40,7 +44,6 @@ class ClienteController extends Controller
     public function update(Request $request)
     {
         $cliente = Cliente::whereId($request->get('id'))->update($request->except('_token', '_method'));
-        
         if ($cliente) {
             return redirect()->route('cliente.index')->with('Success', 'Cliente successfully updated.');
         }
@@ -55,5 +58,15 @@ class ClienteController extends Controller
         if ($cliente) {
             return redirect()->route('cliente.index')->with('Success', 'Cliente successfully deleted.');
         }
+    }
+    public function getCidade(Request $request)
+    {
+        $cidade = Cidade::find($request->id_cidade);
+        $estado = Estado::findOrFail($cidade->estado);
+        $dados = [
+            'cidade' => $cidade,
+            'estado' => $estado,
+        ];
+        return $dados;
     }
 }

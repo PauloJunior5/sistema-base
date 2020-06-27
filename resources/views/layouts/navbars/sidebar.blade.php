@@ -61,10 +61,10 @@
                                 <span class="sidebar-normal">{{ __('Clientes') }} </span>
                             </a>
                         </li>
-                        <li class="nav-item {{ $activePage == 'fornecedor-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('cliente.index') }}">
-                                <span class="sidebar-mini"> F </span>
-                                <span class="sidebar-normal">{{ __('Fornecedores') }} </span>
+                        <li class="nav-item {{ $activePage == 'laboratorio-management' ? ' active' : '' }}">
+                            <a class="nav-link">
+                                <span class="sidebar-mini"> L </span>
+                                <span class="sidebar-normal">{{ __('Laboratórios') }} </span>
                             </a>
                         </li>
                         <li class="nav-item {{ $activePage == 'pais-management' ? ' active' : '' }}">

@@ -1,5 +1,16 @@
 @extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
 @section('content')
+<!-- Start Modal -->
+<div class="modal fade" id="cidadeModal" tabindex="-1" role="dialog" aria-labelledby="cidadeModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.cidadeModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -15,13 +26,12 @@
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label for="id">Id</label>
-                                    <input type="text" class="form-control" name="id" id="id_input" placeholder="" value="{{$cliente->id}}" readonly>
+                                    <label for="codigo">Código</label>
+                                    <input type="text" class="form-control" name="id" value="{{$cliente->id}}" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="tipo">Tipo</label>
                                     <div class="form-check">
-                                        <?php if ($cliente->tipo == config('constants.fisica')) { ?>
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.fisica'); ?>" checked> Física
                                             <span class="circle">
@@ -34,139 +44,131 @@
                                                 <span class="check"></span>
                                             </span>
                                         </label>
-                                        <?php } else { ?>
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.fisica'); ?>"> Física
-                                            <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                        </label>
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.juridica');?>" checked> Jurídica
-                                            <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                        </label>
-                                        <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="nome">Cliente</label>
-                                    <input type="text" class="form-control" name="cliente" id="cliente_input" placeholder="" value="{{$cliente->cliente}}">
+                                <div class="col-md-4">
+                                    <label for="cliente">Cliente</label>
+                                    <input type="text" class="form-control" name="cliente" value="{{$cliente->cliente}}">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label for="apelido">Apelido</label>
-                                    <input type="text" class="form-control" name="apelido" id="apelido_input" placeholder="" value="{{$cliente->apelido}}">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="estado_civil">Estado Civíl</label>
-                                    <input type="text" class="form-control" name="estado_civil" id="estado_civil_input" placeholder="" value="{{$cliente->estado_civil}}">
+                                    <input type="text" class="form-control" name="apelido" value="{{$cliente->apelido}}">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <label for="endereco">Endereço</label>
-                                    <input type="text" class="form-control" name="endereco" id="endereco_input" placeholder="" value="{{$cliente->endereco}}">
+                                    <input type="text" class="form-control" name="endereco" value="{{$cliente->endereco}}">
                                 </div>
                                 <div class="col-md-1">
                                     <label for="numero">nº</label>
-                                    <input type="text" class="form-control" name="numero" id="numero_input" placeholder="" value="{{$cliente->numero}}">
+                                    <input type="text" class="form-control" name="numero" value="{{$cliente->numero}}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="complemento">Complemento</label>
-                                    <input type="text" class="form-control" name="complemento" id="complemento_input" placeholder="" value="{{$cliente->complemento}}">
+                                    <input type="text" class="form-control" name="complemento" value="{{$cliente->complemento}}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="bairro">Bairro</label>
-                                    <input type="text" class="form-control" name="bairro" id="bairro_input" placeholder="" value="{{$cliente->bairro}}">
+                                    <input type="text" class="form-control" name="bairro" value="{{$cliente->bairro}}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="cep">CEP</label>
-                                    <input type="text" class="form-control" name="cep" id="telefone_input" placeholder="" value="{{$cliente->cep}}">
+                                    <input type="text" class="form-control" name="cep" value="{{$cliente->cep}}">
                                 </div>
-                                <div class="col-md-2">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <label for="codigo_cidade">Código</label>
+                                <input type="text" class="form-control" id="codigo-cidade-input" value="{{$cidade->codigo}}" required>
+                                </div>
+                                <div class="col-md-4">
                                     <label for="cidade">Cidade</label>
-                                    <input type="text" class="form-control" name="cidade" id="cidade_input" placeholder="" value="{{$cliente->cidade}}">
+                                <input class="form-control" id="cidade-input" value="{{$cidade->cidade}}" readonly />
+                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="">
+                                </div>
+                                <div class="col-md-1">
+                                    <label for="uf">UF</label>
+                                <input class="form-control" id="uf-cidade-input" value="{{$estado->codigo}}" readonly />
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
                                     <label for="telefone">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" id="telefone-input" placeholder="" value="{{$cliente->telefone}}">
+                                    <input type="text" class="form-control" name="telefone" value="{{$cliente->telefone}}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="celular">Celular</label>
+                                    <input type="text" class="form-control" name="celular" value="{{$cliente->celular}}">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" name="email" id="email_input" placeholder="" value="{{$cliente->email}}">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="sexo">Sexo</label>
-                                    <select class="form-control" name="sexo" id="sexo_input">
-                                        <?php if ($cliente->sexo == config('constants.masculino')) { ?>
-                                        <option value="<?= config('constants.masculino'); ?>" selected>Maculino</option>
-                                        <option value="<?= config('constants.feminino'); ?>">Feminino</option>
-                                        <?php } else { ?>
-                                        <option value="<?= config('constants.masculino'); ?>">Maculino</option>
-                                        <option value="<?= config('constants.feminino'); ?>" selected>Feminino</option>
-                                        <?php } ?>
-                                    </select>
+                                    <input type="text" class="form-control" name="email" value="{{$cliente->email}}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="nacionalidade">Nacionalidade</label>
-                                    <input type="text" class="form-control" name="nacionalidade" id="nacionalidade" placeholder="" value="{{$cliente->nacionalidade}}">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="nascimento">Nascimento</label>
-                                    <input type="date" class="form-control" name="nascimento" id="nascimento_input" placeholder="" value="{{$cliente->nascimento}}">
+                                    <input type="text" class="form-control" name="nacionalidade"  value="{{$cliente->nacionalidade}}">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="cpf">CPF</label>
-                                    <input type="text" class="form-control" name="cpf" id="cpf_input" placeholder="" value="{{$cliente->cpf}}">
+                                    <input type="text" class="form-control" name="cpf" value="{{$cliente->cpf}}">
                                 </div>
                                 <div class="col-md-3">
                                     <label for="rg">RG</label>
-                                    <input type="text" class="form-control" name="rg" id="rg_input" placeholder="" value="{{$cliente->rg}}">
+                                    <input type="text" class="form-control" name="rg" value="{{$cliente->rg}}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="emissor">Emissor</label>
-                                    <input type="text" class="form-control" name="emissor" id="emissor_input" placeholder="" value="{{$cliente->emissor}}">
+                                    <input type="text" class="form-control" name="emissor" value="{{$cliente->emissor}}">
                                 </div>
                                 <div class="col-md-1">
                                     <label for="uf">UF</label>
-                                    <input type="text" class="form-control" name="uf" id="uf_input" placeholder="" value="{{$cliente->uf}}">
+                                    <input type="text" class="form-control" name="uf" value="{{$cliente->uf}}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="nascimento">Nascimento</label>
+                                    <input type="date" class="form-control" name="nascimento" value="{{$cliente->nascimento}}">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-7">
+                                <div class="col-md-5">
                                     <label for="observacao">Observação</label>
-                                    <input type="text" class="form-control" name="observacao" id="observacao_input" placeholder="" value="{{$cliente->observacao}}">
+                                    <input type="text" class="form-control" name="observacao"  value="{{$cliente->observacao}}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="limite_credito">Limite de Crédito</label>
-                                    <input type="number" class="form-control" name="limite_credito" id="limite_credito_input" placeholder="" value="{{$cliente->limite_credito}}">
+                                    <input class="form-control" name="limite_credito" value="{{$cliente->limite_credito}}"/>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-1">
+                                    <label for="codigo_condicao_pagamento">Código</label>
+                                    <input class="form-control" />
+                                </div>
+                                <div class="col-md-2">
                                     <label for="condicao_pagamento">Condição de Pagamento</label>
-                                    <select class="form-control" name="condicao_pagamento" id="condicao_pagamento_input" placeholder="" value="{{$cliente->condicao_pagamento}}">
-                                        <?php if ($cliente->condicao_pagamento == 1) { ?>
-                                        <option value="1" selected>Tipo 1</option>
-                                        <option value="2">Tipo 2</option>
-                                        <?php } else { ?>
-                                        <option value="1">Tipo 1</option>
-                                        <option value="2" selected>Tipo 2</option>
-                                        <?php } ?>
-                                    </select>
+                                    <input class="form-control"/>
+                                    {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamamento" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <label for="created_at">Created_at</label>
-                                    <input type="date" class="form-control" name="created_at" id="Created_at_input" placeholder="" value="{{$cliente->created_at->format('Y-m-d')}}" readonly>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Created_at</label>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" value="{{ old('created_at', $cliente->created_at->format('Y-m-d')) }}" readonly>
+                                    </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <label for="updated_at">Updated_at</label>
-                                    <input type="date" class="form-control" name="updated_at" id="Updated_at_input" placeholder="" value="{{$cliente->updated_at->format('Y-m-d')}}" readonly>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Updated_at</label>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" value="{{ old('updated_at', $cliente->updated_at->format('Y-m-d')) }}" readonly>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -180,4 +182,23 @@
         </div>
     </div>
 </div>
+<script>
+    var url_atual = '<?php echo URL::to(''); ?>';
+    $('.id').click(function() {
+        var id_cidade = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cliente/getCidade',
+            data: { id_cidade : id_cidade },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-cidade-input').val(response.cidade.codigo);
+                $('#cidade-input').val(response.cidade.cidade);
+                $('#uf-cidade-input').val(response.estado.codigo);
+                $('#id-cidade-input').val(response.cidade.id);
+                $('#cidadeModal').modal('hide')
+            }
+        });
+    });
+</script>
 @endsection

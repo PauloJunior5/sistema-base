@@ -21,5 +21,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/cidade/getEstados',
         '/estado/getPais',
+        '/cliente/getCidade',
     ];
 }

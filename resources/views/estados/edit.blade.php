@@ -23,66 +23,56 @@
                             <h4 class="card-title">{{ __('Edit Estado') }}</h4>
                             <p class="card-category"></p>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body ">
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-1">
+                                    <label class="col-form-label">Id</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="id" value="{{ old('id', $estado->id) }}" readonly/>
+                                        <input class="form-control" value="{{$estado->id}}" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Código do Estado</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="codigo" id="input-codigo" type="text" placeholder="Código do Estado" value="{{$estado->codigo}}" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Estado</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="estado" id="input-estado" type="text" placeholder="Estado" value="{{$estado->estado}}" required />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Codigo') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-codigo" type="text" placeholder="{{ __('Codigo') }}" value="{{ old('codigo', $estado->codigo) }}" required="true" aria-required="true" />
-                                        @if ($errors->has('codigo'))
-                                        <span id="codigo-error" class="error text-danger" for="input-codigo">{{ $errors->first('codigo') }}</span>
-                                        @endif
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Código do País</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="codigo_pais" id="input-codigo-pais" type="text" placeholder="Código do País" value="{{$pais->codigo}}" required />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" id="input-nome" type="nome" placeholder="{{ __('Nome') }}" value="{{ old('nome', $estado->nome) }}" required />
-                                        @if ($errors->has('nome'))
-                                        <span id="nome-error" class="error text-danger" for="input-nome">{{ $errors->first('nome') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('País') }}</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
-                                        <select class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required="true" />
-                                        <option value="{{$pais->id}}"> {{$pais->pais}} </option>
-                                        <?php foreach ($paises as $key => $pais) { ?>
-                                        <option value="{{$pais->id}}">{{$pais->pais}}</option>
-                                        <?php } ?>
-                                        </select>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">País</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id="input-pais" value="{{$pais->pais}}" readonly />
+                                        <input type="hidden" id="input-id-pais" name="id_pais" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
-                                    <div class="row col-6">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal">Add + </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Created_at</label>
-                                <div class="col-md-7">
                                     <div class="form-group">
-                                    <input type="date" class="form-control" value="{{ old('created_at', $estado->created_at->format('Y-m-d')) }}" readonly>
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">Updated_at</label>
-                                <div class="col-md-7">
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Created_at</label>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" value="{{ old('created_at', $estado->created_at->format('Y-m-d')) }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ old('updated_at', $estado->updated_at->format('Y-m-d')) }}" readonly>
                                     </div>
@@ -93,7 +83,6 @@
                             <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                         </div>
-                    </div>
                 </form>
             </div>
         </div>

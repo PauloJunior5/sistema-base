@@ -40,9 +40,9 @@
                                     @foreach($cidades as $cidade)
                                     <tr>
                                         <td>{{ $cidade->codigo }}</td>
-                                        <td>{{ $cidade->nome }}</td>
-                                        <td>{{ $pais = App\Pais::where('id', $cidade->pais)->get()->first()->nome }}</td>
-                                        <td>{{ $estado = App\Estado::where('id', $cidade->estado)->get()->first()->nome }}</td>
+                                        <td>{{ $cidade->cidade }}</td>
+                                        <td>{{ $pais = App\Pais::where('id', $cidade->pais)->get()->first()->pais }}</td>
+                                        <td>{{ $estado = App\Estado::where('id', $cidade->estado)->get()->first()->estado }}</td>
                                         <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">

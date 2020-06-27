@@ -8,9 +8,9 @@ class Cliente extends Model
 {
     protected $fillable = [
         'tipo', 'cliente', 'apelido', 'estado_civil',
-        'endereco', 'numero', 'complemento', 'bairro', 'cep', 'cidade',
+        'endereco', 'numero', 'complemento', 'bairro', 'cep', 'id_cidade',
         'telefone', 'email', 'sexo', 'nacionalidade', 'nascimento',
         'cpf', 'rg', 'emissor', 'uf',
-        'observacao', 'limite_credito', 'condicao_pagamento'
+        'observacao', 'limite_credito', 'id_condicao_pagamento'
     ];
 }
