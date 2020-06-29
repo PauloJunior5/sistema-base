@@ -55,18 +55,6 @@
                                     $activePage == 'pais-management' || $activePage == 'estado-management' ||
                                     $activePage == 'cidade-management') ? ' show' : '' }}" id="cadastro">
                     <ul class="nav">
-                        <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('cliente.index') }}">
-                                <span class="sidebar-mini"> C </span>
-                                <span class="sidebar-normal">{{ __('Clientes') }} </span>
-                            </a>
-                        </li>
-                        <li class="nav-item {{ $activePage == 'laboratorio-management' ? ' active' : '' }}">
-                            <a class="nav-link">
-                                <span class="sidebar-mini"> L </span>
-                                <span class="sidebar-normal">{{ __('Laboratórios') }} </span>
-                            </a>
-                        </li>
                         <li class="nav-item {{ $activePage == 'pais-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('pais.index') }}">
                                 <span class="sidebar-mini"> P </span>
@@ -83,6 +71,36 @@
                             <a class="nav-link" href="{{ route('cidade.index') }}">
                                 <span class="sidebar-mini"> C </span>
                                 <span class="sidebar-normal">{{ __('Cidades') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('cliente.index') }}">
+                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-normal">{{ __('Clientes') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'medico-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="">
+                                <span class="sidebar-mini"> M </span>
+                                <span class="sidebar-normal">{{ __('Médicos') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'paciente-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="">
+                                <span class="sidebar-mini"> P </span>
+                                <span class="sidebar-normal">{{ __('Pacientes') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'laboratorio-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="">
+                                <span class="sidebar-mini"> L </span>
+                                <span class="sidebar-normal">{{ __('Laboratórios') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'exame-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="">
+                                <span class="sidebar-mini"> E </span>
+                                <span class="sidebar-normal">{{ __('Exames') }} </span>
                             </a>
                         </li>
                     </ul>
