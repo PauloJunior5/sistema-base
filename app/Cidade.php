@@ -10,7 +10,7 @@ class Cidade extends Model
     protected $table = 'cidades';
     
     protected $fillable = [
-        'id', 'codigo', 'cidade', 'pais', 'estado','created_at', 'updated_at'
+        'id', 'codigo', 'cidade', 'id_estado','created_at', 'updated_at'
     ];
 
     public function estado()

@@ -24,27 +24,21 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">{{ __('Código de Referência') }}</label>
+                                    <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">{{ __('Código do País') }}</label>
-                                    <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-name" type="text" placeholder="{{ __('Código do País') }}" value="{{ old('codigo') }}" required="true" aria-required="true" />
-                                        @if ($errors->has('codigo'))
-                                        <span id="name-error" class="error text-danger" for="input-codigo">{{ $errors->first('name') }}</span>
-                                        @endif
+                                    <label class="col-form-label">Código</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="codigo" id="input-name" type="text" placeholder="Código do País" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="col-form-label">{{ __('País') }}</label>
-                                    <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required />
-                                        @if ($errors->has('pais'))
-                                        <span id="email-error" class="error text-danger" for="input-pais">{{ $errors->first('nome') }}</span>
-                                        @endif
+                                    <label class="col-form-label">País</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="pais" id="input-pais" type="text" required />
                                     </div>
                                 </div>
                             </div>

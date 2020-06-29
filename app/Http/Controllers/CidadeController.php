@@ -9,47 +9,38 @@ use Illuminate\Http\Request;
 
 class CidadeController extends Controller
 {
-
     public function index(Cidade $model)
     {
         return view('cidades.index', ['cidades' => $model->paginate(10)]);
     }
-
-
     public function create()
     {
-        $paises = Pais::all();
-        $estados = Estado::all();
-        return view('cidades.create', compact('paises','estados'));
+        $estados = Estado::all(); // Modal add estado
+        return view('cidades.create', compact('estados'));
     }
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'pais' => 'exists:paises,id',
             'estado' => 'exists:estados,id',
-            'nome' => 'unique:cidades,nome', 
+            'nome' => 'unique:cidades,nome',
         ]);
-
         $cidade = Cidade::create($request->all());
         if ($cidade) {
             return redirect()->route('cidade.index')->withStatus(__('Cidade successfully created.'));
         }
     }
-
-    public function edit($cidade_id)
+    public function edit($id_cidade)
     {
-        $cidade = Cidade::findOrFail($cidade_id);
-        $paises = Pais::all();
-        $estados = Estado::all();
-
+        $cidade = Cidade::findOrFail($id_cidade);
+        $estado = Estado::findOrFail($cidade->id_estado);
+        $pais = Pais::findOrFail($estado->id_pais);
+        $estados = Estado::all(); // Modal add estado
         if ($cidade) {
-            return view('cidades.edit', compact('cidade','paises', 'estados'));
+            return view('cidades.edit', compact('cidade', 'estado', 'pais', 'estados'));
         } else {
             return redirect()->back();
         }
     }
-
     public function update(Request $request)
     {
         $cidade = Cidade::whereId($request->get('id'))->update($request->except('_token', '_method'));
@@ -57,7 +48,6 @@ class CidadeController extends Controller
             return redirect()->route('cidade.index')->withStatus(__('Cidade successfully updated.'));
         }
     }
-
     public function destroy($cidade_id)
     {
         $cidade = Cidade::where('id', $cidade_id)->delete();
@@ -65,17 +55,14 @@ class CidadeController extends Controller
             return redirect()->route('cidade.index')->withStatus(__('Cidade successfully deleted.'));
         }
     }
-
-    public function getEstados(Request $request)
+    public function getEstado(Request $request)
     {
-        $estados = Pais::find($request->id_pais)->estados; // usando relacionamentos na model - laravel
-        // $estados = Estado::all()->where('pais', $request->id_pais);
-        $options = "<option>Select</option>";
-        foreach($estados as $estado){
-            $options .= "<option value='".$estado->id."'>".$estado->nome."</option>";
-        }
-        return $options;
-
+        $estado = Estado::find($request->id_estado);
+        $pais = Pais::findOrFail($estado->id_pais);
+        $dados = [
+            'estado' => $estado,
+            'pais' => $pais,
+        ];
+        return $dados;
     }
-
 }

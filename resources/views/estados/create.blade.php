@@ -47,22 +47,22 @@ $(function() {
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-sm-1">
-                                    <label class="col-form-label">Id</label>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código do Estado</label>
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" id="input-codigo" type="text" placeholder="Código do Estado" value="" required />
+                                        <input class="form-control" name="codigo" id="input-codigo" type="text" placeholder="Código do Estado" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Estado</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="estado" id="input-estado" type="text" placeholder="Estado" value="" required />
+                                        <input class="form-control" name="estado" id="input-estado" type="text" required />
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@ $(function() {
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código do País</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo_pais" id="input-codigo-pais" type="text" placeholder="Código do País" value="" required/>
+                                        <input class="form-control" id="input-codigo-pais" type="text" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">

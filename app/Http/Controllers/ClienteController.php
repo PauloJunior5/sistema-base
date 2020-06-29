@@ -16,7 +16,7 @@ class ClienteController extends Controller
     }
     public function create()
     {
-        $cidades = Cidade::all();
+        $cidades = Cidade::all(); // Modal add cidade
         return view('clientes.create', compact('cidades'));
     }
     public function store(Request $request)
@@ -33,8 +33,8 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::findOrFail($cliente_id);
         $cidade = Cidade::findOrFail($cliente->id_cidade);
-        $estado = Estado::findOrFail($cidade->estado);
-        $cidades = Cidade::all();
+        $estado = Estado::findOrFail($cidade->id_estado);
+        $cidades = Cidade::all(); // Modal add pais
         if ($cliente) {
             return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades'));
         } else {
@@ -62,7 +62,7 @@ class ClienteController extends Controller
     public function getCidade(Request $request)
     {
         $cidade = Cidade::find($request->id_cidade);
-        $estado = Estado::findOrFail($cidade->estado);
+        $estado = Estado::findOrFail($cidade->id_estado);
         $dados = [
             'cidade' => $cidade,
             'estado' => $estado,

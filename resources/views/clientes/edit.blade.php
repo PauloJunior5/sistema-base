@@ -85,7 +85,7 @@
                                 <div class="col-md-4">
                                     <label for="cidade">Cidade</label>
                                 <input class="form-control" id="cidade-input" value="{{$cidade->cidade}}" readonly />
-                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="">
+                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{$cidade->id}}">
                                 </div>
                                 <div class="col-md-1">
                                     <label for="uf">UF</label>

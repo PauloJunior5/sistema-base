@@ -14,7 +14,7 @@ class EstadoController extends Controller
     }
     public function create()
     {
-        $paises = Pais::all();
+        $paises = Pais::all(); // Modal add pais
         return view('estados.create', compact('paises'));
     }
     public function store(Request $request)
@@ -35,7 +35,7 @@ class EstadoController extends Controller
     {
         $estado = Estado::findOrFail($estado_id);
         $pais = Pais::findOrFail($estado->id_pais);
-        $paises = Pais::all();
+        $paises = Pais::all(); // Modal add pais
         if ($estado) {
             return view('estados.edit', compact('estado', 'pais', 'paises'));
         } else {

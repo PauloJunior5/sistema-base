@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
     Route::post('cidade/destroy', 'CidadeController@destroy');
     Route::get('cidade/destroy', 'CidadeController@destroy');
-    Route::post('cidade/getEstados', 'CidadeController@getEstados');
+    Route::post('cidade/getEstado', 'CidadeController@getEstado');
 });
 
 Route::group(['middleware' => 'auth'], function () {

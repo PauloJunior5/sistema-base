@@ -40,11 +40,15 @@
                                 </thead>
                                 <tbody>
                                     @foreach($cidades as $cidade)
+                                    @php
+                                    $estado = App\Estado::where('id', $cidade->id_estado)->get();
+                                    $pais = App\Pais::where('id', $estado->first()->id_pais)->get();
+                                    @endphp
                                     <tr>
                                         <td>{{ $cidade->codigo }}</td>
                                         <td>{{ $cidade->cidade }}</td>
-                                        <td>{{ $pais = App\Pais::where('id', $cidade->pais)->get()->first()->pais }}</td>
-                                        <td>{{ $estado = App\Estado::where('id', $cidade->estado)->get()->first()->estado }}</td>
+                                        <td>{{ $pais->first()->pais }}</td>
+                                        <td>{{ $estado->first()->estado }}</td>
                                         <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
@@ -76,5 +80,6 @@
     $(document).ready(function() {
         $('#tableCidades').DataTable();
     });
+
 </script>
 @endsection

@@ -25,22 +25,22 @@
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-sm-1">
-                                    <label class="col-form-label">Id</label>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{$estado->id}}" readonly />
+                                        <input class="form-control" name="id" value="{{$estado->id}}" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código do Estado</label>
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" id="input-codigo" type="text" placeholder="Código do Estado" value="{{$estado->codigo}}" required />
+                                        <input class="form-control" name="codigo" type="text" placeholder="Código do Estado" value="{{$estado->codigo}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Estado</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="estado" id="input-estado" type="text" placeholder="Estado" value="{{$estado->estado}}" required />
+                                        <input class="form-control" name="estado" type="text" value="{{$estado->estado}}" required />
                                     </div>
                                 </div>
                             </div>
@@ -48,14 +48,14 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código do País</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo_pais" id="input-codigo-pais" type="text" placeholder="Código do País" value="{{$pais->codigo}}" required />
+                                        <input class="form-control" id="input-codigo-pais" type="text" value="{{$pais->codigo}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-pais" value="{{$pais->pais}}" readonly />
-                                        <input type="hidden" id="input-id-pais" name="id_pais" value="">
+                                        <input type="hidden" id="input-id-pais" name="id_pais" value="value="{{$pais->id}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -68,13 +68,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ old('created_at', $estado->created_at->format('Y-m-d')) }}" readonly>
+                                        <input type="date" class="form-control" value="{{ $estado->created_at->format('Y-m-d') }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ old('updated_at', $estado->updated_at->format('Y-m-d')) }}" readonly>
+                                        <input type="date" class="form-control" value="{{ $estado->updated_at->format('Y-m-d') }}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -88,4 +88,23 @@
         </div>
     </div>
 </div>
+<script>
+
+    var url_atual = '<?php echo URL::to(''); ?>';
+    $('.id').click(function() {
+        var id_pais = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/estado/getPais',
+            data: { id_pais : id_pais },
+            dataType: "JSON",
+            success: function(response){
+                $('#input-codigo-pais').val(response.codigo);
+                $('#input-pais').val(response.pais);
+                $('#input-id-pais').val(response.id);
+                $('#paisModal').modal('hide')
+            }
+        });
+    });
+</script>
 @endsection

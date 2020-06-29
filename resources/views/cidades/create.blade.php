@@ -1,25 +1,16 @@
 @extends('layouts.app', ['activePage' => 'cidade-management', 'titlePage' => __('Cidade Management')])
 @section('content')
-<!-- Modal -->
-<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
+<!-- Start Modal -->
+<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="estadoModal" aria-hidden="true" style="z-index: 99999">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.paisModal')
+                @include('layouts.estadoModal')
             </div>
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.estadoModal', ['paises' => $paises])
-            </div>
-        </div>
-    </div>
-</div>
+{{-- End Modal --}}
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -43,82 +34,60 @@
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Id') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('id') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" readonly />
-                                        @if ($errors->has('id'))
-                                        <span id="name-error" class="error text-danger" for="input-id">{{ $errors->first('id') }}</span>
-                                        @endif
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Código de Referência</label>
+                                    <div class="form-group">
+                                        <input class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Código</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="codigo" type="text" placeholder="Código da Cidade" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Cidade</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="cidade" type="text" required />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Codigo') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('codigo') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('codigo') ? ' is-invalid' : '' }}" name="codigo" id="input-codigo" type="text" placeholder="{{ __('Codigo') }}" value="{{ old('codigo') }}" required="true" aria-required="true" />
-                                        @if ($errors->has('codigo'))
-                                        <span id="codigo-error" class="error text-danger" for="input-codigo">{{ $errors->first('name') }}</span>
-                                        @endif
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Código do Estado</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id="codigo-estado-input" type="text" value="" required />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Nome') }}</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group{{ $errors->has('nome') ? ' has-danger' : '' }}">
-                                        <input class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" id="input-nome" type="text" placeholder="{{ __('Nome') }}" value="{{ old('nome') }}" required="true" />
-                                        @if ($errors->has('nome'))
-                                        <span id="nome-error" class="error text-danger" for="input-nome">{{ $errors->first('nome') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('País') }}</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
-                                        <select class="form-control{{ $errors->has('pais') ? ' is-invalid' : '' }}" name="pais" id="input-pais" type="text" placeholder="{{ __('País') }}" value="{{ old('pais') }}" required="true">
-                                            <option value="Select"> Select </option>
-                                            <?php foreach ($paises as $key => $pais) { ?>
-                                            <option value="{{$pais->id}}">{{$pais->nome}}</option>
-                                            <?php } ?>
-                                        </select>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Estado</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id="estado-input" value="" readonly />
+                                        <input type="hidden" id="id-estado-input" name="id_estado" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
-                                    <div class="row col-6">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisModal">Add + </button>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#estadoModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">País</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id="pais-input" value="" readonly />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Estado') }}</label>
-                                <div class="col-sm-6">
-                                    <div class="form-group{{ $errors->has('pais') ? ' has-danger' : '' }}">
-                                        <select class="form-control{{ $errors->has('estado') ? ' is-invalid' : '' }}" name="estado" id="input-estado" type="text" placeholder="{{ __('Estado') }}" value="{{ old('estado') }}" required="true" disabled="">
-                                            <option> Select </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-1">
-                                    <div class="row col-6">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#estadoModal">Add + </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Created_at</label>
-                                <div class="col-md-7">
+                                <div class="col-md-2">
+                                    <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 col-form-label">Updated_at</label>
-                                <div class="col-md-7">
+                                <div class="col-md-2">
+                                    <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                     </div>
@@ -135,20 +104,23 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function() {
-        var url_atual = '<?php echo URL::to(''); ?>';
-        $('#input-pais').change(function() {
-            var id_pais = $(this).val();
-            $.post(url_atual + '/cidade/getEstados', {
-                id_pais: id_pais
-            }, function(data) {
-                // $('#input-estado').html(data);
-                // $('#input-estado').removeAttr('disabled');
-            });
+    var url_atual = '<?php echo URL::to(''); ?>';
+    $('.id').click(function() {
+        var id_estado = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/getEstado',
+            data: { id_estado : id_estado },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#estado-input').val(response.estado.estado);
+                $('#id-estado-input').val(response.estado.id);
+                $('#pais-input').val(response.pais.pais);
+                $('#estadoModal').modal('hide')
+            }
         });
     });
-
 </script>
 @endsection
