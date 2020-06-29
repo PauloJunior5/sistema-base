@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'fornecedor-management', 'titlePage' => __('Fornecedor Management')])
+@extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Fornecedores') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage fornecedors') }}</p>
+                        <h4 class="card-title ">{{ __('Clientes') }}</h4>
+                        <p class="card-category"> {{ __('Here you can manage clientes') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,42 +35,38 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('fornecedor.create') }}" class="btn btn-sm btn-primary">{{ __('Add Fornecedor') }}</a>
+                                <a href="{{ route('cliente.create') }}" class="btn btn-sm btn-primary">{{ __('Add Cliente') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Id') }}</th>
                                     <th>{{ __('CPF') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Update date') }}</th>
-                                    <th class="text-right">{{ __('Actions') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($fornecedors as $fornecedor)
+                                    @foreach($clientes as $cliente)
                                     <tr>
                                         <td>
-                                            {{ $fornecedor->id }}
+                                            {{ $cliente->cpf }}
                                         </td>
                                         <td>
-                                            {{ $fornecedor->cpf }}
+                                            {{ $cliente->cliente }}
                                         </td>
                                         <td>
-                                            {{ $fornecedor->nome }}
+                                            {{ $cliente->created_at->format('Y-m-d') }}
                                         </td>
                                         <td>
-                                            {{ $fornecedor->created_at->format('Y-m-d') }}
-                                        </td>
-                                        <td>
-                                            {{ $fornecedor->updated_at->format('Y-m-d') }}
+                                            {{ $cliente->updated_at->format('Y-m-d') }}
                                         </td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('fornecedor.destroy', $fornecedor) }}" method="post">
+                                            <form action="{{ route('cliente.destroy', $cliente) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('fornecedor.edit', $fornecedor) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
@@ -84,6 +80,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="pull-right">
+                                {{$clientes->links()}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,4 +90,13 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#tableClientes').DataTable({
+            "paging": false
+            , "info": false
+        });
+    });
+
+</script>
 @endsection

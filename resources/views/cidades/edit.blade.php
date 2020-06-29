@@ -74,13 +74,13 @@
                                 <div class="col-md-2">
                                     <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
+                                        <input type="date" class="form-control" value="{{ $cidade->created_at->format('Y-m-d') }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
+                                        <input type="date" class="form-control" value="{{ $cidade->updated_at->format('Y-m-d') }}" readonly>
                                     </div>
                                 </div>
                             </div>
