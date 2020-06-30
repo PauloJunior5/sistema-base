@@ -74,7 +74,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{$estados->links()}}
                         </div>
                     </div>
                 </div>

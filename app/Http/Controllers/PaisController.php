@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class PaisController extends Controller
 {
-    public function index(Pais $model)
+    public function index()
     {
-        return view('paises.index', ['paises' => $model->paginate(10)]);
+        return view('paises.index', ['paises' => Pais::all()]);
     }
     public function create()
     {

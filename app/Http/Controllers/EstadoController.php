@@ -10,7 +10,7 @@ class EstadoController extends Controller
 {
     public function index(Estado $model)
     {
-        return view('estados.index', ['estados' => $model->paginate(10)]);
+        return view('estados.index', ['estados' => Estado::all()]);
     }
     public function create()
     {
