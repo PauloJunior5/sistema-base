@@ -18,7 +18,7 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Add Pais') }}</h4>
+                            <h4 class="card-title">{{ __('Add País') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -59,7 +59,7 @@
                         </div>
                         <div class="card-footer ml-auto pull-right">
                             <a href="{{ route('pais.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Add Pais') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Add País') }}</button>
                         </div>
                     </div>
                 </form>

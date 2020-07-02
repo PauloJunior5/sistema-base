@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CidadeController extends Controller
 {
-    public function index(Cidade $model)
+    public function index()
     {
         return view('cidades.index', ['cidades' => Cidade::all()]);
     }

@@ -49,12 +49,29 @@
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
+                                    @foreach($exames as $exame)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{$exame->exame}}</td>
+                                        <td>{{$exame->valor}}</td>
+                                        <td>{{$exame->categoria}}</td>
+                                        <td>{{ $exame->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $exame->updated_at->format('Y-m-d') }}</td>
+                                        <td class="td-actions text-right">
+                                            <form action="{{ route('exame.destroy', $exame->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('exame.edit', $exame->id) }}" data-original-title="" title="">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this país?") }}') ? this.parentElement.submit() : ''">
+                                                    <i class="material-icons">close</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="pull-right"></div>

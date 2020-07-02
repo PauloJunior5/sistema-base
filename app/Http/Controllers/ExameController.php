@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exame;
 use Illuminate\Http\Request;
 
 class ExameController extends Controller
@@ -13,7 +14,7 @@ class ExameController extends Controller
      */
     public function index()
     {
-        return view('exames.index');
+        return view('exames.index', ['exames' => Exame::all()]);
     }
 
     /**
@@ -23,7 +24,7 @@ class ExameController extends Controller
      */
     public function create()
     {
-        //
+        return view('exames.create');
     }
 
     /**
@@ -56,7 +57,8 @@ class ExameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $exame = Exame::findOrFail($id);
+        return view('exames.edit', compact('exame'));
     }
 
     /**

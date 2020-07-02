@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class EstadoController extends Controller
 {
-    public function index(Estado $model)
+    public function index()
     {
         return view('estados.index', ['estados' => Estado::all()]);
     }
