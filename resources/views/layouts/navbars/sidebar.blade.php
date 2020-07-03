@@ -86,7 +86,7 @@
                             </a>
                         </li>
                         <li class="nav-item {{ $activePage == 'paciente-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('paciente.index') }}">
                                 <span class="sidebar-mini"> P </span>
                                 <span class="sidebar-normal">{{ __('Pacientes') }} </span>
                             </a>

@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Exame;
+use App\Paciente;
 use Illuminate\Http\Request;
 
-class ExameController extends Controller
+class PacienteController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Exame $model)
+    public function index(Paciente $model)
     {
-        return view('exames.index', ['exames' => $model->paginate(10)]);
+        return view('pacientes.index', ['pacientes' => $model->paginate(10)]);
     }
 
     /**
@@ -24,7 +24,7 @@ class ExameController extends Controller
      */
     public function create()
     {
-        return view('exames.create');
+        return view('pacientes.create');
     }
 
     /**
@@ -57,8 +57,8 @@ class ExameController extends Controller
      */
     public function edit($id)
     {
-        $exame = Exame::findOrFail($id);
-        return view('exames.edit', compact('exame'));
+        $paciente = Paciente::findOrFail($id);
+        return view('pacientes.edit');
     }
 
     /**
