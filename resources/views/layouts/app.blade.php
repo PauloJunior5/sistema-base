@@ -17,8 +17,8 @@
     <link href="{{ asset('material') }}/css/material-dashboard.css?v=2.1.1" rel="stylesheet" />
     <!-- FOR DataTables -->
     <link rel="stylesheet" type="text/css" href="{{ asset('material') }}/node_modules/datatables.net-dt/css/jquery.dataTables.css">
-    <script src="{{ asset('material') }}/node_modules/datatables.net/jquery.dataTables.js"></script>
     <script src="{{ asset('material') }}/node_modules/jquery/dist/jquery.js"></script>
+    <script src="{{ asset('material') }}/node_modules/datatables.net/js/jquery.dataTables.js"></script>
 
 
 

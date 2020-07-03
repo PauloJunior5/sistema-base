@@ -53,7 +53,8 @@
                 </a>
                 <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
                                     $activePage == 'pais-management' || $activePage == 'estado-management' ||
-                                    $activePage == 'cidade-management' || $activePage == 'exame-management') ? ' show' : '' }}" id="cadastro">
+                                    $activePage == 'cidade-management' || $activePage == 'exame-management' ||
+                                    $activePage == 'paciente-management') ? ' show' : '' }}" id="cadastro">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'pais-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('pais.index') }}">

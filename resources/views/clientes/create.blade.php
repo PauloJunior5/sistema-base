@@ -157,7 +157,7 @@
                                     <label for="codigo_condicao_pagamento">Código</label>
                                     <input class="form-control"/>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label for="condicao_pagamento">Condição de Pagamento</label>
                                     <input class="form-control"/>
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}

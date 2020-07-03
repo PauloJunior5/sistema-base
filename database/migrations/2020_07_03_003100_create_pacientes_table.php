@@ -17,7 +17,7 @@ class CreatePacientesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('paciente');
-            $table->string('nome');
+            $table->string('apelido');
             $table->unsignedBigInteger('id_medico'); // foreign_key medicos
             $table->string('endereco');
             $table->string('numero');

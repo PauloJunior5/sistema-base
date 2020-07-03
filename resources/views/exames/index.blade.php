@@ -74,7 +74,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="pull-right"></div>
+                            <div class="pull-right">
+                                {{ $exames->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -58,7 +58,7 @@ class PacienteController extends Controller
     public function edit($id)
     {
         $paciente = Paciente::findOrFail($id);
-        return view('pacientes.edit');
+        return view('pacientes.edit', compact('paciente'));
     }
 
     /**
