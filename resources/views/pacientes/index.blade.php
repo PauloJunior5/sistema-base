@@ -58,7 +58,7 @@
                                             <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('paciente.edit', $paciente) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('paciente.edit', $paciente->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
@@ -72,9 +72,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="pull-right">
-                                {{ $pacientes->links() }}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,10 +81,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tablePacientes').DataTable({
-            "paging": false,
-            "info": false
-        });
+        $('#tablePacientes').DataTable();
     });
 </script>
 @endsection

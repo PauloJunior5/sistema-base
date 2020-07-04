@@ -58,14 +58,4 @@ class ClienteController extends Controller
             return redirect()->route('cliente.index')->with('Success', 'Cliente successfully deleted.');
         }
     }
-    public function getCidade(Request $request)
-    {
-        $cidade = Cidade::find($request->id_cidade);
-        $estado = Estado::findOrFail($cidade->id_estado);
-        $dados = [
-            'cidade' => $cidade,
-            'estado' => $estado,
-        ];
-        return $dados;
-    }
 }

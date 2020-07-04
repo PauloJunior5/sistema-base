@@ -193,7 +193,7 @@
         var id_cidade = $(this).val();
         $.ajax({
             method: "POST",
-            url: url_atual + '/cliente/getCidade',
+            url: url_atual + '/cidade/show',
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){

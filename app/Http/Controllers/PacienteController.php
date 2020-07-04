@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cidade;
 use App\Paciente;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,10 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Paciente $model)
+    public function index()
     {
-        return view('pacientes.index', ['pacientes' => $model->paginate(10)]);
+        $pacientes = Paciente::all();
+        return view('pacientes.index', compact('pacientes'));
     }
 
     /**
@@ -24,7 +26,8 @@ class PacienteController extends Controller
      */
     public function create()
     {
-        return view('pacientes.create');
+        $cidades = Cidade::all(); // Modal add cidade
+        return view('pacientes.create', compact('cidades'));
     }
 
     /**

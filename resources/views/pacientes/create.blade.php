@@ -1,5 +1,16 @@
 @extends('layouts.app', ['activePage' => 'paciente-management', 'titlePage' => __('Paciente Management')])
 @section('content')
+<!-- Start Modal -->
+<div class="modal fade" id="cidadeModal" tabindex="-1" role="dialog" aria-labelledby="cidadeModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.cidadeModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -189,4 +200,24 @@
     </div>
 </div>
 </div>
+<script>
+    var url_atual = '<?php echo URL::to(''); ?>';
+    $('.id').click(function() {
+        var id_cidade = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/show',
+            data: { id_cidade : id_cidade },
+            dataType: "JSON",
+            success: function(response){
+                alert(id_cidade);
+                $('#codigo-cidade-input').val(response.cidade.codigo);
+                $('#cidade-input').val(response.cidade.cidade);
+                $('#uf-cidade-input').val(response.estado.codigo);
+                $('#id-cidade-input').val(response.cidade.id);
+                $('#cidadeModal').modal('hide')
+            }
+        });
+    });
+</script>
 @endsection

@@ -29,6 +29,24 @@ class CidadeController extends Controller
             return redirect()->route('cidade.index')->withStatus(__('Cidade successfully created.'));
         }
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        $cidade = Cidade::find($request->id_cidade);
+        $estado = Estado::findOrFail($cidade->id_estado);
+        $dados = [
+            'cidade' => $cidade,
+            'estado' => $estado,
+        ];
+        return $dados;
+    }
+
     public function edit($id_cidade)
     {
         $cidade = Cidade::findOrFail($id_cidade);
