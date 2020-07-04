@@ -24,7 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('cliente', 'ClienteController', ['except' => ['show']]);
-    Route::put('cliente', 'ClienteController@update')->name('cliente.update');
+    Route::put('cliente/{id}', 'ClienteController@update')->name('cliente.update');
     Route::post('cliente/getCidade', 'ClienteController@getCidade');
 });
 
@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('estado/destroy', 'EstadoController@destroy');
     Route::get('estado/destroy', 'EstadoController@destroy');
     Route::post('estado/getPais', 'EstadoController@getPais');
+    Route::post('estado/createEstado', 'EstadoController@createEstado')->name('estado.createEstado');
 });
 
 Route::group(['middleware' => 'auth'], function () {    

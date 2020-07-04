@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Estado;
 use App\Pais;
 use Illuminate\Http\Request;
+use Redirect;
 
 class EstadoController extends Controller
 {
@@ -65,5 +66,20 @@ class EstadoController extends Controller
     {
         $pais = Pais::find($request->id_pais);
         return $pais;
+    }
+
+    public function createEstado(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id_pais' => 'exists:paises,id',
+            'estado' => 'unique:estados,estado',
+        ]);
+
+        if ($validatedData) {
+            $estado = Estado::create($request->all());
+            if ($estado) {
+                return Redirect::back()->with('error_code', 5);
+            }
+        }
     }
 }

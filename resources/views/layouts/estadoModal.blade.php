@@ -31,6 +31,11 @@
                             </div>
                         </div>
                         @endif
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#estadoCreateModal" style="margin-top: 2.7rem;">Add Estado</button>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableEstados">
                                 <thead class=" text-primary">

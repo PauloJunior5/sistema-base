@@ -6,6 +6,8 @@ use App\Cidade;
 use App\Cliente;
 use App\Estado;
 use App\Exame;
+use App\Medico;
+use App\Paciente;
 use App\Pais;
 use App\User;
 
@@ -33,6 +35,8 @@ class HomeController extends Controller
         $cidades = Cidade::count();
         $clientes = Cliente::count();
         $exames = Exame::count();
-        return view('dashboard', compact('users', 'clientes', 'paises', 'estados', 'cidades', 'exames'));
+        $medicos = Medico::count();
+        $pacientes = Paciente::count();
+        return view('dashboard', compact('users', 'clientes', 'paises', 'estados', 'cidades', 'exames', 'medicos', 'pacientes'));
     }
 }

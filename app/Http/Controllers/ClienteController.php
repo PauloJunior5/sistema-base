@@ -44,7 +44,7 @@ class ClienteController extends Controller
             return redirect()->back();
         }
     }
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'cpf' => 'unique:clientes,cpf,' . $id,

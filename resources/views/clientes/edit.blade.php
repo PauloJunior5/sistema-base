@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('cliente.update') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('cliente.update', $cliente->id) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -188,7 +188,7 @@
         var id_cidade = $(this).val();
         $.ajax({
             method: "POST",
-            url: url_atual + '/cliente/getCidade',
+            url: url_atual + '/cidade/show',
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){

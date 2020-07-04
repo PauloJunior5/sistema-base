@@ -16,7 +16,8 @@ class CidadeController extends Controller
     public function create()
     {
         $estados = Estado::all(); // Modal add estado
-        return view('cidades.create', compact('estados'));
+        $paises = Pais::all(); // Modal add pais
+        return view('cidades.create', compact('estados', 'paises'));
     }
     public function store(Request $request)
     {
