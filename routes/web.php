@@ -29,6 +29,10 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::resource('medico', 'MedicoController', ['except' => ['show']]);
+});
+
+Route::group(['middleware' => 'auth'], function () {
     Route::resource('exame', 'ExameController', ['except' => ['show']]);
 });
 

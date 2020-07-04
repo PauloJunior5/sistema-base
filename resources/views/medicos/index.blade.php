@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'paciente-management', 'titlePage' => __('Paciente Management')])
+@extends('layouts.app', ['activePage' => 'medico-management', 'titlePage' => __('Médico Management')])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paciente') }}</h4>
+                        <h4 class="card-title ">{{ __('Médico') }}</h4>
                         <p class="card-category"> {{ __('Here you can manage paises') }}</p>
                     </div>
                     <div class="card-body">
@@ -35,30 +35,32 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('paciente.create') }}" class="btn btn-sm btn-primary">{{ __('Add Paciente') }}</a>
+                                <a href="{{ route('medico.create') }}" class="btn btn-sm btn-primary">{{ __('Add Médico') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePacientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Paciente') }}</th>
                                     <th>{{ __('Médico') }}</th>
+                                    <th>{{ __('Crm') }}</th>
+                                    <th>{{ __('Especialidade') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($pacientes as $paciente)
+                                    @foreach($medicos as $medico)
                                     <tr>
-                                        <td>{{ $paciente->paciente. " " .$paciente->apelido }}</td>
-                                        <td>{{ $paciente->id_medico }}</td>
-                                        <td>{{ $paciente->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $paciente->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $medico->medico }}</td>
+                                        <td>{{ $medico->crm }}</td>
+                                        <td>{{ $medico->especialidade }}</td>
+                                        <td>{{ $medico->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $medico->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
+                                            <form action="{{ route('medico.destroy', $medico->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('paciente.edit', $paciente) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('medico.edit', $medico) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
@@ -73,7 +75,7 @@
                                 </tbody>
                             </table>
                             <div class="pull-right">
-                                {{ $pacientes->links() }}
+                                {{ $medicos->links() }}
                             </div>
                         </div>
                     </div>

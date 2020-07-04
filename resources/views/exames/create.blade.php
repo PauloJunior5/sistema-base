@@ -24,20 +24,20 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label>Código de Referência</label>
+                                    <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly />
                                     </div>
                                 </div>
                                
                                 <div class="col-sm-6">
-                                    <label>Exame</label>
+                                    <label class="col-form-label">Exame</label>
                                     <div class="form-group">
                                         <input class="form-control" name="exame" id="input-exame" type="text" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label>Valor</label>
+                                    <label class="col-form-label">Valor</label>
                                     <div class="form-group">
                                         <input class="form-control" name="valor" id="input-valor" type="number" required />
                                     </div>
@@ -47,7 +47,7 @@
 
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Plano</label>
+                                    <label class="col-form-label">Plano</label>
                                     <input class="form-control"/>
                                     {{-- <input type="hidden" id="input-plano" name="plano"> --}}
                                 </div>
@@ -55,7 +55,7 @@
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Catagoria</label>
+                                    <label class="col-form-label">Catagoria</label>
                                     <input class="form-control"/>
                                     {{-- <input type="hidden" id="input-categoria" name="categoria"> --}}
                                 </div>
@@ -67,13 +67,13 @@
 
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label>Created_at</label>
+                                    <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label>Updated_at</label>
+                                    <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                     </div>
