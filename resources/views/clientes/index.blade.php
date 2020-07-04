@@ -80,9 +80,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="pull-right">
-                                {{$clientes->links()}}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,11 +89,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tableClientes').DataTable({
-            "paging": false
-            , "info": false
-        });
+        $('#tableClientes').DataTable();
     });
-
 </script>
 @endsection

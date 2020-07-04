@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    public function index(Cliente $model)
+    public function index()
     {
-        return view('clientes.index', ['clientes' => $model->paginate(10)]);
+        $clientes = Cliente::all();
+        return view('clientes.index', compact('clientes'));
     }
     public function create()
     {
@@ -23,9 +24,12 @@ class ClienteController extends Controller
         $validatedData = $request->validate([
             'cpf' => 'unique:clientes,cpf',
         ]);
-        $cliente = Cliente::create($request->all());
-        if ($cliente) {
-            return redirect()->route('cliente.index')->with('Success', 'Cliente successfully created.');
+
+        if ($validatedData) {
+            $cliente = Cliente::create($request->all());
+            if ($cliente) {
+                return redirect()->route('cliente.index')->with('Success', 'Cliente successfully created.');
+            }
         }
     }
     public function edit($cliente_id)
@@ -42,9 +46,15 @@ class ClienteController extends Controller
     }
     public function update(Request $request)
     {
-        $cliente = Cliente::whereId($request->get('id'))->update($request->except('_token', '_method'));
-        if ($cliente) {
-            return redirect()->route('cliente.index')->with('Success', 'Cliente successfully updated.');
+        $validatedData = $request->validate([
+            'cpf' => 'unique:clientes,cpf,' . $id,
+        ]);
+
+        if ($validatedData) {
+            $cliente = Cliente::whereId($request->get('id'))->update($request->except('_token', '_method'));
+            if ($cliente) {
+                return redirect()->route('cliente.index')->with('Success', 'Cliente successfully updated.');
+            }
         }
     }
     public function destroy($cliente_id)
