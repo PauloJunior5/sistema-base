@@ -106,7 +106,7 @@
 </div>
 <script>
     var url_atual = '<?php echo URL::to(''); ?>';
-    $('.id').click(function() {
+    $('.idEstado').click(function() {
         var id_estado = $(this).val();
         $.ajax({
             method: "POST",

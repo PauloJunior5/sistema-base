@@ -50,7 +50,7 @@
                                         <td>{{ $estado->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $estado->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link id" value="{{$estado->id}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idEstado" value="{{$estado->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>
                                                 <div class="ripple-container"></div>
                                             </button>

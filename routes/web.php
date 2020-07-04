@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('pais', 'PaisController', ['except' => ['show']]);
+    Route::post('pais/createPais', 'PaisController@createPais')->name('pais.createPais');
 });
 
 Route::group(['middleware' => 'auth'], function () {

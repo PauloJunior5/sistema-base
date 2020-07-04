@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pais;
 use Illuminate\Http\Request;
+use Redirect;
 
 class PaisController extends Controller
 {
@@ -60,18 +61,14 @@ class PaisController extends Controller
     public function createPais(Request $request)
     {
         $validatedData = $request->validate([
-            'pais' => 'exists:paises,id',
-            'estado' => 'unique:estados,estado',
+            'pais' => 'unique:paises,pais',
         ]);
 
         if ($validatedData) {
             $pais = Pais::create($request->all());
-        }
-
-        dd($pais);
-
-        if ($pais) {
-            return Redirect::back();
+            if ($pais) {
+                return Redirect::back()->with('error_code', 5);
+            }
         }
     }
 }

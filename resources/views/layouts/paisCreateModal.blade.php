@@ -1,5 +1,3 @@
-@extends('layouts.app', ['activePage' => 'pais-management', 'titlePage' => __('País Management')])
-@section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -13,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('pais.store') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('pais.createPais') }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">
@@ -23,7 +21,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly />
@@ -67,4 +65,3 @@
         </div>
     </div>
 </div>
-@endsection

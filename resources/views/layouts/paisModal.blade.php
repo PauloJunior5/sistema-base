@@ -31,6 +31,11 @@
                             </div>
                         </div>
                         @endif
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisCreateModal" style="margin-top: 2.7rem;">Add Pais</button>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table" id="myTable">
                                 <thead class=" text-primary">
@@ -48,7 +53,7 @@
                                         <td>{{ $pais->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link id" value="{{$pais->id}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idPais" value="{{$pais->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>
                                                 <div class="ripple-container"></div>
                                             </button>
