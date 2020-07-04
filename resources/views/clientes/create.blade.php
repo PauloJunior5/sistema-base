@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="col-md-1">
                                     <label for="uf">UF</label>
-                                    <input class="form-control" name="uf_cidade" id="uf-cidade-input" value="" readonly />
+                                    <input class="form-control" id="uf-cidade-input" value="" readonly />
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cidade;
+use App\Estado;
 use App\Medico;
 use App\Paciente;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class PacienteController extends Controller
     public function create()
     {
         $cidades = Cidade::all(); // Modal add cidade
-        $medicos = Medico::all(); // Modal add cidade
+        $medicos = Medico::all(); // Modal add medico
         return view('pacientes.create', compact('cidades', 'medicos'));
     }
 
@@ -47,19 +48,10 @@ class PacienteController extends Controller
 
         if ($validatedData) {
             $paciente = Paciente::create($request->all());
-            return redirect()->route('paciente.index')->with('Success', 'Paciente successfully created.');
+            if ($paciente) {
+                return redirect()->route('paciente.index')->with('Success', 'Paciente successfully created.');
+            }
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -71,7 +63,12 @@ class PacienteController extends Controller
     public function edit($id)
     {
         $paciente = Paciente::findOrFail($id);
-        return view('pacientes.edit', compact('paciente'));
+        $medico = Medico::findOrFail($paciente->id_medico);
+        $cidade = Cidade::findOrFail($paciente->id_cidade);
+        $estado = Estado::findOrFail($cidade->id_estado);
+        $cidades = Cidade::all(); // Modal add cidade
+        $medicos = Medico::all(); // Modal add medico
+        return view('pacientes.edit', compact('paciente', 'medico', 'cidade', 'estado', 'cidades', 'medicos'));
     }
 
     /**
@@ -83,7 +80,17 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'cpf' => 'unique:pacientes,cpf,' . $id,
+            'rg' => 'unique:pacientes,rg,' . $id,
+        ]);
+        
+        if ($validatedData) {
+            $paciente = Paciente::whereId($id)->update($request->except('_token', '_method'));
+            if ($paciente) {
+                return redirect()->route('paciente.index')->with('Success', 'Paciente successfully updated.');
+            }
+        }
     }
 
     /**
@@ -94,6 +101,9 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $paciente = Paciente::where('id', $id)->delete();
+        if ($paciente) {
+            return redirect()->route('paciente.index')->with('Success', 'Paciente successfully deleted.');
+        }
     }
 }

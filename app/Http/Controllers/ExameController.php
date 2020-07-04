@@ -42,19 +42,10 @@ class ExameController extends Controller
 
         if ($validatedData) {
             $exame = Exame::create($request->all());
-            return redirect()->route('exame.index')->with('Success', 'Exame successfully created.');
+            if ($exame) {
+                return redirect()->route('exame.index')->with('Success', 'Exame successfully created.');
+            }
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

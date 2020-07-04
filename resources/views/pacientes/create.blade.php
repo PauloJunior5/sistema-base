@@ -67,20 +67,17 @@
                             <div class="row">
                                 <div class="col-md-1">
                                     <label>CRM</label>
-                                    <input class="form-control" id="crm-medico-input"/>
+                                    <input class="form-control" id="crm-medico-input" />
                                 </div>
                                 <div class="col-md-4">
                                     <label>Médico Responsável</label>
-                                    <input class="form-control" id="medico-input" readonly/>
+                                    <input class="form-control" id="medico-input" readonly />
                                     <input type="hidden" id="id-medico-input" name="id_medico">
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#medicoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
-
-
-
                             <div class="row">
                                 <div class="col-md-5">
                                     <label>Endereço</label>
@@ -103,8 +100,6 @@
                                     <input type="text" class="form-control" name="cep">
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-md-1">
                                     <label>Código</label>
@@ -117,13 +112,12 @@
                                 </div>
                                 <div class="col-md-1">
                                     <label>UF</label>
-                                    <input class="form-control" name="uf_cidade" id="uf-cidade-input" value="" readonly />
+                                    <input class="form-control" id="uf-cidade-input" value="" readonly />
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-3">
                                     <label>Sexo</label>
@@ -142,7 +136,6 @@
                                     <input type="text" class="form-control" name="nacionalidade">
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-3">
                                     <label>Telefone</label>
@@ -157,7 +150,6 @@
                                     <input type="text" class="form-control" name="email">
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-3">
                                     <label>CPF</label>
@@ -176,15 +168,12 @@
                                     <input type="text" class="form-control" name="uf">
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="observacao">Observação</label>
                                     <input type="text" class="form-control" name="observacao">
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Created_at</label>
@@ -210,7 +199,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <script>
     var url_atual = '<?php echo URL::to(''); ?>';
     $('.idCidade').click(function() {
@@ -245,9 +234,5 @@
             }
         });
     });
-
-</script>
-<script>
-    
 </script>
 @endsection
