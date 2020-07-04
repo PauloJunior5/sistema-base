@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('medico', 'MedicoController', ['except' => ['show']]);
+    Route::put('medico/{id}', 'MedicoController@update')->name('medico.update');
     Route::post('medico/show', 'MedicoController@show');
 });
 
@@ -55,7 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {    
-    Route::resource('cidade', 'CidadeController');
+    Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
     Route::post('cidade/destroy', 'CidadeController@destroy');
     Route::get('cidade/destroy', 'CidadeController@destroy');
     Route::post('cidade/getEstado', 'CidadeController@getEstado');

@@ -42,7 +42,7 @@
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableMedicos">
                                 <thead class=" text-primary">
                                     <th>{{ __('Médico') }}</th>
-                                    <th>{{ __('Crm') }}</th>
+                                    <th>{{ __('CRM') }}</th>
                                     <th>{{ __('Especialidade') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
@@ -74,9 +74,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="pull-right">
-                                {{ $medicos->links() }}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,10 +83,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tableMedicos').DataTable({
-            "paging": false,
-            "info": false
-        });
+        $('#tableMedicos').DataTable();
     });
 </script>
 @endsection

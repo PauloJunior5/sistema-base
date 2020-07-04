@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Cidade;
+use App\Estado;
 use App\Medico;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,10 @@ class MedicoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Medico $model)
+    public function index()
     {
-        return view('medicos.index', ['medicos' => $model->paginate(10)]);
+        $medicos = Medico::all();
+        return view('medicos.index', compact('medicos'));
     }
 
     /**
@@ -24,7 +27,8 @@ class MedicoController extends Controller
      */
     public function create()
     {
-        return view('medicos.create');
+        $cidades = Cidade::all(); // Modal add cidade
+        return view('medicos.create', compact('cidades'));
     }
 
     /**
@@ -35,7 +39,18 @@ class MedicoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'crm' => 'unique:medicos,crm',
+            'cpf' => 'unique:medicos,cpf',
+            'rg' => 'unique:medicos,rg',
+        ]);
+
+        if ($validatedData) {
+            $medico = Medico::create($request->all());
+            if ($medico) {
+                return redirect()->route('medico.index')->with('Success', 'Médico successfully created.');
+            }
+        }
     }
 
     /**
@@ -59,7 +74,10 @@ class MedicoController extends Controller
     public function edit($id)
     {
         $medico = Medico::findOrFail($id);
-        return view('medicos.edit', compact('medico'));
+        $cidades = Cidade::all(); // Modal add cidade
+        $cidade = Cidade::findOrFail($medico->id_cidade);
+        $estado = Estado::findOrFail($cidade->id_estado);
+        return view('medicos.edit', compact('medico', 'cidades', 'cidade', 'estado'));
     }
 
     /**
@@ -71,7 +89,18 @@ class MedicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'crm' => 'unique:medicos,crm,' . $id,
+            'cpf' => 'unique:medicos,cpf,' . $id,
+            'rg' => 'unique:medicos,rg,' . $id,
+        ]);
+        
+        if ($validatedData) {
+            $medico = Medico::whereId($id)->update($request->except('_token', '_method'));
+            if ($medico) {
+                return redirect()->route('medico.index')->with('Success', 'Médico successfully updated.');
+            }
+        }
     }
 
     /**
@@ -82,6 +111,9 @@ class MedicoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $medico = Medico::where('id', $id)->delete();
+        if ($medico) {
+            return redirect()->route('medico.index')->with('Success', 'Médico successfully deleted.');
+        }
     }
 }
