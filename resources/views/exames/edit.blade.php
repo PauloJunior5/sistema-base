@@ -13,9 +13,9 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('exame.store') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('exame.update', $exame->id) }}" autocomplete="off" class="form-horizontal">
                     @csrf
-                    @method('post')
+                    @method('put')
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title">{{ __('Add Exame') }}</h4>
@@ -29,7 +29,6 @@
                                         <input class="form-control" value="{{$exame->id}}" readonly />
                                     </div>
                                 </div>
-                               
                                 <div class="col-sm-6">
                                     <label class="col-form-label">Exame</label>
                                     <div class="form-group">
@@ -43,12 +42,10 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-md-4">
                                     <label class="col-form-label">Plano</label>
-                                    <input class="form-control" value="{{$exame->plano}}"/>
+                                    <input class="form-control" name="plano" value="{{$exame->plano}}" />
                                     {{-- <input type="hidden" id="input-plano" name="plano"> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -56,15 +53,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">Catagoria</label>
-                                    <input class="form-control" value="{{$exame->categoria}}"/>
+                                    <input class="form-control" name="categoria" value="{{$exame->categoria}}" />
                                     {{-- <input type="hidden" id="input-categoria" name="categoria"> --}}
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Created_at</label>

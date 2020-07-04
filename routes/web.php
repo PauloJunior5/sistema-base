@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('exame', 'ExameController', ['except' => ['show']]);
+    Route::put('exame/{id}', 'ExameController@update')->name('exame.update');
 });
 
 Route::group(['middleware' => 'auth'], function () {

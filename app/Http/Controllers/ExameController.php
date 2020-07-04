@@ -12,9 +12,10 @@ class ExameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Exame $model)
+    public function index()
     {
-        return view('exames.index', ['exames' => $model->paginate(10)]);
+        $exames = Exame::all();
+        return view('exames.index', compact('exames'));
     }
 
     /**
@@ -35,7 +36,14 @@ class ExameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'exame' => 'unique:exames,exame',
+        ]);
+
+        if ($validatedData) {
+            $exame = Exame::create($request->all());
+            return redirect()->route('exame.index')->with('Success', 'Exame successfully created.');
+        }
     }
 
     /**
@@ -70,7 +78,16 @@ class ExameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'exame' => 'unique:exames,exame,' . $id,
+        ]);
+
+        if ($validatedData) {
+            $exame = Exame::whereId($id)->update($request->except('_token', '_method'));
+            if ($exame) {
+                return redirect()->route('exame.index')->with('Success', 'Exame successfully updated.');
+            }
+        }
     }
 
     /**
@@ -81,6 +98,9 @@ class ExameController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $exame = Exame::where('id', $id)->delete();
+        if ($exame) {
+            return redirect()->route('exame.index')->with('Success', 'Exame successfully deleted.');
+        }
     }
 }

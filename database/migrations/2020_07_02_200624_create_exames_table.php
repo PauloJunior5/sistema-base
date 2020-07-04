@@ -15,10 +15,12 @@ class CreateExamesTable extends Migration
     {
         Schema::create('exames', function (Blueprint $table) {
             $table->bigIncrements('id');
+
             $table->string('exame');
-            $table->float('valor');
+            $table->double('valor', 8, 2);
             $table->string('plano');
             $table->string('categoria');
+            
             $table->timestamps();
         });
     }

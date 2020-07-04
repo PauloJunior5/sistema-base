@@ -20,7 +20,7 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="true">
                     <i class="material-icons">person</i>
                     <p>{{ __('Usuários') }}
@@ -43,7 +43,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#cadastro" aria-expanded="true">
                     <i class="material-icons">reorder</i>

@@ -54,8 +54,8 @@
                                         <td>{{$exame->exame}}</td>
                                         <td>{{$exame->valor}}</td>
                                         <td>{{$exame->categoria}}</td>
-                                        <td>{{ $exame->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $exame->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{$exame->created_at->format('Y-m-d H:i:s')}}</td>
+                                        <td>{{$exame->updated_at->format('Y-m-d H:i:s')}}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('exame.destroy', $exame->id) }}" method="post">
                                                 @csrf
@@ -74,9 +74,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="pull-right">
-                                {{ $exames->links() }}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,10 +83,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tableExames').DataTable({
-            "paging": false,
-            "info": false
-        });
+        $('#tableExames').DataTable();
     });
 
 </script>
