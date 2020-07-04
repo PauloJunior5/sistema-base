@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cidade;
+use App\Medico;
 use App\Paciente;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class PacienteController extends Controller
     public function create()
     {
         $cidades = Cidade::all(); // Modal add cidade
-        return view('pacientes.create', compact('cidades'));
+        $medicos = Medico::all(); // Modal add cidade
+        return view('pacientes.create', compact('cidades', 'medicos'));
     }
 
     /**
@@ -38,7 +40,15 @@ class PacienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'cpf' => 'unique:pacientes,cpf',
+            'rg' => 'unique:pacientes,rg',
+        ]);
+
+        if ($validatedData) {
+            $paciente = Paciente::create($request->all());
+            return redirect()->route('paciente.index')->with('Success', 'Paciente successfully created.');
+        }
     }
 
     /**

@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePacientes">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableMedicos">
                                 <thead class=" text-primary">
                                     <th>{{ __('Médico') }}</th>
                                     <th>{{ __('Crm') }}</th>
@@ -86,7 +86,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tablePacientes').DataTable({
+        $('#tableMedicos').DataTable({
             "paging": false,
             "info": false
         });

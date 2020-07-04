@@ -31,11 +31,6 @@
                             </div>
                         </div>
                         @endif
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <a href="{{ route('estado.create') }}" class="btn btn-sm btn-primary">{{ __('Add Estado') }}</a>
-                            </div>
-                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableEstados">
                                 <thead class=" text-primary">

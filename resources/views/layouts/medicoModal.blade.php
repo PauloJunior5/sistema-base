@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paises') }}</h4>
+                        <h4 class="card-title ">{{ __('Médico') }}</h4>
                         <p class="card-category"> {{ __('Here you can manage paises') }}</p>
                     </div>
                     <div class="card-body">
@@ -32,23 +32,25 @@
                         </div>
                         @endif
                         <div class="table-responsive">
-                            <table class="table" id="myTable">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableMedicos">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Código') }}</th>
-                                    <th>{{ __('Nome') }}</th>
+                                    <th>{{ __('Médico') }}</th>
+                                    <th>{{ __('Crm') }}</th>
+                                    <th>{{ __('Especialidade') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($paises as $pais)
+                                    @foreach($medicos as $medico)
                                     <tr>
-                                        <td>{{ $pais->codigo }}</td>
-                                        <td>{{ $pais->pais }}</td>
-                                        <td>{{ $pais->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $medico->medico }}</td>
+                                        <td>{{ $medico->crm }}</td>
+                                        <td>{{ $medico->especialidade }}</td>
+                                        <td>{{ $medico->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $medico->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link id" value="{{$pais->id}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idMedico" value="{{$medico->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>
                                                 <div class="ripple-container"></div>
                                             </button>
@@ -66,7 +68,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#tableMedicos').DataTable();
     });
 
 </script>

@@ -22,5 +22,6 @@ class VerifyCsrfToken extends Middleware
         '/estado/getPais',
         '/cidade/getEstado',
         '/cidade/show',
+        '/medico/show',
     ];
 }

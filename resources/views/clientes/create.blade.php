@@ -189,7 +189,7 @@
 </div>
 <script>
     var url_atual = '<?php echo URL::to(''); ?>';
-    $('.id').click(function() {
+    $('.idCidade').click(function() {
         var id_cidade = $(this).val();
         $.ajax({
             method: "POST",

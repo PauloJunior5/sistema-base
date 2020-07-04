@@ -11,6 +11,17 @@
     </div>
 </div>
 {{-- End Modal --}}
+<!-- Start Modal -->
+<div class="modal fade" id="medicoModal" tabindex="-1" role="dialog" aria-labelledby="medicoModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.medicoModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -43,28 +54,28 @@
                                 <div class="col-md-4">
                                     <label>Paciente</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="paciente" type="text" required />
+                                        <input class="form-control" name="paciente" type="text" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Apelido</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="apelido" type="text" required />
+                                        <input class="form-control" name="apelido" type="text" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label>Código</label>
-                                    <input class="form-control" />
+                                    <label>CRM</label>
+                                    <input class="form-control" id="crm-medico-input"/>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Médico Responsável</label>
-                                    <input class="form-control" readonly/>
-                                    {{-- <input type="hidden" id="input-medico" name="id_medico"> --}}
+                                    <input class="form-control" id="medico-input" readonly/>
+                                    <input type="hidden" id="id-medico-input" name="id_medico">
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#medicoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
 
@@ -202,7 +213,7 @@
 </div>
 <script>
     var url_atual = '<?php echo URL::to(''); ?>';
-    $('.id').click(function() {
+    $('.idCidade').click(function() {
         var id_cidade = $(this).val();
         $.ajax({
             method: "POST",
@@ -210,7 +221,6 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                alert(id_cidade);
                 $('#codigo-cidade-input').val(response.cidade.codigo);
                 $('#cidade-input').val(response.cidade.cidade);
                 $('#uf-cidade-input').val(response.estado.codigo);
@@ -219,5 +229,25 @@
             }
         });
     });
+
+    $('.idMedico').click(function() {
+        var id_medico = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/medico/show',
+            data: { id_medico : id_medico },
+            dataType: "JSON",
+            success: function(response){
+                $('#crm-medico-input').val(response.crm);
+                $('#medico-input').val(response.medico);
+                $('#id-medico-input').val(response.id);
+                $('#medicoModal').modal('hide')
+            }
+        });
+    });
+
+</script>
+<script>
+    
 </script>
 @endsection

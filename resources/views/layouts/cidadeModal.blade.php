@@ -20,11 +20,6 @@
                             </div>
                         </div>
                         @endif
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <a href="#" class="btn btn-sm btn-primary">{{ __('Add Cidade') }}</a>
-                            </div>
-                        </div>
                         <div class="table-responsive">
                             <table class="table" id="tableCidades">
                                 <thead class=" text-primary">
@@ -50,7 +45,7 @@
                                         <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link id" value="{{$cidade->id}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idCidade" value="{{$cidade->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>
                                                 <div class="ripple-container"></div>
                                             </button>
