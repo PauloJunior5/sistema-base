@@ -67,7 +67,7 @@ class PaisController extends Controller
         if ($validatedData) {
             $pais = Pais::create($request->all());
             if ($pais) {
-                return Redirect::back()->with('error_code', 5);
+                return Redirect::back()->with('error_code', 4);
             }
         }
     }

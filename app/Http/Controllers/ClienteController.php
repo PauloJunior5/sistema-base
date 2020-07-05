@@ -14,16 +14,26 @@ class ClienteController extends Controller
         $clientes = Cliente::all();
         return view('clientes.index', compact('clientes'));
     }
+
     public function create()
     {
         $cidades = Cidade::all(); // Modal add cidade
         return view('clientes.create', compact('cidades'));
     }
+
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'cpf' => 'unique:clientes,cpf',
-        ]);
+        $cpf = $request->input('cpf');
+
+        if (!empty($cpf)) {
+            $validatedData = $request->validate([
+                'cpf' => 'unique:clientes,cpf',
+            ]);
+        } else {
+            $validatedData = $request->validate([
+                'cnpj' => 'unique:clientes,cpf',
+            ]);
+        }
 
         if ($validatedData) {
             $cliente = Cliente::create($request->all());
@@ -32,18 +42,21 @@ class ClienteController extends Controller
             }
         }
     }
+
     public function edit($cliente_id)
     {
         $cliente = Cliente::findOrFail($cliente_id);
         $cidade = Cidade::findOrFail($cliente->id_cidade);
         $estado = Estado::findOrFail($cidade->id_estado);
         $cidades = Cidade::all(); // Modal add pais
+
         if ($cliente) {
             return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades'));
         } else {
             return redirect()->back();
         }
     }
+
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -57,13 +70,10 @@ class ClienteController extends Controller
             }
         }
     }
+
     public function destroy($cliente_id)
     {
-        try {
-            $cliente = Cliente::where('id', $cliente_id)->delete();
-        } catch (\Illuminate\Database\QueryException $ex) {
-            return redirect()->route('cliente.index')->with('Warning', 'Cliente unsuccessfully deleted. Esse cliente possui vínculo com cidades e/ou estados.');
-        }
+        $cliente = Cliente::where('id', $cliente_id)->delete();
         if ($cliente) {
             return redirect()->route('cliente.index')->with('Success', 'Cliente successfully deleted.');
         }

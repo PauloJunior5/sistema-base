@@ -35,20 +35,20 @@
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label for="codigo">Código</label>
+                                    <label class="col-form-label">Código</label>
                                     <input type="text" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="tipo">Tipo</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.fisica'); ?>" checked> Física
+                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaFisica" id="pessoa-fisica" checked> Física
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
                                         </label>
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.juridica');?>"> Jurídica
+                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaJuridica" id="pessoa-juridica"> Jurídica
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -56,49 +56,53 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="cliente">Cliente</label>
+                                    <label class="col-form-label">Cliente</label>
                                     <input type="text" class="form-control" name="cliente">
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="apelido">Apelido</label>
-                                    <input type="text" class="form-control" name="apelido">
+                                <div class="col-md-4 campoPessoaFisica">
+                                    <label class="col-form-label">Apelido</label>
+                                    <input type="text" class="form-control inputPessoaFisica" name="apelido" required>
+                                </div>
+                                <div class="col-md-4 campoPessoaJuridica">
+                                    <label class="col-form-label">Nome Fantasia</label>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="nome_fantasia" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label for="endereco">Endereço</label>
-                                    <input type="text" class="form-control" name="endereco">
+                                    <label class="col-form-label">Endereço</label>
+                                    <input type="text" class="form-control" name="endereco" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="numero">nº</label>
-                                    <input type="text" class="form-control" name="numero">
+                                    <label class="col-form-label">nº</label>
+                                    <input type="text" class="form-control" name="numero" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="complemento">Complemento</label>
-                                    <input type="text" class="form-control" name="complemento">
+                                    <label class="col-form-label">Complemento</label>
+                                    <input type="text" class="form-control" name="complemento" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="bairro">Bairro</label>
-                                    <input type="text" class="form-control" name="bairro">
+                                    <label class="col-form-label">Bairro</label>
+                                    <input type="text" class="form-control" name="bairro" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="cep">CEP</label>
-                                    <input type="text" class="form-control" name="cep">
+                                    <label class="col-form-label">CEP</label>
+                                    <input type="text" class="form-control" name="cep" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label for="codigo_cidade">Código</label>
-                                    <input type="text" class="form-control" id="codigo-cidade-input">
+                                    <label class="col-form-label">Código</label>
+                                    <input type="text" class="form-control" id="codigo-cidade-input" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="cidade">Cidade</label>
-                                    <input class="form-control" id="cidade-input" value="" readonly />
+                                    <label class="col-form-label">Cidade</label>
+                                    <input class="form-control" id="cidade-input" value="" readonly required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="">
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="uf">UF</label>
-                                    <input class="form-control" id="uf-cidade-input" value="" readonly />
+                                    <label class="col-form-label">UF</label>
+                                    <input class="form-control" id="uf-cidade-input" value="" readonly required>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
@@ -106,60 +110,70 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label for="telefone">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone">
+                                    <label class="col-form-label">Telefone</label>
+                                    <input type="text" class="form-control" name="telefone" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="celular">Celular</label>
-                                    <input type="text" class="form-control" name="celular">
+                                    <label class="col-form-label">Celular</label>
+                                    <input type="text" class="form-control" name="celular" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="email">Email</label>
-                                    <input type="text" class="form-control" name="email">
+                                    <label class="col-form-label">Email</label>
+                                    <input type="text" class="form-control" name="email" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="nacionalidade">Nacionalidade</label>
-                                    <input type="text" class="form-control" name="nacionalidade">
+                                    <label class="col-form-label">Nacionalidade</label>
+                                    <input type="text" class="form-control" name="nacionalidade" required>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row campoPessoaFisica">
                                 <div class="col-md-3">
-                                    <label for="cpf">CPF</label>
-                                    <input type="text" class="form-control" name="cpf">
+                                    <label class="col-form-label">CPF</label>
+                                    <input type="text" class="form-control inputPessoaFisica" name="cpf" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="rg">RG</label>
-                                    <input type="text" class="form-control" name="rg">
+                                    <label class="col-form-label">RG</label>
+                                    <input type="text" class="form-control inputPessoaFisica" name="rg" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="emissor">Emissor</label>
-                                    <input type="text" class="form-control" name="emissor">
+                                    <label class="col-form-label">Emissor</label>
+                                    <input type="text" class="form-control inputPessoaFisica" name="emissor" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="uf">UF</label>
-                                    <input type="text" class="form-control" name="uf">
+                                    <label class="col-form-label">UF</label>
+                                    <input type="text" class="form-control inputPessoaFisica" name="uf" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="nascimento">Nascimento</label>
-                                    <input type="date" class="form-control" name="nascimento">
+                                    <label class="col-form-label">Nascimento</label>
+                                    <input type="date" class="form-control inputPessoaFisica" name="nascimento" required>
+                                </div>
+                            </div>
+                            <div class="row campoPessoaJuridica">
+                                <div class="col-md-3">
+                                    <label class="col-form-label">Inscricão Estadual</label>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricao_estadual" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label">CNPJ</label>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="cnpj" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label for="observacao">Observação</label>
-                                    <input type="text" class="form-control" name="observacao">
+                                    <label class="col-form-label">Observação</label>
+                                    <input type="text" class="form-control" name="observacao" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="limite_credito">Limite de Crédito</label>
-                                    <input class="form-control" name="limite_credito" />
+                                    <label class="col-form-label">Limite de Crédito</label>
+                                    <input class="form-control" name="limite_credito" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="codigo_condicao_pagamento">Código</label>
-                                    <input class="form-control"/>
+                                    <label class="col-form-label">Código</label>
+                                    <input class="form-control" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="condicao_pagamento">Condição de Pagamento</label>
-                                    <input class="form-control"/>
+                                    <label class="col-form-label">Condição de Pagamento</label>
+                                    <input class="form-control" name="condicao_pagamento" required>
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -168,11 +182,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label for="created_at">Created_at</label>
+                                    <label class="col-form-label">Created_at</label>
                                     <input type="date" class="form-control" name="created_at" readonly>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="updated_at">Updated_at</label>
+                                    <label class="col-form-label">Updated_at</label>
                                     <input type="date" class="form-control" name="updated_at" readonly>
                                 </div>
                             </div>
@@ -205,5 +219,29 @@
             }
         });
     });
+</script>
+<script>
+    $( document ).ready(function() {
+        $(".campoPessoaJuridica").hide();
+        $('.inputPessoaJuridica').prop('required',false);
+    });
+
+    $("input:radio[name=tipo]").on("change", function () {
+        if($(this).val() == "pessoaFisica") {
+            $(".campoPessoaFisica").show();
+            $(".campoPessoaJuridica").hide();
+            $('.inputPessoaJuridica').prop('required',false);
+            $('.inputPessoaFisica').prop('required',true);
+        }
+        else if($(this).val() == "pessoaJuridica") {
+            $(".campoPessoaFisica").hide();
+            $(".campoPessoaJuridica").show();
+            $('.inputPessoaFisica').prop('required',false); 
+            $('.inputPessoaJuridica').prop('required',true); 
+        }
+    });
+
+    
+
 </script>
 @endsection

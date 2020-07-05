@@ -44,13 +44,6 @@
     </div>
 </div>
 {{-- End Modal --}}
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
-<script>
-$(function() {
-    $('#estadoModal').modal('show');
-});
-</script>
-@endif
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -180,4 +173,27 @@ $(function() {
         });
     });
 </script>
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+    <script>
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
+    <script>
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+        $(function() {
+            $('#estadoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#paisModal').modal('show');
+        });
+    </script>
+@endif
+
 @endsection

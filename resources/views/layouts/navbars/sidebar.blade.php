@@ -46,7 +46,7 @@
             </li> --}}
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="true">
-                    <i class="material-icons">person</i>
+                    <i class="material-icons">filter_hdr</i>
                     <p>{{ __('Território') }}
                         <b class="caret"></b>
                     </p>
