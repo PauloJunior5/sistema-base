@@ -1,71 +1,6 @@
 @extends('layouts.app', ['activePage' => 'medico-management', 'titlePage' => __('Médico Management')])
 @section('content')
-<!-- Start Modal -->
-<div class="modal fade" id="cidadeModal" tabindex="-1" role="dialog" aria-labelledby="cidadeModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.cidadeModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="cidadeCreateModal" tabindex="-1" role="dialog" aria-labelledby="cidadeCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.cidadeCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="estadoModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.estadoModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="estadoCreateModal" tabindex="-1" role="dialog" aria-labelledby="estadoCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.estadoCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.paisModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="paisCreateModal" tabindex="-1" role="dialog" aria-labelledby="paisCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.paisCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
+@include('layouts.cidadeEstadoPais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -90,25 +25,25 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Código de Referência</label>
+                                    <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Médico</label>
+                                    <label class="col-form-label">Médico</label>
                                     <div class="form-group">
                                         <input class="form-control" name="medico" type="text" required />
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <label>CRM</label>
+                                    <label class="col-form-label">CRM</label>
                                     <div class="form-group">
                                         <input class="form-control" name="crm" type="text" required />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Especialidade</label>
+                                    <label class="col-form-label">Especialidade</label>
                                     <div class="form-group">
                                         <input class="form-control" name="especialidade" type="text" required />
                                     </div>
@@ -116,38 +51,38 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label>Endereço</label>
+                                    <label class="col-form-label">Endereço</label>
                                     <input type="text" class="form-control" name="endereco">
                                 </div>
                                 <div class="col-md-1">
-                                    <label>nº</label>
+                                    <label class="col-form-label">nº</label>
                                     <input type="text" class="form-control" name="numero">
                                 </div>
                                 <div class="col-md-2">
-                                    <label>Complemento</label>
+                                    <label class="col-form-label">Complemento</label>
                                     <input type="text" class="form-control" name="complemento">
                                 </div>
                                 <div class="col-md-2">
-                                    <label>Bairro</label>
+                                    <label class="col-form-label">Bairro</label>
                                     <input type="text" class="form-control" name="bairro">
                                 </div>
                                 <div class="col-md-2">
-                                    <label>CEP</label>
+                                    <label class="col-form-label">CEP</label>
                                     <input type="text" class="form-control" name="cep">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label>Código</label>
+                                    <label class="col-form-label">Código</label>
                                     <input type="text" class="form-control" id="codigo-cidade-input">
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Cidade</label>
+                                    <label class="col-form-label">Cidade</label>
                                     <input class="form-control" id="cidade-input" readonly />
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" >
                                 </div>
                                 <div class="col-md-1">
-                                    <label>UF</label>
+                                    <label class="col-form-label">UF</label>
                                     <input class="form-control" id="uf-cidade-input" readonly />
                                 </div>
                                 <div class="col-md-1">
@@ -157,25 +92,25 @@
                             
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label>Telefone</label>
+                                    <label class="col-form-label">Telefone</label>
                                     <input type="text" class="form-control" name="telefone">
                                 </div>
                                 <div class="col-md-3">
-                                    <label>Celular</label>
+                                    <label class="col-form-label">Celular</label>
                                     <input type="text" class="form-control" name="celular">
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Email</label>
+                                    <label class="col-form-label">Email</label>
                                     <input type="text" class="form-control" name="email">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label>CPF</label>
+                                    <label class="col-form-label">CPF</label>
                                     <input type="text" class="form-control" name="cpf">
                                 </div>
                                 <div class="col-md-3">
-                                    <label>RG</label>
+                                    <label class="col-form-label">RG</label>
                                     <input type="text" class="form-control" name="rg">
                                 </div>
                                 <div class="col-md-2">
@@ -191,13 +126,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Created_at</label>
+                                    <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <label>Updated_at</label>
+                                    <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                     </div>
@@ -233,7 +168,6 @@
         });
     });
 
-    var url_atual = '<?php echo URL::to(''); ?>';
     $('.idEstado').click(function() {
         var id_estado = $(this).val();
         $.ajax({

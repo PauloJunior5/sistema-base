@@ -1,16 +1,6 @@
 @extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
 @section('content')
-<!-- Start Modal -->
-<div class="modal fade" id="cidadeModal" tabindex="-1" role="dialog" aria-labelledby="cidadeModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.cidadeModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
+@include('layouts.cidadeEstadoPais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -201,25 +191,7 @@
         </div>
     </div>
 </div>
-<script>
-    var url_atual = '<?php echo URL::to(''); ?>';
-    $('.idCidade').click(function() {
-        var id_cidade = $(this).val();
-        $.ajax({
-            method: "POST",
-            url: url_atual + '/cidade/show',
-            data: { id_cidade : id_cidade },
-            dataType: "JSON",
-            success: function(response){
-                $('#codigo-cidade-input').val(response.cidade.codigo);
-                $('#cidade-input').val(response.cidade.cidade);
-                $('#uf-cidade-input').val(response.estado.codigo);
-                $('#id-cidade-input').val(response.cidade.id);
-                $('#cidadeModal').modal('hide')
-            }
-        });
-    });
-</script>
+
 <script>
     $( document ).ready(function() {
         $(".campoPessoaJuridica").hide();
@@ -242,4 +214,94 @@
     });
 
 </script>
+
+<script>
+    var url_atual = '<?php echo URL::to(''); ?>';
+    $('.idCidade').click(function() {
+        var id_cidade = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/show',
+            data: { id_cidade : id_cidade },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-cidade-input').val(response.cidade.codigo);
+                $('#cidade-input').val(response.cidade.cidade);
+                $('#uf-cidade-input').val(response.estado.codigo);
+                $('#id-cidade-input').val(response.cidade.id);
+                $('#cidadeModal').modal('hide')
+            }
+        });
+    });
+
+    $('.idEstado').click(function() {
+        var id_estado = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/getEstado',
+            data: { id_estado : id_estado },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#estado-input').val(response.estado.estado);
+                $('#id-estado-input').val(response.estado.id);
+                $('#pais-input').val(response.pais.pais);
+                $('#estadoModal').modal('hide')
+            }
+        });
+    });
+
+    $('.idPais').click(function() {
+        var id_pais = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/estado/getPais',
+            data: { id_pais : id_pais },
+            dataType: "JSON",
+            success: function(response){
+                $('#input-codigo-pais').val(response.codigo);
+                $('#input-pais').val(response.pais);
+                $('#input-id-pais').val(response.id);
+                $('#paisModal').modal('hide')
+            }
+        });
+    });
+</script>
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
+    <script>
+        $(function() {
+            $('#cidadeModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+    <script>
+        $(function() {
+            $('#cidadeModal').modal('show');
+        });
+        $(function() {
+            $('#cidadeCreateModal').modal('show');
+        });
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
+    <script>
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+        $(function() {
+            $('#estadoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#paisModal').modal('show');
+        });
+    </script>
+@endif
+
 @endsection

@@ -6,6 +6,7 @@ use App\Cidade;
 use App\Estado;
 use App\Medico;
 use App\Paciente;
+use App\Pais;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
@@ -29,8 +30,10 @@ class PacienteController extends Controller
     public function create()
     {
         $cidades = Cidade::all(); // Modal add cidade
+        $estados = Estado::all(); // Modal add estado
+        $paises = Pais::all(); // Modal add pais
         $medicos = Medico::all(); // Modal add medico
-        return view('pacientes.create', compact('cidades', 'medicos'));
+        return view('pacientes.create', compact('cidades', 'estados', 'paises', 'medicos'));
     }
 
     /**

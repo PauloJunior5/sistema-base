@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cliente;
 use App\Cidade;
 use App\Estado;
+use App\Pais;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -18,7 +19,9 @@ class ClienteController extends Controller
     public function create()
     {
         $cidades = Cidade::all(); // Modal add cidade
-        return view('clientes.create', compact('cidades'));
+        $estados = Estado::all(); // Modal add estado
+        $paises = Pais::all(); // Modal add pais
+        return view('clientes.create', compact('cidades', 'estados', 'paises'));
     }
 
     public function store(Request $request)
