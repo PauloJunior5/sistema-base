@@ -45,17 +45,14 @@
                 </div>
             </li> --}}
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#cadastro" aria-expanded="true">
-                    <i class="material-icons">reorder</i>
-                    <p>{{ __('Cadastro') }}
+                <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="true">
+                    <i class="material-icons">person</i>
+                    <p>{{ __('Território') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
-                                    $activePage == 'pais-management' || $activePage == 'estado-management' ||
-                                    $activePage == 'cidade-management' || $activePage == 'exame-management' ||
-                                    $activePage == 'paciente-management' || $activePage == 'medico-management')
-                                    ? ' show' : '' }}" id="cadastro">
+                <div class="collapse {{ ($activePage == 'pais-management' || $activePage == 'estado-management' ||
+                $activePage == 'cidade-management') ? ' show' : '' }}" id="usuarios">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'pais-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('pais.index') }}">
@@ -75,6 +72,21 @@
                                 <span class="sidebar-normal">{{ __('Cidades') }} </span>
                             </a>
                         </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#cadastro" aria-expanded="true">
+                    <i class="material-icons">reorder</i>
+                    <p>{{ __('Cadastro') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
+                                    $activePage == 'exame-management' || $activePage == 'paciente-management' ||
+                                    $activePage == 'medico-management')
+                                    ? ' show' : '' }}" id="cadastro">
+                    <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('cliente.index') }}">
                                 <span class="sidebar-mini"> C </span>
