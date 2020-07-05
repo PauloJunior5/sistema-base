@@ -241,7 +241,5 @@
         }
     });
 
-    
-
 </script>
 @endsection

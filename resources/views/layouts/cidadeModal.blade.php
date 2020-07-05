@@ -20,6 +20,11 @@
                             </div>
                         </div>
                         @endif
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeCreateModal" style="margin-top: 2.7rem;">Add Cidade</button>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table" id="tableCidades">
                                 <thead class=" text-primary">

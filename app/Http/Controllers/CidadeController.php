@@ -6,6 +6,7 @@ use App\Cidade;
 use App\Estado;
 use App\Pais;
 use Illuminate\Http\Request;
+use Redirect;
 
 class CidadeController extends Controller
 {
@@ -23,7 +24,7 @@ class CidadeController extends Controller
     {
         $validatedData = $request->validate([
             'estado' => 'exists:estados,id',
-            'nome' => 'unique:cidades,nome',
+            'cidade' => 'unique:cidades,cidade',
         ]);
         $cidade = Cidade::create($request->all());
         if ($cidade) {
@@ -83,5 +84,20 @@ class CidadeController extends Controller
             'pais' => $pais,
         ];
         return $dados;
+    }
+
+    public function createCidade(Request $request)
+    {
+        $validatedData = $request->validate([
+            'estado' => 'exists:estados,id',
+            'cidade' => 'unique:cidades,cidade',
+        ]);
+
+        if ($validatedData) {
+            $cidade = Cidade::create($request->all());
+            if ($cidade) {
+                return Redirect::back()->with('error_code', 6);
+            }
+        }
     }
 }

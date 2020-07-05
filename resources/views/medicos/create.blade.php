@@ -2,10 +2,65 @@
 @section('content')
 <!-- Start Modal -->
 <div class="modal fade" id="cidadeModal" tabindex="-1" role="dialog" aria-labelledby="cidadeModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 @include('layouts.cidadeModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
+<!-- Start Modal -->
+<div class="modal fade" id="cidadeCreateModal" tabindex="-1" role="dialog" aria-labelledby="cidadeCreateModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.cidadeCreateModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
+<!-- Start Modal -->
+<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="estadoModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.estadoModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
+<!-- Start Modal -->
+<div class="modal fade" id="estadoCreateModal" tabindex="-1" role="dialog" aria-labelledby="estadoCreateModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.estadoCreateModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
+<!-- Start Modal -->
+<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.paisModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
+<!-- Start Modal -->
+<div class="modal fade" id="paisCreateModal" tabindex="-1" role="dialog" aria-labelledby="paisCreateModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.paisCreateModal')
             </div>
         </div>
     </div>
@@ -177,5 +232,76 @@
             }
         });
     });
+
+    var url_atual = '<?php echo URL::to(''); ?>';
+    $('.idEstado').click(function() {
+        var id_estado = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/getEstado',
+            data: { id_estado : id_estado },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#estado-input').val(response.estado.estado);
+                $('#id-estado-input').val(response.estado.id);
+                $('#pais-input').val(response.pais.pais);
+                $('#estadoModal').modal('hide')
+            }
+        });
+    });
+
+    $('.idPais').click(function() {
+        var id_pais = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/estado/getPais',
+            data: { id_pais : id_pais },
+            dataType: "JSON",
+            success: function(response){
+                $('#input-codigo-pais').val(response.codigo);
+                $('#input-pais').val(response.pais);
+                $('#input-id-pais').val(response.id);
+                $('#paisModal').modal('hide')
+            }
+        });
+    });
 </script>
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
+    <script>
+        $(function() {
+            $('#cidadeModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+    <script>
+        $(function() {
+            $('#cidadeModal').modal('show');
+        });
+        $(function() {
+            $('#cidadeCreateModal').modal('show');
+        });
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
+    <script>
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+        $(function() {
+            $('#estadoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#paisModal').modal('show');
+        });
+    </script>
+@endif
+
 @endsection
