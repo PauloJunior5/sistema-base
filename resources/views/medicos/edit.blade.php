@@ -36,27 +36,19 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Código de Referência</label>
-                                    <div class="form-group">
-                                        <input class="form-control" value="{{$medico->id}}" readonly />
-                                    </div>
+                                    <input class="form-control" value="{{$medico->id}}" readonly />
                                 </div>
                                 <div class="col-md-4">
                                     <label>Médico</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="medico" type="text" value="{{$medico->medico}}" required />
-                                    </div>
+                                    <input class="form-control" name="medico" type="text" value="{{$medico->medico}}" required />
                                 </div>
                                 <div class="col-md-2">
                                     <label>Crm</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="crm" type="text" value="{{$medico->crm}}" required />
-                                    </div>
+                                    <input class="form-control" name="crm" type="text" value="{{$medico->crm}}" required />
                                 </div>
                                 <div class="col-md-4">
                                     <label>Especialidade</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="especialidade" type="text" value="{{$medico->especialidade}}" required />
-                                    </div>
+                                    <input class="form-control" name="especialidade" type="text" value="{{$medico->especialidade}}" required />
                                 </div>
                             </div>
                             <div class="row">
@@ -99,7 +91,6 @@
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
-                            
                             <div class="row">
                                 <div class="col-md-3">
                                     <label>Telefone</label>
@@ -137,15 +128,11 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Created_at</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" value="{{$medico->created_at->format('Y-m-d')}}" readonly>
-                                    </div>
+                                    <input type="date" class="form-control" value="{{$medico->created_at->format('Y-m-d')}}" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label>Updated_at</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" value="{{$medico->updated_at->format('Y-m-d')}}" readonly>
-                                    </div>
+                                    <input type="date" class="form-control" value="{{$medico->updated_at->format('Y-m-d')}}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -159,6 +146,7 @@
         </div>
     </div>
 </div>
+
 <script>
     var url_atual = '<?php echo URL::to(''); ?>';
     $('.idCidade').click(function() {
@@ -177,5 +165,75 @@
             }
         });
     });
+
+    $('.idEstado').click(function() {
+        var id_estado = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/getEstado',
+            data: { id_estado : id_estado },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#estado-input').val(response.estado.estado);
+                $('#id-estado-input').val(response.estado.id);
+                $('#pais-input').val(response.pais.pais);
+                $('#estadoModal').modal('hide')
+            }
+        });
+    });
+
+    $('.idPais').click(function() {
+        var id_pais = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/estado/getPais',
+            data: { id_pais : id_pais },
+            dataType: "JSON",
+            success: function(response){
+                $('#input-codigo-pais').val(response.codigo);
+                $('#input-pais').val(response.pais);
+                $('#input-id-pais').val(response.id);
+                $('#paisModal').modal('hide')
+            }
+        });
+    });
 </script>
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
+    <script>
+        $(function() {
+            $('#cidadeModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+    <script>
+        $(function() {
+            $('#cidadeModal').modal('show');
+        });
+        $(function() {
+            $('#cidadeCreateModal').modal('show');
+        });
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
+    <script>
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+        $(function() {
+            $('#estadoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#paisModal').modal('show');
+        });
+    </script>
+@endif
+
 @endsection

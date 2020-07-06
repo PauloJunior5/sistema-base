@@ -26,27 +26,19 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Código de Referência</label>
-                                    <div class="form-group">
-                                        <input class="form-control" readonly />
-                                    </div>
+                                    <input class="form-control" readonly />
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">Médico</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="medico" type="text" required />
-                                    </div>
+                                    <input class="form-control" name="medico" type="text" required />
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">CRM</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="crm" type="text" required />
-                                    </div>
+                                    <input class="form-control" name="crm" type="text" required />
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">Especialidade</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="especialidade" type="text" required />
-                                    </div>
+                                    <input class="form-control" name="especialidade" type="text" required />
                                 </div>
                             </div>
                             <div class="row">
