@@ -41,7 +41,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('CPF/CNPJ') }}</th>
+                                    <th>{{ __('CNPJ') }}</th>
                                     <th>{{ __('Laboratório') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Update date') }}</th>
@@ -50,20 +50,12 @@
                                 <tbody>
                                     @foreach($laboratorios as $laboratorio)
                                     <tr>
-                                        <td>
-                                            {{ $laboratorio->cpf }}
-                                        </td>
-                                        <td>
-                                            {{ $laboratorio->laboratorio }}
-                                        </td>
-                                        <td>
-                                            {{ $laboratorio->created_at->format('Y-m-d') }}
-                                        </td>
-                                        <td>
-                                            {{ $laboratorio->updated_at->format('Y-m-d') }}
-                                        </td>
+                                        <td>{{ $laboratorio->cnpj }}</td>
+                                        <td>{{ $laboratorio->laboratorio }}</td>
+                                        <td>{{ $laboratorio->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $laboratorio->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('laboratorio.destroy', $laboratorio) }}" method="post">
+                                            <form action="{{ route('laboratorio.destroy', $laboratorio->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('laboratorio.edit', $laboratorio) }}" data-original-title="" title="">

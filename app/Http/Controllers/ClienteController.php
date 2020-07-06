@@ -51,10 +51,13 @@ class ClienteController extends Controller
         $cliente = Cliente::findOrFail($cliente_id);
         $cidade = Cidade::findOrFail($cliente->id_cidade);
         $estado = Estado::findOrFail($cidade->id_estado);
-        $cidades = Cidade::all(); // Modal add pais
+
+        $cidades = Cidade::all(); // Modal add cidade
+        $estados = Estado::all(); // Modal add estado
+        $paises = Pais::all(); // Modal add pais
 
         if ($cliente) {
-            return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades'));
+            return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades', 'estados', 'paises'));
         } else {
             return redirect()->back();
         }

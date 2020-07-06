@@ -1,16 +1,6 @@
 @extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
 @section('content')
-<!-- Start Modal -->
-<div class="modal fade" id="cidadeModal" tabindex="-1" role="dialog" aria-labelledby="cidadeModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.cidadeModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
+@include('layouts.cidadeEstadoPais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -27,10 +17,10 @@
                             <div class="row">
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input type="text" class="form-control" readonly>
+                                    <input type="text" class="form-control" value="{{$cliente->id}}" readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="form-check-label">Tipo</label>
+                                    <label class="col-form-label">Tipo</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio" name="tipo" value="pessoaFisica" id="pessoa-fisica" {{($cliente->tipo == 'pessoaFisica' ? "checked" : "")}}> Física
