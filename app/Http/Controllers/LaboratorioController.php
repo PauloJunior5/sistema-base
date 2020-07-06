@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Laboratorio;
 use Illuminate\Http\Request;
 
 class LaboratorioController extends Controller
@@ -13,7 +14,8 @@ class LaboratorioController extends Controller
      */
     public function index()
     {
-        //
+        $laboratorios = Laboratorio::all();
+        return view('laboratorios.index', compact('laboratorios'));
     }
 
     /**
