@@ -84,7 +84,7 @@
                 </a>
                 <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
                                     $activePage == 'exame-management' || $activePage == 'paciente-management' ||
-                                    $activePage == 'medico-management')
+                                    $activePage == 'medico-management' || $activePage == 'laboratorio-management')
                                     ? ' show' : '' }}" id="cadastro">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
@@ -105,16 +105,16 @@
                                 <span class="sidebar-normal">{{ __('Pacientes') }} </span>
                             </a>
                         </li>
-                        <li class="nav-item {{ $activePage == 'laboratorio-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="">
-                                <span class="sidebar-mini"> L </span>
-                                <span class="sidebar-normal">{{ __('Laboratórios') }} </span>
-                            </a>
-                        </li>
                         <li class="nav-item {{ $activePage == 'exame-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('exame.index') }}">
                                 <span class="sidebar-mini"> E </span>
                                 <span class="sidebar-normal">{{ __('Exames') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'laboratorio-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('laboratorio.index') }}">
+                                <span class="sidebar-mini"> L </span>
+                                <span class="sidebar-normal">{{ __('Laboratórios') }} </span>
                             </a>
                         </li>
                     </ul>

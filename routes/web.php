@@ -22,6 +22,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
+
+
+
+
+
+
+
+
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('cliente', 'ClienteController', ['except' => ['show']]);
     Route::put('cliente/{id}', 'ClienteController@update')->name('cliente.update');
@@ -43,6 +51,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('paciente', 'PacienteController', ['except' => ['show']]);
     Route::put('paciente/{id}', 'PacienteController@update')->name('paciente.update');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('laboratorio', 'LaboratorioController', ['except' => ['show']]);
+    Route::put('laboratorio/{id}', 'LaboratorioController@update')->name('laboratorio.update');
+});
+
+
+
+
+
+
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('pais', 'PaisController', ['except' => ['show']]);
