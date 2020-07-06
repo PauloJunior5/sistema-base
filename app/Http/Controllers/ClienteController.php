@@ -51,10 +51,13 @@ class ClienteController extends Controller
         $cliente = Cliente::findOrFail($cliente_id);
         $cidade = Cidade::findOrFail($cliente->id_cidade);
         $estado = Estado::findOrFail($cidade->id_estado);
-        $cidades = Cidade::all(); // Modal add pais
+
+        $cidades = Cidade::all(); // Modal add cidade
+        $estados = Estado::all(); // Modal add estado
+        $paises = Pais::all(); // Modal add pais
 
         if ($cliente) {
-            return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades'));
+            return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades', 'estados', 'paises'));
         } else {
             return redirect()->back();
         }
@@ -62,12 +65,19 @@ class ClienteController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'cpf' => 'unique:clientes,cpf,' . $id,
-        ]);
+        $cpf = $request->input('cpf');
+        if (!empty($cpf)) {
+            $validatedData = $request->validate([
+                'cpf' => 'unique:clientes,cpf,' . $id,
+            ]);
+        } else {
+            $validatedData = $request->validate([
+                'cnpj' => 'unique:clientes,cnpj,' . $id,
+            ]);
+        }
 
         if ($validatedData) {
-            $cliente = Cliente::whereId($request->get('id'))->update($request->except('_token', '_method'));
+            $cliente = Cliente::whereId($id)->update($request->except('_token', '_method'));
             if ($cliente) {
                 return redirect()->route('cliente.index')->with('Success', 'Cliente successfully updated.');
             }

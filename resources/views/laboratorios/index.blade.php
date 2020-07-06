@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
+@extends('layouts.app', ['activePage' => 'laboratorio-management', 'titlePage' => __('Laboratório Management')])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Clientes') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage clientes') }}</p>
+                        <h4 class="card-title ">{{ __('Laboratórios') }}</h4>
+                        <p class="card-category"> {{ __('Here you can manage laboratorios') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,30 +35,30 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('cliente.create') }}" class="btn btn-sm btn-primary">{{ __('Add Cliente') }}</a>
+                                <a href="{{ route('laboratorio.create') }}" class="btn btn-sm btn-primary">{{ __('Add Laboratório') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('CPF/CNPJ') }}</th>
-                                    <th>{{ __('Cliente') }}</th>
+                                    <th>{{ __('CNPJ') }}</th>
+                                    <th>{{ __('Laboratório') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Update date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($clientes as $cliente)
+                                    @foreach($laboratorios as $laboratorio)
                                     <tr>
-                                        <td>{{ $cliente->cpf }}</td>
-                                        <td>{{ $cliente->cliente }}</td>
-                                        <td>{{$cliente->created_at->format('Y-m-d H:i:s')}}</td>
-                                        <td>{{$cliente->updated_at->format('Y-m-d H:i:s')}}</td>
+                                        <td>{{ $laboratorio->cnpj }}</td>
+                                        <td>{{ $laboratorio->laboratorio }}</td>
+                                        <td>{{ $laboratorio->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $laboratorio->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('cliente.destroy', $cliente) }}" method="post">
+                                            <form action="{{ route('laboratorio.destroy', $laboratorio->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('laboratorio.edit', $laboratorio) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

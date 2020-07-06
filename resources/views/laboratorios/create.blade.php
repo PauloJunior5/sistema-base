@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
+@extends('layouts.app', ['activePage' => 'laboratorio-management', 'titlePage' => __('Laboratório Management')])
 @section('content')
 @include('layouts.cidadeEstadoPais')
 <div class="content">
@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{route('cliente.store')}}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{route('laboratorio.store')}}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">
@@ -24,38 +24,17 @@
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-md-1">
-                                    <label class="col-form-label">Código</label>
+                                <div class="col-md-2">
+                                    <label class="col-form-label">Código de Referência</label>
                                     <input type="text" class="form-control" readonly>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label">Tipo</label>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaFisica" id="pessoa-fisica" checked> Física
-                                            <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                        </label>
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaJuridica" id="pessoa-juridica"> Jurídica
-                                            <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                        </label>
-                                    </div>
+                                <div class="col-md-4">
+                                    <label class="col-form-label">Laboratório</label>
+                                    <input type="text" class="form-control" name="laboratorio">
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Cliente</label>
-                                    <input type="text" class="form-control" name="cliente">
-                                </div>
-                                <div class="col-md-4 campoPessoaFisica">
-                                    <label class="col-form-label">Apelido</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="apelido" required>
-                                </div>
-                                <div class="col-md-4 campoPessoaJuridica">
                                     <label class="col-form-label">Nome Fantasia</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="nome_fantasia" required>
+                                    <input type="text" class="form-control" name="nome_fantasia" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -111,45 +90,19 @@
                                     <label class="col-form-label">Email</label>
                                     <input type="text" class="form-control" name="email" required>
                                 </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label">Nacionalidade</label>
-                                    <input type="text" class="form-control" name="nacionalidade" required>
+                                <div class="col-md-3">
+                                    <label class="col-form-label">Contato</label>
+                                    <input type="text" class="form-control" name="contato" required>
                                 </div>
                             </div>
-                            <div class="row campoPessoaFisica">
-                                <div class="col-md-3">
-                                    <label class="col-form-label">CPF</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="cpf" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label">RG</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="rg" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label">Emissor</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="emissor" required>
-                                </div>
-                                <div class="col-md-1">
-                                    <label class="col-form-label">UF</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="uf" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label">Nascimento</label>
-                                    <input type="date" class="form-control inputPessoaFisica" name="nascimento" required>
-                                </div>
-                            </div>
-                            <div class="row campoPessoaJuridica">
+                            <div class="row">
                                 <div class="col-md-3">
                                     <label class="col-form-label">Inscricão Estadual</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricao_estadual" required>
+                                    <input type="text" class="form-control" name="inscricao_estadual" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">CNPJ</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="cnpj" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label">Nascimento</label>
-                                    <input type="date" class="form-control inputPessoaJuridica" name="nascimento" required>
+                                    <input type="text" class="form-control" name="cnpj" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -186,7 +139,7 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto float-right">
-                            <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
+                            <a href="{{route('laboratorio.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
@@ -195,29 +148,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    $( document ).ready(function() {
-        $(".campoPessoaJuridica").hide();
-        $('.inputPessoaJuridica').prop('required',false);
-    });
-
-    $("input:radio[name=tipo]").on("change", function () {
-        if($(this).val() == "pessoaFisica") {
-            $(".campoPessoaFisica").show();
-            $(".campoPessoaJuridica").hide();
-            $('.inputPessoaJuridica').prop('required',false);
-            $('.inputPessoaFisica').prop('required',true);
-        }
-        else if($(this).val() == "pessoaJuridica") {
-            $(".campoPessoaFisica").hide();
-            $(".campoPessoaJuridica").show();
-            $('.inputPessoaFisica').prop('required',false); 
-            $('.inputPessoaJuridica').prop('required',true); 
-        }
-    });
-
-</script>
 
 <script>
     var url_atual = '<?php echo URL::to(''); ?>';
