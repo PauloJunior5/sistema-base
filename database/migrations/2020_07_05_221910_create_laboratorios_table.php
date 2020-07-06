@@ -19,7 +19,7 @@ class CreateLaboratoriosTable extends Migration
             $table->integer('tipo')->nullable();
             $table->string('cliente')->nullable();
             $table->string('apelido')->nullable();
-            $table->string('estado_civil')->nullable();
+            $table->string('nome_fantasia')->nullable();
 
             $table->string('endereco')->nullable();
             $table->string('numero')->nullable();
@@ -29,19 +29,20 @@ class CreateLaboratoriosTable extends Migration
             $table->string('id_cidade');
 
             $table->string('telefone')->nullable();
+            $table->string('celular')->nullable();
             $table->string('email')->nullable();
-            $table->integer('sexo')->nullable();
-            $table->string('nacionalidade')->nullable();
+            $table->string('contato')->nullable();
 
             $table->string('cpf')->nullable();
             $table->string('rg')->nullable();
             $table->string('emissor')->nullable();
             $table->string('uf')->nullable();
-            $table->date('nascimento')->nullable();
+            $table->string('inscricao_estadual')->nullable();
+            $table->string('cnpj')->nullable();
 
             $table->string('observacao')->nullable();
             $table->float('limite_credito')->nullable();
-            $table->integer('condicao_pagamento');
+            $table->integer('condicao_pagamento')->nullable();
 
             $table->timestamps();
         });

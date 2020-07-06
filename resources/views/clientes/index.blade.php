@@ -41,8 +41,8 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('CPF') }}</th>
-                                    <th>{{ __('Nome') }}</th>
+                                    <th>{{ __('CPF/CNPJ') }}</th>
+                                    <th>{{ __('Cliente') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Update date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
@@ -50,18 +50,10 @@
                                 <tbody>
                                     @foreach($clientes as $cliente)
                                     <tr>
-                                        <td>
-                                            {{ $cliente->cpf }}
-                                        </td>
-                                        <td>
-                                            {{ $cliente->cliente }}
-                                        </td>
-                                        <td>
-                                            {{ $cliente->created_at->format('Y-m-d') }}
-                                        </td>
-                                        <td>
-                                            {{ $cliente->updated_at->format('Y-m-d') }}
-                                        </td>
+                                        <td>{{ $cliente->cpf }}</td>
+                                        <td>{{ $cliente->cliente }}</td>
+                                        <td>{{$cliente->created_at->format('Y-m-d H:i:s')}}</td>
+                                        <td>{{$cliente->updated_at->format('Y-m-d H:i:s')}}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('cliente.destroy', $cliente) }}" method="post">
                                                 @csrf

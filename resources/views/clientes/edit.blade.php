@@ -2,7 +2,7 @@
 @section('content')
 <!-- Start Modal -->
 <div class="modal fade" id="cidadeModal" tabindex="-1" role="dialog" aria-labelledby="cidadeModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 @include('layouts.cidadeModal')
@@ -26,20 +26,20 @@
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label for="codigo">Código</label>
-                                    <input type="text" class="form-control" name="id" value="{{$cliente->id}}" readonly>
+                                    <label class="col-form-label">Código</label>
+                                    <input type="text" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Tipo</label>
+                                    <label class="form-check-label">Tipo</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.fisica'); ?>" checked> Física
+                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaFisica" id="pessoa-fisica" {{($cliente->tipo == 'pessoaFisica' ? "checked" : "")}}> Física
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
                                         </label>
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="<?= config('constants.juridica');?>"> Jurídica
+                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaJuridica" id="pessoa-juridica" {{($cliente->tipo == 'pessoaJuridica' ? "checked" : "")}}> Jurídica
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -47,49 +47,53 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="cliente">Cliente</label>
-                                    <input type="text" class="form-control" name="cliente" value="{{$cliente->cliente}}">
+                                    <label class="col-form-label">Cliente</label>
+                                    <input type="text" class="form-control" value="{{$cliente->cliente}}" name="cliente">
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="apelido">Apelido</label>
-                                    <input type="text" class="form-control" name="apelido" value="{{$cliente->apelido}}">
+                                <div class="col-md-4 campoPessoaFisica">
+                                    <label class="col-form-label">Apelido</label>
+                                    <input type="text" class="form-control inputPessoaFisica" value="{{$cliente->apelido}}" name="apelido" required>
+                                </div>
+                                <div class="col-md-4 campoPessoaJuridica">
+                                    <label class="col-form-label">Nome Fantasia</label>
+                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$cliente->nome_fantasia}}" name="nome_fantasia" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label for="endereco">Endereço</label>
-                                    <input type="text" class="form-control" name="endereco" value="{{$cliente->endereco}}">
+                                    <label class="col-form-label">Endereço</label>
+                                    <input type="text" class="form-control" value="{{$cliente->endereco}}" name="endereco" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="numero">nº</label>
-                                    <input type="text" class="form-control" name="numero" value="{{$cliente->numero}}">
+                                    <label class="col-form-label">nº</label>
+                                    <input type="text" class="form-control" value="{{$cliente->numero}}" name="numero" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="complemento">Complemento</label>
-                                    <input type="text" class="form-control" name="complemento" value="{{$cliente->complemento}}">
+                                    <label class="col-form-label">Complemento</label>
+                                    <input type="text" class="form-control" value="{{$cliente->complemento}}" name="complemento" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="bairro">Bairro</label>
-                                    <input type="text" class="form-control" name="bairro" value="{{$cliente->bairro}}">
+                                    <label class="col-form-label">Bairro</label>
+                                    <input type="text" class="form-control" value="{{$cliente->bairro}}" name="bairro" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="cep">CEP</label>
-                                    <input type="text" class="form-control" name="cep" value="{{$cliente->cep}}">
+                                    <label class="col-form-label">CEP</label>
+                                    <input type="text" class="form-control" value="{{$cliente->cep}}" name="cep" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label for="codigo_cidade">Código</label>
-                                <input type="text" class="form-control" id="codigo-cidade-input" value="{{$cidade->codigo}}" required>
+                                    <label class="col-form-label">Código</label>
+                                    <input type="text" class="form-control" id="codigo-cidade-input" value="{{$cidade->codigo}}" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="cidade">Cidade</label>
-                                <input class="form-control" id="cidade-input" value="{{$cidade->cidade}}" readonly />
+                                    <label class="col-form-label">Cidade</label>
+                                    <input class="form-control" id="cidade-input" value="{{$cidade->cidade}}" readonly required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{$cidade->id}}">
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="uf">UF</label>
-                                <input class="form-control" id="uf-cidade-input" value="{{$estado->codigo}}" readonly />
+                                    <label class="col-form-label">UF</label>
+                                    <input class="form-control" id="uf-cidade-input" value="{{$estado->codigo}}" readonly required>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
@@ -97,60 +101,74 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label for="telefone">Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" value="{{$cliente->telefone}}">
+                                    <label class="col-form-label">Telefone</label>
+                                    <input type="text" class="form-control" value="{{$cliente->telefone}}" name="telefone" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="celular">Celular</label>
-                                    <input type="text" class="form-control" name="celular" value="{{$cliente->celular}}">
+                                    <label class="col-form-label">Celular</label>
+                                    <input type="text" class="form-control" value="{{$cliente->celular}}" name="celular" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="email">Email</label>
-                                    <input type="text" class="form-control" name="email" value="{{$cliente->email}}">
+                                    <label class="col-form-label">Email</label>
+                                    <input type="text" class="form-control" value="{{$cliente->email}}" name="email" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="nacionalidade">Nacionalidade</label>
-                                    <input type="text" class="form-control" name="nacionalidade"  value="{{$cliente->nacionalidade}}">
+                                    <label class="col-form-label">Nacionalidade</label>
+                                    <input type="text" class="form-control" value="{{$cliente->nacionalidade}}" name="nacionalidade" required>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row campoPessoaFisica">
                                 <div class="col-md-3">
-                                    <label for="cpf">CPF</label>
-                                    <input type="text" class="form-control" name="cpf" value="{{$cliente->cpf}}">
+                                    <label class="col-form-label">CPF</label>
+                                    <input type="text" class="form-control inputPessoaFisica" value="{{$cliente->cpf}}" name="cpf" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="rg">RG</label>
-                                    <input type="text" class="form-control" name="rg" value="{{$cliente->rg}}">
+                                    <label class="col-form-label">RG</label>
+                                    <input type="text" class="form-control inputPessoaFisica" value="{{$cliente->rg}}" name="rg" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="emissor">Emissor</label>
-                                    <input type="text" class="form-control" name="emissor" value="{{$cliente->emissor}}">
+                                    <label class="col-form-label">Emissor</label>
+                                    <input type="text" class="form-control inputPessoaFisica" value="{{$cliente->emissor}}" name="emissor" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="uf">UF</label>
-                                    <input type="text" class="form-control" name="uf" value="{{$cliente->uf}}">
+                                    <label class="col-form-label">UF</label>
+                                    <input type="text" class="form-control inputPessoaFisica" value="{{$cliente->uf}}" name="uf" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="nascimento">Nascimento</label>
-                                    <input type="date" class="form-control" name="nascimento" value="{{$cliente->nascimento}}">
+                                    <label class="col-form-label">Nascimento</label>
+                                    <input type="date" class="form-control inputPessoaFisica" value="{{$cliente->nascimento}}" name="nascimento" required>
+                                </div>
+                            </div>
+                            <div class="row campoPessoaJuridica">
+                                <div class="col-md-3">
+                                    <label class="col-form-label">Inscricão Estadual</label>
+                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$cliente->inscricao_estadual}}" name="inscricao_estadual" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label">CNPJ</label>
+                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$cliente->cnpj}}" name="cnpj" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="col-form-label">Nascimento</label>
+                                    <input type="date" class="form-control inputPessoaJuridica" value="{{$cliente->nascimento}}" name="nascimento" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label for="observacao">Observação</label>
-                                    <input type="text" class="form-control" name="observacao"  value="{{$cliente->observacao}}">
+                                    <label class="col-form-label">Observação</label>
+                                    <input type="text" class="form-control" value="{{$cliente->observacao}}" name="observacao" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="limite_credito">Limite de Crédito</label>
-                                    <input class="form-control" name="limite_credito" value="{{$cliente->limite_credito}}"/>
+                                    <label class="col-form-label">Limite de Crédito</label>
+                                    <input class="form-control" value="{{$cliente->limite_credito}}" name="limite_credito" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label for="codigo_condicao_pagamento">Código</label>
-                                    <input class="form-control" />
+                                    <label class="col-form-label">Código</label>
+                                    <input class="form-control">
                                 </div>
-                                <div class="col-md-2">
-                                    <label for="condicao_pagamento">Condição de Pagamento</label>
-                                    <input class="form-control"/>
+                                <div class="col-md-3">
+                                    <label class="col-form-label">Condição de Pagamento</label>
+                                    <input class="form-control" value="{{$cliente->condicao_pagamento}}">
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -158,17 +176,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-md-2">
                                     <label class="col-form-label">Created_at</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ old('created_at', $cliente->created_at->format('Y-m-d')) }}" readonly>
-                                    </div>
+                                    <input type="date" class="form-control" value="{{$cliente->created_at->format('Y-m-d')}}" name="created_at" readonly>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-md-2">
                                     <label class="col-form-label">Updated_at</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ old('updated_at', $cliente->updated_at->format('Y-m-d')) }}" readonly>
-                                    </div>
+                                    <input type="date" class="form-control" value="{{$cliente->updated_at->format('Y-m-d')}}" name="updated_at" readonly>
                                 </div>
                             </div>
                         </div>
@@ -182,6 +196,34 @@
         </div>
     </div>
 </div>
+<script>
+    $( document ).ready(function() {
+        if ($('#pessoa-fisica').is(':checked')) {
+            $(".campoPessoaJuridica").hide();
+            $('.inputPessoaJuridica').prop('required',false);
+        } else {
+            $(".campoPessoaFisica").hide();
+            $('.inputPessoaFisica').prop('required',false);
+        }
+    });
+
+    $("input:radio[name=tipo]").on("change", function () {
+        if($(this).val() == "pessoaFisica") {
+            $(".campoPessoaFisica").show();
+            $(".campoPessoaJuridica").hide();
+            $('.inputPessoaJuridica').prop('required',false);
+            $('.inputPessoaFisica').prop('required',true);
+        }
+        else if($(this).val() == "pessoaJuridica") {
+            $(".campoPessoaFisica").hide();
+            $(".campoPessoaJuridica").show();
+            $('.inputPessoaFisica').prop('required',false); 
+            $('.inputPessoaJuridica').prop('required',true); 
+        }
+    });
+
+</script>
+
 <script>
     var url_atual = '<?php echo URL::to(''); ?>';
     $('.idCidade').click(function() {
@@ -200,5 +242,74 @@
             }
         });
     });
+
+    $('.idEstado').click(function() {
+        var id_estado = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/getEstado',
+            data: { id_estado : id_estado },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#estado-input').val(response.estado.estado);
+                $('#id-estado-input').val(response.estado.id);
+                $('#pais-input').val(response.pais.pais);
+                $('#estadoModal').modal('hide')
+            }
+        });
+    });
+
+    $('.idPais').click(function() {
+        var id_pais = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/estado/getPais',
+            data: { id_pais : id_pais },
+            dataType: "JSON",
+            success: function(response){
+                $('#input-codigo-pais').val(response.codigo);
+                $('#input-pais').val(response.pais);
+                $('#input-id-pais').val(response.id);
+                $('#paisModal').modal('hide')
+            }
+        });
+    });
 </script>
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
+    <script>
+        $(function() {
+            $('#cidadeModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+    <script>
+        $(function() {
+            $('#cidadeModal').modal('show');
+        });
+        $(function() {
+            $('#cidadeCreateModal').modal('show');
+        });
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
+    <script>
+        $(function() {
+            $('#estadoModal').modal('show');
+        });
+        $(function() {
+            $('#estadoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#paisModal').modal('show');
+        });
+    </script>
+@endif
 @endsection

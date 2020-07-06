@@ -41,8 +41,8 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('CPF') }}</th>
-                                    <th>{{ __('Nome') }}</th>
+                                    <th>{{ __('CPF/CNPJ') }}</th>
+                                    <th>{{ __('Laboratório') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Update date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>

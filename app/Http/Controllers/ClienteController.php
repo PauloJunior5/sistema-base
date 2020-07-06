@@ -62,12 +62,19 @@ class ClienteController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'cpf' => 'unique:clientes,cpf,' . $id,
-        ]);
+        $cpf = $request->input('cpf');
+        if (!empty($cpf)) {
+            $validatedData = $request->validate([
+                'cpf' => 'unique:clientes,cpf,' . $id,
+            ]);
+        } else {
+            $validatedData = $request->validate([
+                'cnpj' => 'unique:clientes,cnpj,' . $id,
+            ]);
+        }
 
         if ($validatedData) {
-            $cliente = Cliente::whereId($request->get('id'))->update($request->except('_token', '_method'));
+            $cliente = Cliente::whereId($id)->update($request->except('_token', '_method'));
             if ($cliente) {
                 return redirect()->route('cliente.index')->with('Success', 'Cliente successfully updated.');
             }

@@ -29,7 +29,7 @@
                                     <input type="text" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="tipo">Tipo</label>
+                                    <label class="col-form-label">Tipo</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="radio" name="tipo" value="pessoaFisica" id="pessoa-fisica" checked> Física
@@ -147,6 +147,10 @@
                                     <label class="col-form-label">CNPJ</label>
                                     <input type="text" class="form-control inputPessoaJuridica" name="cnpj" required>
                                 </div>
+                                <div class="col-md-2">
+                                    <label class="col-form-label">Nascimento</label>
+                                    <input type="date" class="form-control inputPessoaJuridica" name="nascimento" required>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
@@ -163,7 +167,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">Condição de Pagamento</label>
-                                    <input class="form-control" name="condicao_pagamento" required>
+                                    <input class="form-control" required>
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                 </div>
                                 <div class="col-md-1">

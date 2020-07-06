@@ -112,8 +112,8 @@
                                     <input type="text" class="form-control" name="email" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Nacionalidade</label>
-                                    <input type="text" class="form-control" name="nacionalidade" required>
+                                    <label class="col-form-label">Contato</label>
+                                    <input type="text" class="form-control" name="contato" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaFisica">
@@ -132,10 +132,6 @@
                                 <div class="col-md-1">
                                     <label class="col-form-label">UF</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="uf" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label">Nascimento</label>
-                                    <input type="date" class="form-control inputPessoaFisica" name="nascimento" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaJuridica">
