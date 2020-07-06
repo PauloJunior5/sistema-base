@@ -25,21 +25,15 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código de Referência</label>
-                                    <div class="form-group">
-                                        <input class="form-control" value="{{$exame->id}}" readonly />
-                                    </div>
+                                    <input class="form-control" value="{{$exame->id}}" readonly />
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="col-form-label">Exame</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="exame" id="input-exame" type="text" value="{{$exame->exame}}" required />
-                                    </div>
+                                    <input class="form-control" name="exame" id="input-exame" type="text" value="{{$exame->exame}}" required />
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Valor (R$)</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="valor" id="input-valor" type="number" value="{{$exame->valor}}" required />
-                                    </div>
+                                    <input class="form-control" name="valor" id="input-valor" type="number" value="{{$exame->valor}}" required />
                                 </div>
                             </div>
                             <div class="row">
@@ -63,15 +57,11 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Created_at</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ $exame->created_at->format('Y-m-d') }}" readonly>
-                                    </div>
+                                    <input type="date" class="form-control" value="{{ $exame->created_at->format('Y-m-d') }}" readonly>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Updated_at</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ $exame->updated_at->format('Y-m-d') }}" readonly>
-                                    </div>
+                                    <input type="date" class="form-control" value="{{ $exame->updated_at->format('Y-m-d') }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -84,6 +74,5 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

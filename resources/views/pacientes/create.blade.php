@@ -37,21 +37,15 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Código de Referência</label>
-                                    <div class="form-group">
-                                        <input class="form-control" readonly />
-                                    </div>
+                                    <input class="form-control" readonly />
                                 </div>
                                 <div class="col-md-4">
                                     <label>Paciente</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="paciente" type="text" />
-                                    </div>
+                                    <input class="form-control" name="paciente" type="text" />
                                 </div>
                                 <div class="col-md-4">
                                     <label>Apelido</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="apelido" type="text" />
-                                    </div>
+                                    <input class="form-control" name="apelido" type="text" />
                                 </div>
                             </div>
                             <div class="row">
@@ -167,15 +161,11 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Created_at</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
-                                    </div>
+                                    <input type="date" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label>Updated_at</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
-                                    </div>
+                                    <input type="date" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +185,6 @@
         $(".campoPessoaJuridica").hide();
         $('.inputPessoaJuridica').prop('required',false);
     });
-
     $("input:radio[name=tipo]").on("change", function () {
         if($(this).val() == "pessoaFisica") {
             $(".campoPessoaFisica").show();
@@ -210,13 +199,9 @@
             $('.inputPessoaJuridica').prop('required',true);
         }
     });
-
 </script>
-
 <script>
-
     var url_atual = '<?php echo URL::to(''); ?>';
-
     $('.idMedico').click(function() {
         var id_medico = $(this).val();
         $.ajax({
@@ -232,7 +217,6 @@
             }
         });
     });
-
     $('.idCidade').click(function() {
         var id_cidade = $(this).val();
         $.ajax({
@@ -249,7 +233,6 @@
             }
         });
     });
-
     $('.idEstado').click(function() {
         var id_estado = $(this).val();
         $.ajax({
@@ -266,7 +249,6 @@
             }
         });
     });
-
     $('.idPais').click(function() {
         var id_pais = $(this).val();
         $.ajax({
@@ -283,7 +265,6 @@
         });
     });
 </script>
-
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
     <script>
         $(function() {
@@ -291,7 +272,6 @@
         });
     </script>
 @endif
-
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
     <script>
         $(function() {
@@ -305,7 +285,6 @@
         });
     </script>
 @endif
-
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
     <script>
         $(function() {
@@ -319,5 +298,4 @@
         });
     </script>
 @endif
-
 @endsection
