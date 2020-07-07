@@ -76,13 +76,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" type="text" placeholder="Código da Cidade" required />
+                                        <input class="form-control" value="{{ old('codigo') }}" name="codigo" type="text" placeholder="Código da Cidade" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Cidade</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="cidade" type="text" required />
+                                        <input class="form-control" value="{{ old('cidade') }}" name="cidade" type="text" required />
                                     </div>
                                 </div>
                             </div>

@@ -96,10 +96,12 @@ class CidadeController extends Controller
             'cidade' => 'unique:cidades,cidade',
         ]);
 
+        $request->flash();
+        
         if ($validatedData) {
             $cidade = Cidade::create($request->all());
             if ($cidade) {
-                return Redirect::back()->with('error_code', 6);
+                return Redirect::back()->withInput()->with('error_code', 6);
             }
         }
     }

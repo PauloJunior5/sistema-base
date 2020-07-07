@@ -75,10 +75,12 @@ class EstadoController extends Controller
             'estado' => 'unique:estados,estado',
         ]);
 
+        $request->flash();
+
         if ($validatedData) {
             $estado = Estado::create($request->all());
             if ($estado) {
-                return Redirect::back()->with('error_code', 5);
+                return Redirect::back()->withInput()->with('error_code', 5);
             }
         }
     }
