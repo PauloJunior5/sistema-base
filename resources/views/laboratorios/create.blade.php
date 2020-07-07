@@ -112,11 +112,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Limite de Crédito</label>
-<<<<<<< Updated upstream
-                                    <input class="form-control" name="limite_credito" required>
-=======
                                     <input class="form-control" type="number" name="limite_credito" required>
->>>>>>> Stashed changes
                                 </div>
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>

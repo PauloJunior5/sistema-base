@@ -23,9 +23,10 @@ class CidadeController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'estado' => 'exists:estados,id',
+            'id_estado' => 'exists:estados,id',
             'cidade' => 'unique:cidades,cidade',
         ]);
+
         $cidade = Cidade::create($request->all());
         if ($cidade) {
             return redirect()->route('cidade.index')->withStatus(__('Cidade successfully created.'));
@@ -54,9 +55,11 @@ class CidadeController extends Controller
         $cidade = Cidade::findOrFail($id_cidade);
         $estado = Estado::findOrFail($cidade->id_estado);
         $pais = Pais::findOrFail($estado->id_pais);
+
         $estados = Estado::all(); // Modal add estado
+        $paises = Pais::all(); // Modal add pais
         if ($cidade) {
-            return view('cidades.edit', compact('cidade', 'estado', 'pais', 'estados'));
+            return view('cidades.edit', compact('cidade', 'estado', 'pais', 'estados', 'paises'));
         } else {
             return redirect()->back();
         }
@@ -92,11 +95,11 @@ class CidadeController extends Controller
             'estado' => 'exists:estados,id',
             'cidade' => 'unique:cidades,cidade',
         ]);
-
+        
         if ($validatedData) {
             $cidade = Cidade::create($request->all());
             if ($cidade) {
-                return Redirect::back()->with('error_code', 6);
+                return Redirect::back()->withInput()->with('error_code', 6);
             }
         }
     }

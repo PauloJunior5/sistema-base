@@ -22,7 +22,7 @@
     </div>
 </div>
 {{-- End Modal --}}
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
 <script>
 $(function() {
     $('#paisModal').modal('show');
