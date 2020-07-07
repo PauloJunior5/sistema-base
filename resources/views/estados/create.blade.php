@@ -61,16 +61,16 @@ $(function() {
                                         <input class="form-control" readonly />
                                     </div>
                                 </div>
-                                {{-- <div class="col-sm-2">
+                                <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" id="input-codigo" type="text" placeholder="Código do Estado" value="{{ old('codigo') }}" required />
+                                        <input class="form-control" name="codigo" id="input-codigo" type="text" placeholder="Código do Estado" required />
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Estado</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="estado" id="input-estado" type="text" value="{{ old('estado') }}" required />
+                                        <input class="form-control" name="estado" id="input-estado" type="text" required />
                                     </div>
                                 </div>
                             </div>

@@ -95,8 +95,6 @@ class CidadeController extends Controller
             'estado' => 'exists:estados,id',
             'cidade' => 'unique:cidades,cidade',
         ]);
-
-        $request->flash();
         
         if ($validatedData) {
             $cidade = Cidade::create($request->all());

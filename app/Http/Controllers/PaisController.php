@@ -64,8 +64,6 @@ class PaisController extends Controller
             'pais' => 'unique:paises,pais',
         ]);
 
-        $request->flash();
-        
         if ($validatedData) {
             $pais = Pais::create($request->all());
             if ($pais) {

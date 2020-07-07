@@ -75,8 +75,6 @@ class EstadoController extends Controller
             'estado' => 'unique:estados,estado',
         ]);
 
-        $request->flash();
-
         if ($validatedData) {
             $estado = Estado::create($request->all());
             if ($estado) {
