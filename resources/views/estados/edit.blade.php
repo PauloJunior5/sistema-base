@@ -2,7 +2,7 @@
 @section('content')
 <!-- Start Modal -->
 <div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
                 @include('layouts.paisModal')
@@ -11,6 +11,24 @@
     </div>
 </div>
 {{-- End Modal --}}
+<!-- Start Modal -->
+<div class="modal fade" id="paisCreateModal" tabindex="-1" role="dialog" aria-labelledby="paisCreateModal" aria-hidden="true" style="z-index: 99999">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                @include('layouts.paisCreateModal')
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End Modal --}}
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
+<script>
+$(function() {
+    $('#paisModal').modal('show');
+});
+</script>
+@endif
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -48,14 +66,14 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código do País</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-codigo-pais" type="text" value="{{$pais->codigo}}" required />
+                                        <input class="form-control" id="input-codigo-pais" value="{{$pais->codigo}}" type="text" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-pais" value="{{$pais->pais}}" readonly />
-                                        <input type="hidden" id="input-id-pais" name="id_pais" value="value="{{$pais->id}}">
+                                        <input class="form-control" id="input-pais-pais" value="{{$pais->pais}}" readonly />
+                                        <input type="hidden" id="input-id-pais" name="id_pais" value="{{$pais->id}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -89,9 +107,8 @@
     </div>
 </div>
 <script>
-
     var url_atual = '<?php echo URL::to(''); ?>';
-    $('.id').click(function() {
+    $('.idPais').click(function() {
         var id_pais = $(this).val();
         $.ajax({
             method: "POST",
@@ -100,7 +117,7 @@
             dataType: "JSON",
             success: function(response){
                 $('#input-codigo-pais').val(response.codigo);
-                $('#input-pais').val(response.pais);
+                $('#input-pais-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')
             }
