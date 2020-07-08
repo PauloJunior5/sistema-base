@@ -149,18 +149,8 @@
                                     <input type="text" class="form-control" value="{{$cliente->observacao}}" name="observacao" required>
                                 </div>
                                 <div class="col-md-2">
-<<<<<<< Updated upstream
-                                    <label class="col-form-label">Limite de Crédito</label>
-                                    <input class="form-control" value="{{$cliente->limite_credito}}" name="limite_credito" required>
-=======
-<<<<<<< Updated upstream
-                                    <label for="limite_credito">Limite de Crédito</label>
-                                    <input class="form-control" name="limite_credito" value="{{$cliente->limite_credito}}"/>
-=======
                                     <label class="col-form-label">Limite de Crédito</label>
                                     <input class="form-control" type="number" value="{{$cliente->limite_credito}}" name="limite_credito" required>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
                                 </div>
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
