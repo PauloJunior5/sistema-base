@@ -19,22 +19,10 @@
                                     <label class="col-form-label">Código</label>
                                     <input type="text" class="form-control" value="{{$cliente->id}}" readonly>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label class="col-form-label">Tipo</label>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaFisica" id="pessoa-fisica" {{($cliente->tipo == 'pessoaFisica' ? "checked" : "")}}> Física
-                                            <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                        </label>
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaJuridica" id="pessoa-juridica" {{($cliente->tipo == 'pessoaJuridica' ? "checked" : "")}}> Jurídica
-                                            <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                        </label>
-                                    </div>
+                                    <input class="form-control" placeholder="{{ ($cliente->tipo == "pessoaFisica") ? "Pessoa Fisica" : "Pessoa Jurídica" }}" readonly>
+                                    <input type="hidden" id="tipo" name="tipo" value="{{$cliente->tipo}}">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">Cliente</label>
@@ -188,43 +176,30 @@
 </div>
 
 <script>
-    $( document ).ready(function() {
-        if ($('#pessoa-fisica').is(':checked')) {
+    $(document).ready(function() {
+        if ($('#tipo').val() == 'pessoaFisica') {
             $(".campoPessoaJuridica").hide();
-            $('.inputPessoaJuridica').prop('required',false);
+            $('.inputPessoaJuridica').prop('required', false);
         } else {
             $(".campoPessoaFisica").hide();
-            $('.inputPessoaFisica').prop('required',false);
+            $('.inputPessoaFisica').prop('required', false);
         }
     });
-
-    $("input:radio[name=tipo]").on("change", function () {
-        if($(this).val() == "pessoaFisica") {
-            $(".campoPessoaFisica").show();
-            $(".campoPessoaJuridica").hide();
-            $('.inputPessoaJuridica').prop('required',false);
-            $('.inputPessoaFisica').prop('required',true);
-        }
-        else if($(this).val() == "pessoaJuridica") {
-            $(".campoPessoaFisica").hide();
-            $(".campoPessoaJuridica").show();
-            $('.inputPessoaFisica').prop('required',false); 
-            $('.inputPessoaJuridica').prop('required',true); 
-        }
-    });
-
 </script>
 
 <script>
-    var url_atual = '<?php echo URL::to(''); ?>';
+    var url_atual = '<?php echo URL::to('
+    '); ?>';
     $('.idCidade').click(function() {
         var id_cidade = $(this).val();
         $.ajax({
-            method: "POST",
-            url: url_atual + '/cidade/show',
-            data: { id_cidade : id_cidade },
-            dataType: "JSON",
-            success: function(response){
+            method: "POST"
+            , url: url_atual + '/cidade/show'
+            , data: {
+                id_cidade: id_cidade
+            }
+            , dataType: "JSON"
+            , success: function(response) {
                 $('#codigo-cidade-input').val(response.cidade.codigo);
                 $('#cidade-input').val(response.cidade.cidade);
                 $('#uf-cidade-input').val(response.estado.codigo);
@@ -237,11 +212,13 @@
     $('.idEstado').click(function() {
         var id_estado = $(this).val();
         $.ajax({
-            method: "POST",
-            url: url_atual + '/cidade/getEstado',
-            data: { id_estado : id_estado },
-            dataType: "JSON",
-            success: function(response){
+            method: "POST"
+            , url: url_atual + '/cidade/getEstado'
+            , data: {
+                id_estado: id_estado
+            }
+            , dataType: "JSON"
+            , success: function(response) {
                 $('#codigo-estado-input').val(response.estado.codigo);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);
@@ -254,11 +231,13 @@
     $('.idPais').click(function() {
         var id_pais = $(this).val();
         $.ajax({
-            method: "POST",
-            url: url_atual + '/estado/getPais',
-            data: { id_pais : id_pais },
-            dataType: "JSON",
-            success: function(response){
+            method: "POST"
+            , url: url_atual + '/estado/getPais'
+            , data: {
+                id_pais: id_pais
+            }
+            , dataType: "JSON"
+            , success: function(response) {
                 $('#input-codigo-pais').val(response.codigo);
                 $('#input-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
@@ -266,41 +245,45 @@
             }
         });
     });
+
 </script>
 
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
-    <script>
-        $(function() {
-            $('#cidadeModal').modal('show');
-        });
-    </script>
+<script>
+    $(function() {
+        $('#cidadeModal').modal('show');
+    });
+
+</script>
 @endif
 
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
-    <script>
-        $(function() {
-            $('#cidadeModal').modal('show');
-        });
-        $(function() {
-            $('#cidadeCreateModal').modal('show');
-        });
-        $(function() {
-            $('#estadoModal').modal('show');
-        });
-    </script>
+<script>
+    $(function() {
+        $('#cidadeModal').modal('show');
+    });
+    $(function() {
+        $('#cidadeCreateModal').modal('show');
+    });
+    $(function() {
+        $('#estadoModal').modal('show');
+    });
+
+</script>
 @endif
 
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
-    <script>
-        $(function() {
-            $('#estadoModal').modal('show');
-        });
-        $(function() {
-            $('#estadoCreateModal').modal('show');
-        });
-        $(function() {
-            $('#paisModal').modal('show');
-        });
-    </script>
+<script>
+    $(function() {
+        $('#estadoModal').modal('show');
+    });
+    $(function() {
+        $('#estadoCreateModal').modal('show');
+    });
+    $(function() {
+        $('#paisModal').modal('show');
+    });
+
+</script>
 @endif
 @endsection
