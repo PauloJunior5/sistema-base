@@ -30,11 +30,11 @@
                                 <thead class=" text-primary">
                                     <th>{{ __('Código') }}</th>
                                     <th>{{ __('Nome') }}</th>
-                                    <th>{{ __('Pais') }}</th>
-                                    <th>{{ __('Estado') }}</th>
+                                    {{-- <th>{{ __('Pais') }}</th>
+                                    <th>{{ __('Estado') }}</th> --}}
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
-                                    <th class="text-right">{{ __('Actions') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($cidades as $cidade)
@@ -45,8 +45,8 @@
                                     <tr>
                                         <td>{{ $cidade->codigo }}</td>
                                         <td>{{ $cidade->cidade }}</td>
-                                        <td>{{ $pais->first()->pais }}</td>
-                                        <td>{{ $estado->first()->estado }}</td>
+                                        {{-- <td>{{ $pais->first()->pais }}</td>
+                                        <td>{{ $estado->first()->estado }}</td> --}}
                                         <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">

@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('medico', 'MedicoController', ['except' => ['show']]);
     Route::put('medico/{id}', 'MedicoController@update')->name('medico.update');
     Route::post('medico/show', 'MedicoController@show');
+    Route::post('medico/createMedico', 'MedicoController@createMedico')->name('medico.createMedico');
 });
 
 Route::group(['middleware' => 'auth'], function () {

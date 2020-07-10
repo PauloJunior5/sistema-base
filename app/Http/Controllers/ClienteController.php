@@ -26,20 +26,28 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
+
         $cpf = $request->input('cpf');
+        $start_date = date('2004-01-01');
+        $end_date = date('1920-01-01');
 
         if (!empty($cpf)) {
             $validatedData = $request->validate([
                 'cpf' => 'unique:clientes,cpf',
+                'rg' => 'unique:clientes,rg',
+                'nascimento' => 'before_or_equal:' . $start_date,
+                'nascimento' => 'after_or_equal:' . $end_date,
             ]);
         } else {
             $validatedData = $request->validate([
-                'cnpj' => 'unique:clientes,cpf',
+                'cnpj' => 'unique:clientes,cnpj',
+                'nascimento' => 'before_or_equal:' . $start_date,
+                'nascimento' => 'after_or_equal:' . $end_date,
             ]);
         }
 
         if ($validatedData) {
-            $cliente = Cliente::create($request->all());
+            $cliente = Cliente::create($request->except('_token', '_method', 'codigo_cidade', 'cidade', 'estado'));
             if ($cliente) {
                 return redirect()->route('cliente.index')->with('Success', 'Cliente successfully created.');
             }
@@ -66,18 +74,26 @@ class ClienteController extends Controller
     public function update(Request $request, $id)
     {
         $cpf = $request->input('cpf');
+        $start_date = date('2004-01-01');
+        $end_date = date('1920-01-01');
+
         if (!empty($cpf)) {
             $validatedData = $request->validate([
                 'cpf' => 'unique:clientes,cpf,' . $id,
+                'rg' => 'unique:clientes,rg,' . $id,
+                'nascimento' => 'before_or_equal:' . $start_date,
+                'nascimento' => 'after_or_equal:' . $end_date,
             ]);
         } else {
             $validatedData = $request->validate([
                 'cnpj' => 'unique:clientes,cnpj,' . $id,
+                'nascimento' => 'before_or_equal:' . $start_date,
+                'nascimento' => 'after_or_equal:' . $end_date,
             ]);
         }
 
         if ($validatedData) {
-            $cliente = Cliente::whereId($id)->update($request->except('_token', '_method'));
+            $cliente = Cliente::whereId($id)->update($request->except('_token', '_method', 'codigo_cidade', 'cidade', 'estado'));
             if ($cliente) {
                 return redirect()->route('cliente.index')->with('Success', 'Cliente successfully updated.');
             }
