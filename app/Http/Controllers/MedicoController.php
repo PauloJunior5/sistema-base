@@ -7,6 +7,7 @@ use App\Estado;
 use App\Medico;
 use App\Pais;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class MedicoController extends Controller
 {
@@ -117,6 +118,22 @@ class MedicoController extends Controller
         $medico = Medico::where('id', $id)->delete();
         if ($medico) {
             return redirect()->route('medico.index')->with('Success', 'Médico successfully deleted.');
+        }
+    }
+
+    public function createMedico(Request $request)
+    {
+        $validatedData = $request->validate([
+            'crm' => 'unique:medicos,crm',
+            'cpf' => 'unique:medicos,cpf',
+            'rg' => 'unique:medicos,rg',
+        ]);
+        
+        if ($validatedData) {
+            $medico = Medico::create($request->all());
+            if ($medico) {
+                return Redirect::back()->withInput()->with('error_code', 7);
+            }
         }
     }
 }

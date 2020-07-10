@@ -173,11 +173,11 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Created_at</label>
-                                    <input type="date" class="form-control" name="created_at" readonly>
+                                    <input type="datetime-local" class="form-control" name="created_at" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Updated_at</label>
-                                    <input type="date" class="form-control" name="updated_at" readonly>
+                                    <input type="datetime-local" class="form-control" name="updated_at" readonly>
                                 </div>
                             </div>
                         </div>

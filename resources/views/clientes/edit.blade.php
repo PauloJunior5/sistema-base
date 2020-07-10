@@ -161,11 +161,11 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Created_at</label>
-                                    <input type="date" class="form-control" value="{{$cliente->created_at->format('Y-m-d')}}" name="created_at" readonly>
+                                    <input type="datetime-local" class="form-control" value="{{$cliente->created_at->format('Y-m-d H:i:s')}}" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Updated_at</label>
-                                    <input type="date" class="form-control" value="{{$cliente->updated_at->format('Y-m-d')}}" name="updated_at" readonly>
+                                    <input type="datetime-local" class="form-control" value="{{$cliente->updated_at->format('Y-m-d H:i:s')}}" readonly>
                                 </div>
                             </div>
                         </div>

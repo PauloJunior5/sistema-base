@@ -98,16 +98,16 @@
                             <div class="row">
                                 <div class="col-md-1">
                                     <label>Código</label>
-                                    <input type="text" class="form-control" id="codigo-cidade-input">
+                                    <input type="text" class="form-control" id="codigo-cidade-input-paciente">
                                 </div>
                                 <div class="col-md-4">
                                     <label>Cidade</label>
-                                    <input class="form-control" id="cidade-input" value="" readonly />
-                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="">
+                                    <input class="form-control" id="cidade-input-paciente" value="" readonly />
+                                    <input type="hidden" id="id-cidade-input-paciente" name="id_cidade" value="">
                                 </div>
                                 <div class="col-md-1">
                                     <label>UF</label>
-                                    <input class="form-control" id="uf-cidade-input" value="" readonly />
+                                    <input class="form-control" id="uf-cidade-input-paciente" value="" readonly />
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
@@ -236,10 +236,10 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-cidade-input').val(response.cidade.codigo);
-                $('#cidade-input').val(response.cidade.cidade);
-                $('#uf-cidade-input').val(response.estado.codigo);
-                $('#id-cidade-input').val(response.cidade.id);
+                $('#codigo-cidade-input-paciente').val(response.cidade.codigo);
+                $('#cidade-input-paciente').val(response.cidade.cidade);
+                $('#uf-cidade-input-paciente').val(response.estado.codigo);
+                $('#id-cidade-input-paciente').val(response.cidade.id);
                 $('#cidadeModal').modal('hide')
             }
         });
@@ -276,8 +276,21 @@
         });
     });
 </script>
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 7)
+    <script>
+        $(function() {
+            $('#medicoModal').modal('show');
+        });
+    </script>
+@endif
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
     <script>
+        $(function() {
+            $('#medicoModal').modal('show');
+        });
+        $(function() {
+            $('#medicoCreateModal').modal('show');
+        });
         $(function() {
             $('#cidadeModal').modal('show');
         });
