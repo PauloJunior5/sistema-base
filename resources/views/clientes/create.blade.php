@@ -29,16 +29,16 @@
                                     <input type="text" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Tipo</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Tipo</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaFisica" id="pessoa-fisica" checked> Física
+                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaFisica" id="pessoa-fisica" checked required> Física
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
                                         </label>
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaJuridica" id="pessoa-juridica"> Jurídica
+                                            <input class="form-check-input" type="radio" name="tipo" value="pessoaJuridica" id="pessoa-juridica" required> Jurídica
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -46,53 +46,53 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Cliente</label>
-                                    <input type="text" class="form-control" name="cliente">
+                                    <label class="col-form-label"><span style="color: red">*</span> Cliente</label>
+                                    <input type="text" class="form-control" name="cliente" required>
                                 </div>
                                 <div class="col-md-4 campoPessoaFisica">
-                                    <label class="col-form-label">Apelido</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Apelido</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="apelido" required>
                                 </div>
                                 <div class="col-md-4 campoPessoaJuridica">
-                                    <label class="col-form-label">Nome Fantasia</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Nome Fantasia</label>
                                     <input type="text" class="form-control inputPessoaJuridica" name="nome_fantasia" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="col-form-label">Endereço</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Endereço</label>
                                     <input type="text" class="form-control" name="endereco" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="col-form-label">nº</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> nº</label>
                                     <input type="text" class="form-control" name="numero" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Complemento</label>
-                                    <input type="text" class="form-control" name="complemento" required>
+                                    <input type="text" class="form-control" name="complemento">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Bairro</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Bairro</label>
                                     <input type="text" class="form-control" name="bairro" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">CEP</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> CEP</label>
                                     <input type="text" class="form-control" name="cep" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input type="text" class="form-control" id="codigo-cidade-input" required>
+                                    <input type="text" class="form-control" id="codigo-cidade-input" required readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Cidade</label>
-                                    <input class="form-control" id="cidade-input" value="" readonly required>
+                                    <label class="col-form-label"><span style="color: red">*</span> Cidade</label>
+                                    <input class="form-control readonly" id="cidade-input" value="" required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="">
                                 </div>
                                 <div class="col-md-1">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input" value="" readonly required>
+                                    <input class="form-control" id="uf-cidade-input" value="" readonly>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
@@ -100,74 +100,74 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Telefone</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Telefone</label>
                                     <input type="text" class="form-control" name="telefone" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Celular</label>
-                                    <input type="text" class="form-control" name="celular" required>
+                                    <input type="text" class="form-control" name="celular">
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Email</label>
-                                    <input type="text" class="form-control" name="email" required>
+                                    <label class="col-form-label"><span style="color: red">*</span> Email</label>
+                                    <input type="email" class="form-control" name="email" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Nacionalidade</label>
-                                    <input type="text" class="form-control" name="nacionalidade" required>
+                                    <input type="text" class="form-control" name="nacionalidade">
                                 </div>
                             </div>
                             <div class="row campoPessoaFisica">
                                 <div class="col-md-3">
-                                    <label class="col-form-label">CPF</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> CPF</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="cpf" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">RG</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> RG</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="rg" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Emissor</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Emissor</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="emissor" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="col-form-label">UF</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> UF</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="uf" required>
                                 </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label">Nascimento</label>
+                                <div class="col-md-2" id="nascimento_fisica">
+                                    <label class="col-form-label"><span style="color: red">*</span> Nascimento</label>
                                     <input type="date" class="form-control inputPessoaFisica" name="nascimento" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Inscricão Estadual</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Inscricão Estadual</label>
                                     <input type="text" class="form-control inputPessoaJuridica" name="inscricao_estadual" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">CNPJ</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> CNPJ</label>
                                     <input type="text" class="form-control inputPessoaJuridica" name="cnpj" required>
                                 </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label">Nascimento</label>
+                                <div class="col-md-2" id="nascimento_juridica">
+                                    <label class="col-form-label"><span style="color: red">*</span> Nascimento</label>
                                     <input type="date" class="form-control inputPessoaJuridica" name="nascimento" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
                                     <label class="col-form-label">Observação</label>
-                                    <input type="text" class="form-control" name="observacao" required>
+                                    <input type="text" class="form-control" name="observacao">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Limite de Crédito</label>
+                                    <label class="col-form-label"><span style="color: red">*</span> Limite de Crédito</label>
                                     <input class="form-control" type="number" name="limite_credito" required>
                                 </div>
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" required>
+                                    <input class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Condição de Pagamento</label>
-                                    <input class="form-control" required>
+                                    <label class="col-form-label"><span style="color: red">*</span> Condição de Pagamento</label>
+                                    <input class="form-control" readonly>
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -200,6 +200,7 @@
     $( document ).ready(function() {
         $(".campoPessoaJuridica").hide();
         $('.inputPessoaJuridica').prop('required',false);
+        $( "#nascimento_juridica" ).remove();
     });
 
     $("input:radio[name=tipo]").on("change", function () {
@@ -208,12 +209,14 @@
             $(".campoPessoaJuridica").hide();
             $('.inputPessoaJuridica').prop('required',false);
             $('.inputPessoaFisica').prop('required',true);
+            $( "#nascimento_juridica" ).remove();
         }
         else if($(this).val() == "pessoaJuridica") {
             $(".campoPessoaFisica").hide();
             $(".campoPessoaJuridica").show();
             $('.inputPessoaFisica').prop('required',false); 
             $('.inputPessoaJuridica').prop('required',true); 
+            $( "#nascimento_fisica" ).remove();
         }
     });
 
@@ -307,5 +310,29 @@
         });
     </script>
 @endif
+
+<script>
+    $(".readonly").on('keydown paste', function(e){
+        e.preventDefault();
+    });
+</script>
+
+<style>
+    .readonly {
+        background-color: #e9ecef;
+        opacity: 1;
+    }
+
+    .readonly:hover {
+        background-color: #e9ecef;
+        opacity: 1;
+    }
+
+    .readonly:focus {
+        background-color: #e9ecef;
+        opacity: 1;
+    }
+    
+</style>
 
 @endsection
