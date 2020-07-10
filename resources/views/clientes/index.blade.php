@@ -50,7 +50,7 @@
                                 <tbody>
                                     @foreach($clientes as $cliente)
                                     <tr>
-                                        <td>{{ $cliente->cpf }}</td>
+                                        <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
                                         <td>{{ $cliente->cliente }}</td>
                                         <td>{{$cliente->created_at->format('Y-m-d H:i:s')}}</td>
                                         <td>{{$cliente->updated_at->format('Y-m-d H:i:s')}}</td>
