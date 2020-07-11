@@ -42,7 +42,7 @@
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePacientes">
                                 <thead class=" text-primary">
                                     <th>{{ __('Paciente') }}</th>
-                                    <th>{{ __('Médico') }}</th>
+                                    {{-- <th>{{ __('Médico') }}</th> --}}
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
@@ -51,7 +51,7 @@
                                     @foreach($pacientes as $paciente)
                                     <tr>
                                         <td>{{ $paciente->paciente. " " .$paciente->apelido }}</td>
-                                        <td>{{ $paciente->id_medico }}</td>
+                                        {{-- <td>{{ $paciente->id_medico }}</td> --}}
                                         <td>{{ $paciente->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $paciente->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
