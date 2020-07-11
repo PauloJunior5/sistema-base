@@ -103,4 +103,19 @@ class CidadeController extends Controller
             }
         }
     }
+
+    public function createCidadeMedico(Request $request)
+    {
+        $validatedData = $request->validate([
+            'estado' => 'exists:estados,id',
+            'cidade' => 'unique:cidades,cidade',
+        ]);
+        
+        if ($validatedData) {
+            $cidade = Cidade::create($request->all());
+            if ($cidade) {
+                return Redirect::back()->withInput()->with('error_code', 8);
+            }
+        }
+    }
 }

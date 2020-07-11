@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('cidade/getEstado', 'CidadeController@getEstado');
     Route::post('cidade/show', 'CidadeController@show');
     Route::post('cidade/createCidade', 'CidadeController@createCidade')->name('cidade.createCidade');
+    Route::post('cidade/createCidadeMedico', 'CidadeController@createCidadeMedico')->name('cidade.createCidadeMedico');
 });
 
 Route::group(['middleware' => 'auth'], function () {
