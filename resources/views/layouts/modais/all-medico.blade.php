@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.medicoModal')
+                @include('layouts.medico.medicoModal')
             </div>
         </div>
     </div>

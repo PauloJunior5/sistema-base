@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'medico-management', 'titlePage' => __('Médico Management')])
 @section('content')
-@include('layouts.cidadeEstadoPais')
+@include('layouts.modais.cidadeEstadoPais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">

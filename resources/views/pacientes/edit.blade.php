@@ -1,6 +1,7 @@
 @extends('layouts.app', ['activePage' => 'paciente-management', 'titlePage' => __('Paciente Management')])
 @section('content')
-@include('layouts.cidadeEstadoPais')
+@include('layouts.modais.all-medico')
+@include('layouts.modais.cidadeEstadoPais')
 <!-- Start Modal -->
 <div class="modal fade" id="medicoModal" tabindex="-1" role="dialog" aria-labelledby="medicoModal" aria-hidden="true" style="z-index: 99999">
     <div class="modal-dialog modal-lg" role="document">
