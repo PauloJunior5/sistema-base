@@ -54,8 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('laboratorio', 'LaboratorioController', ['except' => ['show']]);
-    Route::put('laboratorio/{id}', 'LaboratorioController@update')->name('laboratorio.update');
+    Route::resource('fornecedor', 'FornecedorController', ['except' => ['show']]);
+    Route::put('fornecedor/{id}', 'FornecedorController@update')->name('fornecedor.update');
 });
 
 

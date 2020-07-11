@@ -54,8 +54,8 @@
                         <div class="card-icon">
                             <i class="material-icons">apartment</i>
                         </div>
-                        <p class="card-category">Laboratórios</p>
-                        <h3 class="card-title">{{ (isset($laboratorios) ? $laboratorios : 0) }}</h3>
+                        <p class="card-category">Fornecedores</p>
+                        <h3 class="card-title">{{ (isset($fornecedores) ? $fornecedores : 0) }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
