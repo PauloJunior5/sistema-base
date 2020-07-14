@@ -17,8 +17,7 @@ class CreatePaisesTable extends Migration
             $table->bigIncrements('id');
             $table->string('codigo');
             $table->string('pais');
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
     }
 

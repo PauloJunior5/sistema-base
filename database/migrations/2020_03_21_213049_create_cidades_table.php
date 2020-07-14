@@ -19,8 +19,7 @@ class CreateCidadesTable extends Migration
             $table->string('nome');
             $table->unsignedBigInteger('pais');
             $table->unsignedBigInteger('estado');
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+            $table->timestamps();
             $table->foreign('pais')->references('id')->on('paises');
             $table->foreign('estado')->references('id')->on('estados'); 
         });

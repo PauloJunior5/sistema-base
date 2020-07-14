@@ -18,8 +18,7 @@ class CreateEstadosTable extends Migration
             $table->string('codigo');
             $table->string('nome');
             $table->unsignedBigInteger('pais');
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+            $table->timestamps();
             $table->foreign('pais')->references('id')->on('paises'); 
         });
     }
