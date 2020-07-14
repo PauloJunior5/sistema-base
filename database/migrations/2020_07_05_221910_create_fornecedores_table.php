@@ -24,7 +24,7 @@ class CreateFornecedoresTable extends Migration
             $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
-            $table->string('id_cidade');
+            $table->unsignedBigInteger('id_cidade');
 
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
@@ -39,6 +39,8 @@ class CreateFornecedoresTable extends Migration
             $table->integer('id_condicao_pagamento')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('id_cidade')->references('id')->on('cidades'); 
         });
     }
 

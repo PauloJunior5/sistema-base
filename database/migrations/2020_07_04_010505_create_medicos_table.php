@@ -16,25 +16,27 @@ class CreateMedicosTable extends Migration
         Schema::create('medicos', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('medico');
-            $table->string('crm');
-            $table->string('especialidade');
-            $table->string('endereco');
-            $table->string('numero');
-            $table->string('complemento');
-            $table->string('bairro');
-            $table->string('cep');
+            $table->string('medico')->nullable();
+            $table->string('crm')->nullable();
+            $table->string('especialidade')->nullable();
+            $table->string('endereco')->nullable();
+            $table->string('numero')->nullable();
+            $table->string('complemento')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cep')->nullable();
             $table->unsignedBigInteger('id_cidade'); // foreign_key cidades
-            $table->string('nascimento');
-            $table->string('nacionalidade');
-            $table->string('telefone');
-            $table->string('celular');
-            $table->string('email');
-            $table->string('cpf');
-            $table->string('rg');
-            $table->string('observacao');
+            $table->string('nascimento')->nullable();
+            $table->string('nacionalidade')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('celular')->nullable();
+            $table->string('email')->nullable();
+            $table->string('cpf')->nullable();
+            $table->string('rg')->nullable();
+            $table->string('observacao')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('id_cidade')->references('id')->on('cidades'); 
         });
     }
 
