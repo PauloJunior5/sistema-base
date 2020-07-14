@@ -84,7 +84,7 @@
                 </a>
                 <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
                                     $activePage == 'exame-management' || $activePage == 'paciente-management' ||
-                                    $activePage == 'medico-management' || $activePage == 'laboratorio-management')
+                                    $activePage == 'medico-management' || $activePage == 'fornecedor-management')
                                     ? ' show' : '' }}" id="cadastro">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
@@ -111,10 +111,10 @@
                                 <span class="sidebar-normal">{{ __('Exames') }} </span>
                             </a>
                         </li>
-                        <li class="nav-item {{ $activePage == 'laboratorio-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('laboratorio.index') }}">
+                        <li class="nav-item {{ $activePage == 'fornecedor-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('fornecedor.index') }}">
                                 <span class="sidebar-mini"> L </span>
-                                <span class="sidebar-normal">{{ __('Laboratórios') }} </span>
+                                <span class="sidebar-normal">{{ __('Fornecedores') }} </span>
                             </a>
                         </li>
                     </ul>

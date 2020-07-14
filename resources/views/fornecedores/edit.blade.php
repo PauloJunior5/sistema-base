@@ -1,11 +1,11 @@
-@extends('layouts.app', ['activePage' => 'laboratorio-management', 'titlePage' => __('Laboratório Management')])
+@extends('layouts.app', ['activePage' => 'fornecedor-management', 'titlePage' => __('Fornecedor Management')])
 @section('content')
 @include('layouts.cidadeEstadoPais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('laboratorio.update', $laboratorio->id) }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('fornecedor.update', $fornecedor->id) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -17,37 +17,37 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Código de Referência</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->id}}" readonly>
+                                    <input type="text" class="form-control" value="{{$fornecedor->id}}" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Laboratório</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->laboratorio}}" name="laboratorio">
+                                    <label class="col-form-label">Fornecedor</label>
+                                    <input type="text" class="form-control" value="{{$fornecedor->fornecedor}}" name="fornecedor">
                                 </div>
                                 <div class="col-md-4 campoPessoaJuridica">
                                     <label class="col-form-label">Nome Fantasia</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$laboratorio->nome_fantasia}}" name="nome_fantasia" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$fornecedor->nome_fantasia}}" name="nome_fantasia" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
                                     <label class="col-form-label">Endereço</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->endereco}}" name="endereco" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->endereco}}" name="endereco" required>
                                 </div>
                                 <div class="col-md-1">
                                     <label class="col-form-label">nº</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->numero}}" name="numero" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->numero}}" name="numero" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Complemento</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->complemento}}" name="complemento" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->complemento}}" name="complemento" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Bairro</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->bairro}}" name="bairro" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->bairro}}" name="bairro" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">CEP</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->cep}}" name="cep" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->cep}}" name="cep" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -71,39 +71,39 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Telefone</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->telefone}}" name="telefone" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->telefone}}" name="telefone" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Celular</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->celular}}" name="celular" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->celular}}" name="celular" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">Email</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->email}}" name="email" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->email}}" name="email" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Contato</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->contato}}" name="contato" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->contato}}" name="contato" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">
                                     <label class="col-form-label">Inscricão Estadual</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$laboratorio->inscricao_estadual}}" name="inscricao_estadual" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$fornecedor->inscricao_estadual}}" name="inscricao_estadual" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">CNPJ</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$laboratorio->cnpj}}" name="cnpj" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" value="{{$fornecedor->cnpj}}" name="cnpj" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
                                     <label class="col-form-label">Observação</label>
-                                    <input type="text" class="form-control" value="{{$laboratorio->observacao}}" name="observacao" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->observacao}}" name="observacao" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Limite de Crédito</label>
-                                    <input class="form-control" type="number" value="{{$laboratorio->limite_credito}}" name="limite_credito" required>
+                                    <input class="form-control" type="number" value="{{$fornecedor->limite_credito}}" name="limite_credito" required>
                                 </div>
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">Condição de Pagamento</label>
-                                    <input class="form-control" value="{{$laboratorio->condicao_pagamento}}">
+                                    <input class="form-control" value="{{$fornecedor->condicao_pagamento}}">
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -121,16 +121,16 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Created_at</label>
-                                    <input type="date" class="form-control" value="{{$laboratorio->created_at->format('Y-m-d')}}" name="created_at" readonly>
+                                    <input type="date" class="form-control" value="{{$fornecedor->created_at->format('Y-m-d')}}" name="created_at" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Updated_at</label>
-                                    <input type="date" class="form-control" value="{{$laboratorio->updated_at->format('Y-m-d')}}" name="updated_at" readonly>
+                                    <input type="date" class="form-control" value="{{$fornecedor->updated_at->format('Y-m-d')}}" name="updated_at" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{route('laboratorio.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
+                            <a href="{{route('fornecedor.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>

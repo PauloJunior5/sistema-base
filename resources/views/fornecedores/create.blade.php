@@ -1,6 +1,6 @@
-@extends('layouts.app', ['activePage' => 'laboratorio-management', 'titlePage' => __('Laboratório Management')])
+@extends('layouts.app', ['activePage' => 'fornecedor-management', 'titlePage' => __('Fornecedor Management')])
 @section('content')
-@include('layouts.cidadeEstadoPais')
+@include('layouts.modais.cidadeEstadoPais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{route('laboratorio.store')}}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{route('fornecedor.store')}}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">
@@ -29,8 +29,8 @@
                                     <input type="text" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Laboratório</label>
-                                    <input type="text" class="form-control" name="laboratorio">
+                                    <label class="col-form-label">Fornecedor</label>
+                                    <input type="text" class="form-control" name="fornecedor">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">Nome Fantasia</label>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto float-right">
-                            <a href="{{route('laboratorio.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
+                            <a href="{{route('fornecedor.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>

@@ -1,16 +1,6 @@
 @extends('layouts.app', ['activePage' => 'medico-management', 'titlePage' => __('Médico Management')])
 @section('content')
-<!-- Start Modal -->
-<div class="modal fade" id="cidadeModal" tabindex="-1" role="dialog" aria-labelledby="cidadeModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.cidadeModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
+@include('layouts.modais.cidadeEstadoPais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">

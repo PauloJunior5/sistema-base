@@ -5,7 +5,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.estadoModal')
+                @include('layouts.modais.index.estadoModal')
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.estadoCreateModal')
+                @include('layouts.modais.create.estadoCreateModal')
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.paisModal')
+                @include('layouts.modais.index.paisModal')
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.paisCreateModal')
+                @include('layouts.modais.create.paisCreateModal')
             </div>
         </div>
     </div>

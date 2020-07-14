@@ -1,28 +1,7 @@
 @extends('layouts.app', ['activePage' => 'paciente-management', 'titlePage' => __('Paciente Management')])
 @section('content')
-@include('layouts.cidadeEstadoPais')
-<!-- Start Modal -->
-<div class="modal fade" id="medicoModal" tabindex="-1" role="dialog" aria-labelledby="medicoModal" aria-hidden="true" style="z-index: 99998">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.medicoModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="medicoCreateModal" tabindex="-1" role="dialog" aria-labelledby="medicoCreateModal" aria-hidden="true" style="z-index: 99998">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.medicoCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
+@include('layouts.modais.all-medico')
+@include('layouts.modais.cidadeEstadoPais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -275,11 +254,72 @@
             }
         });
     });
+
+    $('.idCidade-medico').click(function() {
+        var id_cidade = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/show',
+            data: { id_cidade : id_cidade },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-cidade-input-medico').val(response.cidade.codigo);
+                $('#cidade-input-medico').val(response.cidade.cidade);
+                $('#uf-cidade-input-medico').val(response.estado.codigo);
+                $('#id-cidade-input-medico').val(response.cidade.id);
+                $('#cidadeModal-medico').modal('hide')
+            }
+        });
+    });
+    $('.idEstado-medico').click(function() {
+        var id_estado = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/cidade/getEstado',
+            data: { id_estado : id_estado },
+            dataType: "JSON",
+            success: function(response){
+                $('#codigo-estado-input-medico').val(response.estado.codigo);
+                $('#estado-input-medico').val(response.estado.estado);
+                $('#id-estado-input-medico').val(response.estado.id);
+                $('#pais-input-medico').val(response.pais.pais);
+                $('#estadoModal-medico').modal('hide')
+            }
+        });
+    });
+    $('.idPais-medico').click(function() {
+        var id_pais = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/estado/getPais',
+            data: { id_pais : id_pais },
+            dataType: "JSON",
+            success: function(response){
+                $('#input-codigo-pais-medico').val(response.codigo);
+                $('#input-pais-medico').val(response.pais);
+                $('#input-id-pais-medico').val(response.id);
+                $('#paisModal-medico').modal('hide')
+            }
+        });
+    });
 </script>
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 7)
     <script>
         $(function() {
             $('#medicoModal').modal('show');
+        });
+    </script>
+@endif
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 8)
+    <script>
+        $(function() {
+            $('#medicoModal').modal('show');
+        });
+        $(function() {
+            $('#medicoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#cidadeModal-medico').modal('show');
         });
     </script>
 @endif

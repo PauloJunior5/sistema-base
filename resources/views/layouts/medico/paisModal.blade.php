@@ -1,13 +1,11 @@
-@extends('layouts.app', ['activePage' => 'laboratorio-management', 'titlePage' => __('Laboratório Management')])
-@section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Laboratórios') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage laboratorios') }}</p>
+                        <h4 class="card-title ">{{ __('Paises') }}</h4>
+                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,38 +33,30 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('laboratorio.create') }}" class="btn btn-sm btn-primary">{{ __('Add Laboratório') }}</a>
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisCreateModal-medico" style="margin-top: 2.7rem;">Add Pais</button>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
+                            <table class="table" id="myTable">
                                 <thead class=" text-primary">
-                                    <th>{{ __('CNPJ') }}</th>
-                                    <th>{{ __('Laboratório') }}</th>
+                                    <th>{{ __('Código') }}</th>
+                                    <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Update date') }}</th>
+                                    <th>{{ __('Change date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($laboratorios as $laboratorio)
+                                    @foreach($paises as $pais)
                                     <tr>
-                                        <td>{{ $laboratorio->cnpj }}</td>
-                                        <td>{{ $laboratorio->laboratorio }}</td>
-                                        <td>{{ $laboratorio->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $laboratorio->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $pais->codigo }}</td>
+                                        <td>{{ $pais->pais }}</td>
+                                        <td>{{ $pais->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('laboratorio.destroy', $laboratorio->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('laboratorio.edit', $laboratorio) }}" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                                    <i class="material-icons">close</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>
-                                            </form>
+                                            <button rel="tooltip" class="btn btn-success btn-link idPais-medico" value="{{$pais->id}}" data-original-title="" title="">
+                                                <i class="material-icons">check</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -81,7 +71,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tableClientes').DataTable();
+        $('#myTable').DataTable();
     });
+
 </script>
-@endsection

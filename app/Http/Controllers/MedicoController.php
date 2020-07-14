@@ -115,7 +115,11 @@ class MedicoController extends Controller
      */
     public function destroy($id)
     {
-        $medico = Medico::where('id', $id)->delete();
+        try {
+            $medico = Medico::where('id', $id)->delete();
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return redirect()->route('medico.index')->with('Warning', 'Médico unsuccessfully deleted. Esse Médico possui vínculo com Pacientes.');
+        }
         if ($medico) {
             return redirect()->route('medico.index')->with('Success', 'Médico successfully deleted.');
         }

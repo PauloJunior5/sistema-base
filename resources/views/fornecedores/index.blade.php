@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'paciente-management', 'titlePage' => __('Paciente Management')])
+@extends('layouts.app', ['activePage' => 'fornecedor-management', 'titlePage' => __('Fornecedor Management')])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paciente') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <h4 class="card-title ">{{ __('Fornecedores') }}</h4>
+                        <p class="card-category"> {{ __('Here you can manage fornecedores') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,34 +35,34 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('paciente.create') }}" class="btn btn-sm btn-primary">{{ __('Add Paciente') }}</a>
+                                <a href="{{ route('fornecedor.create') }}" class="btn btn-sm btn-primary">{{ __('Add Fornecedor') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePacientes">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Paciente') }}</th>
-                                    {{-- <th>{{ __('Médico') }}</th> --}}
+                                    <th>{{ __('CNPJ') }}</th>
+                                    <th>{{ __('Fornecedor') }}</th>
                                     <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
+                                    <th>{{ __('Update date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($pacientes as $paciente)
+                                    @foreach($fornecedores as $fornecedor)
                                     <tr>
-                                        <td>{{ $paciente->paciente. " " .$paciente->apelido }}</td>
-                                        {{-- <td>{{ $paciente->id_medico }}</td> --}}
-                                        <td>{{ $paciente->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $paciente->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $fornecedor->cnpj }}</td>
+                                        <td>{{ $fornecedor->fornecedor }}</td>
+                                        <td>{{ $fornecedor->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $fornecedor->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
+                                            <form action="{{ route('fornecedor.destroy', $fornecedor->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('paciente.edit', $paciente->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('fornecedor.edit', $fornecedor) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this país?") }}') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>
                                                 </button>
@@ -81,7 +81,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tablePacientes').DataTable();
+        $('#tableClientes').DataTable();
     });
 </script>
 @endsection

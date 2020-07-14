@@ -1,5 +1,3 @@
-@extends('layouts.app', ['activePage' => 'pais-management', 'titlePage' => __('País Management')])
-@section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -13,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('pais.store') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('pais.createPais') }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">
@@ -32,13 +30,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" id="input-name" type="text" placeholder="Código do País" required />
+                                        <input class="form-control" name="codigo" id="input-name-medico" type="text" placeholder="Código do País" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="pais" id="input-pais" type="text" required />
+                                        <input class="form-control" name="pais" id="input-pais-medico" type="text" required />
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +56,6 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('pais.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Add País') }}</button>
                         </div>
                     </div>
@@ -67,4 +64,3 @@
         </div>
     </div>
 </div>
-@endsection

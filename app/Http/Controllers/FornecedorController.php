@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Cidade;
 use App\Estado;
-use App\Laboratorio;
+use App\Fornecedor;
 use App\Pais;
 use Illuminate\Http\Request;
 
-class LaboratorioController extends Controller
+class FornecedorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class LaboratorioController extends Controller
      */
     public function index()
     {
-        $laboratorios = Laboratorio::all();
-        return view('laboratorios.index', compact('laboratorios'));
+        $fornecedores = Fornecedor::all();
+        return view('fornecedores.index', compact('fornecedores'));
     }
 
     /**
@@ -31,7 +31,7 @@ class LaboratorioController extends Controller
         $cidades = Cidade::all(); // Modal add cidade
         $estados = Estado::all(); // Modal add estado
         $paises = Pais::all(); // Modal add pais
-        return view('laboratorios.create', compact('cidades', 'estados', 'paises'));
+        return view('fornecedores.create', compact('cidades', 'estados', 'paises'));
     }
 
     /**
@@ -43,13 +43,13 @@ class LaboratorioController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'cnpj' => 'unique:laboratorios,cnpj',
+            'cnpj' => 'unique:fornecedores,cnpj',
         ]);
 
         if ($validatedData) {
-            $laboratorio = Laboratorio::create($request->all());
-            if ($laboratorio) {
-                return redirect()->route('laboratorio.index')->with('Success', 'Laboratório successfully created.');
+            $fornecedor = Fornecedor::create($request->all());
+            if ($fornecedor) {
+                return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor successfully created.');
             }
         }
     }
@@ -62,15 +62,15 @@ class LaboratorioController extends Controller
      */
     public function edit($id)
     {
-        $laboratorio = Laboratorio::findOrFail($id);
-        $cidade = Cidade::findOrFail($laboratorio->id_cidade);
+        $fornecedor = Fornecedor::findOrFail($id);
+        $cidade = Cidade::findOrFail($fornecedor->id_cidade);
         $estado = Estado::findOrFail($cidade->id_estado);
 
         $cidades = Cidade::all(); // Modal add cidade
         $estados = Estado::all(); // Modal add estado
         $paises = Pais::all(); // Modal add pais
 
-        return view('laboratorios.edit', compact('laboratorio', 'cidade', 'estado', 'cidades', 'estados', 'paises'));
+        return view('fornecedores.edit', compact('fornecedor', 'cidade', 'estado', 'cidades', 'estados', 'paises'));
     }
 
     /**
@@ -83,13 +83,13 @@ class LaboratorioController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'cnpj' => 'unique:laboratorios,cnpj,' . $id,
+            'cnpj' => 'unique:fornecedores,cnpj,' . $id,
         ]);
 
         if ($validatedData) {
-            $laboratorio = Laboratorio::whereId($id)->update($request->except('_token', '_method'));
-            if ($laboratorio) {
-                return redirect()->route('laboratorio.index')->with('Success', 'Laboratório successfully updated.');
+            $fornecedor = Fornecedor::whereId($id)->update($request->except('_token', '_method'));
+            if ($fornecedor) {
+                return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor successfully updated.');
             }
         }
     }
@@ -102,9 +102,9 @@ class LaboratorioController extends Controller
      */
     public function destroy($id)
     {
-        $laboratorio = Laboratorio::where('id', $id)->delete();
-        if ($laboratorio) {
-            return redirect()->route('laboratorio.index')->with('Success', 'Laboratório successfully deleted.');
+        $fornecedor = Fornecedor::where('id', $id)->delete();
+        if ($fornecedor) {
+            return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor successfully deleted.');
         }
     }
 }

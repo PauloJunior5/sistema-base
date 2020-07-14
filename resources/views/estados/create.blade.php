@@ -5,7 +5,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.paisModal')
+                @include('layouts.modais.index.paisModal')
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.paisCreateModal')
+                @include('layouts.modais.create.paisCreateModal')
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@ $(function() {
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly />

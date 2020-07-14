@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLaboratoriosTable extends Migration
+class CreateFornecedoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateLaboratoriosTable extends Migration
      */
     public function up()
     {
-        Schema::create('laboratorios', function (Blueprint $table) {
+        Schema::create('fornecedores', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('laboratorio')->nullable();
+            $table->string('fornecedor')->nullable();
             $table->string('nome_fantasia')->nullable();
 
             $table->string('endereco')->nullable();
@@ -24,7 +24,7 @@ class CreateLaboratoriosTable extends Migration
             $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
-            $table->string('id_cidade');
+            $table->unsignedBigInteger('id_cidade');
 
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
@@ -39,6 +39,8 @@ class CreateLaboratoriosTable extends Migration
             $table->integer('id_condicao_pagamento')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('id_cidade')->references('id')->on('cidades'); 
         });
     }
 
@@ -49,6 +51,6 @@ class CreateLaboratoriosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laboratorios');
+        Schema::dropIfExists('fornecedores');
     }
 }
