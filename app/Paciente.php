@@ -15,4 +15,14 @@ class Paciente extends Model
         'updated_at', 'created_at'
     ];
 
+    public function cidade()
+    {
+        return $this->belongsTo('App\Cidade');
+    }
+
+    public function medico()
+    {
+        return $this->belongsTo('App\Medico');
+    }
+
 }

@@ -15,4 +15,9 @@ class Fornecedor extends Model
         'cnpj', 'inscricao_estadual',
         'observacao', 'limite_credito', 'id_condicao_pagamento'
     ];
+
+    public function cidade()
+    {
+        return $this->belongsTo('App\Cidade');
+    }
 }

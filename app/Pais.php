@@ -14,7 +14,7 @@ class Pais extends Model
 
     public function Estados()
     {
-        return $this->hasMany('App\Estado', 'pais', 'id');
+        return $this->hasMany('App\Estado', 'id_pais', 'id');
     }
 
 }

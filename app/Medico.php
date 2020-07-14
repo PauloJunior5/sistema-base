@@ -15,4 +15,13 @@ class Medico extends Model
         'updated_at', 'created_at'
     ];
 
+    public function pacientes()
+    {
+        return $this->hasMany('App\Pacientes', 'id_medico', 'id');
+    }
+
+    public function cidade()
+    {
+        return $this->belongsTo('App\Cidade');
+    }
 }
