@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Estado;
+use App\Medico;
 use App\Pais;
 use Illuminate\Http\Request;
 use Redirect;
@@ -11,6 +12,8 @@ class EstadoController extends Controller
 {
     public function index()
     {
+        // $pacientes = Medico::find(3)->cidades;
+        // dd($cidades);
         return view('estados.index', ['estados' => Estado::all()]);
     }
     public function create()

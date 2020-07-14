@@ -31,6 +31,6 @@ class Cidade extends Model
     public function fornecedores()
     {
         return $this->hasMany('App\Forncecedores', 'id_cidade', 'id');
-    }s
+    }
 
 }
