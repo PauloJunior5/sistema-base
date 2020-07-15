@@ -29,20 +29,17 @@ class ClienteController extends Controller
 
         $cpf = $request->input('cpf');
         $start_date = date('2004-01-01');
-        $end_date = date('1920-01-01');
 
         if (!empty($cpf)) {
             $validatedData = $request->validate([
                 'cpf' => 'unique:clientes,cpf',
                 'rg' => 'unique:clientes,rg',
                 'nascimento' => 'before_or_equal:' . $start_date,
-                'nascimento' => 'after_or_equal:' . $end_date,
             ]);
         } else {
             $validatedData = $request->validate([
                 'cnpj' => 'unique:clientes,cnpj',
                 'nascimento' => 'before_or_equal:' . $start_date,
-                'nascimento' => 'after_or_equal:' . $end_date,
             ]);
         }
 
@@ -75,20 +72,17 @@ class ClienteController extends Controller
     {
         $cpf = $request->input('cpf');
         $start_date = date('2004-01-01');
-        $end_date = date('1920-01-01');
 
         if (!empty($cpf)) {
             $validatedData = $request->validate([
                 'cpf' => 'unique:clientes,cpf,' . $id,
                 'rg' => 'unique:clientes,rg,' . $id,
                 'nascimento' => 'before_or_equal:' . $start_date,
-                'nascimento' => 'after_or_equal:' . $end_date,
             ]);
         } else {
             $validatedData = $request->validate([
                 'cnpj' => 'unique:clientes,cnpj,' . $id,
                 'nascimento' => 'before_or_equal:' . $start_date,
-                'nascimento' => 'after_or_equal:' . $end_date,
             ]);
         }
 

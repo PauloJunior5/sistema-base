@@ -51,7 +51,7 @@
                                     @foreach($clientes as $cliente)
                                     <tr>
                                         <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
-                                        <td>{{ $cliente->cliente }}</td>
+                                        <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
                                         <td>{{$cliente->created_at->format('Y-m-d H:i:s')}}</td>
                                         <td>{{$cliente->updated_at->format('Y-m-d H:i:s')}}</td>
                                         <td class="td-actions text-right">

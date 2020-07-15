@@ -16,7 +16,7 @@ class CreateClientesTable extends Migration
         Schema::create('clientes', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->integer('tipo')->nullable();
+            $table->string('tipo')->nullable();
             $table->string('cliente')->nullable();
             $table->string('apelido')->nullable();
             $table->string('nome_fantasia')->nullable();
@@ -26,7 +26,7 @@ class CreateClientesTable extends Migration
             $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
-            $table->string('id_cidade');
+            $table->unsignedBigInteger('id_cidade'); // foreign_key cidades
 
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
@@ -46,6 +46,8 @@ class CreateClientesTable extends Migration
             $table->integer('condicao_pagamento')->nullable();
 
             $table->timestamps();
+
+            $table->foreign('id_cidade')->references('id')->on('cidades'); 
         });
     }
 
