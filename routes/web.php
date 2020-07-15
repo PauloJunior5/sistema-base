@@ -58,7 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('condicao-pagamento', 'CondicaoPagamentoController', ['except' => ['show']]);
+    Route::resource('condicaoPagamento', 'CondicaoPagamentoController', ['except' => ['show']]);
 });
 
 

@@ -84,7 +84,8 @@
                 </a>
                 <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
                                     $activePage == 'exame-management' || $activePage == 'paciente-management' ||
-                                    $activePage == 'medico-management' || $activePage == 'fornecedor-management')
+                                    $activePage == 'medico-management' || $activePage == 'fornecedor-management' ||
+                                    $activePage == 'condicao-pagamento-management')
                                     ? ' show' : '' }}" id="cadastro">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
@@ -118,8 +119,8 @@
                             </a>
                         </li>
                         <li class="nav-item {{ $activePage == 'condicao-pagamento-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('condicao-pagamento.index') }}">
-                                <span class="sidebar-mini"> L </span>
+                            <a class="nav-link" href="{{ route('condicaoPagamento.index') }}">
+                                <span class="sidebar-mini"> C </span>
                                 <span class="sidebar-normal">{{ __('Condições de pagamento') }} </span>
                             </a>
                         </li>

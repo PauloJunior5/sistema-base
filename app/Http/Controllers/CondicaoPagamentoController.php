@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Cidade;
+use App\Estado;
+use App\Medico;
 use App\Pais;
 use Illuminate\Http\Request;
 
@@ -24,7 +27,11 @@ class CondicaoPagamentoController extends Controller
      */
     public function create()
     {
-        //
+        $cidades = Cidade::all(); // Modal add cidade
+        $estados = Estado::all(); // Modal add estado
+        $paises = Pais::all(); // Modal add pais
+        $medicos = Medico::all(); // Modal add medico
+        return view('condicoes_pagamento.create', compact('cidades', 'estados', 'paises', 'medicos'));
     }
 
     /**

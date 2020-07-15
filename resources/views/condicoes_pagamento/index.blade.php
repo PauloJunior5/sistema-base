@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'pais-management', 'titlePage' => __('Pais Management')])
+@extends('layouts.app', ['activePage' => 'condicao-pagamento-management', 'titlePage' => __('Condição de Pagamento Management')])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paises') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <h4 class="card-title ">{{ __('Condições de Pagamento') }}</h4>
+                        <p class="card-category"> {{ __('Here you can manage Condições de Pagamento') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,20 +35,21 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('pais.create') }}" class="btn btn-sm btn-primary">{{ __('Add Pais') }}</a>
+                                <a href="{{ route('condicaoPagamento.create') }}" class="btn btn-sm btn-primary">{{ __('Add Condição de Pagamento') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePaises">
                                 <thead class=" text-primary">
                                     <th>{{ __('Código') }}</th>
-                                    <th>{{ __('Nome') }}</th>
+                                    <th>{{ __('Condição de Pagamento') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($paises as $pais)
+                                    {{-- @foreach($paises as $pais)
                                     <tr>
                                         <td>{{ $pais->codigo }}</td>
                                         <td>{{ $pais->pais }}</td>
@@ -69,7 +70,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>
