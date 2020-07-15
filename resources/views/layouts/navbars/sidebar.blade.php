@@ -117,6 +117,12 @@
                                 <span class="sidebar-normal">{{ __('Fornecedores') }} </span>
                             </a>
                         </li>
+                        <li class="nav-item {{ $activePage == 'condicao-pagamento-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('condicao-pagamento.index') }}">
+                                <span class="sidebar-mini"> L </span>
+                                <span class="sidebar-normal">{{ __('Condições de pagamento') }} </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

@@ -26,10 +26,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 
 
-
-
-
-
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('cliente', 'ClienteController', ['except' => ['show']]);
     Route::put('cliente/{id}', 'ClienteController@update')->name('cliente.update');
@@ -61,7 +57,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('condicao-pagamento', 'CondicaoPagamentoController', ['except' => ['show']]);
+});
 
 
 
