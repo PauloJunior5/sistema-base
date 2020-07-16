@@ -72,30 +72,50 @@
                             </div>
 
                             <hr>
-                            <div style="text-align: center"><h3>PARCELAS</h3></div>
-                            <hr>
 
-                            <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
-                                <form id="frmCadastro">
-                                    <div class="form-row">
-                                        <div class="col">
-                                            <label for="id_dias">Numero de Dias:</label>
-                                            <input type="text" id="id_dias" />
-                                        </div>
-                                        <div class="col">
-                                            <label for="id_porcentual">Porcentual:</label>
-                                            <input type="text" id="id_porcentual" />
-                                        </div>
-                                        <div class="col">
-                                            <label for="id_forma_pagamento">Forma de Pagamento:</label>
-                                            <input type="text" id="id_forma_pagamento" />
-                                        </div>
-                                        <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Inserir Parcela</button>
+                            <div class="card">
+                                <div style="text-align: center"><h3>PARCELAS</h3></div>
+                                <hr>
+                                <div class="card-body">
+                                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                                        <form id="frmCadastro" class="form-horizontal">
+                                            <div class="col-sm-2">
+                                                <label class="col-form-label">Numero de Dias:</label>
+                                                <div class="form-group">
+                                                    <input type="numeric" id="id_dias" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label class="col-form-label">Porcentual:</label>
+                                                <div class="form-group">
+                                                    <input type="numeric" id="id_porcentual" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label class="col-form-label">CRM</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="crm-medico-input" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="col-form-label">Médico Responsável</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="medico-input" readonly />
+                                                </div>
+                                                <input type="hidden" id="id-medico-input" name="id_medico">
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#medicoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Inserir Parcela</button>
+                                            </div>
+                                        </form>
+
+                                        <table class="table table-bordered table-hover" id="condicao-table"></table>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-
-                            <table class="table table-bordered table-hover" id="condicao-table"></table>
 
                         </div>
                         <div class="card-footer ml-auto pull-right">
@@ -140,9 +160,9 @@
         if(operacao == "A")
             return Adicionar();
         else
-            return Editar();       
+            return Editar();
     });
-     
+
     function Adicionar(){
         var cliente = JSON.stringify({
             Dias   : $("#id_dias").val(),
@@ -213,7 +233,7 @@
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
-            $("#condicao-table tbody").append("<td><a class='btn btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
         }
     }
@@ -233,7 +253,7 @@
             "<tbody>"+
             "</tbody>"
             );
-            
+
         for(var i in tbClientes){
             var cli = JSON.parse(tbClientes[i]);
             $("#condicao-table tbody").append("<tr>");
@@ -241,7 +261,7 @@
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
-            $("#condicao-table tbody").append("<td><a class='btn btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
         }
     });
