@@ -36,7 +36,7 @@
                                         <input class="form-control" name="condicao-pagamento" id="input-condicao-pagamento" type="text" required />
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Multa (%)</label>
                                     <div class="form-group">
@@ -75,20 +75,28 @@
                             <div style="text-align: center"><h3>PARCELAS</h3></div>
                             <hr>
 
-                            <table class="table table-bordered table-hover" id="condicao-table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Id</th>
-                                        <th scope="col">Número de Dias</th>
-                                        <th scope="col">Percentual (%)</th>
-                                        <th scope="col">Forma de Pagamento</th>
-                                        <th scope="col">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                                <button onclick="AddTableRow()" type="button" class="btn btn-success btn-sm">Adicionar</button>
-                            </table>
-                            
+                            <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+                                <form id="frmCadastro">
+                                    <div class="form-row">
+                                        <div class="col">
+                                            <label for="id_dias">Numero de Dias:</label>
+                                            <input type="text" id="id_dias" />
+                                        </div>
+                                        <div class="col">
+                                            <label for="id_porcentual">Porcentual:</label>
+                                            <input type="text" id="id_porcentual" />
+                                        </div>
+                                        <div class="col">
+                                            <label for="id_forma_pagamento">Forma de Pagamento:</label>
+                                            <input type="text" id="id_forma_pagamento" />
+                                        </div>
+                                        <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Inserir Parcela</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <table class="table table-bordered table-hover" id="condicao-table"></table>
+
                         </div>
                         <div class="card-footer ml-auto pull-right">
                             <a href="{{ route('condicaoPagamento.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
@@ -119,47 +127,126 @@
         });
     });
 
-    (function($) {
-        
-        AddTableRow = function() {
+    $(function(){
+        var operacao = "A"; //"A"=Adição; "E"=Edição
+        var indice_selecionado = -1; //Índice do item selecionado na lista
+        var tbClientes = localStorage.getItem("tbClientes");// Recupera os dados armazenados
+        tbClientes = JSON.parse(tbClientes); // Converte string para objeto
+        if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
+        tbClientes = [];
 
-            var newRow = $("<tr>"); 
-            var cols = "";
-            var html = ""
 
-            cols += '<td></td>'; 
-            cols += '<td><input class="form-control" type="number" placeholder="Informe o número de dias" required /></td>'; 
-            cols += '<td><input class="form-control" type="number" placeholder="Informe o porcentual" required /></td>'; 
-            cols += '<td><div class="row"><div class="col-md-1"><label>CRM</label><input class="form-control" id="crm-medico-input" /></div><div class="col-md-4"><label>Médico Responsável</label><input class="form-control" id="medico-input" readonly /><input type="hidden" id="id-medico-input" name="id_medico"></div><div class="col-md-1"><button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#medicoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button></div></div></td>'; 
-            cols += '<td><button onclick="SaveTableRow(this)" type="button" class="btn btn-primary btn-sm">Salvar</button><button onclick="RemoveTableRow(this)" type="button" class="btn btn-danger btn-sm">Cancelar</button></td>';
+    $("#btnSalvar").on("click",function(){
+        if(operacao == "A")
+            return Adicionar();
+        else
+            return Editar();       
+    });
+     
+    function Adicionar(){
+        var cliente = JSON.stringify({
+            Dias   : $("#id_dias").val(),
+            Porcentual     : $("#id_porcentual").val(),
+            Pagamento : $("#id_forma_pagamento").val(),
+        });
+        tbClientes.push(cliente);
+        localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+        alert("Registro adicionado.");
+        Listar();
+        return true;
+    }
 
-            newRow.append(cols); 
-            $("#condicao-table").append(newRow);
+    $("#condicao-table").on("click", ".btnEditar", function(){
+        operacao = "E";
+        indice_selecionado = parseInt($(this).attr("alt"));
+        var cli = JSON.parse(tbClientes[indice_selecionado]);
+        $("#id_dias").val(cli.Dias);
+        $("#id_porcentual").val(cli.Porcentual);
+        $("#id_forma_pagamento").val(cli.Pagamento);
+        $("#id_dias").focus();
+    });
 
-            return false; 
-        };
+    function Editar(){
+        tbClientes[indice_selecionado] = JSON.stringify({
+                Dias   : $("#id_dias").val(),
+                Porcentual     : $("#id_porcentual").val(),
+                Pagamento : $("#id_forma_pagamento").val(),
+            });//Altera o item selecionado na tabela
+        localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+        alert("Informações editadas.")
+        operacao = "A"; //Volta ao padrão
+        Listar();
+        return true;
+    }
 
-        RemoveTableRow = function(handler) {
-            var tr = $(handler).closest('tr');
+    $("#condicao-table").on("click", ".btnExcluir",function(){
+        indice_selecionado = parseInt($(this).attr("alt"));
+        Excluir();
+        Listar();
+    });
 
-            tr.fadeOut(400, function(){
-            tr.remove();
-            });
+    function Excluir(){
+        tbClientes.splice(indice_selecionado, 1);
+        localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+        alert("Registro excluído.");
+    }
 
-            return false;
-        };
+    function Listar(){
+        $("#condicao-table").html("");
+        $("#condicao-table").html(
+            "<thead>"+
+            "    <tr>"+
+            "    <th scope='col'>Id</th>"+
+            "    <th scope='col'>Número de Dias</th>"+
+            "    <th scope='col'>Percentual (%)</th>"+
+            "    <th scope='col'>Forma de Pagamento</th>"+
+            "    <th scope='col'>Ações</th>"+
+            "   </tr>"+
+            "</thead>"+
+            "<tbody>"+
+            "</tbody>"
+            );
+        for(var i in tbClientes){
+            var cli = JSON.parse(tbClientes[i]);
+            $("#condicao-table tbody").append("<tr>");
+            $("#condicao-table tbody").append("<td></td>");
+            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("</tr>");
+        }
+    }
 
-        SaveTableRow = function() {
+    $(function() {
+        $("#condicao-table").html("");
+        $("#condicao-table").html(
+            "<thead>"+
+            "   <tr>"+
+            "    <th scope='col'>Id</th>"+
+            "    <th scope='col'>Número de Dias</th>"+
+            "    <th scope='col'>Percentual (%)</th>"+
+            "    <th scope='col'>Forma de Pagamento</th>"+
+            "    <th scope='col'>Ações</th>"+
+            "   </tr>"+
+            "</thead>"+
+            "<tbody>"+
+            "</tbody>"
+            );
+            
+        for(var i in tbClientes){
+            var cli = JSON.parse(tbClientes[i]);
+            $("#condicao-table tbody").append("<tr>");
+            $("#condicao-table tbody").append("<td></td>");
+            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("</tr>");
+        }
+    });
 
-            var hst = document.getElementById("condicao-table");
-            console.log(hst);
-
-        
-        };
-
-    })(jQuery);
-
-    
+});
 
 </script>
 @endsection
