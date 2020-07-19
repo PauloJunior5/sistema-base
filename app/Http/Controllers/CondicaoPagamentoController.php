@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cidade;
+use App\CondicaoPagamento;
 use App\Estado;
 use App\Medico;
 use App\Pais;
@@ -17,7 +18,7 @@ class CondicaoPagamentoController extends Controller
      */
     public function index()
     {
-        return view('condicoes_pagamento.index', ['paises' => Pais::all()]);
+        return view('condicoes_pagamento.index', ['condicoes_pagamento' => CondicaoPagamento::all()]);
     }
 
     /**
@@ -42,7 +43,16 @@ class CondicaoPagamentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'condicao_pagamento' => 'required',
+        ]);
+
+        if ($validatedData) {
+            $condicao_pagamento = CondicaoPagamento::create($request->all());
+            if ($condicao_pagamento) {
+                return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento successfully created.');
+            }
+        }
     }
 
     /**
@@ -64,7 +74,12 @@ class CondicaoPagamentoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $condicao_pagamento = CondicaoPagamento::findOrFail($id);
+        $cidades = Cidade::all(); // Modal add cidade
+        $estados = Estado::all(); // Modal add estado
+        $paises = Pais::all(); // Modal add pais
+        $medicos = Medico::all(); // Modal add medico
+        return view('condicoes_pagamento.edit', compact('condicao_pagamento', 'cidades', 'estados', 'paises', 'medicos'));
     }
 
     /**
@@ -76,7 +91,16 @@ class CondicaoPagamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'condicao_pagamento' => 'required',
+        ]);
+
+        if ($validatedData) {
+            $condicao_pagamento = CondicaoPagamento::whereId($id)->update($request->except('_token', '_method', 'codigo_cidade', 'cidade', 'estado'));
+            if ($condicao_pagamento) {
+                return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento successfully updated.');
+            }
+        }
     }
 
     /**
@@ -87,6 +111,9 @@ class CondicaoPagamentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $condicao_pagamento = CondicaoPagamento::where('id', $id)->delete();
+        if ($condicao_pagamento) {
+            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento successfully deleted.');
+        }
     }
 }

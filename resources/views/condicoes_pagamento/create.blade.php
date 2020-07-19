@@ -33,28 +33,29 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Condição de Pagamento</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="condicao-pagamento" id="input-condicao-pagamento" type="text" required />
+                                        <input class="form-control" name="condicao_pagamento" id="input-condicao-pagamento" type="text" value="{{old('condicao_pagamento')}}" required />
                                     </div>
                                 </div>
 
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Multa (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="multa" id="input-multa" type="number" required />
+                                        <input class="form-control" name="multa" id="input-multa" type="number" value="{{old('multa')}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Juro (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="juro" id="input-juro" type="number" required />
+                                        <input class="form-control" name="juro" id="input-juro" type="number" value="{{old('juro')}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Desconto (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="desconto" id="input-desconto" type="number" required />
+                                        <input class="form-control" name="desconto" id="input-desconto" type="number" value="{{old('desconto')}}" required />
                                     </div>
                                 </div>
+                                <input type="hidden" id="input-parcelas" name="parcelas" value="">
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
@@ -102,10 +103,10 @@
                                                 <div class="form-group">
                                                     <input class="form-control" id="medico-input" readonly />
                                                 </div>
-                                                <input type="hidden" id="id-medico-input" name="id_medico">
+                                                <input type="hidden" id="id-medico-input">
                                             </div>
                                             <div class="col-md-1">
-                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#medicoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#medicoModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div>
                                                 <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Inserir Parcela</button>
@@ -148,13 +149,14 @@
     });
 
     $(function(){
+        localStorage.clear();
         var operacao = "A"; //"A"=Adição; "E"=Edição
         var indice_selecionado = -1; //Índice do item selecionado na lista
         var tbClientes = localStorage.getItem("tbClientes");// Recupera os dados armazenados
         tbClientes = JSON.parse(tbClientes); // Converte string para objeto
         if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
         tbClientes = [];
-
+        var url_atual = '<?php echo URL::to(''); ?>';
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -167,22 +169,38 @@
         var cliente = JSON.stringify({
             Dias   : $("#id_dias").val(),
             Porcentual     : $("#id_porcentual").val(),
-            Pagamento : $("#id_forma_pagamento").val(),
+            Pagamento : $("#id-medico-input").val(),
         });
         tbClientes.push(cliente);
         localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+        $('#input-parcelas').val(JSON.stringify(tbClientes));
         alert("Registro adicionado.");
         Listar();
         return true;
     }
 
     $("#condicao-table").on("click", ".btnEditar", function(){
+
         operacao = "E";
         indice_selecionado = parseInt($(this).attr("alt"));
         var cli = JSON.parse(tbClientes[indice_selecionado]);
         $("#id_dias").val(cli.Dias);
         $("#id_porcentual").val(cli.Porcentual);
-        $("#id_forma_pagamento").val(cli.Pagamento);
+        $("#id-medico-input").val(cli.Pagamento);
+
+        var id_medico = cli.Pagamento;
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/medico/show',
+            data: { id_medico : id_medico },
+            dataType: "JSON",
+            success: function(response){
+                alert(response.crm);
+                $('#crm-medico-input').val(response.crm);
+                $('#medico-input').val(response.medico);
+                $('#id-medico-input').val(response.id);
+            }
+        });
         $("#id_dias").focus();
     });
 
@@ -190,9 +208,10 @@
         tbClientes[indice_selecionado] = JSON.stringify({
                 Dias   : $("#id_dias").val(),
                 Porcentual     : $("#id_porcentual").val(),
-                Pagamento : $("#id_forma_pagamento").val(),
+                Pagamento : $("#id-medico-input").val(),
             });//Altera o item selecionado na tabela
         localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+        $('#input-parcelas').val(JSON.stringify(tbClientes));
         alert("Informações editadas.")
         operacao = "A"; //Volta ao padrão
         Listar();
@@ -208,6 +227,7 @@
     function Excluir(){
         tbClientes.splice(indice_selecionado, 1);
         localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+        $('#input-parcelas').val(JSON.stringify(tbClientes));
         alert("Registro excluído.");
     }
 
@@ -226,15 +246,28 @@
             "<tbody>"+
             "</tbody>"
             );
+
         for(var i in tbClientes){
             var cli = JSON.parse(tbClientes[i]);
-            $("#condicao-table tbody").append("<tr>");
-            $("#condicao-table tbody").append("<td></td>");
-            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
-            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
-            $("#condicao-table tbody").append("</tr>");
+
+            var id_medico = cli.Pagamento;
+            $.ajax({
+                method: "POST",
+                url: url_atual + '/medico/show',
+                data: { id_medico : id_medico },
+                dataType: "JSON",
+                success: function(response){
+
+                    $("#condicao-table tbody").append("<tr>");
+                    $("#condicao-table tbody").append("<td></td>");
+                    $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
+                    $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+                    $("#condicao-table tbody").append("<td>"+response.medico+"</td>");
+                    $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+                    $("#condicao-table tbody").append("</tr>");
+
+                }
+            });
         }
     }
 
@@ -256,14 +289,27 @@
 
         for(var i in tbClientes){
             var cli = JSON.parse(tbClientes[i]);
-            $("#condicao-table tbody").append("<tr>");
-            $("#condicao-table tbody").append("<td></td>");
-            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
-            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
-            $("#condicao-table tbody").append("</tr>");
+
+            var id_medico = cli.Pagamento;
+            $.ajax({
+                method: "POST",
+                url: url_atual + '/medico/show',
+                data: { id_medico : id_medico },
+                dataType: "JSON",
+                success: function(response){
+
+                    $("#condicao-table tbody").append("<tr>");
+                    $("#condicao-table tbody").append("<td></td>");
+                    $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
+                    $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+                    $("#condicao-table tbody").append("<td>"+response.medico+"</td>");
+                    $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+                    $("#condicao-table tbody").append("</tr>");
+
+                }
+            });
         }
+
     });
 
 });

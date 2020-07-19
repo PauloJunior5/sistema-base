@@ -41,36 +41,39 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePaises">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Código') }}</th>
                                     <th>{{ __('Condição de Pagamento') }}</th>
-                                    <th>{{ __('Status') }}</th>
+                                    <th>{{ __('Multa') }}</th>
+                                    <th>{{ __('Juro') }}</th>
+                                    <th>{{ __('Desconto') }}</th>
                                     <th>{{ __('Creation date') }}</th>
                                     <th>{{ __('Change date') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach($paises as $pais)
+                                    @foreach($condicoes_pagamento as $condicao_pagamento)
                                     <tr>
-                                        <td>{{ $pais->codigo }}</td>
-                                        <td>{{ $pais->pais }}</td>
-                                        <td>{{ $pais->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $condicao_pagamento->condicao_pagamento }}</td>
+                                        <td>{{ $condicao_pagamento->multa }}</td>
+                                        <td>{{ $condicao_pagamento->juro }}</td>
+                                        <td>{{ $condicao_pagamento->desconto }}</td>
+                                        <td>{{ $condicao_pagamento->created_at->format('Y-m-d H:i:s') }}</td>
+                                        <td>{{ $condicao_pagamento->updated_at->format('Y-m-d H:i:s') }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('pais.destroy', $pais->id) }}" method="post">
+                                            <form action="{{ route('condicaoPagamento.destroy', $condicao_pagamento->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('pais.edit', $pais) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('condicaoPagamento.edit', $condicao_pagamento) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
-                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this país?") }}') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Are you sure you want to delete this condição de pagamento?") }}') ? this.parentElement.submit() : ''">
                                                     <i class="material-icons">close</i>
                                                     <div class="ripple-container"></div>
                                                 </button>
                                             </form>
                                         </td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
