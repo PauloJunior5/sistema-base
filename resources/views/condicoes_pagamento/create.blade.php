@@ -108,7 +108,7 @@
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#forma_pagamentoModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div>
-                                                <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Inserir Parcela</button>
+                                                <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Salvar</button>
                                             </div>
                                         </form>
 
@@ -264,7 +264,7 @@
             $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
-            
+
         }
     }
 

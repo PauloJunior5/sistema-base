@@ -99,7 +99,7 @@
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#forma_pagamentoModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div>
-                                                <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Inserir Parcela</button>
+                                                <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Salvar</button>
                                             </div>
                                         </form>
 
@@ -165,6 +165,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
     });
 
     function Adicionar(){
+        
         var cliente = JSON.stringify({
             Dias   : $("#id_dias").val(),
             Porcentual     : $("#id_porcentual").val(),
@@ -232,6 +233,9 @@ var url_atual = '<?php echo URL::to(''); ?>';
     }
 
     function Listar(){
+
+        var forma_pagamento;
+
         $("#condicao-table").html("");
         $("#condicao-table").html(
             "<thead>"+
@@ -245,22 +249,39 @@ var url_atual = '<?php echo URL::to(''); ?>';
             "</thead>"+
             "<tbody>"+
             "</tbody>"
-            );
+        );
 
         for(var i in tbClientes){
+
             var cli = JSON.parse(tbClientes[i]);
+
+            var id_forma_pagamento = cli.Pagamento;
+            $.ajax({
+                method: "POST",
+                url: url_atual + '/formaPagamento/show',
+                data: { id_forma_pagamento : id_forma_pagamento },
+                dataType: "JSON",
+                async: false,
+                success: function(response){
+                    forma_pagamento = response;
+                }
+            });
 
             $("#condicao-table tbody").append("<tr>");
             $("#condicao-table tbody").append("<td></td>");
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
+            $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
+            
         }
     }
 
     $(function() {
+
+        var forma_pagamento;
+
         $("#condicao-table").html("");
         $("#condicao-table").html(
             "<thead>"+
@@ -277,15 +298,29 @@ var url_atual = '<?php echo URL::to(''); ?>';
         );
 
         for(var i in tbClientes){
+
             var cli = JSON.parse(tbClientes[i]);
+
+            var id_forma_pagamento = cli.Pagamento;
+            $.ajax({
+                method: "POST",
+                url: url_atual + '/formaPagamento/show',
+                data: { id_forma_pagamento : id_forma_pagamento },
+                dataType: "JSON",
+                async: false,
+                success: function(response){
+                    forma_pagamento = response;
+                }
+            });
 
             $("#condicao-table tbody").append("<tr>");
             $("#condicao-table tbody").append("<td></td>");
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
+            $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
+
         }
     });
 
