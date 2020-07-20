@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'condicao-pagamento-management', 'titlePage' => __('Condição de Pagamento Management')])
 @section('content')
-@include('layouts.modais.all-medico')
+@include('layouts.modais.all-forma_pagamento')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -93,20 +93,19 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <label class="col-form-label">CRM</label>
+                                                <label class="col-form-label">Código</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="crm-medico-input" />
+                                                    <input class="form-control" id="id-forma_pagamento-input" />
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <label class="col-form-label">Médico Responsável</label>
+                                                <label class="col-form-label">Forma de Pagamento</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="medico-input" readonly />
+                                                    <input class="form-control" id="forma_pagamento-input" readonly />
                                                 </div>
-                                                <input type="hidden" id="id-medico-input">
                                             </div>
                                             <div class="col-md-1">
-                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#medicoModal"><i class="material-icons">search</i></button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#forma_pagamentoModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div>
                                                 <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Inserir Parcela</button>
@@ -129,21 +128,29 @@
         </div>
     </div>
 </div>
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 9)
+    <script>
+        $(function() {
+            $('#forma_pagamentoModal').modal('show');
+        });
+    </script>
+@endif
+
 <script>
 
     var url_atual = '<?php echo URL::to(''); ?>';
-    $('.idMedico').click(function() {
-        var id_medico = $(this).val();
+    $('.idForma_pagamento').click(function() {
+        var id_forma_pagamento = $(this).val();
         $.ajax({
             method: "POST",
-            url: url_atual + '/medico/show',
-            data: { id_medico : id_medico },
+            url: url_atual + '/formaPagamento/show',
+            data: { id_forma_pagamento : id_forma_pagamento },
             dataType: "JSON",
             success: function(response){
-                $('#crm-medico-input').val(response.crm);
-                $('#medico-input').val(response.medico);
-                $('#id-medico-input').val(response.id);
-                $('#medicoModal').modal('hide')
+                $('#id-forma_pagamento-input').val(response.id);
+                $('#forma_pagamento-input').val(response.forma_pagamento);
+                $('#forma_pagamentoModal').modal('hide')
             }
         });
     });
@@ -156,7 +163,6 @@
         tbClientes = JSON.parse(tbClientes); // Converte string para objeto
         if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
         tbClientes = [];
-        var url_atual = '<?php echo URL::to(''); ?>';
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -169,7 +175,7 @@
         var cliente = JSON.stringify({
             Dias   : $("#id_dias").val(),
             Porcentual     : $("#id_porcentual").val(),
-            Pagamento : $("#id-medico-input").val(),
+            Pagamento : $("#id-forma_pagamento-input").val(),
         });
         tbClientes.push(cliente);
         localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
@@ -186,21 +192,21 @@
         var cli = JSON.parse(tbClientes[indice_selecionado]);
         $("#id_dias").val(cli.Dias);
         $("#id_porcentual").val(cli.Porcentual);
-        $("#id-medico-input").val(cli.Pagamento);
+        $("#id-forma_pagamento-input").val(cli.Pagamento);
 
-        var id_medico = cli.Pagamento;
+        var id_forma_pagamento = cli.Pagamento;
         $.ajax({
             method: "POST",
-            url: url_atual + '/medico/show',
-            data: { id_medico : id_medico },
+            url: url_atual + '/formaPagamento/show',
+            data: { id_forma_pagamento : id_forma_pagamento },
             dataType: "JSON",
             success: function(response){
-                alert(response.crm);
-                $('#crm-medico-input').val(response.crm);
-                $('#medico-input').val(response.medico);
-                $('#id-medico-input').val(response.id);
+                $('#id-forma_pagamento-input').val(response.id);
+                $('#forma_pagamento-input').val(response.forma_pagamento);
+                $('#forma_pagamentoModal').modal('hide')
             }
         });
+
         $("#id_dias").focus();
     });
 
@@ -208,7 +214,7 @@
         tbClientes[indice_selecionado] = JSON.stringify({
                 Dias   : $("#id_dias").val(),
                 Porcentual     : $("#id_porcentual").val(),
-                Pagamento : $("#id-medico-input").val(),
+                Pagamento : $("#id-forma_pagamento-input").val(),
             });//Altera o item selecionado na tabela
         localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
         $('#input-parcelas').val(JSON.stringify(tbClientes));
@@ -248,26 +254,17 @@
             );
 
         for(var i in tbClientes){
+
             var cli = JSON.parse(tbClientes[i]);
 
-            var id_medico = cli.Pagamento;
-            $.ajax({
-                method: "POST",
-                url: url_atual + '/medico/show',
-                data: { id_medico : id_medico },
-                dataType: "JSON",
-                success: function(response){
-
-                    $("#condicao-table tbody").append("<tr>");
-                    $("#condicao-table tbody").append("<td></td>");
-                    $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
-                    $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
-                    $("#condicao-table tbody").append("<td>"+response.medico+"</td>");
-                    $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
-                    $("#condicao-table tbody").append("</tr>");
-
-                }
-            });
+            $("#condicao-table tbody").append("<tr>");
+            $("#condicao-table tbody").append("<td></td>");
+            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("</tr>");
+            
         }
     }
 
@@ -285,31 +282,18 @@
             "</thead>"+
             "<tbody>"+
             "</tbody>"
-            );
+        );
 
         for(var i in tbClientes){
             var cli = JSON.parse(tbClientes[i]);
-
-            var id_medico = cli.Pagamento;
-            $.ajax({
-                method: "POST",
-                url: url_atual + '/medico/show',
-                data: { id_medico : id_medico },
-                dataType: "JSON",
-                success: function(response){
-
-                    $("#condicao-table tbody").append("<tr>");
-                    $("#condicao-table tbody").append("<td></td>");
-                    $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
-                    $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
-                    $("#condicao-table tbody").append("<td>"+response.medico+"</td>");
-                    $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
-                    $("#condicao-table tbody").append("</tr>");
-
-                }
-            });
+            $("#condicao-table tbody").append("<tr>");
+            $("#condicao-table tbody").append("<td></td>");
+            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("</tr>");
         }
-
     });
 
 });

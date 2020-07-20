@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Cidade;
 use App\CondicaoPagamento;
-use App\Estado;
-use App\Medico;
-use App\Pais;
+use App\FormaPagamento;
 use Illuminate\Http\Request;
 
 class CondicaoPagamentoController extends Controller
@@ -28,11 +25,8 @@ class CondicaoPagamentoController extends Controller
      */
     public function create()
     {
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-        $medicos = Medico::all(); // Modal add medico
-        return view('condicoes_pagamento.create', compact('cidades', 'estados', 'paises', 'medicos'));
+        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
+        return view('condicoes_pagamento.create', compact('formas_pagamento'));
     }
 
     /**
@@ -75,11 +69,8 @@ class CondicaoPagamentoController extends Controller
     public function edit($id)
     {
         $condicao_pagamento = CondicaoPagamento::findOrFail($id);
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-        $medicos = Medico::all(); // Modal add medico
-        return view('condicoes_pagamento.edit', compact('condicao_pagamento', 'cidades', 'estados', 'paises', 'medicos'));
+        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
+        return view('condicoes_pagamento.edit', compact('condicao_pagamento', 'formas_pagamento'));
     }
 
     /**

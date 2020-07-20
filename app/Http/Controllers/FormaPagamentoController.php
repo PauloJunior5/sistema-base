@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\FormaPagamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class FormaPagamentoController extends Controller
 {
@@ -53,9 +54,10 @@ class FormaPagamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $forma_pagamento = FormaPagamento::findOrFail($request->id_forma_pagamento);
+        return $forma_pagamento;
     }
 
     /**
@@ -104,4 +106,19 @@ class FormaPagamentoController extends Controller
             return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento successfully deleted.');
         }
     }
+
+    public function createForma_pagamento(Request $request)
+    {
+        $validatedData = $request->validate([
+            'forma_pagamento' => 'required',
+        ]);
+
+        if ($validatedData) {
+            $forma_pagamento = FormaPagamento::create($request->all());
+            if ($forma_pagamento) {
+                return Redirect::back()->withInput()->with('error_code', 9);
+            }
+        }
+    }
+
 }

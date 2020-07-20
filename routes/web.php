@@ -63,6 +63,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('formaPagamento', 'FormaPagamentoController', ['except' => ['show']]);
+    Route::post('formaPagamento/show', 'FormaPagamentoController@show');
+    Route::post('formaPagamento/createForma_pagamento', 'FormaPagamentoController@createForma_pagamento')->name('formaPagamento.createForma_pagamento');
 });
 
 
