@@ -183,7 +183,6 @@
         var objClientePorcentual = parseFloat(objCliente.Porcentual);
         if ((porcentual + objClientePorcentual ) <= 100) {
             porcentual += objClientePorcentual;
-            alert(porcentual);
             tbClientes.push(cliente);
             localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
             $('#input-parcelas').val(JSON.stringify(tbClientes));
@@ -229,12 +228,21 @@
                 Porcentual     : $("#id_porcentual").val(),
                 Pagamento : $("#id-forma_pagamento-input").val(),
             });//Altera o item selecionado na tabela
-        localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
-        $('#input-parcelas').val(JSON.stringify(tbClientes));
-        alert("Informações editadas.")
-        operacao = "A"; //Volta ao padrão
-        Listar();
-        return true;
+
+        var objCliente = JSON.parse(tbClientes[indice_selecionado])
+        var objClientePorcentual = parseFloat(objCliente.Porcentual);
+        if ((porcentual + objClientePorcentual ) <= 100) {
+            localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+            $('#input-parcelas').val(JSON.stringify(tbClientes));
+            alert("Informações editadas.")
+            operacao = "A"; //Volta ao padrão
+            Listar();
+            return true;
+        } else {
+            alert("Parcela inserida ultrapassa os 100%");
+            Listar();
+            return true;
+        }
     }
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
@@ -252,6 +260,7 @@
 
     function Listar(){
 
+        // location.reload();
         var forma_pagamento;
 
         $("#condicao-table").html("");
