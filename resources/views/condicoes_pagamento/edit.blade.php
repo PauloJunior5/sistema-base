@@ -309,7 +309,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
             $("#condicao-table tbody").append("</tr>");
             
         }
-        alert(porcentual);
+        // alert(porcentual);
 
     }
 
@@ -357,7 +357,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
             $("#condicao-table tbody").append("</tr>");
 
         }
-        alert(porcentual);
+        // alert(porcentual);
 
     });
 

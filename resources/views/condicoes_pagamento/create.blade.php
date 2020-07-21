@@ -314,7 +314,7 @@
             
         }
 
-        alert(porcentual);
+        // alert(porcentual);
 
     }
 
@@ -363,7 +363,7 @@
 
         }
 
-        alert(porcentual);
+        // alert(porcentual);
 
         
     });
