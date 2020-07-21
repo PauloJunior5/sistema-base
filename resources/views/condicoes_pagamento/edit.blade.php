@@ -156,6 +156,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
         tbClientes = JSON.parse(tbClientes); // Converte string para objeto
         if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
         tbClientes = [];
+        var porcentual = 0;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -171,12 +172,24 @@ var url_atual = '<?php echo URL::to(''); ?>';
             Porcentual     : $("#id_porcentual").val(),
             Pagamento : $("#id-forma_pagamento-input").val(),
         });
-        tbClientes.push(cliente);
-        localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
-        $('#input-parcelas').val(JSON.stringify(tbClientes));
-        alert("Registro adicionado.");
-        Listar();
-        return true;
+
+        var objCliente = JSON.parse(cliente)
+        var objClientePorcentual = parseFloat(objCliente.Porcentual);
+        if ((porcentual + objClientePorcentual ) <= 100) {
+            porcentual += objClientePorcentual;
+            alert(porcentual);
+            tbClientes.push(cliente);
+            localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+            $('#input-parcelas').val(JSON.stringify(tbClientes));
+            alert("Registro adicionado.");
+            Listar();
+            return true;
+        } else {
+            alert("Parcela inserida ultrapassa os 100%");
+            Listar();
+            return true;
+        }
+
     }
 
     $("#condicao-table").on("click", ".btnEditar", function(){
@@ -255,6 +268,8 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
             var cli = JSON.parse(tbClientes[i]);
 
+            porcentual += parseFloat(cli.Porcentual);
+
             var id_forma_pagamento = cli.Pagamento;
             $.ajax({
                 method: "POST",
@@ -301,6 +316,8 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
             var cli = JSON.parse(tbClientes[i]);
 
+            porcentual += parseFloat(cli.Porcentual);
+
             var id_forma_pagamento = cli.Pagamento;
             $.ajax({
                 method: "POST",
@@ -322,6 +339,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
             $("#condicao-table tbody").append("</tr>");
 
         }
+
     });
 
 });

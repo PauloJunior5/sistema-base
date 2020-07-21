@@ -163,6 +163,7 @@
         tbClientes = JSON.parse(tbClientes); // Converte string para objeto
         if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
         tbClientes = [];
+        var porcentual = 0;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -177,12 +178,24 @@
             Porcentual     : $("#id_porcentual").val(),
             Pagamento : $("#id-forma_pagamento-input").val(),
         });
-        tbClientes.push(cliente);
-        localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
-        $('#input-parcelas').val(JSON.stringify(tbClientes));
-        alert("Registro adicionado.");
-        Listar();
-        return true;
+        
+        var objCliente = JSON.parse(cliente)
+        var objClientePorcentual = parseFloat(objCliente.Porcentual);
+        if ((porcentual + objClientePorcentual ) <= 100) {
+            porcentual += objClientePorcentual;
+            alert(porcentual);
+            tbClientes.push(cliente);
+            localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+            $('#input-parcelas').val(JSON.stringify(tbClientes));
+            alert("Registro adicionado.");
+            Listar();
+            return true;
+        } else {
+            alert("Parcela inserida ultrapassa os 100%");
+            Listar();
+            return true;
+        }
+        
     }
 
     $("#condicao-table").on("click", ".btnEditar", function(){
@@ -238,6 +251,9 @@
     }
 
     function Listar(){
+
+        var forma_pagamento;
+
         $("#condicao-table").html("");
         $("#condicao-table").html(
             "<thead>"+
@@ -251,24 +267,39 @@
             "</thead>"+
             "<tbody>"+
             "</tbody>"
-            );
+        );
 
         for(var i in tbClientes){
 
             var cli = JSON.parse(tbClientes[i]);
 
+            var id_forma_pagamento = cli.Pagamento;
+            $.ajax({
+                method: "POST",
+                url: url_atual + '/formaPagamento/show',
+                data: { id_forma_pagamento : id_forma_pagamento },
+                dataType: "JSON",
+                async: false,
+                success: function(response){
+                    forma_pagamento = response;
+                }
+            });
+
             $("#condicao-table tbody").append("<tr>");
             $("#condicao-table tbody").append("<td></td>");
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
+            $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
-
+            
         }
     }
 
     $(function() {
+
+        var forma_pagamento;
+
         $("#condicao-table").html("");
         $("#condicao-table").html(
             "<thead>"+
@@ -285,14 +316,29 @@
         );
 
         for(var i in tbClientes){
+
             var cli = JSON.parse(tbClientes[i]);
+
+            var id_forma_pagamento = cli.Pagamento;
+            $.ajax({
+                method: "POST",
+                url: url_atual + '/formaPagamento/show',
+                data: { id_forma_pagamento : id_forma_pagamento },
+                dataType: "JSON",
+                async: false,
+                success: function(response){
+                    forma_pagamento = response;
+                }
+            });
+
             $("#condicao-table tbody").append("<tr>");
             $("#condicao-table tbody").append("<td></td>");
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Pagamento+"</td>");
+            $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
+
         }
     });
 
