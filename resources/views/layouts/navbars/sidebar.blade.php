@@ -84,7 +84,8 @@
                 </a>
                 <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'fornecedor-management' ||
                                     $activePage == 'exame-management' || $activePage == 'paciente-management' ||
-                                    $activePage == 'medico-management' || $activePage == 'fornecedor-management')
+                                    $activePage == 'medico-management' || $activePage == 'fornecedor-management' ||
+                                    $activePage == 'condicao-pagamento-management' || $activePage == 'forma-pagamento-management')
                                     ? ' show' : '' }}" id="cadastro">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
@@ -113,8 +114,20 @@
                         </li>
                         <li class="nav-item {{ $activePage == 'fornecedor-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('fornecedor.index') }}">
-                                <span class="sidebar-mini"> L </span>
+                                <span class="sidebar-mini"> F </span>
                                 <span class="sidebar-normal">{{ __('Fornecedores') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'condicao-pagamento-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('condicaoPagamento.index') }}">
+                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-normal">{{ __('Condições de pagamento') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'forma-pagamento-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('formaPagamento.index') }}">
+                                <span class="sidebar-mini"> F </span>
+                                <span class="sidebar-normal">{{ __('Formas de pagamento') }} </span>
                             </a>
                         </li>
                     </ul>
