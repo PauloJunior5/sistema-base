@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('condicaoPagamento.store') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('condicaoPagamento.store') }}" autocomplete="off" class="form-horizontal" id="condicaoPagamentoForm">
                     @csrf
                     @method('post')
                     <div class="card ">
@@ -164,6 +164,7 @@
         if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
         tbClientes = [];
         var porcentual = 0;
+        var porcentualReserva = 0;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -205,6 +206,8 @@
         $("#id_dias").val(cli.Dias);
         $("#id_porcentual").val(cli.Porcentual);
         $("#id-forma_pagamento-input").val(cli.Pagamento);
+        porcentualReserva = porcentual;
+        porcentual -= cli.Porcentual;
 
         var id_forma_pagamento = cli.Pagamento;
         $.ajax({
@@ -232,6 +235,7 @@
         var objCliente = JSON.parse(tbClientes[indice_selecionado])
         var objClientePorcentual = parseFloat(objCliente.Porcentual);
         if ((porcentual + objClientePorcentual ) <= 100) {
+            porcentual += parseFloat(tbClientes[indice_selecionado].Porcentual);
             localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
             $('#input-parcelas').val(JSON.stringify(tbClientes));
             alert("Informações editadas.")
@@ -239,6 +243,8 @@
             Listar();
             return true;
         } else {
+            porcentual = porcentualReserva;
+            porcentualReserva = 0;
             alert("Parcela inserida ultrapassa os 100%");
             Listar();
             return true;
@@ -247,6 +253,11 @@
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
         indice_selecionado = parseInt($(this).attr("alt"));
+        var cli = JSON.parse(tbClientes[indice_selecionado]);
+        $("#id_dias").val(cli.Dias);
+        $("#id_porcentual").val(cli.Porcentual);
+        $("#id-forma_pagamento-input").val(cli.Pagamento);
+        porcentual -= cli.Porcentual;
         Excluir();
         Listar();
     });
@@ -260,7 +271,6 @@
 
     function Listar(){
 
-        // location.reload();
         var forma_pagamento;
 
         $("#condicao-table").html("");
@@ -303,6 +313,9 @@
             $("#condicao-table tbody").append("</tr>");
             
         }
+
+        alert(porcentual);
+
     }
 
     $(function() {
@@ -348,6 +361,17 @@
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
 
+        }
+
+        alert(porcentual);
+
+        
+    });
+
+    $("#condicaoPagamentoForm").submit(function() {
+        if(parseFloat(porcentual) < 100){
+            alert("Parcelas não atingem os 100%");
+            return false;
         }
     });
 

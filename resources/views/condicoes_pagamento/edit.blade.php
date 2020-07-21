@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('condicaoPagamento.update', $condicao_pagamento) }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('condicaoPagamento.update', $condicao_pagamento) }}" autocomplete="off" class="form-horizontal" id="condicaoPagamentoForm">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -156,7 +156,8 @@ var url_atual = '<?php echo URL::to(''); ?>';
         tbClientes = JSON.parse(tbClientes); // Converte string para objeto
         if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
         tbClientes = [];
-        var porcentual = 0;
+        var porcentual = 100;
+        var porcentualReserva = 0;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -199,6 +200,8 @@ var url_atual = '<?php echo URL::to(''); ?>';
         $("#id_dias").val(cli.Dias);
         $("#id_porcentual").val(cli.Porcentual);
         $("#id-forma_pagamento-input").val(cli.Pagamento);
+        porcentualReserva = porcentual;
+        porcentual -= cli.Porcentual;
 
         var id_forma_pagamento = cli.Pagamento;
         $.ajax({
@@ -223,10 +226,10 @@ var url_atual = '<?php echo URL::to(''); ?>';
                 Porcentual     : $("#id_porcentual").val(),
                 Pagamento : $("#id-forma_pagamento-input").val(),
             });//Altera o item selecionado na tabela
-
         var objCliente = JSON.parse(tbClientes[indice_selecionado])
         var objClientePorcentual = parseFloat(objCliente.Porcentual);
         if ((porcentual + objClientePorcentual ) <= 100) {
+            porcentual += parseFloat(tbClientes[indice_selecionado].Porcentual);
             localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
             $('#input-parcelas').val(JSON.stringify(tbClientes));
             alert("Informações editadas.")
@@ -234,6 +237,8 @@ var url_atual = '<?php echo URL::to(''); ?>';
             Listar();
             return true;
         } else {
+            porcentual = porcentualReserva;
+            porcentualReserva = 0;
             alert("Parcela inserida ultrapassa os 100%");
             Listar();
             return true;
@@ -243,6 +248,11 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
         indice_selecionado = parseInt($(this).attr("alt"));
+        var cli = JSON.parse(tbClientes[indice_selecionado]);
+        $("#id_dias").val(cli.Dias);
+        $("#id_porcentual").val(cli.Porcentual);
+        $("#id-forma_pagamento-input").val(cli.Pagamento);
+        porcentual -= cli.Porcentual;
         Excluir();
         Listar();
     });
@@ -256,7 +266,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
     function Listar(){
 
-        location.reload();
+        // location.reload();
         var forma_pagamento;
 
         $("#condicao-table").html("");
@@ -277,8 +287,6 @@ var url_atual = '<?php echo URL::to(''); ?>';
         for(var i in tbClientes){
 
             var cli = JSON.parse(tbClientes[i]);
-
-            porcentual += parseFloat(cli.Porcentual);
 
             var id_forma_pagamento = cli.Pagamento;
             $.ajax({
@@ -301,6 +309,8 @@ var url_atual = '<?php echo URL::to(''); ?>';
             $("#condicao-table tbody").append("</tr>");
             
         }
+        alert(porcentual);
+
     }
 
     $(function() {
@@ -326,8 +336,6 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
             var cli = JSON.parse(tbClientes[i]);
 
-            porcentual += parseFloat(cli.Porcentual);
-
             var id_forma_pagamento = cli.Pagamento;
             $.ajax({
                 method: "POST",
@@ -349,7 +357,15 @@ var url_atual = '<?php echo URL::to(''); ?>';
             $("#condicao-table tbody").append("</tr>");
 
         }
+        alert(porcentual);
 
+    });
+
+    $("#condicaoPagamentoForm").submit(function() {
+        if(parseFloat(porcentual) < 100){
+            alert("Parcelas não atingem os 100%");
+            return false;
+        }
     });
 
 });
