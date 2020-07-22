@@ -268,12 +268,13 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
         // location.reload();
         var forma_pagamento;
+        var n = 0;
 
         $("#condicao-table").html("");
         $("#condicao-table").html(
             "<thead>"+
             "    <tr>"+
-            "    <th scope='col'>Id</th>"+
+            "    <th scope='col'>Parcela</th>"+
             "    <th scope='col'>Número de Dias</th>"+
             "    <th scope='col'>Percentual (%)</th>"+
             "    <th scope='col'>Forma de Pagamento</th>"+
@@ -287,6 +288,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
         for(var i in tbClientes){
 
             var cli = JSON.parse(tbClientes[i]);
+            n++;
 
             var id_forma_pagamento = cli.Pagamento;
             $.ajax({
@@ -301,7 +303,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
             });
 
             $("#condicao-table tbody").append("<tr>");
-            $("#condicao-table tbody").append("<td></td>");
+            $("#condicao-table tbody").append("<td>"+n+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
@@ -316,12 +318,13 @@ var url_atual = '<?php echo URL::to(''); ?>';
     $(function() {
 
         var forma_pagamento;
+        var n = 0;
 
         $("#condicao-table").html("");
         $("#condicao-table").html(
             "<thead>"+
             "   <tr>"+
-            "    <th scope='col'>Id</th>"+
+            "    <th scope='col'>Parcela</th>"+
             "    <th scope='col'>Número de Dias</th>"+
             "    <th scope='col'>Percentual (%)</th>"+
             "    <th scope='col'>Forma de Pagamento</th>"+
@@ -335,6 +338,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
         for(var i in tbClientes){
 
             var cli = JSON.parse(tbClientes[i]);
+            n++;
 
             var id_forma_pagamento = cli.Pagamento;
             $.ajax({
@@ -349,7 +353,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
             });
 
             $("#condicao-table tbody").append("<tr>");
-            $("#condicao-table tbody").append("<td></td>");
+            $("#condicao-table tbody").append("<td>"+n+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
