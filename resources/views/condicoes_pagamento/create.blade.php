@@ -278,7 +278,7 @@
         $("#condicao-table").html(
             "<thead>"+
             "    <tr>"+
-            "    <th scope='col'>Id</th>"+
+            "    <th scope='col'>Parcela</th>"+
             "    <th scope='col'>Número de Dias</th>"+
             "    <th scope='col'>Percentual (%)</th>"+
             "    <th scope='col'>Forma de Pagamento</th>"+
@@ -329,7 +329,7 @@
         $("#condicao-table").html(
             "<thead>"+
             "   <tr>"+
-            "    <th scope='col'>#</th>"+
+            "    <th scope='col'>Parcela</th>"+
             "    <th scope='col'>Número de Dias</th>"+
             "    <th scope='col'>Percentual (%)</th>"+
             "    <th scope='col'>Forma de Pagamento</th>"+
