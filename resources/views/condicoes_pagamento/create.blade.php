@@ -111,8 +111,11 @@
                                                 <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Salvar</button>
                                             </div>
                                         </form>
-
-                                        <table class="table table-bordered table-hover" id="condicao-table"></table>
+                                        
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover" id="condicao-table"></table>
+                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
