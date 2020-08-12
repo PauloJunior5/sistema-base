@@ -20026,3 +20026,13 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:first-chi
 div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:last-child {
   padding-right: 0;
 }
+
+/* AJUSTES TABELA DE PARCELAS - CONDIÇÃO DE PAGAMENTO */
+
+html.perfect-scrollbar-off body div.wrapper div.main-panel div.content div.container-fluid div.row div.col-md-12 form#condicaoPagamentoForm.form-horizontal div.card div.card-body div.card div.card-body {
+  margin: 0px;
+}
+
+html.perfect-scrollbar-off body div.wrapper div.main-panel div.content div.container-fluid div.row div.col-md-12 form#condicaoPagamentoForm.form-horizontal div.card div.card-body div.card div.card-body div.row div.table-responsive table#tblCadastro.table.table-bordered.table-hover thead tr {
+  text-align: center;
+}
