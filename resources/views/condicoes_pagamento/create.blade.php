@@ -103,7 +103,7 @@
                         </div>
                         <div class="card-footer ml-auto pull-right">
                             <a href="{{ route('condicaoPagamento.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Add Condição de Pagamento') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Add') }}</button>
                         </div>
                     </div>
                 </form>
@@ -152,15 +152,17 @@
 
     function Editar(){
         var par = $(this).parent().parent(); //tr
-        var tdNome = par.children("td:nth-child(1)");
-        var tdTelefone = par.children("td:nth-child(2)");
-        var tdEmail = par.children("td:nth-child(3)");
-        var tdBotoes = par.children("td:nth-child(4)");
+        var tdNumeroDias = par.children("td:nth-child(1)");
+        var tdPorcentual = par.children("td:nth-child(2)");
+        var tdCodigo = par.children("td:nth-child(3)");
+        var tdFormaPagamento = par.children("td:nth-child(4)");
+        var tdBotoes = par.children("td:nth-child(5)");
 
-        tdNome.html("<input type='text' id='txtNome' value='"+tdNome.html()+"'/>");
-        tdTelefone.html("<input type='text' id='txtTelefone' value='"+tdTelefone.html()+"'/>");
-        tdEmail.html("<input type='text' id='txtEmail' value='"+tdEmail.html()+"'/>");
-        tdBotoes.html("<img src='images/disk.png' class='btnSalvar'/>");
+        tdNumeroDias.html("<input type='text' id='txtNome' value='"+tdNumeroDias.html()+"'/>");
+        tdPorcentual.html("<input type='text' id='txtTelefone' value='"+tdPorcentual.html()+"'/>");
+        tdCodigo.html("<input type='text' id='txtEmail' value='"+tdCodigo.html()+"'/>");
+        tdFormaPagamento.html("<input type='text' id='txtEmail' value='"+tdFormaPagamento.html()+"'/>");
+        tdBotoes.html("<button class='btn btn-primary btn-sm btnSalvar'>Salvar</buttom>");
 
         $(".btnSalvar").bind("click", Salvar);
         $(".btnEditar").bind("click", Editar);
@@ -169,15 +171,18 @@
 
     function Salvar(){
         var par = $(this).parent().parent(); //tr
-        var tdNome = par.children("td:nth-child(1)");
-        var tdTelefone = par.children("td:nth-child(2)");
-        var tdEmail = par.children("td:nth-child(3)");
-        var tdBotoes = par.children("td:nth-child(4)");
+        var tdNumeroDias = par.children("td:nth-child(1)");
+        var tdPorcentual = par.children("td:nth-child(2)");
+        var tdCodigo = par.children("td:nth-child(3)");
+        var tdFormaPagamento = par.children("td:nth-child(4)");
+        var tdBotoes = par.children("td:nth-child(5)");
 
-        tdNome.html(tdNome.children("input[type=text]").val());
-        tdTelefone.html(tdTelefone.children("input[type=text]").val());
-        tdEmail.html(tdEmail.children("input[type=text]").val());
+        tdNumeroDias.html(tdNumeroDias.children("input[type=text]").val());
+        tdPorcentual.html(tdPorcentual.children("input[type=text]").val());
+        tdCodigo.html(tdCodigo.children("input[type=text]").val());
+        tdFormaPagamento.html(tdFormaPagamento.children("input[type=text]").val());
         tdBotoes.html("<img src='images/delete.png' class='btnExcluir'/><img src='images/pencil.png' class='btnEditar'/>");
+        tdBotoes.html("<button class='btn btn-secondary btn-sm btnEditar'>Editar</buttom> <button class='btn btn-danger btn-sm btnExcluir'>Excluir</buttom>");
 
         $(".btnEditar").bind("click", Editar);
         $(".btnExcluir").bind("click", Excluir);

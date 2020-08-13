@@ -20036,3 +20036,7 @@ html.perfect-scrollbar-off body div.wrapper div.main-panel div.content div.conta
 html.perfect-scrollbar-off body div.wrapper div.main-panel div.content div.container-fluid div.row div.col-md-12 form#condicaoPagamentoForm.form-horizontal div.card div.card-body div.card div.card-body div.row div.table-responsive table#tblCadastro.table.table-bordered.table-hover thead tr {
   text-align: center;
 }
+
+html.perfect-scrollbar-off body div.wrapper div.main-panel div.content div.container-fluid div.row div.col-md-12 form#condicaoPagamentoForm.form-horizontal div.card div.card-body div.card div.card-body div.row div.table-responsive table#tblCadastro.table.table-bordered.table-hover tbody tr td {
+  text-align: center;
+}
