@@ -14,7 +14,7 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->tinyIncrements('id');
 
             $table->string('tipo')->nullable();
             $table->string('cliente')->nullable();
@@ -26,7 +26,7 @@ class CreateClientesTable extends Migration
             $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
-            $table->unsignedBigInteger('id_cidade'); // foreign_key cidades
+            $table->unsignedTinyInteger('id_cidade'); // foreign_key cidades
 
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
@@ -35,15 +35,13 @@ class CreateClientesTable extends Migration
 
             $table->string('cpf')->nullable();
             $table->string('rg')->nullable();
-            $table->string('emissor')->nullable();
-            $table->string('uf')->nullable();
             $table->date('nascimento')->nullable();
             $table->string('inscricao_estadual')->nullable();
             $table->string('cnpj')->nullable();
 
             $table->string('observacao')->nullable();
             $table->float('limite_credito')->nullable();
-            $table->integer('condicao_pagamento')->nullable();
+            $table->unsignedTinyInteger('condicao_pagamento')->nullable(); // foreign_key condições de pagamento
 
             $table->timestamps();
 

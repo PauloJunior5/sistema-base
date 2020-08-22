@@ -129,14 +129,6 @@
                                     <label class="col-form-label"><span style="color: red">*</span> RG</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="rg" value="{{ old('rg') }}" required>
                                 </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Emissor</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="emissor" value="{{ old('emissor') }}" required>
-                                </div>
-                                <div class="col-md-1">
-                                    <label class="col-form-label"><span style="color: red">*</span> UF</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="uf" value="{{ old('uf') }}" required>
-                                </div>
                             </div>
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">

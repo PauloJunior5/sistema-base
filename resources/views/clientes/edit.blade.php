@@ -117,14 +117,6 @@
                                     <label class="col-form-label"><span style="color: red">*</span> RG</label>
                                     <input type="text" class="form-control inputPessoaFisica" value="{{old('rg', $cliente->rg)}}" name="rg" required>
                                 </div>
-                                <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Emissor</label>
-                                    <input type="text" class="form-control inputPessoaFisica" value="{{old('emissor', $cliente->emissor)}}" name="emissor" required>
-                                </div>
-                                <div class="col-md-1">
-                                    <label class="col-form-label"><span style="color: red">*</span> UF</label>
-                                    <input type="text" class="form-control inputPessoaFisica" value="{{old('uf', $cliente->uf)}}" name="uf" required>
-                                </div>
                             </div>
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">

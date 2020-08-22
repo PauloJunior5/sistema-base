@@ -14,7 +14,7 @@ class CreateFornecedoresTable extends Migration
     public function up()
     {
         Schema::create('fornecedores', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->tinyIncrements('id');
 
             $table->string('fornecedor')->nullable();
             $table->string('nome_fantasia')->nullable();
@@ -24,7 +24,7 @@ class CreateFornecedoresTable extends Migration
             $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
-            $table->unsignedBigInteger('id_cidade');
+            $table->unsignedTinyInteger('id_cidade');
 
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
@@ -36,7 +36,7 @@ class CreateFornecedoresTable extends Migration
 
             $table->string('observacao')->nullable();
             $table->float('limite_credito')->nullable();
-            $table->integer('id_condicao_pagamento')->nullable();
+            $table->unsignedTinyInteger('id_condicao_pagamento');
 
             $table->timestamps();
 
