@@ -20031,3 +20031,8 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:last-chil
   font-size: smaller;
   color: #868686;
 }
+
+div.modal-dialog.modal-xl div.modal-content button.close span.modal-close-button {
+  float: right;
+  padding: 10px 15px 0 0;
+}

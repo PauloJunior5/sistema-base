@@ -19,9 +19,6 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            @php
-                                // echo "URI PATH - " . Request::path();
-                            @endphp
                             <h4 class="card-title">Novo Estado</h4>
                             <p class="card-category"></p>
                         </div>

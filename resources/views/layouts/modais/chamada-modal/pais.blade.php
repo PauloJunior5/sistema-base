@@ -2,6 +2,9 @@
 <div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="modal-close-button" aria-hidden="true">&times;</span>
+            </button>
             <div class="modal-body">
                 @include('layouts.modais.index.paisModal')
             </div>
@@ -13,6 +16,9 @@
 <div class="modal fade" id="paisCreateModal" tabindex="-1" role="dialog" aria-labelledby="paisCreateModal" aria-hidden="true" style="z-index: 99999">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="modal-close-button" aria-hidden="true">&times;</span>
+            </button>
             <div class="modal-body">
                 @include('layouts.modais.create.paisCreateModal')
             </div>

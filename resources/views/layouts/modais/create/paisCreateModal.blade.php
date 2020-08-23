@@ -16,24 +16,25 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Add País') }}</h4>
+                            <h4 class="card-title">{{ __('Novo País') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Código de Referência</label>
-                                    <div class="form-group">
-                                        <input class="form-control" readonly />
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" id="input-name" type="text" placeholder="Código do País" required />
+                                        <input class="form-control" readonly placeholder="#"/>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Sigla</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="sigla" id="input-sigla" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
                                         <input class="form-control" name="pais" id="input-pais" type="text" required />
@@ -41,22 +42,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <button type="submit" class="btn btn-primary">{{ __('Add País') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
                 </form>
