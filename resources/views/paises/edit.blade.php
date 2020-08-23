@@ -36,14 +36,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Criado em:</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ $pais->created_at->format('Y-m-d') }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Alterado em:</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ $pais->updated_at->format('Y-m-d') }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
@@ -52,8 +52,8 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('pais.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                            <a href="{{ route('pais.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
                 </form>

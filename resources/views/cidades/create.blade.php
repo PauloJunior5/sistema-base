@@ -1,49 +1,7 @@
 @extends('layouts.app', ['activePage' => 'cidade-management', 'titlePage' => __('Cidade Management')])
 @section('content')
-<!-- Start Modal -->
-<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="estadoModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.index.estadoModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="estadoCreateModal" tabindex="-1" role="dialog" aria-labelledby="estadoCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.create.estadoCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.index.paisModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="paisCreateModal" tabindex="-1" role="dialog" aria-labelledby="paisCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.create.paisCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
+@include('layouts.modais.chamada-modal.estado')
+@include('layouts.modais.chamada-modal.pais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -68,15 +26,16 @@
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código de Referência</label>
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" readonly />
+                                        <input class="form-control" readonly placeholder="#"/>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código</label>
+                                    <label class="col-form-label">DDD</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{ old('codigo') }}" name="codigo" type="text" placeholder="Código da Cidade" required />
+                                        <input class="form-control" value="{{ old('ddd') }}" name="ddd" type="text" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -88,9 +47,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código do Estado</label>
+                                    <label class="col-form-label">Sigla do Estado</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="codigo-estado-input" type="text" value="" required />
+                                        <input class="form-control" id="sigla-estado-input" type="text" value="" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -98,6 +57,7 @@
                                     <div class="form-group">
                                         <input class="form-control" id="estado-input" value="" readonly />
                                         <input type="hidden" id="id-estado-input" name="id_estado" value="">
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -109,27 +69,30 @@
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
                                         <input class="form-control" id="pais-input" value="" readonly />
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alreração</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('cidade.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Add Cidade') }}</button>
+                            <a href="{{ route('cidade.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
                 </form>
@@ -147,7 +110,7 @@
             data: { id_estado : id_estado },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#sigla-estado-input').val(response.estado.sigla);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);
                 $('#pais-input').val(response.pais.pais);
@@ -164,7 +127,7 @@
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')

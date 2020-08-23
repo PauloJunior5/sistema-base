@@ -45,14 +45,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Criado em:</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Alterado em:</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>

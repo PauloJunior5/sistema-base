@@ -1,27 +1,6 @@
 @extends('layouts.app', ['activePage' => 'estado-management', 'titlePage' => __('Estado Management')])
 @section('content')
-<!-- Start Modal -->
-<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.index.paisModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="paisCreateModal" tabindex="-1" role="dialog" aria-labelledby="paisCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.create.paisCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
+@include('layouts.modais.chamada-modal.pais')
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
 <script>
 $(function() {
@@ -74,6 +53,7 @@ $(function() {
                                     <div class="form-group">
                                         <input class="form-control" id="input-pais-pais" value="{{$pais->pais}}" readonly />
                                         <input type="hidden" id="input-id-pais" name="id_pais" value="{{$pais->id}}">
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -100,8 +80,8 @@ $(function() {
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                            <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                 </form>
             </div>

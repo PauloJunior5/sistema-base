@@ -15,7 +15,7 @@ class CreateCidadesTable extends Migration
     {
         Schema::create('cidades', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->string('codigo');
+            $table->string('ddd');
             $table->string('cidade');
             $table->unsignedTinyInteger('id_estado');
             $table->timestamps();
