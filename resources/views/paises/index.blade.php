@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paises') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <h4 class="card-title ">{{ __('Países') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar países') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))

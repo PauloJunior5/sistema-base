@@ -22,7 +22,7 @@
                             @php
                                 // echo "URI PATH - " . Request::path();
                             @endphp
-                            <h4 class="card-title">Add Estado</h4>
+                            <h4 class="card-title">Novo Estado</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">

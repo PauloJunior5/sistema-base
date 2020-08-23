@@ -18,7 +18,7 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Add País') }}</h4>
+                            <h4 class="card-title">{{ __('Novo País') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">

@@ -20,7 +20,7 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Add Cidade')}}</h4>
+                            <h4 class="card-title">{{ __('Nova Cidade')}}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
@@ -47,9 +47,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Sigla do Estado</label>
+                                    <label class="col-form-label">UF</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="sigla-estado-input" type="text" value="" required />
+                                        <input class="form-control" id="uf-estado-input" type="text" value="" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -110,7 +110,7 @@
             data: { id_estado : id_estado },
             dataType: "JSON",
             success: function(response){
-                $('#sigla-estado-input').val(response.estado.sigla);
+                $('#uf-estado-input').val(response.estado.uf);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);
                 $('#pais-input').val(response.pais.pais);
