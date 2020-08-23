@@ -6,7 +6,7 @@
                 <span class="modal-close-button" aria-hidden="true">&times;</span>
             </button>
             <div class="modal-body">
-                @include('layouts.modais.index.estadoModal')
+                @include('layouts.modais.index.estado')
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
                 <span class="modal-close-button" aria-hidden="true">&times;</span>
             </button>
             <div class="modal-body">
-                @include('layouts.modais.create.estadoCreateModal')
+                @include('layouts.modais.create.estado')
             </div>
         </div>
     </div>

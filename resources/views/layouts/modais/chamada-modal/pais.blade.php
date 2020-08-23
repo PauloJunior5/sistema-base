@@ -6,7 +6,7 @@
                 <span class="modal-close-button" aria-hidden="true">&times;</span>
             </button>
             <div class="modal-body">
-                @include('layouts.modais.index.paisModal')
+                @include('layouts.modais.index.pais')
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
                 <span class="modal-close-button" aria-hidden="true">&times;</span>
             </button>
             <div class="modal-body">
-                @include('layouts.modais.create.paisCreateModal')
+                @include('layouts.modais.create.pais')
             </div>
         </div>
     </div>
