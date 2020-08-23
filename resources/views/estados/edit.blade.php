@@ -44,15 +44,15 @@ $(function() {
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código de Referência</label>
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
                                         <input class="form-control" name="id" value="{{$estado->id}}" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código</label>
+                                    <label class="col-form-label">Sigla</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" type="text" placeholder="Código do Estado" value="{{$estado->codigo}}" required />
+                                        <input class="form-control" name="sigla" type="text" placeholder="Sigla do Estado" value="{{$estado->sigla}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -64,9 +64,9 @@ $(function() {
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código do País</label>
+                                    <label class="col-form-label">Sigla do País</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-codigo-pais" value="{{$pais->codigo}}" type="text" required/>
+                                        <input class="form-control" id="input-sigla-pais" value="{{$pais->sigla}}" type="text" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -84,15 +84,17 @@ $(function() {
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ $estado->created_at->format('Y-m-d') }}" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ $estado->updated_at->format('Y-m-d') }}" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +118,7 @@ $(function() {
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')

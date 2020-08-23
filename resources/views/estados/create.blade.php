@@ -55,16 +55,17 @@ $(function() {
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Código de Referência</label>
-                                    <div class="form-group">
-                                        <input class="form-control" readonly />
-                                    </div>
-                                </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" id="input-codigo" type="text" placeholder="Código do Estado" required />
+                                        <input class="form-control" readonly placeholder="#"/>
+                                        <p class="read-only">Campo apenas para consulta.</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Sigla</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="sigla" id="input-sigla" type="text" placeholder="Sigla do Estado" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -76,9 +77,9 @@ $(function() {
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código do País</label>
+                                    <label class="col-form-label">Sigla do País</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-codigo-pais" type="text" required/>
+                                        <input class="form-control" id="input-sigla-pais" type="text" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -96,15 +97,17 @@ $(function() {
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +132,7 @@ $(function() {
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')

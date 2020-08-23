@@ -24,7 +24,7 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Sigla</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="sigla" type="text" value="{{ $pais->sigla }}" required />
+                                        <input class="form-control" name="sigla" type="text" value="{{ $pais->sigla }}" placeholder="Sigla do País"  required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">

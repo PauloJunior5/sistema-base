@@ -35,25 +35,23 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('estado.create') }}" class="btn btn-sm btn-primary">{{ __('Add Estado') }}</a>
+                                <a href="{{ route('estado.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableEstados">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Código') }}</th>
+                                    <th>{{ __('Sigla') }}</th>
                                     <th>{{ __('Nome') }}</th>
-                                    <th>{{ __('Pais') }}</th>
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
-                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($estados as $estado)
                                     <tr>
-                                        <td>{{ $estado->codigo }}</td>
+                                        <td>{{ $estado->sigla }}</td>
                                         <td>{{ $estado->estado }}</td>
-                                        <td>{{ $pais = App\Pais::where('id', $estado->id_pais)->get()->first()->pais }}</td>
                                         <td>{{ $estado->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $estado->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
