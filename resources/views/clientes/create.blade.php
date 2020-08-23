@@ -1,6 +1,8 @@
 @extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
 @section('content')
-@include('layouts.modais.cidadeEstadoPais')
+@include('layouts.modais.chamada-modal.cidade')
+@include('layouts.modais.chamada-modal.estado')
+@include('layouts.modais.chamada-modal.pais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">

@@ -43,14 +43,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
