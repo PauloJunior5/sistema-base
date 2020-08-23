@@ -15,7 +15,7 @@ class CreateEstadosTable extends Migration
     {
         Schema::create('estados', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->string('sigla');
+            $table->string('uf');
             $table->string('estado');
             $table->unsignedTinyInteger('id_pais');
             $table->timestamps();

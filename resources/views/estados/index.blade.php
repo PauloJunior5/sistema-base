@@ -41,7 +41,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableEstados">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Sigla') }}</th>
+                                    <th>{{ __('UF') }}</th>
                                     <th>{{ __('Nome') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
                                     <th>{{ __('Data de Alteração') }}</th>
@@ -50,7 +50,7 @@
                                 <tbody>
                                     @foreach($estados as $estado)
                                     <tr>
-                                        <td>{{ $estado->sigla }}</td>
+                                        <td>{{ $estado->uf }}</td>
                                         <td>{{ $estado->estado }}</td>
                                         <td>{{ $estado->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $estado->updated_at->format('Y-m-d') }}</td>

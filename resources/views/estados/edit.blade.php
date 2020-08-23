@@ -29,9 +29,9 @@ $(function() {
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Sigla</label>
+                                    <label class="col-form-label">UF</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="sigla" type="text" placeholder="Sigla do Estado" value="{{$estado->sigla}}" required />
+                                        <input class="form-control" name="uf" type="text" value="{{$estado->uf}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">

@@ -35,9 +35,9 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Sigla</label>
+                                    <label class="col-form-label">UF</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="sigla" id="input-sigla" type="text" placeholder="Sigla do Estado" required />
+                                        <input class="form-control" name="uf" id="input-uf" type="text" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
