@@ -21,14 +21,15 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('FICHA CADASTRAL') }}</h4>
+                            <h4 class="card-title">{{ __('Novo Cliente') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <label class="col-form-label">Código</label>
                                     <input type="text" class="form-control" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label"><span style="color: red">*</span> Tipo</label>
@@ -82,8 +83,9 @@
                                     <input type="text" class="form-control" name="cep" value="{{ old('cep') }}" required>
                                 </div>
                             </div>
+                            {{-- INICIO ESCOLHER CIDADE --}}
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <label class="col-form-label">DDD</label>
                                     <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
@@ -91,15 +93,18 @@
                                     <label class="col-form-label"><span style="color: red">*</span> Cidade</label>
                                     <input class="form-control readonly" id="cidade-input" name="cidade" value="{{ old('cidade') }}" required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{ old('id_cidade') }}">
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
                                     <input class="form-control" id="uf-cidade-input" name="estado" value="{{ old('estado') }}" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
+                            {{-- FIM ESCOLHER CIDADE --}}
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label"><span style="color: red">*</span> Telefone</label>
@@ -151,27 +156,32 @@
                                     <label class="col-form-label"><span style="color: red">*</span> Limite de Crédito</label>
                                     <input class="form-control" type="number" name="limite_credito" value="{{ old('limite_credito') }}" required>
                                 </div>
+                                {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" readonly>
+                                    <input class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label"><span style="color: red">*</span> Condição de Pagamento</label>
                                     <input class="form-control" readonly>
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamamento" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
+                                {{-- FIM CONDICAO PAGAMENTO --}}
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <input type="datetime-local" class="form-control" name="created_at" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <input type="datetime-local" class="form-control" name="updated_at" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                             </div>
                         </div>

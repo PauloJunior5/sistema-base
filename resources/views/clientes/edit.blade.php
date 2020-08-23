@@ -21,19 +21,21 @@
                     @method('put')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('FICHA CADASTRAL') }}</h4>
+                            <h4 class="card-title">{{ __('Alterar Cliente') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <label class="col-form-label">Código</label>
                                     <input type="text" class="form-control" value="{{$cliente->id}}" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Tipo</label>
                                     <input class="form-control" placeholder="{{ ($cliente->tipo == "pessoaFisica") ? "Pessoa Fisica" : "Pessoa Jurídica" }}" readonly>
                                     <input type="hidden" id="tipo" name="tipo" value="{{$cliente->tipo}}">
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label"><span style="color: red">*</span> Cliente</label>
@@ -70,24 +72,28 @@
                                     <input type="text" class="form-control" value="{{$cliente->cep}}" value="{{old('cep', $cliente->cep)}}" name="cep" required>
                                 </div>
                             </div>
+                            {{-- INICIO ESCOLHER CIDADE --}}
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label class="col-form-label">Código</label>
-                                    <input type="text" class="form-control" id="codigo-cidade-input" name="codigo_cidade" value="{{old('codigo_cidade', $cidade->codigo)}}" required>
+                                    <label class="col-form-label">DDD</label>
+                                    <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{old('ddd_cidade', $cidade->ddd)}}" readonly required>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label"><span style="color: red">*</span> Cidade</label>
                                     <input class="form-control readonly" id="cidade-input" value="{{old('cidade', $cidade->cidade)}}" name="cidade" required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{old('id_cidade', $cidade->id)}}" name="id_cidaed">
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input" name="estado" value="{{old('estado', $estado->codigo)}}" readonly>
+                                    <input class="form-control" id="uf-cidade-input" name="estado" value="{{old('estado', $estado->uf)}}" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
+                            {{-- FIM ESCOLHER CIDADE --}}
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label"><span style="color: red">*</span> Telefone</label>
@@ -139,27 +145,32 @@
                                     <label class="col-form-label"><span style="color: red">*</span> Limite de Crédito</label>
                                     <input class="form-control" type="number" value="{{old('limite_credito', $cliente->limite_credito)}}" name="limite_credito" required>
                                 </div>
+                                {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" readonly>
+                                    <input class="form-control">
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label"><span style="color: red">*</span> Condição de Pagamento</label>
                                     <input class="form-control" readonly>
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamamento" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
+                                {{-- INICIO CONDICAO PAGAMENTO --}}
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <input type="datetime-local" class="form-control" value="{{$cliente->created_at->format('Y-m-d H:i:s')}}" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <input type="datetime-local" class="form-control" value="{{$cliente->updated_at->format('Y-m-d H:i:s')}}" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                             </div>
                         </div>
@@ -198,9 +209,9 @@
             }
             , dataType: "JSON"
             , success: function(response) {
-                $('#codigo-cidade-input').val(response.cidade.codigo);
+                $('#ddd-cidade-input').val(response.cidade.ddd);
                 $('#cidade-input').val(response.cidade.cidade);
-                $('#uf-cidade-input').val(response.estado.codigo);
+                $('#uf-cidade-input').val(response.estado.uf);
                 $('#id-cidade-input').val(response.cidade.id);
                 $('#cidadeModal').modal('hide')
             }
@@ -217,7 +228,7 @@
             }
             , dataType: "JSON"
             , success: function(response) {
-                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#uf-estado-input').val(response.estado.uf);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);
                 $('#pais-input').val(response.pais.pais);
@@ -236,7 +247,7 @@
             }
             , dataType: "JSON"
             , success: function(response) {
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')
