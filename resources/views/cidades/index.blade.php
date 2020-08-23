@@ -33,7 +33,7 @@
                                     <th>{{ __('DDD') }}</th>
                                     <th>{{ __('Cidade') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
-                                    <th>{{ __('Data de Alreração') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>

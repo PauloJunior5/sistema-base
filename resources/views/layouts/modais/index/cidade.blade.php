@@ -22,19 +22,17 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeCreateModal" style="margin-top: 2.7rem;">Add Cidade</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cidadeCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table" id="tableCidades">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Código') }}</th>
+                                    <th>{{ __('DDD') }}</th>
                                     <th>{{ __('Nome') }}</th>
-                                    {{-- <th>{{ __('Pais') }}</th>
-                                    <th>{{ __('Estado') }}</th> --}}
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
-                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($cidades as $cidade)
@@ -43,10 +41,8 @@
                                     $pais = App\Pais::where('id', $estado->first()->id_pais)->get();
                                     @endphp
                                     <tr>
-                                        <td>{{ $cidade->codigo }}</td>
+                                        <td>{{ $cidade->ddd }}</td>
                                         <td>{{ $cidade->cidade }}</td>
-                                        {{-- <td>{{ $pais->first()->pais }}</td>
-                                        <td>{{ $estado->first()->estado }}</td> --}}
                                         <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
@@ -70,5 +66,4 @@
     $(document).ready(function() {
         $('#tableCidades').DataTable();
     });
-
 </script>

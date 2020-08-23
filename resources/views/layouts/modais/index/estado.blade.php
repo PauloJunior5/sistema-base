@@ -41,8 +41,8 @@
                                 <thead class=" text-primary">
                                     <th>{{ __('UF') }}</th>
                                     <th>{{ __('Nome') }}</th>
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>

@@ -226,9 +226,9 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-cidade-input').val(response.cidade.codigo);
+                $('#ddd-cidade-input').val(response.cidade.ddd);
                 $('#cidade-input').val(response.cidade.cidade);
-                $('#uf-cidade-input').val(response.estado.codigo);
+                $('#uf-cidade-input').val(response.estado.uf);
                 $('#id-cidade-input').val(response.cidade.id);
                 $('#cidadeModal').modal('hide')
             }
@@ -243,7 +243,7 @@
             data: { id_estado : id_estado },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#uf-estado-input').val(response.estado.uf);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);
                 $('#pais-input').val(response.pais.pais);
@@ -260,7 +260,7 @@
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')
