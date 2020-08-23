@@ -1,17 +1,19 @@
 @extends('layouts.app', ['activePage' => 'estado-management', 'titlePage' => __('Estado Management')])
 @section('content')
 @include('layouts.modais.chamada-modal.pais')
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
-<script>
-$(function() {
-    $('#paisModal').modal('show');
-});
-</script>
-@endif
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <form method="post" action="{{ route('estado.update', $estado) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
@@ -106,4 +108,13 @@ $(function() {
         });
     });
 </script>
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
+<script>
+$(function() {
+    $('#paisModal').modal('show');
+});
+</script>
+@endif
+
 @endsection
