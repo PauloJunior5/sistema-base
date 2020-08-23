@@ -28,6 +28,7 @@
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
                                         <input class="form-control" name="id" value="{{$estado->id}}" readonly />
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">

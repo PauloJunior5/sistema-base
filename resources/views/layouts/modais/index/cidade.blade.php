@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{ __('Cidades') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage cidades') }}</p>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar cidades') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('status'))

@@ -43,7 +43,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Código do Estado</label>
+                                    <label class="col-form-label">UF</label>
                                     <div class="form-group">
                                         <input class="form-control" id="uf-estado-input" type="text" value="" required />
                                     </div>

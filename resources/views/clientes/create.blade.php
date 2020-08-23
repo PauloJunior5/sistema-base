@@ -84,8 +84,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label class="col-form-label">Código</label>
-                                    <input type="text" class="form-control" id="codigo-cidade-input" name="codigo_cidade" value="{{ old('codigo_cidade') }}" required readonly>
+                                    <label class="col-form-label">DDD</label>
+                                    <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label"><span style="color: red">*</span> Cidade</label>

@@ -33,7 +33,7 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Sigla</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="sigla" id="input-name" type="text" placeholder="Sigla" required />
+                                        <input class="form-control" name="sigla" id="input-name" type="text" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
