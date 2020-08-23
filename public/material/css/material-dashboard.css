@@ -20026,3 +20026,8 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:first-chi
 div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:last-child {
   padding-right: 0;
 }
+
+.read-only {
+  font-size: smaller;
+  color: #868686;
+}
