@@ -54,7 +54,7 @@
                                         <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idPais" value="{{$pais->id}}" data-original-title="" title="">
-                                                <i class="material-icons">check</i>
+                                                <i class="material-icons">check</i> Selecionar
                                                 <div class="ripple-container"></div>
                                             </button>
                                         </td>
