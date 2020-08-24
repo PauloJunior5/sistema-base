@@ -38,25 +38,25 @@
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label"><span style="color: red">*</span> Cliente</label>
+                                    <label class="col-form-label">@include('includes.required')Cliente</label>
                                     <input type="text" class="form-control" value="{{old('cliente', $cliente->cliente)}}" name="cliente" required>
                                 </div>
                                 <div class="col-md-4 campoPessoaFisica">
-                                    <label class="col-form-label"><span style="color: red">*</span> Apelido</label>
+                                    <label class="col-form-label">@include('includes.required')Apelido</label>
                                     <input type="text" class="form-control inputPessoaFisica" value="{{old('apelido', $cliente->apelido)}}" name="apelido" required>
                                 </div>
                                 <div class="col-md-4 campoPessoaJuridica">
-                                    <label class="col-form-label"><span style="color: red">*</span> Nome Fantasia</label>
+                                    <label class="col-form-label">@include('includes.required')Nome Fantasia</label>
                                     <input type="text" class="form-control inputPessoaJuridica" value="{{old('nome_fantasia', $cliente->nome_fantasia)}}" name="nome_fantasia" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="col-form-label"><span style="color: red">*</span> Endereço</label>
+                                    <label class="col-form-label">@include('includes.required')Endereço</label>
                                     <input type="text" class="form-control" value="{{$cliente->endereco}}" value="{{old('endereco', $cliente->endereco)}}" name="endereco" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="col-form-label"><span style="color: red">*</span> nº</label>
+                                    <label class="col-form-label">@include('includes.required')nº</label>
                                     <input type="text" class="form-control" value="{{$cliente->numero}}" value="{{old('numero', $cliente->numero)}}" name="numero" required>
                                 </div>
                                 <div class="col-md-2">
@@ -64,11 +64,11 @@
                                     <input type="text" class="form-control" value="{{$cliente->complemento}}" value="{{old('complemento', $cliente->complemento)}}" name="complemento">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Bairro</label>
+                                    <label class="col-form-label">@include('includes.required')Bairro</label>
                                     <input type="text" class="form-control" value="{{$cliente->bairro}}" value="{{old('bairro', $cliente->bairro)}}" name="bairro" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> CEP</label>
+                                    <label class="col-form-label">@include('includes.required')CEP</label>
                                     <input type="text" class="form-control" value="{{$cliente->cep}}" value="{{old('cep', $cliente->cep)}}" name="cep" required>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{old('ddd_cidade', $cidade->ddd)}}" readonly required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label"><span style="color: red">*</span> Cidade</label>
+                                    <label class="col-form-label">@include('includes.required')Cidade</label>
                                     <input class="form-control readonly" id="cidade-input" value="{{old('cidade', $cidade->cidade)}}" name="cidade" required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{old('id_cidade', $cidade->id)}}" name="id_cidaed">
                                     <p class="read-only">Campo apenas para consulta.</p>
@@ -96,7 +96,7 @@
                             {{-- FIM ESCOLHER CIDADE --}}
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Telefone</label>
+                                    <label class="col-form-label">@include('includes.required')Telefone</label>
                                     <input type="text" class="form-control" value="{{old('telefone', $cliente->telefone)}}" name="telefone" required>
                                 </div>
                                 <div class="col-md-2">
@@ -104,7 +104,7 @@
                                     <input type="text" class="form-control" value="{{old('celular', $cliente->celular)}}" name="celular">
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> Email</label>
+                                    <label class="col-form-label">@include('includes.required')Email</label>
                                     <input type="text" class="form-control" value="{{old('email', $cliente->email)}}" name="email" required>
                                 </div>
                                 <div class="col-md-2">
@@ -112,27 +112,27 @@
                                     <input type="text" class="form-control" value="{{old('nacionalidade', $cliente->nacionalidade)}}" name="nacionalidade">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Nascimento</label>
+                                    <label class="col-form-label">@include('includes.required')Nascimento</label>
                                     <input type="date" class="form-control" value="{{old('nascimento', $cliente->nascimento)}}" name="nascimento" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaFisica">
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> CPF</label>
+                                    <label class="col-form-label">@include('includes.required')CPF</label>
                                     <input type="text" class="form-control inputPessoaFisica" value="{{old('cpf', $cliente->cpf)}}" name="cpf" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> RG</label>
+                                    <label class="col-form-label">@include('includes.required')RG</label>
                                     <input type="text" class="form-control inputPessoaFisica" value="{{old('rg', $cliente->rg)}}" name="rg" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> Inscricão Estadual</label>
+                                    <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
                                     <input type="text" class="form-control inputPessoaJuridica" value="{{old('inscricao_estadual', $cliente->inscricao_estadual)}}" name="inscricao_estadual" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> CNPJ</label>
+                                    <label class="col-form-label">@include('includes.required')CNPJ</label>
                                     <input type="text" class="form-control inputPessoaJuridica" value="{{old('cnpj', $cliente->cnpj)}}" name="cnpj" required>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                     <input type="text" class="form-control" value="{{old('observacao', $cliente->observacao)}}" name="observacao">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Limite de Crédito</label>
+                                    <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
                                     <input class="form-control" type="number" value="{{old('limite_credito', $cliente->limite_credito)}}" name="limite_credito" required>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
@@ -151,7 +151,7 @@
                                     <input class="form-control">
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> Condição de Pagamento</label>
+                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
                                     <input class="form-control" readonly>
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                     <p class="read-only">Campo apenas para consulta.</p>

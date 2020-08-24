@@ -11675,7 +11675,7 @@ fieldset[disabled] .form-check .form-check-input,
   cursor      : pointer;
   padding-left: 25px;
   position    : relative;
-  margin-left : 15%;
+  margin-left : 5%;
 }
 
 .form-group.is-focused .form-check .form-check-label {

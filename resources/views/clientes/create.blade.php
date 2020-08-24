@@ -31,8 +31,8 @@
                                     <input type="text" class="form-control" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> Tipo</label>
+                                <div class="col-md-2">
+                                    <label class="col-form-label">@include('includes.required')Tipo</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input tipo" type="radio" name="tipo" value="pessoaFisica" {{ old('tipo') == 'pessoaFisica' ? 'checked' : '' }} id="pessoa-fisica" checked required> Física
@@ -49,25 +49,25 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label"><span style="color: red">*</span> Cliente</label>
+                                    <label class="col-form-label">@include('includes.required')Cliente</label>
                                     <input type="text" class="form-control" name="cliente" value="{{ old('cliente') }}" required>
                                 </div>
                                 <div class="col-md-4 campoPessoaFisica">
-                                    <label class="col-form-label"><span style="color: red">*</span> Apelido</label>
+                                    <label class="col-form-label">@include('includes.required')Apelido</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="apelido" value="{{ old('apelido') }}" required>
                                 </div>
                                 <div class="col-md-4 campoPessoaJuridica">
-                                    <label class="col-form-label"><span style="color: red">*</span> Nome Fantasia</label>
+                                    <label class="col-form-label">@include('includes.required')Nome Fantasia</label>
                                     <input type="text" class="form-control inputPessoaJuridica" name="nome_fantasia" value="{{ old('nome_fantasia') }}" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="col-form-label"><span style="color: red">*</span> Endereço</label>
+                                    <label class="col-form-label">@include('includes.required')Endereço</label>
                                     <input type="text" class="form-control" name="endereco" value="{{ old('endereco') }}" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="col-form-label"><span style="color: red">*</span> nº</label>
+                                    <label class="col-form-label">@include('includes.required')nº</label>
                                     <input type="text" class="form-control" name="numero" value="{{ old('numero') }}" required>
                                 </div>
                                 <div class="col-md-2">
@@ -75,11 +75,11 @@
                                     <input type="text" class="form-control" name="complemento" value="{{ old('complemento') }}">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Bairro</label>
+                                    <label class="col-form-label">@include('includes.required')Bairro</label>
                                     <input type="text" class="form-control" name="bairro" value="{{ old('bairro') }}" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> CEP</label>
+                                    <label class="col-form-label">@include('includes.required')CEP</label>
                                     <input type="text" class="form-control" name="cep" value="{{ old('cep') }}" required>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                     <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label"><span style="color: red">*</span> Cidade</label>
+                                    <label class="col-form-label">@include('includes.required')Cidade</label>
                                     <input class="form-control readonly" id="cidade-input" name="cidade" value="{{ old('cidade') }}" required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{ old('id_cidade') }}">
                                     <p class="read-only">Campo apenas para consulta.</p>
@@ -107,7 +107,7 @@
                             {{-- FIM ESCOLHER CIDADE --}}
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Telefone</label>
+                                    <label class="col-form-label">@include('includes.required')Telefone</label>
                                     <input type="text" class="form-control" name="telefone" value="{{ old('telefone') }}" required>
                                 </div>
                                 <div class="col-md-2">
@@ -115,7 +115,7 @@
                                     <input type="text" class="form-control" name="celular" value="{{ old('celular') }}">
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> Email</label>
+                                    <label class="col-form-label">@include('includes.required')Email</label>
                                     <input type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                                 </div>
                                 <div class="col-md-2">
@@ -123,27 +123,27 @@
                                     <input type="text" class="form-control" name="nacionalidade" value="{{ old('nacionalidade') }}">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Nascimento</label>
+                                    <label class="col-form-label">@include('includes.required')Nascimento</label>
                                     <input type="date" class="form-control" name="nascimento" value="{{ old('nascimento') }}" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaFisica">
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> CPF</label>
+                                    <label class="col-form-label">@include('includes.required')CPF</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="cpf" value="{{ old('cpf') }}" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> RG</label>
+                                    <label class="col-form-label">@include('includes.required')RG</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="rg" value="{{ old('rg') }}" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> Inscricão Estadual</label>
+                                    <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
                                     <input type="text" class="form-control inputPessoaJuridica" name="inscricao_estadual" value="{{ old('inscricao_estadual') }}" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> CNPJ</label>
+                                    <label class="col-form-label">@include('includes.required')CNPJ</label>
                                     <input type="text" class="form-control inputPessoaJuridica" name="cnpj" value="{{ old('cnpj') }}" required>
                                 </div>
                             </div>
@@ -153,7 +153,7 @@
                                     <input type="text" class="form-control" name="observacao" value="{{ old('observacao') }}">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label"><span style="color: red">*</span> Limite de Crédito</label>
+                                    <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
                                     <input class="form-control" type="number" name="limite_credito" value="{{ old('limite_credito') }}" required>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
@@ -162,7 +162,7 @@
                                     <input class="form-control">
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label"><span style="color: red">*</span> Condição de Pagamento</label>
+                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
                                     <input class="form-control" readonly>
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                     <p class="read-only">Campo apenas para consulta.</p>
