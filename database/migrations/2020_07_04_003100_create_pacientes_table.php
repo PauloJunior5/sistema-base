@@ -34,8 +34,6 @@ class CreatePacientesTable extends Migration
             $table->string('email')->nullable();
             $table->string('cpf')->nullable();
             $table->string('rg')->nullable();
-            $table->string('emissor')->nullable();
-            $table->string('uf')->nullable();
             $table->string('observacao')->nullable();
 
             $table->timestamps();
