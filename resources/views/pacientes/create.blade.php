@@ -263,11 +263,11 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-cidade-input-medico').val(response.cidade.codigo);
+                $('#ddd-cidade-input-medico').val(response.cidade.ddd);
                 $('#cidade-input-medico').val(response.cidade.cidade);
-                $('#uf-cidade-input-medico').val(response.estado.codigo);
+                $('#uf-cidade-input-medico').val(response.estado.uf);
                 $('#id-cidade-input-medico').val(response.cidade.id);
-                $('#cidadeModal-medico').modal('hide')
+                $('#medico-cidadeModal').modal('hide')
             }
         });
     });

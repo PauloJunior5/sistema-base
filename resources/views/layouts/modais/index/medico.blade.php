@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Médico') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <h4 class="card-title ">{{ __('Médicos') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar médicos') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -33,7 +33,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#medicoCreateModal" style="margin-top: 2.7rem;">Add Médico</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#medicoCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -42,8 +42,8 @@
                                     <th>{{ __('Médico') }}</th>
                                     <th>{{ __('Crm') }}</th>
                                     <th>{{ __('Especialidade') }}</th>
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
