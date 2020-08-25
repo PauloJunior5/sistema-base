@@ -1,7 +1,9 @@
 @extends('layouts.app', ['activePage' => 'paciente-management', 'titlePage' => __('Paciente Management')])
 @section('content')
-@include('layouts.modais.all-medico')
-@include('layouts.modais.cidadeEstadoPais')
+@include('layouts.modais.chamada-modal.medico')
+@include('layouts.modais.chamada-modal.cidade')
+@include('layouts.modais.chamada-modal.estado')
+@include('layouts.modais.chamada-modal.pais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">

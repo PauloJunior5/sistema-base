@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="col-md-1">
                                     <label>@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input" value="{{$cidade->ddd}}" required>
+                                    <input type="text" class="form-control" id="ddd-cidade-input" value="{{$cidade->ddd}}" required readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label>@include('includes.required')Cidade</label>

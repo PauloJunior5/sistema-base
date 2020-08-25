@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Médico') }}</h4>
+                        <h4 class="card-title ">{{ __('Médicos') }}</h4>
                         <p class="card-category"> {{ __('Aqui você pode gerenciar médicos') }}</p>
                     </div>
                     <div class="card-body">

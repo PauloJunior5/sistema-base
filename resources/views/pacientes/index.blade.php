@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paciente') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <h4 class="card-title ">{{ __('Pacientes') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar pacientes') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,23 +35,21 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('paciente.create') }}" class="btn btn-sm btn-primary">{{ __('Add Paciente') }}</a>
+                                <a href="{{ route('paciente.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePacientes">
                                 <thead class=" text-primary">
                                     <th>{{ __('Paciente') }}</th>
-                                    {{-- <th>{{ __('Médico') }}</th> --}}
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
-                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($pacientes as $paciente)
                                     <tr>
                                         <td>{{ $paciente->paciente. " " .$paciente->apelido }}</td>
-                                        {{-- <td>{{ $paciente->id_medico }}</td> --}}
                                         <td>{{ $paciente->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $paciente->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
