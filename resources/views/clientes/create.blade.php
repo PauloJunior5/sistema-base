@@ -86,7 +86,7 @@
                             {{-- INICIO ESCOLHER CIDADE --}}
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">DDD</label>
+                                    <label class="col-form-label">@include('includes.required')DDD</label>
                                     <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
                                 <div class="col-md-4">

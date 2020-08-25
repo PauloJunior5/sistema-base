@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{ __('Médico') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar médicos') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,7 +35,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('medico.create') }}" class="btn btn-sm btn-primary">{{ __('Add Médico') }}</a>
+                                <a href="{{ route('medico.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -44,9 +44,9 @@
                                     <th>{{ __('Médico') }}</th>
                                     <th>{{ __('CRM') }}</th>
                                     <th>{{ __('Especialidade') }}</th>
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
-                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($medicos as $medico)
