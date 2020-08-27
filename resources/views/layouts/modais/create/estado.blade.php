@@ -51,7 +51,7 @@
                                 <div class="col-sm-6">
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-pais" readonly />
+                                        <input class="form-control" id="input-pais-pais" readonly />
                                         <input type="hidden" id="input-id-pais" name="id_pais">
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>

@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" id="tableCidades">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableCidades">
                                 <thead class=" text-primary">
                                     <th>{{ __('DDD') }}</th>
                                     <th>{{ __('Nome') }}</th>

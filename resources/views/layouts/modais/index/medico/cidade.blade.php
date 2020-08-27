@@ -22,11 +22,11 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cidadeCreateModal" style="margin-top: 2.7rem;">Novo</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#medico-cidadeCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" id="tableCidades">
+                            <table class="table" id="tableCidades-medico">
                                 <thead class=" text-primary">
                                     <th>{{ __('DDD') }}</th>
                                     <th>{{ __('Nome') }}</th>
@@ -64,6 +64,6 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tableCidades').DataTable();
+        $('#tableCidades-medico').DataTable();
     });
 </script>
