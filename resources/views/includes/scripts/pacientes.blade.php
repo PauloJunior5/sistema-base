@@ -44,6 +44,7 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
+                alert(response);
                 $('#ddd-cidade-input-paciente').val(response.cidade.ddd);
                 $('#cidade-input-paciente').val(response.cidade.cidade);
                 $('#uf-cidade-input-paciente').val(response.estado.uf);
@@ -124,7 +125,6 @@
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                alert(response);
                 $('#input-sigla-pais-medico').val(response.sigla);
                 $('#input-pais-medico').val(response.pais);
                 $('#input-id-pais-medico').val(response.id);

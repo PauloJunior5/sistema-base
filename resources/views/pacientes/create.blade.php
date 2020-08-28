@@ -169,5 +169,5 @@
         </div>
     </div>
 </div>
-@include('includes.pacientes')
+@include('includes.scripts.pacientes')
 @endsection
