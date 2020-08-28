@@ -56,11 +56,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <input type="date" class="form-control" readonly>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <input type="date" class="form-control" readonly>
                                 </div>
                             </div>
