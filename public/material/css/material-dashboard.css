@@ -20036,3 +20036,12 @@ div.modal-dialog.modal-xl div.modal-content button.close span.modal-close-button
   float: right;
   padding: 10px 15px 0 0;
 }
+
+.new-tooltip {
+  font-size: 15px;
+  color: #5a6577;
+}
+
+.new-row {
+  margin-bottom: 3%;
+}
