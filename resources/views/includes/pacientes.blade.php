@@ -77,7 +77,7 @@
             dataType: "JSON",
             success: function(response){
                 $('#input-sigla-pais').val(response.sigla);
-                $('#input-pais-pais').val(response.pais);
+                $('#input-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')
             }

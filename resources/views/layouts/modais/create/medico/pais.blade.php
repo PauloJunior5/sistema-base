@@ -31,13 +31,13 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Sigla</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="sigla" id="input-sigla" type="text" required />
+                                        <input class="form-control" name="sigla" id="input-sigla-medico" type="text" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="pais" id="input-pais" type="text" required />
+                                        <input class="form-control" name="pais" id="input-pais-medico" type="text" required />
                                     </div>
                                 </div>
                             </div>
