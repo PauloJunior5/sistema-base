@@ -44,7 +44,6 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                alert(response);
                 $('#ddd-cidade-input-paciente').val(response.cidade.ddd);
                 $('#cidade-input-paciente').val(response.cidade.cidade);
                 $('#uf-cidade-input-paciente').val(response.estado.uf);

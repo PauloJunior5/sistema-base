@@ -148,10 +148,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-5">
-                                    <label class="col-form-label">Observação</label>
-                                    <input type="text" class="form-control" name="observacao" value="{{ old('observacao') }}">
-                                </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
                                     <input class="form-control" type="number" name="limite_credito" value="{{ old('limite_credito') }}" required>
@@ -159,7 +155,7 @@
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control">
+                                    <input class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
@@ -171,6 +167,12 @@
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamamento" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                                 {{-- FIM CONDICAO PAGAMENTO --}}
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="col-form-label">Observação</label>
+                                    <input type="text" class="form-control" name="observacao" value="{{ old('observacao') }}">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
@@ -314,29 +316,5 @@
         });
     </script>
 @endif
-
-<script>
-    $(".readonly").on('keydown paste', function(e){
-        e.preventDefault();
-    });
-</script>
-
-<style>
-    .readonly {
-        background-color: #e9ecef;
-        opacity: 1;
-    }
-
-    .readonly:hover {
-        background-color: #e9ecef;
-        opacity: 1;
-    }
-
-    .readonly:focus {
-        background-color: #e9ecef;
-        opacity: 1;
-    }
-
-</style>
 
 @endsection

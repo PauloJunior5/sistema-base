@@ -20045,3 +20045,18 @@ div.modal-dialog.modal-xl div.modal-content button.close span.modal-close-button
 .new-row {
   margin-bottom: 3%;
 }
+
+.readonly {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+.readonly:hover {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+.readonly:focus {
+  background-color: #e9ecef;
+  opacity: 1;
+}

@@ -137,10 +137,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-5">
-                                    <label class="col-form-label">Observação</label>
-                                    <input type="text" class="form-control" value="{{old('observacao', $cliente->observacao)}}" name="observacao">
-                                </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
                                     <input class="form-control" type="number" value="{{old('limite_credito', $cliente->limite_credito)}}" name="limite_credito" required>
@@ -148,7 +144,7 @@
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control">
+                                    <input class="form-control" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
@@ -160,6 +156,12 @@
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamamento" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="col-form-label">Observação</label>
+                                    <input type="text" class="form-control" value="{{old('observacao', $cliente->observacao)}}" name="observacao">
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">

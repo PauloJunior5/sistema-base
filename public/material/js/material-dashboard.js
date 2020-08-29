@@ -732,3 +732,11 @@ function debounce(func, wait, immediate) {
     if (immediate && !timeout) func.apply(context, args);
   };
 };
+
+$(".readonly").on('keydown paste', function(e){
+  e.preventDefault();
+});
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
