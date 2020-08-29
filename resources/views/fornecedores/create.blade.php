@@ -98,27 +98,23 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
                                     <input type="text" class="form-control" name="inscricao_estadual" required>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')CNPJ</label>
                                     <input type="text" class="form-control" name="cnpj" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
-                                    <input class="form-control" type="number" name="limite_credito" required>
-                                </div>
-                                <div class="col-md-2">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" readonly required>
+                                    <input class="form-control readonly">
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
-                                    <input class="form-control" required>
+                                    <input class="form-control readonly">
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -126,7 +122,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-2">
+                                    <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
+                                    <input class="form-control" type="number" name="limite_credito" required>
+                                </div>
+                                <div class="col-md-10">
                                     <label class="col-form-label">Observação</label>
                                     <input type="text" class="form-control" name="observacao">
                                 </div>

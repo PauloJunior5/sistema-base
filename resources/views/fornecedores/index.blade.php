@@ -52,8 +52,8 @@
                                     <tr>
                                         <td>{{ $fornecedor->cnpj }}</td>
                                         <td>{{ $fornecedor->fornecedor }}</td>
-                                        <td>{{ $fornecedor->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $fornecedor->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $fornecedor->created_at->format('Y-m-d H:i:s') }}</td>
+                                        <td>{{ $fornecedor->updated_at->format('Y-m-d H:i:s') }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('fornecedor.destroy', $fornecedor->id) }}" method="post">
                                                 @csrf

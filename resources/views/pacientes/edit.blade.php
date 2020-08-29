@@ -144,12 +144,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Created_at</label>
-                                    <input type="date" class="form-control" value="{{$paciente->created_at->format('Y-m-d')}}" readonly>
+                                    <label class="col-form-label">Data de Criação</label>
+                                    <input type="datetime-local" class="form-control" value="{{$paciente->created_at->format('Y-m-d H:i:s')}}" readonly>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Updated_at</label>
-                                    <input type="date" class="form-control" value="{{$paciente->updated_at->format('Y-m-d')}}" readonly>
+                                    <label class="col-form-label">Data de Alteração</label>
+                                    <input type="datetime-local" class="form-control" value="{{$paciente->updated_at->format('Y-m-d H:i:s')}}" readonly>
                                 </div>
                             </div>
                         </div>

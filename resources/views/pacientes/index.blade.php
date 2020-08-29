@@ -50,8 +50,8 @@
                                     @foreach($pacientes as $paciente)
                                     <tr>
                                         <td>{{ $paciente->paciente. " " .$paciente->apelido }}</td>
-                                        <td>{{ $paciente->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $paciente->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $paciente->created_at->format('Y-m-d H:i:s') }}</td>
+                                        <td>{{ $paciente->updated_at->format('Y-m-d H:i:s') }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
                                                 @csrf

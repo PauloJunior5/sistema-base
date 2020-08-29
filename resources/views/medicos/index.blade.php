@@ -54,8 +54,8 @@
                                         <td>{{ $medico->medico }}</td>
                                         <td>{{ $medico->crm }}</td>
                                         <td>{{ $medico->especialidade }}</td>
-                                        <td>{{ $medico->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $medico->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $medico->created_at->format('Y-m-d H:i:s') }}</td>
+                                        <td>{{ $medico->updated_at->format('Y-m-d H:i:s') }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('medico.destroy', $medico->id) }}" method="post">
                                                 @csrf

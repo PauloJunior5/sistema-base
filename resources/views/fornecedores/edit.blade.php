@@ -12,59 +12,59 @@
                     @method('put')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('FICHA CADASTRAL') }}</h4>
+                            <h4 class="card-title">{{ __('Alterar Fornecedor') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Código de Referência</label>
+                                    <label class="col-form-label">Código @include('includes.tooltips-campo-consulta')</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->id}}" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Fornecedor</label>
+                                    <label class="col-form-label">@include('includes.required')Fornecedor</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->fornecedor}}" name="fornecedor">
                                 </div>
                                 <div class="col-md-4 campoPessoaJuridica">
-                                    <label class="col-form-label">Nome Fantasia</label>
+                                    <label class="col-form-label">@include('includes.required')Nome Fantasia</label>
                                     <input type="text" class="form-control inputPessoaJuridica" value="{{$fornecedor->nome_fantasia}}" name="nome_fantasia" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="col-form-label">Endereço</label>
+                                    <label class="col-form-label">@include('includes.required')Endereço</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->endereco}}" name="endereco" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="col-form-label">nº</label>
+                                    <label class="col-form-label">@include('includes.required')nº</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->numero}}" name="numero" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Complemento</label>
-                                    <input type="text" class="form-control" value="{{$fornecedor->complemento}}" name="complemento" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->complemento}}" name="complemento">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Bairro</label>
+                                    <label class="col-form-label">@include('includes.required')Bairro</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->bairro}}" name="bairro" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">CEP</label>
+                                    <label class="col-form-label">@include('includes.required')CEP</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->cep}}" name="cep" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label class="col-form-label">Código</label>
-                                    <input type="text" class="form-control" id="codigo-cidade-input" value="{{$cidade->codigo}}" required>
+                                    <label class="col-form-label">@include('includes.required')DDD</label>
+                                    <input type="text" class="form-control readonly" id="ddd-cidade-input" value="{{$cidade->ddd}}" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Cidade</label>
+                                    <label class="col-form-label">@include('includes.required')Cidade @include('includes.tooltips-campo-consulta')</label>
                                     <input class="form-control" id="cidade-input" value="{{$cidade->cidade}}" readonly required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{$cidade->id}}">
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input" value="{{$estado->codigo}}" readonly required>
+                                    <label class="col-form-label">UF @include('includes.tooltips-campo-consulta')</label>
+                                    <input class="form-control" id="uf-cidade-input" value="{{$estado->uf}}" readonly required>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
@@ -72,48 +72,40 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Telefone</label>
+                                    <label class="col-form-label">@include('includes.required')Telefone</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->telefone}}" name="telefone" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Celular</label>
-                                    <input type="text" class="form-control" value="{{$fornecedor->celular}}" name="celular" required>
+                                    <input type="text" class="form-control" value="{{$fornecedor->celular}}" name="celular">
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Email</label>
+                                    <label class="col-form-label">@include('includes.required')Email</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->email}}" name="email" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Contato</label>
+                                    <label class="col-form-label">@include('includes.required')Contato</label>
                                     <input type="text" class="form-control" value="{{$fornecedor->contato}}" name="contato" required>
                                 </div>
                             </div>
                             <div class="row campoPessoaJuridica">
-                                <div class="col-md-3">
-                                    <label class="col-form-label">Inscricão Estadual</label>
+                                <div class="col-md-4">
+                                    <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
                                     <input type="text" class="form-control inputPessoaJuridica" value="{{$fornecedor->inscricao_estadual}}" name="inscricao_estadual" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label">CNPJ</label>
+                                <div class="col-md-4">
+                                    <label class="col-form-label">@include('includes.required')CNPJ</label>
                                     <input type="text" class="form-control inputPessoaJuridica" value="{{$fornecedor->cnpj}}" name="cnpj" required>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-5">
-                                    <label class="col-form-label">Observação</label>
-                                    <input type="text" class="form-control" value="{{$fornecedor->observacao}}" name="observacao" required>
-                                </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Limite de Crédito</label>
-                                    <input class="form-control" type="number" value="{{$fornecedor->limite_credito}}" name="limite_credito" required>
-                                </div>
-                                <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control">
+                                    <input class="form-control readonly">
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label">Condição de Pagamento</label>
-                                    <input class="form-control" value="{{$fornecedor->condicao_pagamento}}">
+                                <div class="col-md-4">
+                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
+                                    <input class="form-control readonly">
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -122,18 +114,28 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Created_at</label>
-                                    <input type="date" class="form-control" value="{{$fornecedor->created_at->format('Y-m-d')}}" name="created_at" readonly>
+                                    <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
+                                    <input class="form-control" type="number" value="{{$fornecedor->limite_credito}}" name="limite_credito" required>
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="col-form-label">Observação</label>
+                                    <input type="text" class="form-control" value="{{$fornecedor->observacao}}" name="observacao">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="col-form-label">Data de Criação</label>
+                                    <input type="datetime-local" class="form-control" value="{{$fornecedor->created_at->format('Y-m-d H:i:s')}}" name="created_at" readonly>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Updated_at</label>
-                                    <input type="date" class="form-control" value="{{$fornecedor->updated_at->format('Y-m-d')}}" name="updated_at" readonly>
+                                    <label class="col-form-label">Data de Alteração</label>
+                                    <input type="datetime-local" class="form-control" value="{{$fornecedor->updated_at->format('Y-m-d H:i:s')}}" name="updated_at" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{route('fornecedor.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
+                            <a href="{{route('fornecedor.index')}}" class="btn btn-secondary">{{ __('Voltar') }}</a>
                         </div>
                     </div>
                 </form>
@@ -179,9 +181,9 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-cidade-input').val(response.cidade.codigo);
+                $('#ddd-cidade-input').val(response.cidade.ddd);
                 $('#cidade-input').val(response.cidade.cidade);
-                $('#uf-cidade-input').val(response.estado.codigo);
+                $('#uf-cidade-input').val(response.estado.uf);
                 $('#id-cidade-input').val(response.cidade.id);
                 $('#cidadeModal').modal('hide')
             }
@@ -196,7 +198,7 @@
             data: { id_estado : id_estado },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#uf-estado-input').val(response.estado.uf);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);
                 $('#pais-input').val(response.pais.pais);
@@ -213,7 +215,7 @@
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')
