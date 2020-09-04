@@ -11675,7 +11675,7 @@ fieldset[disabled] .form-check .form-check-input,
   cursor      : pointer;
   padding-left: 25px;
   position    : relative;
-  margin-left : 15%;
+  margin-left : 5%;
 }
 
 .form-group.is-focused .form-check .form-check-label {
@@ -20027,16 +20027,36 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^="col-"]:last-chil
   padding-right: 0;
 }
 
-/* AJUSTES TABELA DE PARCELAS - CONDIÇÃO DE PAGAMENTO */
-
-html.perfect-scrollbar-off body div.wrapper div.main-panel div.content div.container-fluid div.row div.col-md-12 form#condicaoPagamentoForm.form-horizontal div.card div.card-body div.card div.card-body {
-  margin: 0px;
+.read-only {
+  font-size: smaller;
+  color: #868686;
 }
 
-html.perfect-scrollbar-off body div.wrapper div.main-panel div.content div.container-fluid div.row div.col-md-12 form#condicaoPagamentoForm.form-horizontal div.card div.card-body div.card div.card-body div.row div.table-responsive table#tblCadastro.table.table-bordered.table-hover thead tr {
-  text-align: center;
+div.modal-dialog.modal-xl div.modal-content button.close span.modal-close-button {
+  float: right;
+  padding: 10px 15px 0 0;
 }
 
-html.perfect-scrollbar-off body div.wrapper div.main-panel div.content div.container-fluid div.row div.col-md-12 form#condicaoPagamentoForm.form-horizontal div.card div.card-body div.card div.card-body div.row div.table-responsive table#tblCadastro.table.table-bordered.table-hover tbody tr td {
-  text-align: center;
+.new-tooltip {
+  font-size: 15px;
+  color: #5a6577;
+}
+
+.new-row {
+  margin-bottom: 3%;
+}
+
+.readonly {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+.readonly:hover {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+.readonly:focus {
+  background-color: #e9ecef;
+  opacity: 1;
 }

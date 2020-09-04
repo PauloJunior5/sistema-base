@@ -1,6 +1,8 @@
 @extends('layouts.app', ['activePage' => 'fornecedor-management', 'titlePage' => __('Fornecedor Management')])
 @section('content')
-@include('layouts.modais.cidadeEstadoPais')
+@include('layouts.modais.chamada-modal.cidade')
+@include('layouts.modais.chamada-modal.estado')
+@include('layouts.modais.chamada-modal.pais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -19,58 +21,58 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('FICHA CADASTRAL') }}</h4>
+                            <h4 class="card-title">{{ __('Novo Fornecedor') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Código de Referência</label>
+                                    <label class="col-form-label">Código @include('includes.tooltips-campo-consulta')</label>
                                     <input type="text" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Fornecedor</label>
-                                    <input type="text" class="form-control" name="fornecedor">
+                                    <label class="col-form-label">@include('includes.required')Fornecedor</label>
+                                    <input type="text" class="form-control" name="fornecedor" required>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Nome Fantasia</label>
+                                    <label class="col-form-label">@include('includes.required')Nome Fantasia</label>
                                     <input type="text" class="form-control" name="nome_fantasia" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label class="col-form-label">Endereço</label>
+                                    <label class="col-form-label">@include('includes.required')Endereço</label>
                                     <input type="text" class="form-control" name="endereco" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="col-form-label">nº</label>
+                                    <label class="col-form-label">@include('includes.required')nº</label>
                                     <input type="text" class="form-control" name="numero" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Complemento</label>
-                                    <input type="text" class="form-control" name="complemento" required>
+                                    <input type="text" class="form-control" name="complemento">
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Bairro</label>
+                                    <label class="col-form-label">@include('includes.required')Bairro</label>
                                     <input type="text" class="form-control" name="bairro" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">CEP</label>
+                                    <label class="col-form-label">@include('includes.required')CEP</label>
                                     <input type="text" class="form-control" name="cep" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label class="col-form-label">Código</label>
-                                    <input type="text" class="form-control" id="codigo-cidade-input" required>
+                                    <label class="col-form-label">@include('includes.required')DDD</label>
+                                    <input type="text" class="form-control" id="ddd-cidade-input" required readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Cidade</label>
-                                    <input class="form-control" id="cidade-input" value="" readonly required>
+                                    <label class="col-form-label">@include('includes.required')Cidade @include('includes.tooltips-campo-consulta')</label>
+                                    <input class="form-control readonly" id="cidade-input" value="" required>
                                     <input type="hidden" id="id-cidade-input" name="id_cidade" value="">
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="col-form-label">UF</label>
+                                    <label class="col-form-label">UF @include('includes.tooltips-campo-consulta')</label>
                                     <input class="form-control" id="uf-cidade-input" value="" readonly required>
                                 </div>
                                 <div class="col-md-1">
@@ -79,48 +81,40 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Telefone</label>
+                                    <label class="col-form-label">@include('includes.required')Telefone</label>
                                     <input type="text" class="form-control" name="telefone" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Celular</label>
-                                    <input type="text" class="form-control" name="celular" required>
+                                    <input type="text" class="form-control" name="celular">
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Email</label>
+                                    <label class="col-form-label">@include('includes.required')Email</label>
                                     <input type="text" class="form-control" name="email" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Contato</label>
+                                    <label class="col-form-label">@include('includes.required')Contato</label>
                                     <input type="text" class="form-control" name="contato" required>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-3">
-                                    <label class="col-form-label">Inscricão Estadual</label>
+                                <div class="col-md-4">
+                                    <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
                                     <input type="text" class="form-control" name="inscricao_estadual" required>
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label">CNPJ</label>
+                                <div class="col-md-4">
+                                    <label class="col-form-label">@include('includes.required')CNPJ</label>
                                     <input type="text" class="form-control" name="cnpj" required>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-5">
-                                    <label class="col-form-label">Observação</label>
-                                    <input type="text" class="form-control" name="observacao" required>
-                                </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Limite de Crédito</label>
-                                    <input class="form-control" type="number" name="limite_credito" required>
-                                </div>
-                                <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" required>
+                                    <input class="form-control readonly">
                                 </div>
-                                <div class="col-md-3">
-                                    <label class="col-form-label">Condição de Pagamento</label>
-                                    <input class="form-control" required>
+                                <div class="col-md-4">
+                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
+                                    <input class="form-control readonly">
                                     {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -129,18 +123,28 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
+                                    <input class="form-control" type="number" name="limite_credito" required>
+                                </div>
+                                <div class="col-md-10">
+                                    <label class="col-form-label">Observação</label>
+                                    <input type="text" class="form-control" name="observacao">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
                                     <input type="date" class="form-control" name="created_at" readonly>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
                                     <input type="date" class="form-control" name="updated_at" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto float-right">
-                            <a href="{{route('fornecedor.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
+                            <a href="{{route('fornecedor.index')}}" class="btn btn-secondary">{{ __('Voltar') }}</a>
                         </div>
                     </div>
                 </form>
@@ -159,9 +163,9 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-cidade-input').val(response.cidade.codigo);
+                $('#ddd-cidade-input').val(response.cidade.ddd);
                 $('#cidade-input').val(response.cidade.cidade);
-                $('#uf-cidade-input').val(response.estado.codigo);
+                $('#uf-cidade-input').val(response.estado.uf);
                 $('#id-cidade-input').val(response.cidade.id);
                 $('#cidadeModal').modal('hide')
             }
@@ -176,7 +180,7 @@
             data: { id_estado : id_estado },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#uf-estado-input').val(response.estado.uf);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);
                 $('#pais-input').val(response.pais.pais);
@@ -193,7 +197,7 @@
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')

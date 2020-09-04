@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Paises') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage paises') }}</p>
+                        <h4 class="card-title ">{{ __('Médicos') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar médicos') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -33,28 +33,30 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#paisCreateModal" style="margin-top: 2.7rem;">Add Pais</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#medicoCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" id="myTable">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableMedicos">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Código') }}</th>
-                                    <th>{{ __('Nome') }}</th>
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
+                                    <th>{{ __('Médico') }}</th>
+                                    <th>{{ __('Crm') }}</th>
+                                    <th>{{ __('Especialidade') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($paises as $pais)
+                                    @foreach($medicos as $medico)
                                     <tr>
-                                        <td>{{ $pais->codigo }}</td>
-                                        <td>{{ $pais->pais }}</td>
-                                        <td>{{ $pais->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $medico->medico }}</td>
+                                        <td>{{ $medico->crm }}</td>
+                                        <td>{{ $medico->especialidade }}</td>
+                                        <td>{{ $medico->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $medico->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link idPais" value="{{$pais->id}}" data-original-title="" title="">
-                                                <i class="material-icons">check</i>
+                                            <button rel="tooltip" class="btn btn-success btn-link idMedico" value="{{$medico->id}}" data-original-title="" title="">
+                                                <i class="material-icons">check</i> Selecionar
                                                 <div class="ripple-container"></div>
                                             </button>
                                         </td>
@@ -71,7 +73,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#tableMedicos').DataTable();
     });
 
 </script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cidade;
+use App\CondicaoPagamento;
 use App\Estado;
 use App\Fornecedor;
 use App\Pais;
@@ -65,6 +66,7 @@ class FornecedorController extends Controller
         $fornecedor = Fornecedor::findOrFail($id);
         $cidade = Cidade::findOrFail($fornecedor->id_cidade);
         $estado = Estado::findOrFail($cidade->id_estado);
+        // $condicaoPagamento = CondicaoPagamento::findOrFail($fornecedor->id_condicao_pagamento);
 
         $cidades = Cidade::all(); // Modal add cidade
         $estados = Estado::all(); // Modal add estado
@@ -87,7 +89,7 @@ class FornecedorController extends Controller
         ]);
 
         if ($validatedData) {
-            $fornecedor = Fornecedor::whereId($id)->update($request->except('_token', '_method'));
+            $fornecedor = Fornecedor::findOrFail($id)->update($request->except('_token', '_method'));
             if ($fornecedor) {
                 return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor successfully updated.');
             }

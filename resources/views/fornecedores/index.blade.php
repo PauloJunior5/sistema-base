@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{ __('Fornecedores') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage fornecedores') }}</p>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar fornecedores') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,7 +35,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('fornecedor.create') }}" class="btn btn-sm btn-primary">{{ __('Add Fornecedor') }}</a>
+                                <a href="{{ route('fornecedor.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -43,17 +43,17 @@
                                 <thead class=" text-primary">
                                     <th>{{ __('CNPJ') }}</th>
                                     <th>{{ __('Fornecedor') }}</th>
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Update date') }}</th>
-                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($fornecedores as $fornecedor)
                                     <tr>
                                         <td>{{ $fornecedor->cnpj }}</td>
                                         <td>{{ $fornecedor->fornecedor }}</td>
-                                        <td>{{ $fornecedor->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $fornecedor->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $fornecedor->created_at->format('Y-m-d H:i:s') }}</td>
+                                        <td>{{ $fornecedor->updated_at->format('Y-m-d H:i:s') }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('fornecedor.destroy', $fornecedor->id) }}" method="post">
                                                 @csrf

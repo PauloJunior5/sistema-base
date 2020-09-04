@@ -79,9 +79,11 @@ class MedicoController extends Controller
     {
         $medico = Medico::findOrFail($id);
         $cidades = Cidade::all(); // Modal add cidade
+        $estados = Estado::all(); // Modal add estado
+        $paises = Pais::all(); // Modal add pais
         $cidade = Cidade::findOrFail($medico->id_cidade);
         $estado = Estado::findOrFail($cidade->id_estado);
-        return view('medicos.edit', compact('medico', 'cidades', 'cidade', 'estado'));
+        return view('medicos.edit', compact('medico', 'cidades', 'estados', 'paises', 'cidade', 'estado'));
     }
 
     /**
