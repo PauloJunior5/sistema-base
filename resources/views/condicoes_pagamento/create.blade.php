@@ -79,23 +79,40 @@
                                 <hr>
                                 <div class="card-body">
                                     <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-                                        
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered table-hover" id="tblCadastro">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Numero de Dias</th>
-                                                        <th>Porcentual</th>
-                                                        <th>Código</th>
-                                                        <th>Forma de Pagamento</th>
-                                                        <th><button class="btn btn-primary" type="button" value="Salvar" id="btnAdicionar">Novo</button></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        
+                                        <form id="frmCadastro" class="form-horizontal">
+                                            <div class="col-sm-2">
+                                                <label class="col-form-label">Numero de Dias:</label>
+                                                <div class="form-group">
+                                                    <input type="numeric" id="id_dias" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label class="col-form-label">Porcentual:</label>
+                                                <div class="form-group">
+                                                    <input type="numeric" id="id_porcentual" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label class="col-form-label">Código</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="id-forma_pagamento-input" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="col-form-label">Forma de Pagamento</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="forma_pagamento-input" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#forma_pagamentoModal"><i class="material-icons">search</i></button>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar">Salvar</button>
+                                            </div>
+                                        </form>
+
+                                        <table class="table table-bordered table-hover" id="condicao-table"></table>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +120,7 @@
                         </div>
                         <div class="card-footer ml-auto pull-right">
                             <a href="{{ route('condicaoPagamento.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Add') }}</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Add Condição de Pagamento') }}</button>
                         </div>
                     </div>
                 </form>
@@ -139,67 +156,230 @@
     });
 
     $(function(){
-        //Código das funções Adicionar, Salvar, Editar e Excluir
-        $(".btnEditar").bind("click", Editar);
-        $(".btnExcluir").bind("click", Excluir);
-        $("#btnAdicionar").bind("click", Adicionar);
+        localStorage.clear();
+        var operacao = "A"; //"A"=Adição; "E"=Edição
+        var indice_selecionado = -1; //Índice do item selecionado na lista
+        var tbClientes = localStorage.getItem("tbClientes");// Recupera os dados armazenados
+        tbClientes = JSON.parse(tbClientes); // Converte string para objeto
+        if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
+        tbClientes = [];
+        var porcentual = 0;
+        var porcentualReserva = 0;
+
+    $("#btnSalvar").on("click",function(){
+        if(operacao == "A")
+            return Adicionar();
+        else
+            return Editar();
+    });
+
+    function Adicionar(){
+        var cliente = JSON.stringify({
+            Dias   : $("#id_dias").val(),
+            Porcentual     : $("#id_porcentual").val(),
+            Pagamento : $("#id-forma_pagamento-input").val(),
+        });
+        
+        var objCliente = JSON.parse(cliente)
+        var objClientePorcentual = parseFloat(objCliente.Porcentual);
+        if ((porcentual + objClientePorcentual ) <= 100) {
+            porcentual += objClientePorcentual;
+            tbClientes.push(cliente);
+            localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+            $('#input-parcelas').val(JSON.stringify(tbClientes));
+            alert("Registro adicionado.");
+            Listar();
+            return true;
+        } else {
+            alert("Parcela inserida ultrapassa os 100%");
+            Listar();
+            return true;
+        }
+        
+    }
+
+    $("#condicao-table").on("click", ".btnEditar", function(){
+
+        operacao = "E";
+        indice_selecionado = parseInt($(this).attr("alt"));
+        var cli = JSON.parse(tbClientes[indice_selecionado]);
+        $("#id_dias").val(cli.Dias);
+        $("#id_porcentual").val(cli.Porcentual);
+        $("#id-forma_pagamento-input").val(cli.Pagamento);
+        porcentualReserva = porcentual;
+        porcentual -= cli.Porcentual;
+
+        var id_forma_pagamento = cli.Pagamento;
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/formaPagamento/show',
+            data: { id_forma_pagamento : id_forma_pagamento },
+            dataType: "JSON",
+            success: function(response){
+                $('#id-forma_pagamento-input').val(response.id);
+                $('#forma_pagamento-input').val(response.forma_pagamento);
+                $('#forma_pagamentoModal').modal('hide')
+            }
+        });
+
+        $("#id_dias").focus();
+    });
+
+    function Editar(){
+        tbClientes[indice_selecionado] = JSON.stringify({
+                Dias   : $("#id_dias").val(),
+                Porcentual     : $("#id_porcentual").val(),
+                Pagamento : $("#id-forma_pagamento-input").val(),
+            });//Altera o item selecionado na tabela
+
+        var objCliente = JSON.parse(tbClientes[indice_selecionado])
+        var objClientePorcentual = parseFloat(objCliente.Porcentual);
+        if ((porcentual + objClientePorcentual ) <= 100) {
+            porcentual += parseFloat(tbClientes[indice_selecionado].Porcentual);
+            localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+            $('#input-parcelas').val(JSON.stringify(tbClientes));
+            alert("Informações editadas.")
+            operacao = "A"; //Volta ao padrão
+            Listar();
+            return true;
+        } else {
+            porcentual = porcentualReserva;
+            porcentualReserva = 0;
+            alert("Parcela inserida ultrapassa os 100%");
+            Listar();
+            return true;
+        }
+    }
+
+    $("#condicao-table").on("click", ".btnExcluir",function(){
+        indice_selecionado = parseInt($(this).attr("alt"));
+        var cli = JSON.parse(tbClientes[indice_selecionado]);
+        $("#id_dias").val(cli.Dias);
+        $("#id_porcentual").val(cli.Porcentual);
+        $("#id-forma_pagamento-input").val(cli.Pagamento);
+        porcentual -= cli.Porcentual;
+        Excluir();
+        Listar();
     });
 
     function Excluir(){
-        var par = $(this).parent().parent(); //tr
-        par.remove();
-    };
+        tbClientes.splice(indice_selecionado, 1);
+        localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
+        $('#input-parcelas').val(JSON.stringify(tbClientes));
+        alert("Registro excluído.");
+    }
 
-    function Editar(){
-        var par = $(this).parent().parent(); //tr
-        var tdNumeroDias = par.children("td:nth-child(1)");
-        var tdPorcentual = par.children("td:nth-child(2)");
-        var tdCodigo = par.children("td:nth-child(3)");
-        var tdFormaPagamento = par.children("td:nth-child(4)");
-        var tdBotoes = par.children("td:nth-child(5)");
+    function Listar(){
 
-        tdNumeroDias.html("<input type='text' id='txtNome' value='"+tdNumeroDias.html()+"'/>");
-        tdPorcentual.html("<input type='text' id='txtTelefone' value='"+tdPorcentual.html()+"'/>");
-        tdCodigo.html("<input type='text' id='txtEmail' value='"+tdCodigo.html()+"'/>");
-        tdFormaPagamento.html("<input type='text' id='txtEmail' value='"+tdFormaPagamento.html()+"'/>");
-        tdBotoes.html("<button class='btn btn-primary btn-sm btnSalvar'>Salvar</buttom>");
+        var forma_pagamento;
+        var n = 0;
 
-        $(".btnSalvar").bind("click", Salvar);
-        $(".btnEditar").bind("click", Editar);
-        $(".btnExcluir").bind("click", Excluir);
-    };
+        $("#condicao-table").html("");
+        $("#condicao-table").html(
+            "<thead>"+
+            "    <tr>"+
+            "    <th scope='col'>Parcela</th>"+
+            "    <th scope='col'>Número de Dias</th>"+
+            "    <th scope='col'>Percentual (%)</th>"+
+            "    <th scope='col'>Forma de Pagamento</th>"+
+            "    <th scope='col'>Ações</th>"+
+            "   </tr>"+
+            "</thead>"+
+            "<tbody>"+
+            "</tbody>"
+        );
 
-    function Salvar(){
-        var par = $(this).parent().parent(); //tr
-        var tdNumeroDias = par.children("td:nth-child(1)");
-        var tdPorcentual = par.children("td:nth-child(2)");
-        var tdCodigo = par.children("td:nth-child(3)");
-        var tdFormaPagamento = par.children("td:nth-child(4)");
-        var tdBotoes = par.children("td:nth-child(5)");
+        for(var i in tbClientes){
 
-        tdNumeroDias.html(tdNumeroDias.children("input[type=text]").val());
-        tdPorcentual.html(tdPorcentual.children("input[type=text]").val());
-        tdCodigo.html(tdCodigo.children("input[type=text]").val());
-        tdFormaPagamento.html(tdFormaPagamento.children("input[type=text]").val());
-        tdBotoes.html("<img src='images/delete.png' class='btnExcluir'/><img src='images/pencil.png' class='btnEditar'/>");
-        tdBotoes.html("<button class='btn btn-secondary btn-sm btnEditar'>Editar</buttom> <button class='btn btn-danger btn-sm btnExcluir'>Excluir</buttom>");
+            var cli = JSON.parse(tbClientes[i]);
+            n++;
 
-        $(".btnEditar").bind("click", Editar);
-        $(".btnExcluir").bind("click", Excluir);
-    };
+            var id_forma_pagamento = cli.Pagamento;
+            $.ajax({
+                method: "POST",
+                url: url_atual + '/formaPagamento/show',
+                data: { id_forma_pagamento : id_forma_pagamento },
+                dataType: "JSON",
+                async: false,
+                success: function(response){
+                    forma_pagamento = response;
+                }
+            });
 
-    function Adicionar(){
-        $("#tblCadastro tbody").append(
-            "<tr>"+
-            "<td><input type='text'/></td>"+
-            "<td><input type='text'/></td>"+
-            "<td><input type='text'/></td>"+
-            "<td><input type='text'/></td>"+
-            "<td><button class='btn btn-success btn-sm btnSalvar'><i class='material-icons'>check</i></buttom> <button class='btn btn-danger btn-sm btnExcluir'><i class='material-icons'>clear</i></buttom></td>"+ "</tr>");
+            $("#condicao-table tbody").append("<tr>");
+            $("#condicao-table tbody").append("<td>"+n+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+            $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("</tr>");
+            
+        }
 
-            $(".btnSalvar").bind("click", Salvar);
-            $(".btnExcluir").bind("click", Excluir);
-    };
+        // alert(porcentual);
+
+    }
+
+    $(function() {
+
+        var forma_pagamento;
+        var n = 0;
+
+        $("#condicao-table").html("");
+        $("#condicao-table").html(
+            "<thead>"+
+            "   <tr>"+
+            "    <th scope='col'>Parcela</th>"+
+            "    <th scope='col'>Número de Dias</th>"+
+            "    <th scope='col'>Percentual (%)</th>"+
+            "    <th scope='col'>Forma de Pagamento</th>"+
+            "    <th scope='col'>Ações</th>"+
+            "   </tr>"+
+            "</thead>"+
+            "<tbody>"+
+            "</tbody>"
+        );
+
+        for(var i in tbClientes){
+
+            var cli = JSON.parse(tbClientes[i]);
+            n++;
+
+            var id_forma_pagamento = cli.Pagamento;
+            $.ajax({
+                method: "POST",
+                url: url_atual + '/formaPagamento/show',
+                data: { id_forma_pagamento : id_forma_pagamento },
+                dataType: "JSON",
+                async: false,
+                success: function(response){
+                    forma_pagamento = response;
+                }
+            });
+
+            $("#condicao-table tbody").append("<tr>");
+            $("#condicao-table tbody").append("<td>"+n+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+            $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("</tr>");
+
+        }
+
+        // alert(porcentual);
+
+        
+    });
+
+    $("#condicaoPagamentoForm").submit(function() {
+        if(parseFloat(porcentual) < 100){
+            alert("Parcelas não atingem os 100%");
+            return false;
+        }
+    });
+
+});
 
 </script>
 @endsection
