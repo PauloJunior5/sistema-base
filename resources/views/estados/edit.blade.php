@@ -1,58 +1,40 @@
 @extends('layouts.app', ['activePage' => 'estado-management', 'titlePage' => __('Estado Management')])
 @section('content')
-<!-- Start Modal -->
-<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.index.paisModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="paisCreateModal" tabindex="-1" role="dialog" aria-labelledby="paisCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.create.paisCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
-<script>
-$(function() {
-    $('#paisModal').modal('show');
-});
-</script>
-@endif
+@include('layouts.modais.chamada-modal.pais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <form method="post" action="{{ route('estado.update', $estado) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Edit Estado') }}</h4>
+                            <h4 class="card-title">{{ __('Editar Estado') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código de Referência</label>
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
                                         <input class="form-control" name="id" value="{{$estado->id}}" readonly />
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código</label>
+                                    <label class="col-form-label">UF</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" type="text" placeholder="Código do Estado" value="{{$estado->codigo}}" required />
+                                        <input class="form-control" name="uf" type="text" value="{{$estado->uf}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -64,9 +46,9 @@ $(function() {
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código do País</label>
+                                    <label class="col-form-label">Sigla do País</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-codigo-pais" value="{{$pais->codigo}}" type="text" required/>
+                                        <input class="form-control" id="input-sigla-pais" value="{{$pais->sigla}}" type="text" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -74,6 +56,7 @@ $(function() {
                                     <div class="form-group">
                                         <input class="form-control" id="input-pais-pais" value="{{$pais->pais}}" readonly />
                                         <input type="hidden" id="input-id-pais" name="id_pais" value="{{$pais->id}}">
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -84,22 +67,24 @@ $(function() {
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ $estado->created_at->format('Y-m-d') }}" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ $estado->updated_at->format('Y-m-d') }}" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                            <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                 </form>
             </div>
@@ -116,7 +101,7 @@ $(function() {
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')
@@ -124,4 +109,13 @@ $(function() {
         });
     });
 </script>
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
+<script>
+$(function() {
+    $('#paisModal').modal('show');
+});
+</script>
+@endif
+
 @endsection

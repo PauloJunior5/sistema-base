@@ -1,6 +1,8 @@
 @extends('layouts.app', ['activePage' => 'medico-management', 'titlePage' => __('Médico Management')])
 @section('content')
-@include('layouts.modais.cidadeEstadoPais')
+@include('layouts.modais.chamada-modal.cidade')
+@include('layouts.modais.chamada-modal.estado')
+@include('layouts.modais.chamada-modal.pais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -19,63 +21,66 @@
                     @method('put')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Add Médico') }}</h4>
+                            <h4 class="card-title">{{ __('Alterar Médico') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Código de Referência</label>
+                                    <label>Código</label>
                                     <input class="form-control" value="{{$medico->id}}" readonly />
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Médico</label>
+                                    <label>@include('includes.required')Médico</label>
                                     <input class="form-control" name="medico" type="text" value="{{$medico->medico}}" required />
                                 </div>
                                 <div class="col-md-2">
-                                    <label>Crm</label>
+                                    <label>@include('includes.required')Crm</label>
                                     <input class="form-control" name="crm" type="text" value="{{$medico->crm}}" required />
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Especialidade</label>
+                                    <label>@include('includes.required')Especialidade</label>
                                     <input class="form-control" name="especialidade" type="text" value="{{$medico->especialidade}}" required />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <label>Endereço</label>
-                                    <input type="text" class="form-control" name="endereco" value="{{$medico->endereco}}">
+                                    <label>@include('includes.required')Endereço</label>
+                                    <input type="text" class="form-control" name="endereco" value="{{$medico->endereco}}" required>
                                 </div>
                                 <div class="col-md-1">
-                                    <label>nº</label>
-                                    <input type="text" class="form-control" name="numero" value="{{$medico->numero}}">
+                                    <label>@include('includes.required')nº</label>
+                                    <input type="text" class="form-control" name="numero" value="{{$medico->numero}}" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label>Complemento</label>
                                     <input type="text" class="form-control" name="complemento" value="{{$medico->complemento}}">
                                 </div>
                                 <div class="col-md-2">
-                                    <label>Bairro</label>
-                                    <input type="text" class="form-control" name="bairro" value="{{$medico->bairro}}">
+                                    <label>@include('includes.required')Bairro</label>
+                                    <input type="text" class="form-control" name="bairro" value="{{$medico->bairro}}" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label>CEP</label>
-                                    <input type="text" class="form-control" name="cep" value="{{$medico->cep}}">
+                                    <label>@include('includes.required')CEP</label>
+                                    <input type="text" class="form-control" name="cep" value="{{$medico->cep}}" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-1">
-                                    <label>Código</label>
-                                    <input type="text" class="form-control" id="codigo-cidade-input" value="{{$cidade->codigo}}">
+                                    <label>@include('includes.required')DDD</label>
+                                    <input type="text" class="form-control" id="ddd-cidade-input" value="{{$cidade->ddd}}" required readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Cidade</label>
+                                    <label>@include('includes.required')Cidade</label>
                                     <input class="form-control" id="cidade-input" value="{{$cidade->cidade}}" readonly />
-                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{$cidade->id}}">
+                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{$cidade->id}}" required>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <label>UF</label>
-                                    <input class="form-control" id="uf-cidade-input" value="{{$estado->codigo}}" readonly />
+                                    <input class="form-control" id="uf-cidade-input" value="{{$estado->uf}}" readonly />
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
@@ -83,30 +88,30 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label>Telefone</label>
-                                    <input type="text" class="form-control" name="telefone" value="{{$medico->telefone}}">
+                                    <label>@include('includes.required')Telefone</label>
+                                    <input type="text" class="form-control" name="telefone" value="{{$medico->telefone}}" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label>Celular</label>
                                     <input type="text" class="form-control" name="celular" value="{{$medico->celular}}">
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Email</label>
-                                    <input type="text" class="form-control" name="email" value="{{$medico->email}}">
+                                    <label>@include('includes.required')Email</label>
+                                    <input type="text" class="form-control" name="email" value="{{$medico->email}}" required>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label>CPF</label>
-                                    <input type="text" class="form-control" name="cpf" value="{{$medico->cpf}}">
+                                    <label>@include('includes.required')CPF</label>
+                                    <input type="text" class="form-control" name="cpf" value="{{$medico->cpf}}" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label>RG</label>
-                                    <input type="text" class="form-control" name="rg" value="{{$medico->rg}}">
+                                    <label>@include('includes.required')RG</label>
+                                    <input type="text" class="form-control" name="rg" value="{{$medico->rg}}" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label for="nascimento">Nascimento</label>
-                                    <input type="date" class="form-control" name="nascimento" value="{{$medico->nascimento}}">
+                                    <label for="nascimento">@include('includes.required')Nascimento</label>
+                                    <input type="date" class="form-control" name="nascimento" value="{{$medico->nascimento}}" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -117,12 +122,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>Created_at</label>
-                                    <input type="date" class="form-control" value="{{$medico->created_at->format('Y-m-d')}}" readonly>
+                                    <label>Data de Criação</label>
+                                    <input type="datetime-local" class="form-control" value="{{$medico->created_at->format('Y-m-d H:i:s')}}" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
-                                    <label>Updated_at</label>
-                                    <input type="date" class="form-control" value="{{$medico->updated_at->format('Y-m-d')}}" readonly>
+                                    <label>Data de Alteração</label>
+                                    <input type="datetime-local" class="form-control" value="{{$medico->updated_at->format('Y-m-d H:i:s')}}" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                             </div>
                         </div>

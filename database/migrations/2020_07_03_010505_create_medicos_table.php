@@ -14,7 +14,7 @@ class CreateMedicosTable extends Migration
     public function up()
     {
         Schema::create('medicos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->tinyIncrements('id');
 
             $table->string('medico')->nullable();
             $table->string('crm')->nullable();
@@ -24,7 +24,7 @@ class CreateMedicosTable extends Migration
             $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
-            $table->unsignedBigInteger('id_cidade'); // foreign_key cidades
+            $table->unsignedTinyInteger('id_cidade'); // foreign_key cidades
             $table->string('nascimento')->nullable();
             $table->string('nacionalidade')->nullable();
             $table->string('telefone')->nullable();

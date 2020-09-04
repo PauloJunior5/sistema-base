@@ -14,10 +14,10 @@ class CreateEstadosTable extends Migration
     public function up()
     {
         Schema::create('estados', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('codigo');
+            $table->tinyIncrements('id');
+            $table->string('uf');
             $table->string('estado');
-            $table->unsignedBigInteger('id_pais');
+            $table->unsignedTinyInteger('id_pais');
             $table->timestamps();
             $table->foreign('id_pais')->references('id')->on('paises'); 
         });

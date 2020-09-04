@@ -1,73 +1,41 @@
 @extends('layouts.app', ['activePage' => 'cidade-management', 'titlePage' => __('Cidade Management')])
 @section('content')
-<!-- Start Modal -->
-<div class="modal fade" id="estadoModal" tabindex="-1" role="dialog" aria-labelledby="estadoModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.index.estadoModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="estadoCreateModal" tabindex="-1" role="dialog" aria-labelledby="estadoCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.create.estadoCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="paisModal" tabindex="-1" role="dialog" aria-labelledby="paisModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.index.paisModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
-<!-- Start Modal -->
-<div class="modal fade" id="paisCreateModal" tabindex="-1" role="dialog" aria-labelledby="paisCreateModal" aria-hidden="true" style="z-index: 99999">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                @include('layouts.modais.create.paisCreateModal')
-            </div>
-        </div>
-    </div>
-</div>
-{{-- End Modal --}}
+@include('layouts.modais.chamada-modal.estado')
+@include('layouts.modais.chamada-modal.pais')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <form method="post" action="{{ route('cidade.update', $cidade) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Edit Cidade') }}</h4>
+                            <h4 class="card-title">{{ __('Editar Cidade') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código de Referência</label>
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="id" value="{{$cidade->id}}" readonly />
+                                        <input class="form-control" name="id" value="{{$cidade->id}}" readonly placeholder="#"/>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código</label>
+                                    <label class="col-form-label">DDD</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="codigo" type="text" placeholder="Código da Cidade" value="{{$cidade->codigo}}" required />
+                                        <input class="form-control" name="ddd" type="text" value="{{$cidade->ddd}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -79,9 +47,9 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código do Estado</label>
+                                    <label class="col-form-label">UF</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="codigo-estado-input" type="text" value="{{$estado->codigo}}" required />
+                                        <input class="form-control" id="uf-estado-input" type="text" value="{{$estado->uf}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -89,6 +57,7 @@
                                     <div class="form-group">
                                         <input class="form-control" id="estado-input" value="{{$estado->estado}}" readonly />
                                         <input type="hidden" id="id-estado-input" name="id_estado" value="{{$estado->id}}">
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -100,27 +69,30 @@
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
                                         <input class="form-control" id="pais-input" value="{{$pais->pais}}" readonly />
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Created_at</label>
+                                    <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ $cidade->created_at->format('Y-m-d') }}" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="col-form-label">Updated_at</label>
+                                    <label class="col-form-label">Data de Alreração</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" value="{{ $cidade->updated_at->format('Y-m-d') }}" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('cidade.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Add Cidade') }}</button>
+                            <a href="{{ route('cidade.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
                 </form>
@@ -139,7 +111,7 @@
             data: { id_estado : id_estado },
             dataType: "JSON",
             success: function(response){
-                $('#codigo-estado-input').val(response.estado.codigo);
+                $('#uf-estado-input').val(response.estado.uf);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);
                 $('#pais-input').val(response.pais.pais);
@@ -156,7 +128,7 @@
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                $('#input-codigo-pais').val(response.codigo);
+                $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
                 $('#paisModal').modal('hide')

@@ -14,17 +14,17 @@ class CreatePacientesTable extends Migration
     public function up()
     {
         Schema::create('pacientes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->tinyIncrements('id');
 
             $table->string('paciente')->nullable();
             $table->string('apelido')->nullable();
-            $table->unsignedBigInteger('id_medico'); // foreign_key medicos
+            $table->unsignedTinyInteger('id_medico'); // foreign_key medicos
             $table->string('endereco')->nullable();
             $table->string('numero')->nullable();
             $table->string('complemento')->nullable();
             $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
-            $table->unsignedBigInteger('id_cidade'); // foreign_key cidades
+            $table->unsignedTinyInteger('id_cidade'); // foreign_key cidades
             $table->integer('sexo')->nullable();
             $table->string('nascimento')->nullable();
             $table->string('estado_civil')->nullable();
@@ -34,8 +34,6 @@ class CreatePacientesTable extends Migration
             $table->string('email')->nullable();
             $table->string('cpf')->nullable();
             $table->string('rg')->nullable();
-            $table->string('emissor')->nullable();
-            $table->string('uf')->nullable();
             $table->string('observacao')->nullable();
 
             $table->timestamps();
