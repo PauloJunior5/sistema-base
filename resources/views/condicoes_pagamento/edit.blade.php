@@ -10,7 +10,7 @@
                     @method('put')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Edit Condição de Pagamento') }}</h4>
+                            <h4 class="card-title">{{ __('Editar Condição de Pagamento') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -110,7 +110,7 @@
 
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('condicaoPagamento.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
+                            <a href="{{ route('condicaoPagamento.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>

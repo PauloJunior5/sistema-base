@@ -19,7 +19,7 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Add Condição de Pagamento') }}</h4>
+                            <h4 class="card-title">{{ __('Nova Condição de Pagamento') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -119,8 +119,8 @@
 
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('condicaoPagamento.index') }}" class="btn btn-secondary">{{ __('Back to list') }}</a>
-                            <button type="submit" class="btn btn-primary">{{ __('Add Condição de Pagamento') }}</button>
+                            <a href="{{ route('condicaoPagamento.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
                 </form>

@@ -188,7 +188,7 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto float-right">
-                            <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Back to list') }}</a>
+                            <a href="{{route('cliente.index')}}" class="btn btn-secondary">{{ __('Voltar') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>

@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{ __('Condições de Pagamento') }}</h4>
-                        <p class="card-category"> {{ __('Here you can manage Condições de Pagamento') }}</p>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar Condições de Pagamento') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,7 +35,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('condicaoPagamento.create') }}" class="btn btn-sm btn-primary">{{ __('Add Condição de Pagamento') }}</a>
+                                <a href="{{ route('condicaoPagamento.create') }}" class="btn btn-sm btn-primary">{{ __('Novo') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -45,9 +45,9 @@
                                     <th>{{ __('Multa') }}</th>
                                     <th>{{ __('Juro') }}</th>
                                     <th>{{ __('Desconto') }}</th>
-                                    <th>{{ __('Creation date') }}</th>
-                                    <th>{{ __('Change date') }}</th>
-                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Actions') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
+                                    <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
                                     @foreach($condicoes_pagamento as $condicao_pagamento)
