@@ -52,7 +52,7 @@ class MedicoController extends Controller
         if ($validatedData) {
             $medico = Medico::create($request->all());
             if ($medico) {
-                return redirect()->route('medico.index')->with('Success', 'Médico successfully created.');
+                return redirect()->route('medico.index')->with('Success', 'Médico criado com sucesso.');
             }
         }
     }
@@ -104,7 +104,7 @@ class MedicoController extends Controller
         if ($validatedData) {
             $medico = Medico::whereId($id)->update($request->except('_token', '_method'));
             if ($medico) {
-                return redirect()->route('medico.index')->with('Success', 'Médico successfully updated.');
+                return redirect()->route('medico.index')->with('Success', 'Médico alterado com sucesso.');
             }
         }
     }
@@ -120,10 +120,10 @@ class MedicoController extends Controller
         try {
             $medico = Medico::where('id', $id)->delete();
         } catch (\Illuminate\Database\QueryException $ex) {
-            return redirect()->route('medico.index')->with('Warning', 'Médico unsuccessfully deleted. Esse Médico possui vínculo com Pacientes.');
+            return redirect()->route('medico.index')->with('Warning', 'Não foi possivel excluir médico. Esse Médico possui vínculo com Pacientes.');
         }
         if ($medico) {
-            return redirect()->route('medico.index')->with('Success', 'Médico successfully deleted.');
+            return redirect()->route('medico.index')->with('Success', 'Médico excluido com sucesso.');
         }
     }
 

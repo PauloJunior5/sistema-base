@@ -52,7 +52,7 @@ class PacienteController extends Controller
         if ($validatedData) {
             $paciente = Paciente::create($request->all());
             if ($paciente) {
-                return redirect()->route('paciente.index')->with('Success', 'Paciente successfully created.');
+                return redirect()->route('paciente.index')->with('Success', 'Paciente criado com sucesso.');
             }
         }
     }
@@ -95,7 +95,7 @@ class PacienteController extends Controller
         if ($validatedData) {
             $paciente = Paciente::whereId($id)->update($request->except('_token', '_method'));
             if ($paciente) {
-                return redirect()->route('paciente.index')->with('Success', 'Paciente successfully updated.');
+                return redirect()->route('paciente.index')->with('Success', 'Paciente alterado com sucesso.');
             }
         }
     }
@@ -110,7 +110,7 @@ class PacienteController extends Controller
     {
         $paciente = Paciente::where('id', $id)->delete();
         if ($paciente) {
-            return redirect()->route('paciente.index')->with('Success', 'Paciente successfully deleted.');
+            return redirect()->route('paciente.index')->with('Success', 'Paciente excluido com sucesso.');
         }
     }
 

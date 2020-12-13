@@ -43,7 +43,7 @@ class FormaPagamentoController extends Controller
         if ($validatedData) {
             $forma_pagamento = FormaPagamento::create($request->all());
             if ($forma_pagamento) {
-                return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento successfully created.');
+                return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento criada com sucesso.');
             }
         }
     }
@@ -88,7 +88,7 @@ class FormaPagamentoController extends Controller
         if ($validatedData) {
             $forma_pagamento = FormaPagamento::whereId($id)->update($request->except('_token', '_method'));
             if ($forma_pagamento) {
-                return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento successfully updated.');
+                return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento alterada com sucesso.');
             }
         }
     }
@@ -103,7 +103,7 @@ class FormaPagamentoController extends Controller
     {
         $forma_pagamento = FormaPagamento::where('id', $id)->delete();
         if ($forma_pagamento) {
-            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento successfully deleted.');
+            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento excluida com sucesso.');
         }
     }
 

@@ -43,7 +43,7 @@ class ExameController extends Controller
         if ($validatedData) {
             $exame = Exame::create($request->all());
             if ($exame) {
-                return redirect()->route('exame.index')->with('Success', 'Exame successfully created.');
+                return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.');
             }
         }
     }
@@ -76,7 +76,7 @@ class ExameController extends Controller
         if ($validatedData) {
             $exame = Exame::whereId($id)->update($request->except('_token', '_method'));
             if ($exame) {
-                return redirect()->route('exame.index')->with('Success', 'Exame successfully updated.');
+                return redirect()->route('exame.index')->with('Success', 'Exame alterado com sucesso.');
             }
         }
     }
@@ -91,7 +91,7 @@ class ExameController extends Controller
     {
         $exame = Exame::where('id', $id)->delete();
         if ($exame) {
-            return redirect()->route('exame.index')->with('Success', 'Exame successfully deleted.');
+            return redirect()->route('exame.index')->with('Success', 'Exame excluido com sucesso.');
         }
     }
 }

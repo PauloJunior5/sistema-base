@@ -50,7 +50,7 @@ class FornecedorController extends Controller
         if ($validatedData) {
             $fornecedor = Fornecedor::create($request->all());
             if ($fornecedor) {
-                return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor successfully created.');
+                return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor criado com sucesso.');
             }
         }
     }
@@ -91,7 +91,7 @@ class FornecedorController extends Controller
         if ($validatedData) {
             $fornecedor = Fornecedor::findOrFail($id)->update($request->except('_token', '_method'));
             if ($fornecedor) {
-                return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor successfully updated.');
+                return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor alterado com sucesso.');
             }
         }
     }
@@ -106,7 +106,7 @@ class FornecedorController extends Controller
     {
         $fornecedor = Fornecedor::where('id', $id)->delete();
         if ($fornecedor) {
-            return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor successfully deleted.');
+            return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor excluido com sucesso.');
         }
     }
 }

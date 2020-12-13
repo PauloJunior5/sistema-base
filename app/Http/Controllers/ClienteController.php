@@ -46,7 +46,7 @@ class ClienteController extends Controller
         if ($validatedData) {
             $cliente = Cliente::create($request->except('_token', '_method', 'ddd_cidade', 'cidade', 'estado'));
             if ($cliente) {
-                return redirect()->route('cliente.index')->with('Success', 'Cliente successfully created.');
+                return redirect()->route('cliente.index')->with('Success', 'Cliente criado com sucesso.');
             }
         }
     }
@@ -89,7 +89,7 @@ class ClienteController extends Controller
         if ($validatedData) {
             $cliente = Cliente::whereId($id)->update($request->except('_token', '_method', 'ddd_cidade', 'cidade', 'estado'));
             if ($cliente) {
-                return redirect()->route('cliente.index')->with('Success', 'Cliente successfully updated.');
+                return redirect()->route('cliente.index')->with('Success', 'Cliente alterado com sucesso.');
             }
         }
     }
@@ -98,7 +98,7 @@ class ClienteController extends Controller
     {
         $cliente = Cliente::where('id', $cliente_id)->delete();
         if ($cliente) {
-            return redirect()->route('cliente.index')->with('Success', 'Cliente successfully deleted.');
+            return redirect()->route('cliente.index')->with('Success', 'Cliente excluido com sucesso.');
         }
     }
 }

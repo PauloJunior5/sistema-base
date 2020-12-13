@@ -29,7 +29,7 @@ class CidadeController extends Controller
 
         $cidade = Cidade::create($request->all());
         if ($cidade) {
-            return redirect()->route('cidade.index')->withStatus(__('Cidade successfully created.'));
+            return redirect()->route('cidade.index')->withStatus(__('Cidade criada com sucesso.'));
         }
     }
 
@@ -68,14 +68,14 @@ class CidadeController extends Controller
     {
         $cidade = Cidade::whereId($request->get('id'))->update($request->except('_token', '_method'));
         if ($cidade) {
-            return redirect()->route('cidade.index')->withStatus(__('Cidade successfully updated.'));
+            return redirect()->route('cidade.index')->withStatus(__('Cidade alterada com sucesso.'));
         }
     }
     public function destroy($cidade_id)
     {
         $cidade = Cidade::where('id', $cidade_id)->delete();
         if ($cidade) {
-            return redirect()->route('cidade.index')->withStatus(__('Cidade successfully deleted.'));
+            return redirect()->route('cidade.index')->withStatus(__('Cidade excluida com sucesso.'));
         }
     }
     public function getEstado(Request $request)

@@ -31,7 +31,7 @@ class EstadoController extends Controller
         if ($validatedData) {
             $estado = Estado::create($request->all());
             if ($estado) {
-                return redirect()->route('estado.index')->with('Success', 'Estado successfully created.');
+                return redirect()->route('estado.index')->with('Success', 'Estado criado com sucesso.');
             }
         }
     }
@@ -50,7 +50,7 @@ class EstadoController extends Controller
     {
         $estado = Estado::whereId($request->get('id'))->update($request->except('_token', '_method'));
         if ($estado) {
-            return redirect()->route('estado.index')->with('Success', 'Estado successfully updated.');
+            return redirect()->route('estado.index')->with('Success', 'Estado alterado com sucesso.');
         }
     }
     public function destroy($estado_id)
@@ -58,10 +58,10 @@ class EstadoController extends Controller
         try {
             $estado = Estado::where('id', $estado_id)->delete();
         } catch (\Illuminate\Database\QueryException $ex) {
-            return redirect()->route('estado.index')->with('Warning', 'Estado unsuccessfully deleted. Esse estado possui vínculo com cidades.');
+            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel excluir estado. Esse estado possui vínculo com cidades.');
         }
         if ($estado) {
-            return redirect()->route('estado.index')->with('Success', 'Estado successfully deleted.');
+            return redirect()->route('estado.index')->with('Success', 'Estado excluido com sucesso.');
         }
     }
 

@@ -26,7 +26,7 @@ class PaisController extends Controller
         if ($validatedData) {
             $pais = Pais::create($request->all());
             if ($pais) {
-                return redirect()->route('pais.index')->with('Success', 'Pais successfully created.');
+                return redirect()->route('pais.index')->with('Success', 'Pais criado com sucesso.');
             }
         }
     }
@@ -43,7 +43,7 @@ class PaisController extends Controller
     {
         $pais = Pais::whereId($request->get('id'))->update($request->except('_token', '_method'));
         if ($pais) {
-            return redirect()->route('pais.index')->with('Success', 'Pais successfully updated.');
+            return redirect()->route('pais.index')->with('Success', 'Pais alterado com sucesso.');
         }
     }
     public function destroy($pais_id)
@@ -51,10 +51,10 @@ class PaisController extends Controller
         try {
             $pais = Pais::where('id', $pais_id)->delete();
         } catch (\Illuminate\Database\QueryException $ex) {
-            return redirect()->route('pais.index')->with('Warning', 'Pais unsuccessfully deleted. Esse país possui vínculo com cidades e/ou estados.');
+            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Esse país possui vínculo com cidades e/ou estados.');
         }
         if ($pais) {
-            return redirect()->route('pais.index')->with('Success', 'Pais successfully deleted.');
+            return redirect()->route('pais.index')->with('Success', 'Pais excluido com sucesso.');
         }
     }
 
@@ -67,7 +67,7 @@ class PaisController extends Controller
         if ($validatedData) {
             $pais = Pais::create($request->all());
             if ($pais) {
-                return Redirect::back()->withInput()->with('error_code', 4);
+                return redirect()->back()->withInput()->with('error_code', 4);
             }
         }
     }
