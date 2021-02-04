@@ -69,9 +69,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#tableEstados-medico').DataTable();
-    });
-
-</script>
+@include('includes.datatables.script-datatables', ['tableId' => '#tableEstados-medico'])
