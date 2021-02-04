@@ -79,9 +79,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#tablePaises').DataTable();
-    });
-</script>
+@include('includes.datatables.script-datatables', ['tableId' => '#tablePaises'])
 @endsection
