@@ -62,8 +62,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#tableCidades').DataTable();
-    });
-</script>
+@include('includes.datatables.script-datatables', ['tableId' => '#tableCidades'])
