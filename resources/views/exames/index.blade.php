@@ -81,9 +81,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#tableExames').DataTable();
-    });
-</script>
+@include('includes.datatables.script-datatables', ['tableId' => '#tableExames'])
 @endsection
