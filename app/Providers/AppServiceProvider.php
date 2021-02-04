@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('*', function($view){
+            $dataTableLanguage = asset('material') . "/js/plugins/jquery.datatables.json";
+            $view->with('dataTableLanguage', $dataTableLanguage);
+        });
     }
 }

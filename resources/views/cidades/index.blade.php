@@ -74,8 +74,11 @@
 </div>
 <script>
     $(document).ready(function() {
-        $('#tableCidades').DataTable();
+        $('#tableCidades').DataTable({
+            "language": {
+                "url": '{{ $dataTableLanguage }}'
+            },            
+        });
     });
-
 </script>
 @endsection
