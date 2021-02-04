@@ -1,7 +1,6 @@
 <script>
-    var tableId = '{{ $tableId }}';
     $(document).ready(function() {
-        $(tableId).DataTable({
+        $('{{ $tableId }}').DataTable({
             "language": {
                 "url": '{{ $dataTableLanguage }}'
             },            
