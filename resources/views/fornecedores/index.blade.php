@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableFornecedores">
                                 <thead class=" text-primary">
                                     <th>{{ __('CNPJ') }}</th>
                                     <th>{{ __('Fornecedor') }}</th>
@@ -79,9 +79,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#tableClientes').DataTable();
-    });
-</script>
+@include('includes.datatables.script-datatables', ['tableId' => '#tableFornecedores'])
 @endsection
