@@ -83,9 +83,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#tableCondicaoPagamento').DataTable();
-    });
-</script>
+@include('includes.datatables.script-datatables', ['tableId' => '#tableCondicaoPagamento'])
 @endsection

@@ -77,9 +77,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#tableFormaPagamento').DataTable();
-    });
-</script>
+@include('includes.datatables.script-datatables', ['tableId' => '#tableFormaPagamento'])
 @endsection
