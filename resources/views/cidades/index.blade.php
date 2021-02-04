@@ -72,13 +72,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#tableCidades').DataTable({
-            "language": {
-                "url": '{{ $dataTableLanguage }}'
-            },            
-        });
-    });
-</script>
+@include('includes.datatables.script-datatables', ['tableId' => '#tableCidades'])
 @endsection
