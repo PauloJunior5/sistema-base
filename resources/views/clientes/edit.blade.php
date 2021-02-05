@@ -3,6 +3,8 @@
 @include('layouts.modais.chamada-modal.cidade')
 @include('layouts.modais.chamada-modal.estado')
 @include('layouts.modais.chamada-modal.pais')
+@include('layouts.modais.all-condicao_pagamento')
+@include('layouts.modais.all-forma_pagamento')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -76,17 +78,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{old('ddd_cidade', $cidade->ddd)}}" readonly required>
+                                    <input type="text" class="form-control" id="ddd-cidade-input-cliente" name="ddd_cidade" value="{{old('ddd_cidade', $cidade->ddd)}}" readonly required>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Cidade</label>
-                                    <input class="form-control readonly" id="cidade-input" value="{{old('cidade', $cidade->cidade)}}" name="cidade" required>
-                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{old('id_cidade', $cidade->id)}}" name="id_cidaed">
+                                    <input class="form-control readonly" id="cidade-input-cliente" value="{{old('cidade', $cidade->cidade)}}" name="cidade" required>
+                                    <input type="hidden" id="id-cidade-input-cliente" name="id_cidade" value="{{old('id_cidade', $cidade->id)}}" name="id_cidaed">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input" name="estado" value="{{old('estado', $estado->uf)}}" readonly>
+                                    <input class="form-control" id="uf-cidade-input-cliente" name="estado" value="{{old('estado', $estado->uf)}}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
