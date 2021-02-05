@@ -3,6 +3,8 @@
 @include('layouts.modais.chamada-modal.cidade')
 @include('layouts.modais.chamada-modal.estado')
 @include('layouts.modais.chamada-modal.pais')
+@include('layouts.modais.all-condicao_pagamento')
+@include('layouts.modais.all-forma_pagamento')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -61,24 +63,28 @@
                                     <input type="text" class="form-control" name="cep" required>
                                 </div>
                             </div>
+                            {{-- INICIO ESCOLHER CIDADE --}}
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input" required readonly>
+                                    <input type="text" class="form-control" id="ddd-cidade-input-fornecedor" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label">@include('includes.required')Cidade @include('includes.tooltips-campo-consulta')</label>
-                                    <input class="form-control readonly" id="cidade-input" value="" required>
-                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="">
+                                    <label class="col-form-label">@include('includes.required')Cidade</label>
+                                    <input class="form-control readonly" id="cidade-input-fornecedor" name="cidade-fornecedor" value="{{ old('cidade-fornecedor') }}" required>
+                                    <input type="hidden" id="id-cidade-input-fornecedor" name="id_cidade" value="{{ old('id_cidade') }}">
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
-                                <div class="col-md-1">
-                                    <label class="col-form-label">UF @include('includes.tooltips-campo-consulta')</label>
-                                    <input class="form-control" id="uf-cidade-input" value="" readonly required>
+                                <div class="col-md-2">
+                                    <label class="col-form-label">UF</label>
+                                    <input class="form-control" id="uf-cidade-input-fornecedor" name="estado" value="{{ old('estado') }}" readonly>
+                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#cidadeModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
+                            {{-- FIM ESCOLHER CIDADE --}}
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Telefone</label>
@@ -107,20 +113,21 @@
                                     <input type="text" class="form-control" name="cnpj" required>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <label class="col-form-label">Código</label>
-                                    <input class="form-control readonly">
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
-                                    <input class="form-control readonly">
-                                    {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
-                                </div>
-                                <div class="col-md-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamamento" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
-                                </div>
+                            {{-- INICIO CONDICAO PAGAMENTO --}}
+                            <div class="col-md-1">
+                                <label class="col-form-label">Código</label>
+                                <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicao_pagamento') }}" readonly>
                             </div>
+                            <div class="col-md-3">
+                                <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
+                                <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento_input" value="{{ old('condicao_pagamento_input') }}" readonly>
+                                <input type="hidden" id="" name="condicao_pagamento" value="{{ old('condicao_pagamento') }}">
+                                <p class="read-only">Campo apenas para consulta.</p>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicao_pagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
+                            </div>
+                            {{-- FIM CONDICAO PAGAMENTO --}}
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
