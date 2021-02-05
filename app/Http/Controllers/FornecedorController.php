@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cidade;
 use App\CondicaoPagamento;
 use App\Estado;
+use App\FormaPagamento;
 use App\Fornecedor;
 use App\Pais;
 use Illuminate\Http\Request;
@@ -32,7 +33,9 @@ class FornecedorController extends Controller
         $cidades = Cidade::all(); // Modal add cidade
         $estados = Estado::all(); // Modal add estado
         $paises = Pais::all(); // Modal add pais
-        return view('fornecedores.create', compact('cidades', 'estados', 'paises'));
+        $condicoesPagamento = CondicaoPagamento::all(); //Modal add condição pagamento
+        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
+        return view('fornecedores.create', compact('cidades', 'estados', 'paises', 'condicoesPagamento', 'formas_pagamento'));
     }
 
     /**
@@ -72,7 +75,10 @@ class FornecedorController extends Controller
         $estados = Estado::all(); // Modal add estado
         $paises = Pais::all(); // Modal add pais
 
-        return view('fornecedores.edit', compact('fornecedor', 'cidade', 'estado', 'cidades', 'estados', 'paises'));
+        $condicoesPagamento = CondicaoPagamento::all(); //Modal add condição pagamento
+        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
+
+        return view('fornecedores.edit', compact('fornecedor', 'cidade', 'estado', 'cidades', 'estados', 'paises', 'condicoesPagamento', 'formas_pagamento'));
     }
 
     /**

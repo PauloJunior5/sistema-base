@@ -64,8 +64,11 @@ class ClienteController extends Controller
         $estados = Estado::all(); // Modal add estado
         $paises = Pais::all(); // Modal add pais
 
+        $condicoesPagamento = CondicaoPagamento::all(); //Modal add condição pagamento
+        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
+
         if ($cliente) {
-            return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades', 'estados', 'paises'));
+            return view('clientes.edit', compact('cliente', 'cidade', 'estado', 'cidades', 'estados', 'paises', 'condicoesPagamento', 'formas_pagamento'));
         } else {
             return redirect()->back();
         }
@@ -90,7 +93,7 @@ class ClienteController extends Controller
         }
 
         if ($validatedData) {
-            $cliente = Cliente::whereId($id)->update($request->except('_token', '_method', 'ddd_cidade', 'cidade', 'estado'));
+            $cliente = Cliente::whereId($id)->update($request->except('_token', '_method', 'ddd_cidade', 'cidade', 'estado', 'id_condicao_pagamento', 'condicao_pagamento_input'));
             if ($cliente) {
                 return redirect()->route('cliente.index')->with('Success', 'Cliente alterado com sucesso.');
             }
