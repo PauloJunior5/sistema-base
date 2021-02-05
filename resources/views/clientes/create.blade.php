@@ -3,6 +3,8 @@
 @include('layouts.modais.chamada-modal.cidade')
 @include('layouts.modais.chamada-modal.estado')
 @include('layouts.modais.chamada-modal.pais')
+@include('layouts.modais.all-condicao_pagamento')
+@include('layouts.modais.all-forma_pagamento')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -87,17 +89,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
+                                    <input type="text" class="form-control" id="ddd-cidade-input-cliente" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Cidade</label>
-                                    <input class="form-control readonly" id="cidade-input" name="cidade" value="{{ old('cidade') }}" required>
-                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{ old('id_cidade') }}">
+                                    <input class="form-control readonly" id="cidade-input-cliente" name="cidade-cliente" value="{{ old('cidade-cliente') }}" required>
+                                    <input type="hidden" id="id-cidade-input-cliente" name="id_cidade" value="{{ old('id_cidade') }}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input" name="estado" value="{{ old('estado') }}" readonly>
+                                    <input class="form-control" id="uf-cidade-input-cliente" name="estado" value="{{ old('estado') }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
@@ -155,16 +157,16 @@
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" readonly>
+                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicao_pagamento') }}" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
-                                    <input class="form-control" readonly>
-                                    {{-- <input type="hidden" id="" name="id_condicao_pagamento" value=""> --}}
+                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento_input" value="{{ old('condicao_pagamento_input') }}" readonly>
+                                    <input type="hidden" id="" name="condicao_pagamento" value="{{ old('condicao_pagamento') }}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamamento" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicao_pagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                                 {{-- FIM CONDICAO PAGAMENTO --}}
                             </div>
@@ -238,10 +240,11 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                $('#ddd-cidade-input').val(response.cidade.ddd);
-                $('#cidade-input').val(response.cidade.cidade);
-                $('#uf-cidade-input').val(response.estado.uf);
-                $('#id-cidade-input').val(response.cidade.id);
+                console.log(response);
+                $('#ddd-cidade-input-cliente').val(response.cidade.ddd);
+                $('#cidade-input-cliente').val(response.cidade.cidade);
+                $('#uf-cidade-input-cliente').val(response.estado.uf);
+                $('#id-cidade-input-cliente').val(response.cidade.id);
                 $('#cidadeModal').modal('hide')
             }
         });
@@ -317,4 +320,50 @@
     </script>
 @endif
 
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 9)
+    <script>
+        $(function() {
+            $('#forma_pagamentoModal').modal('show');
+        });
+    </script>
+@endif
+
+<script>
+
+var url_atual = '<?php echo URL::to(''); ?>';
+    $('.idCondição_pagamento-cliente').click(function() {
+        var id_condicao_pagamento = $(this).val();
+        $.ajax({
+            method: "GET",
+            url: url_atual + '/condicaoPagamento/show',
+            data: { id_condicao_pagamento : id_condicao_pagamento },
+            dataType: "JSON",
+            success: function(response){
+                console.log(response);
+                $('#id-condicao_pagamento-input').val(response.id);
+                $('#condicao_pagamento-input').val(response.condicao_pagamento);
+                $('#condicao_pagamentoModal').modal('hide')
+            }
+        });
+    });
+
+    var url_atual = '<?php echo URL::to(''); ?>';
+    $('.idForma_pagamento').click(function() {
+        var id_forma_pagamento = $(this).val();
+        $.ajax({
+            method: "POST",
+            url: url_atual + '/formaPagamento/show',
+            data: { id_forma_pagamento : id_forma_pagamento },
+            dataType: "JSON",
+            success: function(response){
+                $('#id-forma_pagamento-input').val(response.id);
+                $('#forma_pagamento-input').val(response.forma_pagamento);
+                $('#forma_pagamentoModal').modal('hide')
+            }
+        });
+    });
+
+</script>
+@include('includes.scripts.cliente-condicao-pagamento')
 @endsection
