@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use App\Cidade;
+use App\CondicaoPagamento;
 use App\Estado;
+use App\FormaPagamento;
 use App\Pais;
 use Illuminate\Http\Request;
 
@@ -21,12 +23,13 @@ class ClienteController extends Controller
         $cidades = Cidade::all(); // Modal add cidade
         $estados = Estado::all(); // Modal add estado
         $paises = Pais::all(); // Modal add pais
-        return view('clientes.create', compact('cidades', 'estados', 'paises'));
+        $condicoesPagamento = CondicaoPagamento::all(); //Modal add condição pagamento
+        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
+        return view('clientes.create', compact('cidades', 'estados', 'paises', 'condicoesPagamento', 'formas_pagamento'));
     }
 
     public function store(Request $request)
     {
-
         $cpf = $request->input('cpf');
         $start_date = date('2004-01-01');
 
@@ -44,7 +47,7 @@ class ClienteController extends Controller
         }
 
         if ($validatedData) {
-            $cliente = Cliente::create($request->except('_token', '_method', 'ddd_cidade', 'cidade', 'estado'));
+            $cliente = Cliente::create($request->except('_token', '_method', 'ddd_cidade', 'cidade', 'estado', 'id_condicao_pagamento', 'condicao_pagamento_input'));
             if ($cliente) {
                 return redirect()->route('cliente.index')->with('Success', 'Cliente criado com sucesso.');
             }

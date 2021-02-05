@@ -55,9 +55,10 @@ class CondicaoPagamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $condicao_pagamento = CondicaoPagamento::findOrFail($request->id_condicao_pagamento);
+        return $condicao_pagamento;
     }
 
     /**
