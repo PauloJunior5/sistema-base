@@ -334,6 +334,9 @@
             $('#condicao_pagamentoModal').modal('show');
         });
         $(function() {
+            $('#condicao_pagamentoCreateModal').modal('show');
+        });
+        $(function() {
             $('#forma_pagamentoModal').modal('show');
         });
     </script>
