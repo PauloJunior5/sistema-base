@@ -59,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('condicaoPagamento', 'CondicaoPagamentoController', ['except' => ['show']]);
+    Route::get('condicaoPagamento/show', 'CondicaoPagamentoController@show');
+    Route::post('condicaoPagamento/createCondicao_pagamento', 'CondicaoPagamentoController@createCondicao_pagamento')->name('condicaoPagamento.createCondicao_pagamento');
 });
 
 Route::group(['middleware' => 'auth'], function () {
