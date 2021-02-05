@@ -300,6 +300,28 @@
 </script>
 @endif
 
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 3)
+    <script>
+        $(function() {
+            $('#condicao_pagamentoModal').modal('show');
+        });
+    </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 9)
+    <script>
+        $(function() {
+            $('#condicao_pagamentoModal').modal('show');
+        });
+        $(function() {
+            $('#condicao_pagamentoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#forma_pagamentoModal').modal('show');
+        });
+    </script>
+@endif
+
 <script>
     $(".readonly").on('keydown paste', function(e){
         e.preventDefault();
