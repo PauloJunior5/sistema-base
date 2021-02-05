@@ -213,10 +213,10 @@
             }
             , dataType: "JSON"
             , success: function(response) {
-                $('#ddd-cidade-input').val(response.cidade.ddd);
-                $('#cidade-input').val(response.cidade.cidade);
-                $('#uf-cidade-input').val(response.estado.uf);
-                $('#id-cidade-input').val(response.cidade.id);
+                $('#ddd-cidade-input-cliente').val(response.cidade.ddd);
+                $('#cidade-input-cliente').val(response.cidade.cidade);
+                $('#uf-cidade-input-cliente').val(response.estado.uf);
+                $('#id-cidade-input-cliente').val(response.cidade.id);
                 $('#cidadeModal').modal('hide')
             }
         });
