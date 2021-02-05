@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Juro (%)</label>
+                                    <label class="col-form-label">Juros (%)</label>
                                     <div class="form-group">
                                         <input class="form-control" name="juro" id="input-juro" type="number" value="{{old('juro')}}" required />
                                     </div>
