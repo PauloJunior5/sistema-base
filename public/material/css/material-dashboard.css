@@ -15489,7 +15489,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .sidebar[data-color="orange"] li.active>a {
-  background: linear-gradient(60deg, #636f83, #555f70);
+  background: #284b63;
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #c1bbbb;
 }
 
@@ -17001,7 +17001,7 @@ thead.thead-inverse th,
 
 body {
   /*background-image: url('../img/nova01.jpg');*/
-  background-color: #dbdbdb;
+  background-color: gainsboro;
   color           : #3C4858;
   font-weight     : 300;
 }
@@ -17491,7 +17491,7 @@ label {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #636f83, #555f70);
+  background: #284b63;
 }
 
 .card .card-header-info .card-icon,
@@ -17500,7 +17500,7 @@ label {
 .card.bg-info,
 .card.card-rotate.bg-info .front,
 .card.card-rotate.bg-info .back {
-  background: linear-gradient(60deg, #636f83, #555f70);
+  background: #284b63;
 }
 
 .card .card-header-success .card-icon,
@@ -17509,7 +17509,7 @@ label {
 .card.bg-success,
 .card.card-rotate.bg-success .front,
 .card.card-rotate.bg-success .back {
-  background: linear-gradient(60deg, #636f83, #555f70);
+  background: #284b63;
 }
 
 .card .card-header-warning .card-icon,
@@ -17518,7 +17518,7 @@ label {
 .card.bg-warning,
 .card.card-rotate.bg-warning .front,
 .card.card-rotate.bg-warning .back {
-  background: linear-gradient(60deg, #636f83, #555f70);
+  background: #284b63;
 }
 
 .card .card-header-danger .card-icon,
@@ -17527,7 +17527,7 @@ label {
 .card.bg-danger,
 .card.card-rotate.bg-danger .front,
 .card.card-rotate.bg-danger .back {
-  background: linear-gradient(60deg, #636f83, #555f70);
+  background: #284b63;
 }
 
 .card .card-header-rose .card-icon,
@@ -17536,7 +17536,7 @@ label {
 .card.bg-rose,
 .card.card-rotate.bg-rose .front,
 .card.card-rotate.bg-rose .back {
-  background: linear-gradient(60deg, #636f83, #555f70);
+  background: #284b63;
 }
 
 .card .card-header-primary .card-icon,
@@ -18022,7 +18022,7 @@ label {
 }
 
 .card-stats .card-header .card-category:not([class*="text-"]) {
-  color    : #999999;
+  color    : #353535;
   font-size: 14px;
 }
 
