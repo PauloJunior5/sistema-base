@@ -33,7 +33,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicao_pagamentoCreateModal" style="margin-top: 2.7rem;">Add Forma de Pagamento</button>
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicao_pagamentoCreateModal" style="margin-top: 2.7rem;">Add Condição de Pagamento</button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -47,7 +47,7 @@
                                 <tbody>
                                     @foreach($condicoesPagamento as $CondicaoPagamento)
                                     <tr>
-                                        <td>{{ $CondicaoPagamento->forma_pagamento }}</td>
+                                        <td>{{ $CondicaoPagamento->condicao_pagamento }}</td>
                                         <td>{{ $CondicaoPagamento->created_at->format('Y-m-d') }}</td>
                                         <td>{{ $CondicaoPagamento->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
