@@ -320,9 +320,19 @@
     </script>
 @endif
 
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 3)
+    <script>
+        $(function() {
+            $('#condicao_pagamentoModal').modal('show');
+        });
+    </script>
+@endif
 
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 9)
     <script>
+        $(function() {
+            $('#condicao_pagamentoModal').modal('show');
+        });
         $(function() {
             $('#forma_pagamentoModal').modal('show');
         });

@@ -11,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('condicaoPagamento.store') }}" autocomplete="off" class="form-horizontal" id="condicaoPagamentoForm">
+                <form method="post" action="{{ route('condicaoPagamento.createCondicao_pagamento') }}" autocomplete="off" class="form-horizontal" id="condicaoPagamentoForm">
                     @csrf
                     @method('post')
                     <div class="card ">

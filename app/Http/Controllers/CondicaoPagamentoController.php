@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CondicaoPagamento;
 use App\FormaPagamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CondicaoPagamentoController extends Controller
 {
@@ -106,6 +107,20 @@ class CondicaoPagamentoController extends Controller
         $condicao_pagamento = CondicaoPagamento::where('id', $id)->delete();
         if ($condicao_pagamento) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento excluida com sucesso.');
+        }
+    }
+
+    public function createCondicao_pagamento(Request $request)
+    {
+        $validatedData = $request->validate([
+            'condicao_pagamento' => 'required',
+        ]);
+
+        if ($validatedData) {
+            $condicao_pagamento = CondicaoPagamento::create($request->all());
+            if ($condicao_pagamento) {
+                return Redirect::back()->withInput()->with('error_code', 3);
+            }
         }
     }
 }
