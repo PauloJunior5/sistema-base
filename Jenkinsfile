@@ -10,6 +10,8 @@ pipeline {
             //     DB_PASSWORD = 123456
             // }
             steps {
+                sh 'git branch -a'
+                sh 'git push origin HEAD:master'
                 // sh 'php --version'
                 // sh 'composer install'
                 // sh 'composer --version'
