@@ -4,10 +4,10 @@ pipeline {
 
         stage("Build") {
             environment {
-                DB_HOST = credentials("localhost")
-                DB_DATABASE = credentials("sistema_base")
-                DB_USERNAME = credentials("paulo")
-                DB_PASSWORD = credentials("123456")
+                DB_HOST = "localhost"
+                DB_DATABASE = "sistema_base"
+                DB_USERNAME = "paulo"
+                DB_PASSWORD = 123456
             }
             steps {
                 sh 'php --version'
