@@ -31,4 +31,4 @@ Homestead.json
 # .env.exemple (renomear para .env e executar comando - php artisan key:generate;)
 # database.sqlite
 
-jenkinsfile
+/Jenkinsfile
