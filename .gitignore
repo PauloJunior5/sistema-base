@@ -30,5 +30,3 @@ Homestead.json
 # composer install ou update
 # .env.exemple (renomear para .env e executar comando - php artisan key:generate;)
 # database.sqlite
-
-jenkinsfile
