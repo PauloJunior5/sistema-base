@@ -20,16 +20,16 @@ pipeline {
 
         stage("Deploy") {
 
-            steps {
-                echo 'Deploying the application...'
-                script {
-                    if (env.BRANCH_NAME == 'master') {
-                        echo 'I only execute on the master branch'
-                    } else {
-                        echo 'I execute elsewhere'
-                    }
-                }
-            }
+            // steps {
+            //     echo 'Deploying the application...'
+            //     script {
+            //         if (env.BRANCH_NAME == 'master') {
+            //             echo 'I only execute on the master branch'
+            //         } else {
+            //             echo 'I execute elsewhere'
+            //         }
+            //     }
+            // }
         }
 
     }
