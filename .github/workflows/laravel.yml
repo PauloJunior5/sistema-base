@@ -37,3 +37,4 @@ jobs:
       run: |
         git status
         git branch -a
+        git remote -vv
