@@ -38,6 +38,5 @@ jobs:
       run: vendor/bin/phpunit
     - name: deploy 01
       run: |
-        git status
-        git branch -a
-        git remote -vv
+        git merge origin/master
+        git push
