@@ -37,4 +37,6 @@ jobs:
       run: git checkout -b origin/teste
     - name: deploy 02
       run: git merge master
+    - name: deploy 03
+      run: git push
       
