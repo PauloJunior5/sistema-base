@@ -33,5 +33,7 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
-    - name: deploy
+    - name: deploy 01
+      run: git pull
+    - name: deploy 02
       run: git push origin master:teste
