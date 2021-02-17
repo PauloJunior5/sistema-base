@@ -22,7 +22,7 @@ pipeline {
 
             steps {
                  echo 'Deploying the application...'
-                 script: "git status"
+                 sh "git status"
                  script {
                      if (env.BRANCH_NAME == 'master') {
                          echo 'I only execute on the master branch'
