@@ -7,7 +7,7 @@ use App\Models\Cidade;
 use App\CondicaoPagamento;
 use App\Models\Estado;
 use App\FormaPagamento;
-use App\Pais;
+use App\Models\Pais;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller

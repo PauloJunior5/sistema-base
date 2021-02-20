@@ -7,7 +7,7 @@ use App\CondicaoPagamento;
 use App\Models\Estado;
 use App\FormaPagamento;
 use App\Fornecedor;
-use App\Pais;
+use App\Models\Pais;
 use Illuminate\Http\Request;
 
 class FornecedorController extends Controller

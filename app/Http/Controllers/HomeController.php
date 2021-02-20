@@ -8,7 +8,7 @@ use App\Models\Estado;
 use App\Exame;
 use App\Medico;
 use App\Paciente;
-use App\Pais;
+use App\Models\Pais;
 use App\Models\User;
 
 class HomeController extends Controller

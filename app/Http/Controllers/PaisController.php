@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Pais;
+use App\Models\Pais;
 use Illuminate\Http\Request;
 use Redirect;
 

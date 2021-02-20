@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estado;
 use App\Medico;
-use App\Pais;
+use App\Models\Pais;
 use Illuminate\Http\Request;
 use Redirect;
 
