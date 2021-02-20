@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\CondicaoPagamento;
+use App\Models\CondicaoPagamento;
 use App\FormaPagamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

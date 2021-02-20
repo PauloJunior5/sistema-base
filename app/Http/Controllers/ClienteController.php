@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use App\Models\Cidade;
-use App\CondicaoPagamento;
+use App\Models\CondicaoPagamento;
 use App\Models\Estado;
 use App\FormaPagamento;
 use App\Models\Pais;
