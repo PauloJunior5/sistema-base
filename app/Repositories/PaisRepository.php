@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PaisRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -25,7 +25,7 @@ class PaisRepository implements PaisInterface
         return view('paises.create');
     }
 
-    public function store(Request $request)
+    public function store(PaisRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -48,14 +48,11 @@ class PaisRepository implements PaisInterface
         return view('paises.edit', compact('pais'));
     }
 
-    public function update(Request $request)
+    public function update(PaisRequest $request)
     {
         DB::beginTransaction();
         try {
 
-            $request->validate([
-                'pais' => 'unique:paises,pais',
-            ]);
             Pais::whereId($request->get('id'))->update($request->except('_token', '_method'));
             DB::commit();
             return redirect()->route('pais.index')->with('Success', 'País alterado com sucesso.');
@@ -87,7 +84,7 @@ class PaisRepository implements PaisInterface
         }
     }
 
-    public function createPais(Request $request)
+    public function createPais(PaisRequest $request)
     {
 
         DB::beginTransaction();

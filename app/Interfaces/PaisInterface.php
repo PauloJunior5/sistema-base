@@ -2,15 +2,15 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PaisRequest;
 
 interface PaisInterface
 {
     public function index();
     public function create();
-    public function store(Request $request);
+    public function store(PaisRequest $request);
     public function edit($pais_id);
-    public function update(Request $request);
+    public function update(PaisRequest $request);
     public function destroy($pais_id);
-    public function createPais(Request $request);
+    public function createPais(PaisRequest $request);
 }

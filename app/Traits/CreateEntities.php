@@ -2,14 +2,14 @@
 
 namespace App\Traits;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PaisRequest;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Pais;
 
 trait CreateEntities
 {
-    public function traitStorePais(Request $request)
+    public function traitStorePais(PaisRequest $request)
     {
         $request->validate([
             'pais' => 'unique:paises,pais',

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\PaisRequest;
 
 use App\Interfaces\PaisInterface;
 
@@ -23,7 +23,7 @@ class PaisController extends Controller
         return $this->paisInterface->create();
     }
 
-    public function store(Request $request)
+    public function store(PaisRequest $request)
     {
         return $this->paisInterface->store($request);
     }
@@ -33,7 +33,7 @@ class PaisController extends Controller
         return $this->paisInterface->edit($pais_id);
     }
 
-    public function update(Request $request)
+    public function update(PaisRequest $request)
     {
         return $this->paisInterface->update($request);
     }
@@ -43,7 +43,7 @@ class PaisController extends Controller
         return $this->paisInterface->destroy($pais_id);
     }
 
-    public function createPais(Request $request)
+    public function createPais(PaisRequest $request)
     {
         return $this->paisInterface->createPais($request);
     }
