@@ -10,7 +10,7 @@ use App\Models\Pais;
 
 trait CreateEntities
 {
-    public function traitStorePais(PaisRequest $request)
+    public function traitStore(PaisRequest $request)
     {
         DB::beginTransaction();
         try {

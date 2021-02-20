@@ -27,7 +27,7 @@ class PaisRepository implements PaisInterface
 
     public function store(PaisRequest $request)
     {
-        $this->traitStorePais($request);
+        $this->traitStore($request);
     }
 
     public function edit($pais_id)
