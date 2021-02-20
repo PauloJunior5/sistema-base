@@ -52,4 +52,4 @@ $app->singleton(
 |
 */
 
-return $App\Models;
+return $app ;
