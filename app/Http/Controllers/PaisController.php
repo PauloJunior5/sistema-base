@@ -48,6 +48,6 @@ class PaisController extends Controller
 
     public function createPais(Request $request)
     {
-        return $this->paisInterface->destroy($request);
+        return $this->paisInterface->createPais($request);
     }
 }
