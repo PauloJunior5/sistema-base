@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Cidade;
+use App\Models\Cidade;
 use App\Cliente;
 use App\Estado;
 use App\Exame;
