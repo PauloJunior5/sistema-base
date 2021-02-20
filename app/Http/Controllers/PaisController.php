@@ -8,9 +8,6 @@ use App\Interfaces\PaisInterface;
 
 class PaisController extends Controller
 {
-    /**
-     * Create a new constructor for this controller
-     */
     public function __construct(PaisInterface $paisInterface)
     {
         $this->paisInterface = $paisInterface;
