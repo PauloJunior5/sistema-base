@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pais;
 use Illuminate\Http\Request;
-use Redirect;
 
 class PaisController extends Controller
 {
