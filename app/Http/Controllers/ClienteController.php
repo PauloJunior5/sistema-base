@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Cliente;
+use App\Models\Cliente;
 use App\Models\Cidade;
 use App\Models\CondicaoPagamento;
 use App\Models\Estado;
