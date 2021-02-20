@@ -44,7 +44,7 @@ class PaisRepository implements PaisInterface
 
     public function edit($pais_id)
     {
-        Pais::findOrFail($pais_id);
+        $pais = Pais::findOrFail($pais_id);
         return view('paises.edit', compact('pais'));
     }
 
