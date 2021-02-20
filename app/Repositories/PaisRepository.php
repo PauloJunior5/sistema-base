@@ -81,7 +81,7 @@ class PaisRepository implements PaisInterface
         } catch (\Throwable $th) {
 
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel editar país: ' . $th);
+            Log::debug('Warning - Não foi possivel excluir país: ' . $th);
             return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Verifique se existe vínculo com cidades e/ou estados.');
 
         }
