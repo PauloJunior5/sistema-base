@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\FormaPagamento;
+use App\Models\FormaPagamento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 

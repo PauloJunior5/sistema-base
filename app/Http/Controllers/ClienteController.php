@@ -6,7 +6,7 @@ use App\Cliente;
 use App\Models\Cidade;
 use App\Models\CondicaoPagamento;
 use App\Models\Estado;
-use App\FormaPagamento;
+use App\Models\FormaPagamento;
 use App\Models\Pais;
 use Illuminate\Http\Request;
 
