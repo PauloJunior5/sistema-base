@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cidade;
-use App\Estado;
+use App\Models\Estado;
 use App\Medico;
 use App\Pais;
 use Illuminate\Http\Request;

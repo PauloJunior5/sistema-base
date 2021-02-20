@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cidade;
 use App\Cliente;
-use App\Estado;
+use App\Models\Estado;
 use App\Exame;
 use App\Medico;
 use App\Paciente;
