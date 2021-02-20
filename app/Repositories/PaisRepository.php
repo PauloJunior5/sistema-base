@@ -27,19 +27,7 @@ class PaisRepository implements PaisInterface
 
     public function store(PaisRequest $request)
     {
-        DB::beginTransaction();
-        try {
-
-            $this->traitStorePais($request);
-            return redirect()->route('pais.index')->with('Success', 'Pais criado com sucesso.');
-
-        } catch (\Throwable $th) {
-
-            DB::rollBack();
-            Log::debug('Warning - Não foi possivel criar país: ' . $th);
-            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel criar país.');
-
-        }
+        $this->traitStorePais($request);
     }
 
     public function edit($pais_id)
@@ -86,18 +74,6 @@ class PaisRepository implements PaisInterface
 
     public function createPais(PaisRequest $request)
     {
-
-        DB::beginTransaction();
-        try {
-
-            $this->traitStorePais($request);
-            return redirect()->back()->withInput()->with('error_code', 4);
-
-        } catch (\Throwable $th) {
-
-            DB::rollBack();
-            return redirect()->back()->withInput();
-
-        }
+        $this->traitCreatePais($request);
     }
 }
