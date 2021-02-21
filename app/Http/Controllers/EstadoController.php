@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estado;
-use App\Models\Medico;
 use App\Models\Pais;
 use Illuminate\Http\Request;
 use Redirect;
@@ -35,6 +34,18 @@ class EstadoController extends Controller
             }
         }
     }
+
+    public function show(Request $request)
+    {
+        $estado = Estado::find($request->id_estado);
+        $pais = Pais::findOrFail($estado->id_pais);
+        $dados = [
+            'estado' => $estado,
+            'pais' => $pais,
+        ];
+        return $dados;
+    }
+
     public function edit($estado_id)
     {
         $estado = Estado::findOrFail($estado_id);

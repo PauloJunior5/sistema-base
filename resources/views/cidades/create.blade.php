@@ -122,7 +122,7 @@
     $('.idPais').click(function() {
         var id_pais = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/pais/show',
             data: { id_pais : id_pais },
             dataType: "JSON",

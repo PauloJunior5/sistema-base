@@ -106,7 +106,7 @@
     $('.idEstado').click(function() {
         var id_estado = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/estado/show',
             data: { id_estado : id_estado },
             dataType: "JSON",
@@ -123,7 +123,7 @@
     $('.idPais').click(function() {
         var id_pais = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/pais/show',
             data: { id_pais : id_pais },
             dataType: "JSON",
