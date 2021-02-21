@@ -78,16 +78,6 @@ class CidadeController extends Controller
             return redirect()->route('cidade.index')->withStatus(__('Cidade excluida com sucesso.'));
         }
     }
-    public function getEstado(Request $request)
-    {
-        $estado = Estado::find($request->id_estado);
-        $pais = Pais::findOrFail($estado->id_pais);
-        $dados = [
-            'estado' => $estado,
-            'pais' => $pais,
-        ];
-        return $dados;
-    }
 
     public function createCidade(Request $request)
     {
