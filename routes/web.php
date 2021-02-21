@@ -41,27 +41,23 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('pais', 'PaisController', ['except' => ['show']]);
-    Route::post('pais/createPais', 'PaisController@createPais')->name('pais.create');
-    Route::get('pais/show', 'PaisController@show')->name('pais.show');
-});
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('estado', 'EstadoController', ['except' => ['show']]);
-    Route::post('estado/destroy', 'EstadoController@destroy');
-    Route::get('estado/destroy', 'EstadoController@destroy');
-    Route::post('estado/getPais', 'EstadoController@getPais');
-    Route::post('estado/createEstado', 'EstadoController@createEstado')->name('estado.createEstado');
-});
+    Route::resource('pais', 'PaisController');
+    Route::name('pais.')->group(function () {
+        Route::post('pais/createPais', 'PaisController@createPais')->name('createPais');
+    });
 
-Route::group(['middleware' => 'auth'], function () {    
-    Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
-    Route::post('cidade/destroy', 'CidadeController@destroy');
-    Route::get('cidade/destroy', 'CidadeController@destroy');
-    Route::post('cidade/getEstado', 'CidadeController@getEstado');
-    Route::post('cidade/show', 'CidadeController@show');
-    Route::post('cidade/createCidade', 'CidadeController@createCidade')->name('cidade.createCidade');
-    Route::post('cidade/createCidadeMedico', 'CidadeController@createCidadeMedico')->name('cidade.createCidadeMedico');
+    Route::resource('estado', 'EstadoController');
+    Route::name('estado.')->group(function () {
+        Route::post('estado/createEstado', 'EstadoController@createEstado')->name('createEstado');
+    });
+
+    Route::resource('cidade', 'CidadeController');
+    Route::name('cidade.')->group(function () {
+        Route::post('cidade/createCidade', 'CidadeController@createCidade')->name('createCidade');
+        Route::post('cidade/createCidadeMedico', 'CidadeController@createCidadeMedico')->name('createCidadeMedico');
+    });
+
 });
 
 
