@@ -30,6 +30,11 @@ class PaisRepository implements PaisInterface
         $this->traitStore($request);
     }
 
+    public function show(PaisRequest $request)
+    {
+        return Pais::find($request->id_pais);
+    }
+
     public function edit($pais_id)
     {
         $pais = Pais::findOrFail($pais_id);

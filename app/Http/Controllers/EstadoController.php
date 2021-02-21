@@ -65,12 +65,6 @@ class EstadoController extends Controller
         }
     }
 
-    public function getPais(Request $request)
-    {
-        $pais = Pais::find($request->id_pais);
-        return $pais;
-    }
-
     public function createEstado(Request $request)
     {
         $validatedData = $request->validate([

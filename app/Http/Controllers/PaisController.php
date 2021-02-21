@@ -28,6 +28,11 @@ class PaisController extends Controller
         return $this->paisInterface->store($request);
     }
 
+    public function show(PaisRequest $request)
+    {
+        return $this->paisInterface->show($request);
+    }
+
     public function edit($pais_id)
     {
         return $this->paisInterface->edit($pais_id);

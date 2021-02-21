@@ -211,7 +211,7 @@
         var id_pais = $(this).val();
         $.ajax({
             method: "POST",
-            url: url_atual + '/estado/getPais',
+            url: url_atual + '/pais/show',
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
