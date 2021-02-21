@@ -167,7 +167,7 @@
         var id_estado = $(this).val();
         $.ajax({
             method: "POST",
-            url: url_atual + '/cidade/getEstado',
+            url: url_atual + '/estado/show',
             data: { id_estado : id_estado },
             dataType: "JSON",
             success: function(response){
