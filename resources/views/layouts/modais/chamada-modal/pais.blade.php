@@ -8,6 +8,9 @@
             <div class="modal-body">
                 @include('layouts.modais.index.pais')
             </div>
+            <div class="container" style="margin: 7px">
+                <button class="btn btn-primary float-right" data-dismiss="modal">Voltar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -21,6 +24,9 @@
             </button>
             <div class="modal-body">
                 @include('layouts.modais.create.pais')
+            </div>
+            <div class="container" style="margin: 7px">
+                <button class="btn btn-primary float-right" data-dismiss="modal">Voltar</button>
             </div>
         </div>
     </div>
