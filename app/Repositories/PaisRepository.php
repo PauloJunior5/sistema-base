@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Http\Requests\PaisRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+use App\Http\Requests\PaisRequest;
 use App\Traits\CreateEntities;
 use App\Interfaces\PaisInterface;
 use App\Models\Pais;
@@ -27,7 +27,7 @@ class PaisRepository implements PaisInterface
 
     public function store(PaisRequest $request)
     {
-        $this->traitStore($request);
+        $this->traitStorePais($request);
     }
 
     public function show(PaisRequest $request)

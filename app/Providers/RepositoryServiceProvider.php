@@ -11,9 +11,15 @@ class RepositoryServiceProvider extends ServiceProvider
         // Register Interface and Repository in here
         // You must place Interface in first place
         // If you dont, the Repository will not get readed.
+
         $this->app->bind(
             'App\Interfaces\PaisInterface',
             'App\Repositories\PaisRepository'
+        );
+
+        $this->app->bind(
+            'App\Interfaces\EstadoInterface',
+            'App\Repositories\EstadoRepository'
         );
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PaisRequest;
-
 use App\Interfaces\PaisInterface;
+
+use App\Http\Requests\PaisRequest;
 
 class PaisController extends Controller
 {

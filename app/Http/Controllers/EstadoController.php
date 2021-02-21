@@ -2,90 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estado;
-use App\Models\Pais;
-use Illuminate\Http\Request;
-use Redirect;
+use App\Interfaces\EstadoInterface;
+
+use App\Http\Requests\EstadoRequest;
 
 class EstadoController extends Controller
 {
+    public function __construct(EstadoInterface $estadoInterface)
+    {
+        $this->estadoInterface = $estadoInterface;
+    }
+
     public function index()
     {
-        return view('estados.index', ['estados' => Estado::all()]);
+        return $this->estadoInterface->index();
     }
+
     public function create()
     {
-        $paises = Pais::all(); // Modal add pais
-        return view('estados.create', compact('paises'));
-    }
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'id_pais' => 'exists:paises,id',
-            'estado' => 'unique:estados,estado',
-        ]);
-
-        if ($validatedData) {
-            $estado = Estado::create($request->all());
-            if ($estado) {
-                return redirect()->route('estado.index')->with('Success', 'Estado criado com sucesso.');
-            }
-        }
+        return $this->estadoInterface->create();
     }
 
-    public function show(Request $request)
+    public function store(EstadoRequest $request)
     {
-        $estado = Estado::find($request->id_estado);
-        $pais = Pais::findOrFail($estado->id_pais);
-        $dados = [
-            'estado' => $estado,
-            'pais' => $pais,
-        ];
-        return $dados;
+        return $this->estadoInterface->store($request);
+    }
+
+    public function show(EstadoRequest $request)
+    {
+        return $this->estadoInterface->show($request);
     }
 
     public function edit($estado_id)
     {
-        $estado = Estado::findOrFail($estado_id);
-        $pais = Pais::findOrFail($estado->id_pais);
-        $paises = Pais::all(); // Modal add pais
-        if ($estado) {
-            return view('estados.edit', compact('estado', 'pais', 'paises'));
-        } else {
-            return redirect()->back();
-        }
+        return $this->estadoInterface->edit($estado_id);
     }
-    public function update(Request $request)
+
+    public function update(EstadoRequest $request)
     {
-        $estado = Estado::whereId($request->get('id'))->update($request->except('_token', '_method'));
-        if ($estado) {
-            return redirect()->route('estado.index')->with('Success', 'Estado alterado com sucesso.');
-        }
+        return $this->estadoInterface->update($request);
     }
+
     public function destroy($estado_id)
     {
-        try {
-            $estado = Estado::where('id', $estado_id)->delete();
-        } catch (\Illuminate\Database\QueryException $ex) {
-            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel excluir estado. Esse estado possui vínculo com cidades.');
-        }
-        if ($estado) {
-            return redirect()->route('estado.index')->with('Success', 'Estado excluido com sucesso.');
-        }
+        return $this->estadoInterface->destroy($estado_id);
     }
 
-    public function createEstado(Request $request)
+    public function createEstado(EstadoRequest $request)
     {
-        $validatedData = $request->validate([
-            'id_pais' => 'exists:paises,id',
-            'estado' => 'unique:estados,estado',
-        ]);
-
-        if ($validatedData) {
-            $estado = Estado::create($request->all());
-            if ($estado) {
-                return Redirect::back()->withInput()->with('error_code', 5);
-            }
-        }
+        return $this->estadoInterface->createEstado($request);
     }
 }
