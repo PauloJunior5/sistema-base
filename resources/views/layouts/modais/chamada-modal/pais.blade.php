@@ -9,7 +9,7 @@
                 @include('layouts.modais.index.pais')
             </div>
             <div class="container" style="margin: 7px">
-                <button class="btn btn-primary float-right" data-dismiss="modal">Voltar</button>
+                <button class="btn btn-secondary float-right" data-dismiss="modal">Voltar</button>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
                 @include('layouts.modais.create.pais')
             </div>
             <div class="container" style="margin: 7px">
-                <button class="btn btn-primary float-right" data-dismiss="modal">Voltar</button>
+                <button class="btn btn-secondary float-right" data-dismiss="modal">Voltar</button>
             </div>
         </div>
     </div>
