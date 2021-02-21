@@ -11,8 +11,6 @@ class EstadoController extends Controller
 {
     public function index()
     {
-        // $pacientes = Medico::find(3)->cidades;
-        // dd($cidades);
         return view('estados.index', ['estados' => Estado::all()]);
     }
     public function create()
