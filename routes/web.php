@@ -23,9 +23,49 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('user', 'UserController', ['except' => ['show']]);
+    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+    Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
 
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('pais', 'PaisController', ['except' => ['show']]);
+    Route::post('pais/createPais', 'PaisController@createPais')->name('pais.create');
+    Route::get('pais/show', 'PaisController@show')->name('pais.show');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('estado', 'EstadoController', ['except' => ['show']]);
+    Route::post('estado/destroy', 'EstadoController@destroy');
+    Route::get('estado/destroy', 'EstadoController@destroy');
+    Route::post('estado/getPais', 'EstadoController@getPais');
+    Route::post('estado/createEstado', 'EstadoController@createEstado')->name('estado.createEstado');
+});
+
+Route::group(['middleware' => 'auth'], function () {    
+    Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
+    Route::post('cidade/destroy', 'CidadeController@destroy');
+    Route::get('cidade/destroy', 'CidadeController@destroy');
+    Route::post('cidade/getEstado', 'CidadeController@getEstado');
+    Route::post('cidade/show', 'CidadeController@show');
+    Route::post('cidade/createCidade', 'CidadeController@createCidade')->name('cidade.createCidade');
+    Route::post('cidade/createCidadeMedico', 'CidadeController@createCidadeMedico')->name('cidade.createCidadeMedico');
+});
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -57,6 +97,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -69,38 +110,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('formaPagamento', 'FormaPagamentoController', ['except' => ['show']]);
     Route::post('formaPagamento/show', 'FormaPagamentoController@show');
     Route::post('formaPagamento/createForma_pagamento', 'FormaPagamentoController@createForma_pagamento')->name('formaPagamento.createForma_pagamento');
-});
-
-
-
-
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('pais', 'PaisController', ['except' => ['show']]);
-    Route::post('pais/createPais', 'PaisController@createPais')->name('pais.createPais');
-});
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('estado', 'EstadoController', ['except' => ['show']]);
-    Route::post('estado/destroy', 'EstadoController@destroy');
-    Route::get('estado/destroy', 'EstadoController@destroy');
-    Route::post('estado/getPais', 'EstadoController@getPais');
-    Route::post('estado/createEstado', 'EstadoController@createEstado')->name('estado.createEstado');
-});
-
-Route::group(['middleware' => 'auth'], function () {    
-    Route::resource('cidade', 'CidadeController', ['except' => ['show']]);
-    Route::post('cidade/destroy', 'CidadeController@destroy');
-    Route::get('cidade/destroy', 'CidadeController@destroy');
-    Route::post('cidade/getEstado', 'CidadeController@getEstado');
-    Route::post('cidade/show', 'CidadeController@show');
-    Route::post('cidade/createCidade', 'CidadeController@createCidade')->name('cidade.createCidade');
-    Route::post('cidade/createCidadeMedico', 'CidadeController@createCidadeMedico')->name('cidade.createCidadeMedico');
-});
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('user', 'UserController', ['except' => ['show']]);
-    Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-    Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
