@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Interfaces\EstadoInterface;
-
 use App\Http\Requests\EstadoRequest;
 
 class EstadoController extends Controller
