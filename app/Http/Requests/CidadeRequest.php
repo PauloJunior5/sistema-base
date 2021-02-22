@@ -13,7 +13,7 @@ class CidadeRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class CidadeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+                'id_estado' => 'exists:estados,id',
+                'cidade' => 'unique:cidades,cidade|max:50',
         ];
     }
 }

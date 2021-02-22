@@ -30,7 +30,20 @@ class EstadoRepository implements EstadoInterface
 
     public function store(EstadoRequest $request)
     {
-        $this->traitStoreEstado($request);
+        DB::beginTransaction();
+        try {
+
+            Estado::create($request->all());
+            DB::commit();
+            return redirect()->route('estado.index')->with('Success', 'Estado criado com sucesso.')->send();
+
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel criar estado: ' . $th);
+            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel criar estado.')->send();
+
+        }
     }
 
     public function show(EstadoRequest $request)
