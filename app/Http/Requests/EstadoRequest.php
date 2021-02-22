@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EstadoRequest extends FormRequest
 {
@@ -25,7 +26,9 @@ class EstadoRequest extends FormRequest
     {
         return [
             'id_pais' => 'exists:paises,id',
-            'estado' => 'unique:estados,estado|max:50'
+            'estado' => [
+                Rule::unique('estados', 'estado')->ignore($this->id),
+            ],
         ];
     }
 }

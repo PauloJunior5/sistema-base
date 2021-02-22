@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PaisRequest extends FormRequest
 {
@@ -24,7 +25,11 @@ class PaisRequest extends FormRequest
     public function rules()
     {
         return [
-            'pais' => 'unique:paises,pais|max:50'
+            'pais' => [
+                Rule::unique('paises', 'pais')->ignore($this->id),
+            ],
+            // Substituido pelo padão da documentação.
+            // 'pais' => 'unique:paises,pais|max:50'
         ];
     }
 }

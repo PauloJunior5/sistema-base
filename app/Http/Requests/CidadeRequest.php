@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CidadeRequest extends FormRequest
 {
@@ -24,8 +25,10 @@ class CidadeRequest extends FormRequest
     public function rules()
     {
         return [
-                'id_estado' => 'exists:estados,id',
-                'cidade' => 'unique:cidades,cidade|max:50',
+            'id_estado' => 'exists:estados,id',
+            'cidade' => [
+                Rule::unique('cidades', 'cidade')->ignore($this->id),
+            ]
         ];
     }
 }
