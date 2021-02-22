@@ -5,7 +5,7 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CidadeRequest;
 use App\Traits\CreateEntities;
 use App\Interfaces\CidadeInterface;
 
@@ -24,12 +24,12 @@ class CidadeRepository implements CidadeInterface
 
     }
 
-    public function store(Request $request)
+    public function store(CidadeRequest $request)
     {
 
     }
 
-    public function show(Request $request)
+    public function show(CidadeRequest $request)
     {
 
     }
@@ -39,7 +39,7 @@ class CidadeRepository implements CidadeInterface
 
     }
 
-    public function update(Request $request)
+    public function update(CidadeRequest $request)
     {
 
     }
@@ -49,12 +49,12 @@ class CidadeRepository implements CidadeInterface
 
     }
 
-    public function createCidade(Request $request)
+    public function createCidade(CidadeRequest $request)
     {
 
     }
 
-    public function createCidadeMedico(Request $request)
+    public function createCidadeMedico(CidadeRequest $request)
     {
 
     }

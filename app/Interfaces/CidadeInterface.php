@@ -2,17 +2,17 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CidadeRequest;
 
 interface CidadeInterface
 {
     public function index();
     public function create();
-    public function store(Request $request);
-    public function show(Request $request);
+    public function store(CidadeRequest $request);
+    public function show(CidadeRequest $request);
     public function edit($estado_id);
-    public function update(Request $request);
+    public function update(CidadeRequest $request);
     public function destroy($estado_id);
-    public function createCidade(Request $request);
-    public function createCidadeMedico(Request $request);
+    public function createCidade(CidadeRequest $request);
+    public function createCidadeMedico(CidadeRequest $request);
 }
