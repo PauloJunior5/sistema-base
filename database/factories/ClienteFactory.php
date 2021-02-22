@@ -4,29 +4,29 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Cliente::class, function (Faker $faker) {
+$factory->define(App\Models\Cliente::class, function (Faker $faker) {
     return [
         'tipo' => $faker->boolean,
         'cliente' => $faker->name,
         'apelido' => $faker->name,
-        'estado_civil' => $faker->boolean,
         'endereco' => $faker->streetName,
         'numero' => $faker->uuid,
         'complemento' => $faker->sentence,
         'bairro' => $faker->streetAddress,
         'cep' => $faker->uuid,
-        'cidade' => $faker->city,
+        'id_cidade' => random_int(1, 100),
         'telefone' => $faker->phoneNumber,
+        'celular' => $faker->phoneNumber,
         'email' => $faker->email,
-        'sexo' => $faker->boolean,
         'nacionalidade' => $faker->country,
-        'aniversario' => $faker->date,
         'cpf' => $faker->uuid,
         'rg' => $faker->uuid,
-        'emissor' => $faker->stateAbbr,
-        'uf' => $faker->stateAbbr,
-        'observacao' => $faker->sentence,
-        // 'limite_credito' => $faker->null,
+        'nascimento' => $faker->date,
+        'inscricao_estadual' => $faker->uuid,
+        'observacao' => $faker->text,
+        'limite_credito' => $faker->randomFloat(2,100,100000000),
         'condicao_pagamento' => $faker->boolean,
+        'created_at' => now(),
+        'updated_at' => now()
     ];
 });
