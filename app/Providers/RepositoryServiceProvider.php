@@ -21,5 +21,10 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\EstadoInterface',
             'App\Repositories\EstadoRepository'
         );
+
+        $this->app->bind(
+            'App\Interfaces\CidadeInterface',
+            'App\Repositories\CidadeRepository'
+        );
     }
 }
