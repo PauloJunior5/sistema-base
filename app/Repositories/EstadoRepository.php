@@ -103,6 +103,18 @@ class EstadoRepository implements EstadoInterface
 
     public function createEstado(EstadoRequest $request)
     {
-        $this->traitCreateEstado($request);
+        DB::beginTransaction();
+        try {
+
+            Estado::create($request->all());
+            DB::commit();
+            return redirect()->back()->withInput()->with('error_code', 5)->send();
+
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+            return redirect()->back()->withInput()->send();
+
+        }
     }
 }
