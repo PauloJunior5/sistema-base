@@ -107,12 +107,36 @@ class CidadeRepository implements CidadeInterface
 
     public function createCidade(CidadeRequest $request)
     {
-        $this->traitCreateCidade($request);
+        DB::beginTransaction();
+            try {
+
+                Cidade::create($request->all());
+                DB::commit();
+                return redirect()->back()->withInput()->with('error_code', 6)->send();
+
+            } catch (\Throwable $th) {
+
+                DB::rollBack();
+                return redirect()->back()->withInput()->send();
+
+            }
     }
 
     public function createCidadeMedico(CidadeRequest $request)
     {
-        $this->traitCreateCidadeMedico($request);
+        DB::beginTransaction();
+        try {
+
+            Cidade::create($request->all());
+            DB::commit();
+            return redirect()->back()->withInput()->with('error_code', 8)->send();
+
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+            return redirect()->back()->withInput()->send();
+
+        }
     }
 
 }
