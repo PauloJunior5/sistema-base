@@ -92,6 +92,18 @@ class PaisRepository implements PaisInterface
 
     public function createPais(PaisRequest $request)
     {
-        $this->traitCreatePais($request);
+        DB::beginTransaction();
+        try {
+
+            Pais::create($request->all());
+            DB::commit();
+            return redirect()->back()->withInput()->with('error_code', 4)->send();
+
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+            return redirect()->back()->withInput()->send();
+
+        }
     }
 }
