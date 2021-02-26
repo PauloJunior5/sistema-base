@@ -9,6 +9,7 @@ use App\Http\Requests\PaisRequest;
 use App\Traits\CreateEntities;
 use App\Interfaces\PaisInterface;
 use App\Models\Pais;
+use Carbon\Carbon;
 
 class PaisRepository implements PaisInterface
 {
@@ -17,7 +18,7 @@ class PaisRepository implements PaisInterface
 
     public function index()
     {
-        return view('paises.index', ['paises' => Pais::all()]);
+        return view('paises.index', ['paises' => DB::table('paises')->get()]);
     }
 
     public function create()
@@ -30,7 +31,20 @@ class PaisRepository implements PaisInterface
         DB::beginTransaction();
         try {
 
-            Pais::create($request->all());
+            $pais = new Pais;
+
+            $pais->setPais($request->get('pais'));
+            $pais->setSigla($request->get('sigla'));
+            $pais->setCreated_at(Carbon::now()->toDateTimeString());
+
+            $dados = [
+                'pais' => $pais->getPais(),
+                'sigla' => $pais->getSigla(),
+                'created_at' => $pais->getCreated_at(),
+            ];
+
+            DB::table('paises')->insert($dados);
+
             DB::commit();
             return redirect()->route('pais.index')->with('Success', 'Pais criado com sucesso.')->send();
 
@@ -45,12 +59,12 @@ class PaisRepository implements PaisInterface
 
     public function show(PaisRequest $request)
     {
-        return Pais::find($request->id_pais);
+        return DB::table('paises')->where('id', $request->get('id'))->first();
     }
 
     public function edit($pais_id)
     {
-        $pais = Pais::findOrFail($pais_id);
+        $pais = DB::table('paises')->where('id', $pais_id)->first();
         return view('paises.edit', compact('pais'));
     }
 
@@ -59,7 +73,16 @@ class PaisRepository implements PaisInterface
         DB::beginTransaction();
         try {
 
-            Pais::whereId($request->get('id'))->update($request->except('_token', '_method'));
+            $timestamp = new Carbon();
+
+            $dados = [
+                'pais' => $request->get('pais'),
+                'sigla' => $request->get('sigla'),
+                'updated_at' => $timestamp->toDateTimeString(),
+            ];
+
+            DB::table('paises')->where('id', $request->get('id'))->update($dados);
+
             DB::commit();
             return redirect()->route('pais.index')->with('Success', 'País alterado com sucesso.');
 
@@ -77,7 +100,7 @@ class PaisRepository implements PaisInterface
         DB::beginTransaction();
         try {
 
-            Pais::where('id', $pais_id)->delete();
+            DB::table('paises')->where('id', $pais_id)->delete();
             DB::commit();
             return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
 
@@ -95,7 +118,20 @@ class PaisRepository implements PaisInterface
         DB::beginTransaction();
         try {
 
-            Pais::create($request->all());
+            $pais = new Pais;
+
+            $pais->setPais($request->get('pais'));
+            $pais->setSigla($request->get('sigla'));
+            $pais->setCreated_at(Carbon::now()->toDateTimeString());
+
+            $dados = [
+                'pais' => $pais->getPais(),
+                'sigla' => $pais->getSigla(),
+                'created_at' => $pais->getCreated_at(),
+            ];
+
+            DB::table('paises')->insert($dados);
+
             DB::commit();
             return redirect()->back()->withInput()->with('error_code', 4)->send();
 
