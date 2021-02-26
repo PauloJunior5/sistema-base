@@ -24,7 +24,7 @@ $factory->define(App\Models\Cliente::class, function (Faker $faker) {
         'nascimento' => $faker->date,
         'inscricao_estadual' => $faker->uuid,
         'observacao' => $faker->text,
-        'limite_credito' => $faker->randomFloat(2,100,100000000),
+        'limite_credito' => $faker->randomFloat(2,100,10000),
         'condicao_pagamento' => $faker->boolean,
         'created_at' => now(),
         'updated_at' => now()
