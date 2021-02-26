@@ -3,12 +3,13 @@
 namespace App\Interfaces;
 
 use App\Http\Requests\PaisRequest;
+use App\Models\Pais;
 
 interface PaisInterface
 {
     public function index();
     public function create();
-    public function store(PaisRequest $request);
+    public function store(Pais $pais);
     public function show(PaisRequest $request);
     public function edit($pais_id);
     public function update(PaisRequest $request);

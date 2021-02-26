@@ -26,16 +26,10 @@ class PaisRepository implements PaisInterface
         return view('paises.create');
     }
 
-    public function store(PaisRequest $request)
+    public function store(Pais $pais)
     {
         DB::beginTransaction();
         try {
-
-            $pais = new Pais;
-
-            $pais->setPais($request->get('pais'));
-            $pais->setSigla($request->get('sigla'));
-            $pais->setCreated_at(Carbon::now()->toDateTimeString());
 
             $dados = [
                 'pais' => $pais->getPais(),

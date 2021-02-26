@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\PaisInterface;
 use App\Http\Requests\PaisRequest;
+use App\Models\Pais;
+use Carbon\Carbon;
 
 class PaisController extends Controller
 {
@@ -24,7 +26,13 @@ class PaisController extends Controller
 
     public function store(PaisRequest $request)
     {
-        return $this->paisInterface->store($request);
+        $pais = new Pais;
+
+        $pais->setPais($request->get('pais'));
+        $pais->setSigla($request->get('sigla'));
+        $pais->setCreated_at(Carbon::now()->toDateTimeString());
+
+        return $this->paisInterface->store($pais);
     }
 
     public function show(PaisRequest $request)
