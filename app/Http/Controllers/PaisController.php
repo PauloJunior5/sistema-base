@@ -16,12 +16,13 @@ class PaisController extends Controller
 
     public function index()
     {
-        return $this->paisInterface->index();
+        $paises = $this->paisInterface->index();
+        return view('paises.index', ['paises' => $paises]);
     }
 
     public function create()
     {
-        return $this->paisInterface->create();
+        return view('paises.create');
     }
 
     public function store(PaisRequest $request)
@@ -32,27 +33,36 @@ class PaisController extends Controller
         $pais->setSigla($request->get('sigla'));
         $pais->setCreated_at(Carbon::now()->toDateTimeString());
 
-        return $this->paisInterface->store($pais);
+        $this->paisInterface->store($pais);
     }
 
-    public function show(PaisRequest $request)
+    public function show($id)
     {
-        return $this->paisInterface->show($request);
+        return $this->paisInterface->show($id);
     }
 
-    public function edit($pais_id)
+    public function edit($id)
     {
-        return $this->paisInterface->edit($pais_id);
+        $pais = $this->paisInterface->edit($id);
+        return view('paises.edit', compact('pais'));
     }
 
     public function update(PaisRequest $request)
     {
-        return $this->paisInterface->update($request);
+        $pais = new Pais;
+
+        $pais->setId($request->id);
+        $pais->setPais($request->pais);
+        $pais->setSigla($request->sigla);
+        $pais->setUpdated_at($request->created_at);
+        $pais->setUpdated_at(Carbon::now()->toDateTimeString());
+
+        return $this->paisInterface->update($pais);
     }
 
-    public function destroy($pais_id)
+    public function destroy($id)
     {
-        return $this->paisInterface->destroy($pais_id);
+        return $this->paisInterface->destroy($id);
     }
 
     public function createPais(PaisRequest $request)

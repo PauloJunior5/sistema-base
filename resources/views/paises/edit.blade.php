@@ -47,14 +47,14 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="datetime" class="form-control" value="{{ $pais->created_at }}" readonly>
+                                        <input type="datetime" name="created_at" class="form-control" value="{{ $pais->created_at }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
-                                        <input type="datetime" class="form-control" value="{{ $pais->updated_at }}" readonly>
+                                        <input type="datetime" name="updated_at" class="form-control" value="{{ $pais->updated_at }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>

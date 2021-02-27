@@ -6,24 +6,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests\PaisRequest;
-use App\Traits\CreateEntities;
 use App\Interfaces\PaisInterface;
 use App\Models\Pais;
 use Carbon\Carbon;
 
 class PaisRepository implements PaisInterface
 {
-    // Use CreateEntities Trait in this repository
-    use CreateEntities;
-
     public function index()
     {
-        return view('paises.index', ['paises' => DB::table('paises')->get()]);
-    }
-
-    public function create()
-    {
-        return view('paises.create');
+        return DB::table('paises')->get();
     }
 
     public function store(Pais $pais)
@@ -51,31 +42,28 @@ class PaisRepository implements PaisInterface
         }
     }
 
-    public function show(PaisRequest $request)
+    public function show($id)
     {
-        return DB::table('paises')->where('id', $request->get('id'))->first();
+        return DB::table('paises')->where('id', $id)->first();
     }
 
-    public function edit($pais_id)
+    public function edit($id)
     {
-        $pais = DB::table('paises')->where('id', $pais_id)->first();
-        return view('paises.edit', compact('pais'));
+        return DB::table('paises')->where('id', $id)->first();
     }
 
-    public function update(PaisRequest $request)
+    public function update(Pais $pais)
     {
         DB::beginTransaction();
         try {
 
-            $timestamp = new Carbon();
-
             $dados = [
-                'pais' => $request->get('pais'),
-                'sigla' => $request->get('sigla'),
-                'updated_at' => $timestamp->toDateTimeString(),
+                'pais' => $pais->getPais(),
+                'sigla' => $pais->getSigla(),
+                'updated_at' => $pais->getUpdated_at()
             ];
 
-            DB::table('paises')->where('id', $request->get('id'))->update($dados);
+            DB::table('paises')->where('id', $pais->getId())->update($dados);
 
             DB::commit();
             return redirect()->route('pais.index')->with('Success', 'País alterado com sucesso.');
@@ -89,12 +77,12 @@ class PaisRepository implements PaisInterface
         }
     }
 
-    public function destroy($pais_id)
+    public function destroy($id)
     {
         DB::beginTransaction();
         try {
 
-            DB::table('paises')->where('id', $pais_id)->delete();
+            DB::table('paises')->where('id', $id)->delete();
             DB::commit();
             return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
 

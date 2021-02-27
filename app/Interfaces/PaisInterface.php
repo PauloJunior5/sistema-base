@@ -8,11 +8,10 @@ use App\Models\Pais;
 interface PaisInterface
 {
     public function index();
-    public function create();
     public function store(Pais $pais);
-    public function show(PaisRequest $request);
-    public function edit($pais_id);
-    public function update(PaisRequest $request);
-    public function destroy($pais_id);
+    public function show($id);
+    public function edit($id);
+    public function update(Pais $pais);
+    public function destroy($id);
     public function createPais(PaisRequest $request);
 }
