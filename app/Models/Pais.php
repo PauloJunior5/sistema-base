@@ -21,7 +21,7 @@
 
 namespace App\Models;
 
-class Pais extends Base
+class Pais extends Model
 {
     protected $pais;
     protected $sigla;

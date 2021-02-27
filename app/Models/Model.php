@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Carbon;
-
-class Base
+class Model
 {
     protected $id;
     protected $created_at;
