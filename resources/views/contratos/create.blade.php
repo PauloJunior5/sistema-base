@@ -31,13 +31,15 @@
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <label class="col-form-label">Contrato</label>
                                     <div class="form-group">
                                         <input class="form-control" name="uf" id="input-uf" type="text" required />
                                     </div>
                                 </div>
-                                <div class="col-sm-1">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2">
                                     <label class="col-form-label">Id do responsável</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-sigla-pais" type="text" required/>
