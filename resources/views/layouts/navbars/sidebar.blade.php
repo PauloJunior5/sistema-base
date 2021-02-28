@@ -21,30 +21,6 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-            {{-- <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#usuarios" aria-expanded="true">
-                    <i class="material-icons">person</i>
-                    <p>{{ __('Usuários') }}
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse {{ ($activePage == 'user-management' || $activePage == 'profile') ? ' show' : '' }}" id="usuarios">
-                    <ul class="nav">
-                        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('profile.edit') }}">
-                                <span class="sidebar-mini"> P </span>
-                                <span class="sidebar-normal">{{ __('Perfil do Usuário') }} </span>
-                            </a>
-                        </li>
-                        <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('user.index') }}">
-                                <span class="sidebar-mini"> N </span>
-                                <span class="sidebar-normal"> {{ __('Usuários') }} </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li> --}}
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#regioes" aria-expanded="true">
                     <i class="material-icons">filter_hdr</i>
@@ -108,8 +84,7 @@
                     </p>
                 </a>
                 <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'exame-management' ||
-                                        $activePage == 'paciente-management' || $activePage == 'condicao-pagamento-management' ||
-                                        $activePage == 'forma-pagamento-management')
+                                        $activePage == 'paciente-management')
                                     ? ' show' : '' }}" id="geral">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
@@ -130,6 +105,26 @@
                                 <span class="sidebar-normal">{{ __('Exames') }} </span>
                             </a>
                         </li>
+                       
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#contratos" aria-expanded="true">
+                    <i class="material-icons">work</i>
+                    <p>{{ __('Negócio') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ ($activePage == 'contrato-management' || $activePage == 'condicao-pagamento-management' ||
+                                        $activePage == 'forma-pagamento-management') ? ' show' : '' }}" id="contratos">
+                    <ul class="nav">
+                        <li class="nav-item {{ $activePage == 'contrato-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('contrato.index') }}">
+                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-normal">{{ __('Contratos') }} </span>
+                            </a>
+                        </li>
                         <li class="nav-item {{ $activePage == 'condicao-pagamento-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('condicaoPagamento.index') }}">
                                 <span class="sidebar-mini"> C </span>
@@ -142,7 +137,7 @@
                                 <span class="sidebar-normal">{{ __('Formas de pagamento') }} </span>
                             </a>
                         </li>
-                    </ul>
+                    <ul class="nav">
                 </div>
             </li>
         </ul>
