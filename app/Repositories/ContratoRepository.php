@@ -5,16 +5,14 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-use App\Http\Requests\PaisRequest;
 use App\Interfaces\ContratoInterface;
 use App\Models\Contrato;
-use Carbon\Carbon;
 
 class ContratoRepository implements ContratoInterface
 {
     public function index()
     {
-        return DB::table('paises')->get();
+        return DB::table('contratos')->get();
     }
 
     public function store(Contrato $contrato)
@@ -91,36 +89,6 @@ class ContratoRepository implements ContratoInterface
             DB::rollBack();
             Log::debug('Warning - Não foi possivel excluir país: ' . $th);
             return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Verifique se existe vínculo com cidades e/ou estados.');
-
-        }
-    }
-
-    public function createPais(PaisRequest $request)
-    {
-        DB::beginTransaction();
-        try {
-
-            $pais = new Contrato;
-
-            // $pais->setPais($request->get('pais'));
-            // $pais->setSigla($request->get('sigla'));
-            // $pais->setCreated_at(Carbon::now()->toDateTimeString());
-
-            $dados = [
-                // 'pais' => $pais->getPais(),
-                // 'sigla' => $pais->getSigla(),
-                // 'created_at' => $pais->getCreated_at(),
-            ];
-
-            DB::table('paises')->insert($dados);
-
-            DB::commit();
-            return redirect()->back()->withInput()->with('error_code', 4)->send();
-
-        } catch (\Throwable $th) {
-
-            DB::rollBack();
-            return redirect()->back()->withInput()->send();
 
         }
     }

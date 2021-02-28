@@ -5,10 +5,8 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-use App\Http\Requests\PaisRequest;
 use App\Interfaces\PaisInterface;
 use App\Models\Pais;
-use Carbon\Carbon;
 
 class PaisRepository implements PaisInterface
 {
