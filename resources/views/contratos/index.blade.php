@@ -42,26 +42,26 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableExames">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Exame') }}</th>
-                                    <th>{{ __('Valor') }}</th>
-                                    <th>{{ __('Categoria') }}</th>
+                                    <th>{{ __('Id') }}</th>
+                                    <th>{{ __('Contrato') }}</th>
+                                    <th>{{ __('Responsavel') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
                                     <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($exames as $exame)
+                                    @foreach($contratos as $contrato)
                                     <tr>
-                                        <td>{{$exame->exame}}</td>
-                                        <td>{{$exame->valor}}</td>
-                                        <td>{{$exame->categoria}}</td>
-                                        <td>{{$exame->created_at->format('Y-m-d H:i:s')}}</td>
-                                        <td>{{$exame->updated_at->format('Y-m-d H:i:s')}}</td>
+                                        <td>{{$contrato->id}}</td>
+                                        <td>{{$contrato->contrato}}</td>
+                                        <td>{{$contrato->id_responsavel}}</td>
+                                        <td>{{$contrato->created_at}}</td>
+                                        <td>{{$contrato->updated_at}}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('exame.destroy', $exame->id) }}" method="post">
+                                            <form action="{{ route('exame.destroy', $contrato->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('exame.edit', $exame->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('exame.edit', $contrato->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
