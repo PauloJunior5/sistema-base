@@ -36,7 +36,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('exame.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
+                                <a href="{{ route('contrato.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -58,10 +58,10 @@
                                         <td>{{$contrato->created_at}}</td>
                                         <td>{{$contrato->updated_at}}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('exame.destroy', $contrato->id) }}" method="post">
+                                            <form action="{{ route('contrato.destroy', $contrato->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('exame.edit', $contrato->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('contrato.edit', $contrato->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
