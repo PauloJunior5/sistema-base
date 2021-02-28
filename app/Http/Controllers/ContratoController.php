@@ -21,7 +21,7 @@ class ContratoController extends Controller
     public function index()
     {
         $contratos = $this->contratoInterface->index();
-        return view('contratos.index', ['contratos' => $contratos]);
+        return view('contratos.index', compact('contratos'));
     }
 
     /**
@@ -32,7 +32,7 @@ class ContratoController extends Controller
     public function create()
     {
         $clientes = $this->contratoInterface->create();
-        return view('contratos.create', ['clientes' => $clientes]);
+        return view('contratos.create', compact('clientes'));
     }
 
     /**
@@ -65,7 +65,11 @@ class ContratoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $resultado = $this->contratoInterface->edit($id);
+        $clientes = $resultado['clientes'];
+        $contrato = $resultado['contrato'];
+        $cliente = $resultado['cliente'];
+        return view('contratos.edit', compact('clientes', 'contrato', 'cliente'));
     }
 
     /**

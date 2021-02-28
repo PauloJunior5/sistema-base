@@ -48,12 +48,23 @@ class ContratoRepository implements ContratoInterface
 
     public function show($id)
     {
-        return DB::table('paises')->where('id', $id)->first();
+        //
     }
 
     public function edit($id)
     {
-        return DB::table('paises')->where('id', $id)->first();
+
+        $clientes = DB::table('clientes')->get();
+        $contrato = DB::table('contratos')->where('id', $id)->first();
+        $cliente = DB::table('clientes')->where('id', $contrato->id_responsavel)->first();
+
+        $resultado = [
+            'clientes' => $clientes,
+            'contrato' => $contrato,
+            'cliente' => $cliente
+        ];
+
+        return $resultado;
     }
 
     public function update(Contrato $pais)

@@ -83,7 +83,7 @@
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Cidade</label>
                                     <input class="form-control readonly" id="cidade-input-cliente" value="{{old('cidade', $cidade->cidade)}}" name="cidade" required>
-                                    <input type="hidden" id="id-cidade-input-cliente" name="id_cidade" value="{{old('id_cidade', $cidade->id)}}" name="id_cidaed">
+                                    <input type="hidden" id="id-cidade-input-cliente" name="id_cidade" value="{{old('id_cidade', $cidade->id)}}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
