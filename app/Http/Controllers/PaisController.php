@@ -67,6 +67,12 @@ class PaisController extends Controller
 
     public function createPais(PaisRequest $request)
     {
-        return $this->paisInterface->createPais($request);
+        $pais = new Pais;
+
+        $pais->setPais($request->get('pais'));
+        $pais->setSigla($request->get('sigla'));
+        $pais->setCreated_at(Carbon::now()->toDateTimeString());
+
+        return $this->paisInterface->createPais($pais);
     }
 }

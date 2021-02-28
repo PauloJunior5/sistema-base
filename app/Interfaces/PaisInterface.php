@@ -13,5 +13,5 @@ interface PaisInterface
     public function edit($id);
     public function update(Pais $pais);
     public function destroy($id);
-    public function createPais(PaisRequest $request);
+    public function createPais(Pais $pais);
 }

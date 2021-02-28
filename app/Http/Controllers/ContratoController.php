@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\ContratoInterface;
 use Illuminate\Http\Request;
 
 class ContratoController extends Controller
 {
+
+    public function __construct(ContratoInterface $contratoInterface)
+    {
+        $this->contratoInterface = $contratoInterface;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,8 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        //
+        $contratos = $this->contratoInterface->index();
+        return view('contratos.index', ['contratos' => $contratos]);
     }
 
     /**

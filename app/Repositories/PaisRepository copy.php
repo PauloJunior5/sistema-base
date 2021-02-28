@@ -6,26 +6,26 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests\PaisRequest;
-use App\Interfaces\PaisInterface;
-use App\Models\Pais;
+use App\Interfaces\ContratoInterface;
+use App\Models\Contrato;
 use Carbon\Carbon;
 
-class PaisRepository implements PaisInterface
+class ContratoRepository implements ContratoInterface
 {
     public function index()
     {
         return DB::table('paises')->get();
     }
 
-    public function store(Pais $pais)
+    public function store(Contrato $contrato)
     {
         DB::beginTransaction();
         try {
 
             $dados = [
-                'pais' => $pais->getPais(),
-                'sigla' => $pais->getSigla(),
-                'created_at' => $pais->getCreated_at(),
+                // 'pais' => $pais->getPais(),
+                // 'sigla' => $pais->getSigla(),
+                // 'created_at' => $pais->getCreated_at(),
             ];
 
             DB::table('paises')->insert($dados);
@@ -52,15 +52,15 @@ class PaisRepository implements PaisInterface
         return DB::table('paises')->where('id', $id)->first();
     }
 
-    public function update(Pais $pais)
+    public function update(Contrato $pais)
     {
         DB::beginTransaction();
         try {
 
             $dados = [
-                'pais' => $pais->getPais(),
-                'sigla' => $pais->getSigla(),
-                'updated_at' => $pais->getUpdated_at()
+                // 'pais' => $pais->getPais(),
+                // 'sigla' => $pais->getSigla(),
+                // 'updated_at' => $pais->getUpdated_at()
             ];
 
             DB::table('paises')->where('id', $pais->getId())->update($dados);
@@ -95,15 +95,21 @@ class PaisRepository implements PaisInterface
         }
     }
 
-    public function createPais(Pais $pais)
+    public function createPais(PaisRequest $request)
     {
         DB::beginTransaction();
         try {
 
+            $pais = new Contrato;
+
+            // $pais->setPais($request->get('pais'));
+            // $pais->setSigla($request->get('sigla'));
+            // $pais->setCreated_at(Carbon::now()->toDateTimeString());
+
             $dados = [
-                'pais' => $pais->getPais(),
-                'sigla' => $pais->getSigla(),
-                'created_at' => $pais->getCreated_at(),
+                // 'pais' => $pais->getPais(),
+                // 'sigla' => $pais->getSigla(),
+                // 'created_at' => $pais->getCreated_at(),
             ];
 
             DB::table('paises')->insert($dados);
