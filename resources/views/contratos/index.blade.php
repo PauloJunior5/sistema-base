@@ -7,8 +7,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Exames') }}</h4>
-                        <p class="card-category"> {{ __('Aqui você pode gerenciar exames') }}</p>
+                        <h4 class="card-title ">{{ __('Contratos') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar contratos') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableExames">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableContratos">
                                 <thead class=" text-primary">
                                     <th>{{ __('Id') }}</th>
                                     <th>{{ __('Contrato') }}</th>
@@ -82,5 +82,5 @@
         </div>
     </div>
 </div>
-@include('includes.datatables.script-datatables', ['tableId' => '#tableExames'])
+@include('includes.datatables.script-datatables', ['tableId' => '#tableContratos'])
 @endsection

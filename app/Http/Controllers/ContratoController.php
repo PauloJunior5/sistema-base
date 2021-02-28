@@ -31,7 +31,8 @@ class ContratoController extends Controller
      */
     public function create()
     {
-        return view('contratos.create');
+        $clientes = $this->contratoInterface->create();
+        return view('contratos.create', ['clientes' => $clientes]);
     }
 
     /**

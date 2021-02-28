@@ -1,5 +1,3 @@
-@extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
-@section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -7,7 +5,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{ __('Clientes') }}</h4>
-                        <p class="card-category"> {{ __('Aqui você pode gerenciar clientes') }}</p>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar Clientes') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,11 +33,11 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('cliente.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clienteCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
+                            <table class="table" id="tableClientes">
                                 <thead class=" text-primary">
                                     <th>{{ __('CPF/CNPJ') }}</th>
                                     <th>{{ __('Cliente') }}</th>
@@ -52,13 +50,13 @@
                                     <tr>
                                         <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
                                         <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
-                                        <td>{{$cliente->created_at->format('Y-m-d H:i:s')}}</td>
-                                        <td>{{$cliente->updated_at->format('Y-m-d H:i:s')}}</td>
+                                        <td>{{$cliente->created_at}}</td>
+                                        <td>{{$cliente->updated_at}}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('cliente.destroy', $cliente) }}" method="post">
+                                            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
@@ -80,4 +78,3 @@
     </div>
 </div>
 @include('includes.datatables.script-datatables', ['tableId' => '#tableClientes'])
-@endsection

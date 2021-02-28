@@ -15,6 +15,12 @@ class ContratoRepository implements ContratoInterface
         return DB::table('contratos')->get();
     }
 
+    
+    public function create()
+    {
+        return DB::table('clientes')->get();
+    }
+
     public function store(Contrato $contrato)
     {
         DB::beginTransaction();
