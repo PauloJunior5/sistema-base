@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.forma_pagamento.forma_pagamentoModal')
+                @include('layouts.forma_pagamento.formaPagamento')
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.forma_pagamento.forma_pagamentoCreateModal')
+                @include('layouts.forma_pagamento.formaPagamento')
             </div>
         </div>
     </div>

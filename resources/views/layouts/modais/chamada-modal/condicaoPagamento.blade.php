@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.condicao_pagamento.condicao_pagamentoModal')
+                @include('layouts.modais.index.condicaoPagamento')
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                @include('layouts.condicao_pagamento.condicao_pagamentoCreateModal')
+                @include('layouts.modais.create.condicaoPagamento')
             </div>
         </div>
     </div>
