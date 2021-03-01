@@ -38,10 +38,6 @@
                                 </thead>
                                 <tbody>
                                     @foreach($cidades as $cidade)
-                                    @php
-                                    $estado = App\Models\Estado::where('id', $cidade->id_estado)->get();
-                                    $pais = App\Models\Pais::where('id', $estado->first()->id_pais)->get();
-                                    @endphp
                                     <tr>
                                         <td>{{ $cidade->ddd }}</td>
                                         <td>{{ $cidade->cidade }}</td>
