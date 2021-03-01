@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
 use App\Interfaces\ContratoInterface;
 use App\Models\Contrato;
 
@@ -15,7 +14,7 @@ class ContratoRepository implements ContratoInterface
         return DB::table('contratos')->get();
     }
 
-    
+
     public function create()
     {
         return DB::table('clientes')->get();
@@ -27,21 +26,21 @@ class ContratoRepository implements ContratoInterface
         try {
 
             $dados = [
-                // 'pais' => $pais->getPais(),
-                // 'sigla' => $pais->getSigla(),
-                // 'created_at' => $pais->getCreated_at(),
+                'contrato' => $contrato->getContrato(),
+                'id_responsavel' => $contrato->getResponsavel(),
+                'created_at' => $contrato->getCreated_at(),
             ];
 
-            DB::table('paises')->insert($dados);
+            DB::table('contratos')->insert($dados);
 
             DB::commit();
-            return redirect()->route('pais.index')->with('Success', 'Pais criado com sucesso.')->send();
+            return redirect()->route('contrato.index')->with('Success', 'Contrato criado com sucesso.')->send();
 
         } catch (\Throwable $th) {
 
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel criar país: ' . $th);
-            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel criar país.')->send();
+            Log::debug('Warning - Não foi possivel criar contrato: ' . $th);
+            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel criar contrato.')->send();
 
         }
     }

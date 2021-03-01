@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Interfaces\ContratoInterface;
+use App\Models\Contrato;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ContratoController extends Controller
@@ -13,56 +15,33 @@ class ContratoController extends Controller
         $this->contratoInterface = $contratoInterface;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $contratos = $this->contratoInterface->index();
         return view('contratos.index', compact('contratos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $clientes = $this->contratoInterface->create();
         return view('contratos.create', compact('clientes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $contrato = new Contrato;
+        $contrato->setContrato($request->get('contrato'));
+        $contrato->setResponsavel($request->get('id_responsavel'));
+        $contrato->setCreated_at(Carbon::now()->toDateTimeString());
+
+        $this->contratoInterface->store($contrato);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $resultado = $this->contratoInterface->edit($id);
@@ -72,24 +51,11 @@ class ContratoController extends Controller
         return view('contratos.edit', compact('clientes', 'contrato', 'cliente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

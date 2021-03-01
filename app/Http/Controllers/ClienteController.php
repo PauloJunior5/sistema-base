@@ -9,6 +9,7 @@ use App\Models\Estado;
 use App\Models\FormaPagamento;
 use App\Models\Pais;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
@@ -52,6 +53,12 @@ class ClienteController extends Controller
                 return redirect()->route('cliente.index')->with('Success', 'Cliente criado com sucesso.');
             }
         }
+    }
+
+    public function show(Request $request)
+    {
+        $cliente = DB::table('clientes')->where('id', $request->id_cliente)->first();
+        return response()->json($cliente);
     }
 
     public function edit($cliente_id)

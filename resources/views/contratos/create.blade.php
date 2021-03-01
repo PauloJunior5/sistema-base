@@ -34,7 +34,7 @@
                                 <div class="col-sm-6">
                                     <label class="col-form-label">Contrato</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="uf" id="input-uf" type="text" required />
+                                        <input class="form-control" name="contrato" id="input-contrato" type="text" required />
                                     </div>
                                 </div>
                             </div>
@@ -42,14 +42,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Id do responsável</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-sigla-pais" type="text" required/>
+                                        <input class="form-control" id="input-id-responsavel"  name="id_responsavel" type="text" required/>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <label class="col-form-label">Responsável</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-pais-pais" readonly />
-                                        <input type="hidden" id="input-id-pais" name="id_pais">
+                                        <input class="form-control" id="input-responsavel" readonly />
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
@@ -60,24 +59,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
+                                        <input type="date" class="form-control" name="created_at" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
+                                        <input type="date" class="form-control" name="updated_at" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <a href="{{ route('contrato.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
@@ -86,5 +85,5 @@
         </div>
     </div>
 </div>
-@include('includes.scripts.paises')
+@include('includes.scripts.clientes')
 @endsection

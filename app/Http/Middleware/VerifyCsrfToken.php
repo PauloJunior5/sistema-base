@@ -24,6 +24,7 @@ class VerifyCsrfToken extends Middleware
         '/cidade/show',
         '/medico/show',
         '/formaPagamento/show',
-        '/condicaoPagamento/show'
+        '/condicaoPagamento/show',
+        '/cliente/show'
     ];
 }

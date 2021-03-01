@@ -33,7 +33,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clienteCreateModal" style="margin-top: 2.7rem;">Novo</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -41,8 +41,6 @@
                                 <thead class=" text-primary">
                                     <th>{{ __('CPF/CNPJ') }}</th>
                                     <th>{{ __('Cliente') }}</th>
-                                    <th>{{ __('Data de Criação') }}</th>
-                                    <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
@@ -50,21 +48,11 @@
                                     <tr>
                                         <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
                                         <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
-                                        <td>{{$cliente->created_at}}</td>
-                                        <td>{{$cliente->updated_at}}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente->id) }}" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Voce tem certeza que deseja excluir?") }}') ? this.parentElement.submit() : ''">
-                                                    <i class="material-icons">close</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>
-                                            </form>
+                                            <button rel="tooltip" class="btn btn-success btn-link idCliente" value="{{$cliente->id}}" data-original-title="" title="">
+                                                <i class="material-icons">check</i> Selecionar
+                                                <div class="ripple-container"></div>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach

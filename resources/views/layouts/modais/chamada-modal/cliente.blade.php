@@ -1,20 +1,28 @@
-<!-- Modal -->
-<div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-labelledby="clienteModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<!-- Start Modal -->
+<div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-labelledby="clienteModal" aria-hidden="true" style="z-index: 99999">
+  <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+              <span class="modal-close-button" aria-hidden="true">&times;</span>
           </button>
-        </div>
-        <div class="modal-body">
+          <div class="modal-body">
             @include('layouts.modais.index.cliente')
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+          </div>
       </div>
-    </div>
   </div>
+</div>
+{{-- End Modal --}}
+<!-- Start Modal -->
+<div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-labelledby="clienteModal" aria-hidden="true" style="z-index: 99999">
+  <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span class="modal-close-button" aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-body">
+              {{-- @include('layouts.modais.create.cliente') --}}
+          </div>
+      </div>
+  </div>
+</div>
+{{-- End Modal --}}

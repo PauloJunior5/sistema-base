@@ -4,20 +4,32 @@ namespace App\Models;
 
 class Contrato extends Model
 {
-    protected $cliente;
+    protected $contrato;
+    protected $responsavel;
 
     function __construct()
     {
-        $this->cliente = '';
+        $this->contrato = '';
+        $this->responsavel = null;
     }
 
-    public function getCliente()
+    public function getContrato()
     {
-        return $this->cliente;
+        return $this->contrato;
     }
 
-    public function setCliente(string $cliente)
+    public function setContrato(string $contrato)
     {
-        $this->cliente = $cliente;
+        $this->contrato = $contrato;
+    }
+
+    public function getResponsavel()
+    {
+        return $this->responsavel;
+    }
+
+    public function setResponsavel(int $responsavel)
+    {
+        $this->responsavel = $responsavel;
     }
 }
