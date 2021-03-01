@@ -7,6 +7,7 @@ use App\Models\Contrato;
 use App\Traits\ShowCliente;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContratoController extends Controller
 {
@@ -35,12 +36,14 @@ class ContratoController extends Controller
         
         $cliente = json_decode($this->showCliente($request->id_responsavel)->getContent());
 
+        // $teste = get_object_vars($cliente);
+
+        $teste = DB::table('paises')->where('id', 1)->first();
+
         $contrato = new Contrato;
         $contrato->setContrato($request->get('contrato'));
-        $contrato->setResponsavel($cliente);
+        $contrato->setResponsavel($teste);
         $contrato->setCreated_at(Carbon::now()->toDateTimeString());
-
-        
 
         $this->contratoInterface->store($contrato);
     }
