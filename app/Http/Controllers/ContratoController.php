@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\ContratoInterface;
 use App\Models\Contrato;
+use App\Traits\ShowCliente;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ContratoController extends Controller
 {
+
+    use ShowCliente;
 
     public function __construct(ContratoInterface $contratoInterface)
     {
@@ -29,17 +32,22 @@ class ContratoController extends Controller
 
     public function store(Request $request)
     {
+        
+        $cliente = json_decode($this->showCliente($request->id_responsavel)->getContent());
+
         $contrato = new Contrato;
         $contrato->setContrato($request->get('contrato'));
-        $contrato->setResponsavel($request->get('id_responsavel'));
+        $contrato->setResponsavel($cliente);
         $contrato->setCreated_at(Carbon::now()->toDateTimeString());
+
+        
 
         $this->contratoInterface->store($contrato);
     }
 
     public function show($id)
     {
-        //
+        return $this->contratoInterface->show($id);
     }
 
     public function edit($id)

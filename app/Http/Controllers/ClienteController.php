@@ -8,11 +8,14 @@ use App\Models\CondicaoPagamento;
 use App\Models\Estado;
 use App\Models\FormaPagamento;
 use App\Models\Pais;
+use App\Traits\ShowCliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
+    use ShowCliente;
+
     public function index()
     {
         $clientes = Cliente::all();
@@ -57,8 +60,7 @@ class ClienteController extends Controller
 
     public function show(Request $request)
     {
-        $cliente = DB::table('clientes')->where('id', $request->id_cliente)->first();
-        return response()->json($cliente);
+        return $this->showCliente($request->id_cliente);
     }
 
     public function edit($cliente_id)

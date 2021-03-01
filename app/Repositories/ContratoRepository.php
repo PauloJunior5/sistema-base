@@ -14,7 +14,6 @@ class ContratoRepository implements ContratoInterface
         return DB::table('contratos')->get();
     }
 
-
     public function create()
     {
         return DB::table('clientes')->get();
@@ -27,7 +26,7 @@ class ContratoRepository implements ContratoInterface
 
             $dados = [
                 'contrato' => $contrato->getContrato(),
-                'id_responsavel' => $contrato->getResponsavel(),
+                'id_responsavel' => $contrato->getResponsavel()->id,
                 'created_at' => $contrato->getCreated_at(),
             ];
 
@@ -52,7 +51,6 @@ class ContratoRepository implements ContratoInterface
 
     public function edit($id)
     {
-
         $clientes = DB::table('clientes')->get();
         $contrato = DB::table('contratos')->where('id', $id)->first();
         $cliente = DB::table('clientes')->where('id', $contrato->id_responsavel)->first();

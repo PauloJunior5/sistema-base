@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Cliente;
+
 class Contrato extends Model
 {
     protected $contrato;
-    protected $responsavel;
+    protected Object $responsavel;
 
     function __construct()
     {
         $this->contrato = '';
-        $this->responsavel = null;
+        $this->responsavel = new Cliente;
     }
 
     public function getContrato()
@@ -28,7 +30,7 @@ class Contrato extends Model
         return $this->responsavel;
     }
 
-    public function setResponsavel(int $responsavel)
+    public function setResponsavel(Cliente $responsavel)
     {
         $this->responsavel = $responsavel;
     }
