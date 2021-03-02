@@ -2,8 +2,8 @@
 
 namespace App\Interfaces;
 
-use App\Http\Requests\PaisRequest;
 use App\Models\Pais;
+use Illuminate\Http\Request;
 
 interface PaisInterface
 {

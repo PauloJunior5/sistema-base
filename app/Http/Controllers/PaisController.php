@@ -6,6 +6,7 @@ use App\Interfaces\PaisInterface;
 use App\Http\Requests\PaisRequest;
 use App\Models\Pais;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class PaisController extends Controller
 {
@@ -36,9 +37,9 @@ class PaisController extends Controller
         $this->paisInterface->store($pais);
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
-        return $this->paisInterface->show($id);
+        return $this->paisInterface->show($request->id_pais);
     }
 
     public function edit($id)

@@ -21,6 +21,8 @@
 
 namespace App\Models;
 
+use App\Models\Model;
+
 class Pais extends Model
 {
     protected $pais;

@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\EstadoInterface;
 use App\Http\Requests\EstadoRequest;
+use App\Models\Estado;
+use App\Repositories\PaisRepository;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class EstadoController extends Controller
 {
     public function __construct(EstadoInterface $estadoInterface)
     {
         $this->estadoInterface = $estadoInterface;
+        $this->paisRepository = new PaisRepository();
     }
 
     public function index()
@@ -22,9 +27,18 @@ class EstadoController extends Controller
         return $this->estadoInterface->create();
     }
 
-    public function store(EstadoRequest $request)
+    public function store(Request $request)
     {
-        return $this->estadoInterface->store($request);
+        $estado = new Estado;
+
+        $estado->setEstado($request->get('estado'));
+        $estado->setUF($request->get('uf'));
+        $estado->setCreated_at(Carbon::now()->toDateTimeString());
+
+        $pais = $this->paisRepository->findPais($request->id_pais);
+        $estado->setPais($pais);
+
+        return $this->estadoInterface->store($estado);
     }
 
     public function show(EstadoRequest $request)
@@ -49,6 +63,15 @@ class EstadoController extends Controller
 
     public function createEstado(EstadoRequest $request)
     {
+        $estado = new Estado;
+
+        $estado->setEstado($request->get('estado'));
+        $estado->setUF($request->get('uf'));
+        $estado->setCreated_at(Carbon::now()->toDateTimeString());
+
+        $pais = $this->paisRepository->findPais($request->id_pais);
+        $estado->setPais($pais);
+
         return $this->estadoInterface->createEstado($request);
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 
 use App\Interfaces\PaisInterface;
 use App\Models\Pais;
+use Illuminate\Http\Request;
 
 class PaisRepository implements PaisInterface
 {
@@ -42,7 +43,8 @@ class PaisRepository implements PaisInterface
 
     public function show($id)
     {
-        return DB::table('paises')->where('id', $id)->first();
+        $pais = DB::table('paises')->where('id', $id)->first();
+        return response()->json($pais);
     }
 
     public function edit($id)
@@ -115,5 +117,23 @@ class PaisRepository implements PaisInterface
             return redirect()->back()->withInput()->send();
 
         }
+    }
+
+    public function findPais(int $id)
+    {
+        $pais = DB::table('paises')->where('id', $id)->first();
+
+        $dados = get_object_vars($pais);
+
+        $pais = new Pais();
+
+        $pais->setId($dados["id"]);
+        $pais->setCreated_at($dados["created_at"] ?? null);
+        $pais->setUpdated_at($dados["updated_at"] ?? null);
+
+        $pais->setSigla($dados["sigla"]);
+        $pais->setPais($dados["pais"]);
+
+        return $pais;
     }
 }
