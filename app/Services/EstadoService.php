@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
-use App\Interfaces\EstadoInterface;
-use App\Http\Requests\EstadoRequest;
-use App\Models\Estado;
-use App\Repositories\PaisRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+
+use App\Models\Estado;
+use App\Repositories\PaisRepository;
 
 class EstadoService 
 {
@@ -24,6 +23,20 @@ class EstadoService
         $estado->setUF($request->get('uf'));
         $estado->setCreated_at(Carbon::now()->toDateTimeString());
     
+        $pais = $this->paisRepository->findPais($request->id_pais);
+        $estado->setPais($pais);
+
+        return $estado;
+    }
+
+    public function stcreateEstadoore(Request $request)
+    {
+        $estado = new Estado;
+
+        $estado->setEstado($request->get('estado'));
+        $estado->setUF($request->get('uf'));
+        $estado->setCreated_at(Carbon::now()->toDateTimeString());
+
         $pais = $this->paisRepository->findPais($request->id_pais);
         $estado->setPais($pais);
 
