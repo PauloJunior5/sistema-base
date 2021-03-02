@@ -91,9 +91,9 @@ class EstadoRepository implements EstadoInterface
     public function getData(Estado $estado)
     {
         $dados = [
-            'id'      => $estado->getId(),
-            'estado'  => $estado->getEstado(),
-            'uf'      => $estado->getUF(),
+            'id' => $estado->getId(),
+            'estado' => $estado->getEstado(),
+            'uf' => $estado->getUF(),
             'id_pais' => $estado->getPais()->getId(),
             'created_at' => $estado->getCreated_at(),
             'updated_at' => $estado->getUpdated_at()
