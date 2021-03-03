@@ -21,11 +21,7 @@ class PaisRepository implements PaisInterface
         DB::beginTransaction();
         try {
 
-            $dados = [
-                'pais' => $pais->getPais(),
-                'sigla' => $pais->getSigla(),
-                'created_at' => $pais->getCreated_at(),
-            ];
+            $dados = $this->getData($pais);
 
             DB::table('paises')->insert($dados);
 
@@ -58,11 +54,7 @@ class PaisRepository implements PaisInterface
         DB::beginTransaction();
         try {
 
-            $dados = [
-                'pais' => $pais->getPais(),
-                'sigla' => $pais->getSigla(),
-                'updated_at' => $pais->getUpdated_at()
-            ];
+            $dados = $this->getData($pais);
 
             DB::table('paises')->where('id', $pais->getId())->update($dados);
 
@@ -84,6 +76,7 @@ class PaisRepository implements PaisInterface
         try {
 
             DB::table('paises')->where('id', $id)->delete();
+
             DB::commit();
             return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
 
@@ -101,11 +94,7 @@ class PaisRepository implements PaisInterface
         DB::beginTransaction();
         try {
 
-            $dados = [
-                'pais' => $pais->getPais(),
-                'sigla' => $pais->getSigla(),
-                'created_at' => $pais->getCreated_at(),
-            ];
+            $dados = $this->getData($pais);
 
             DB::table('paises')->insert($dados);
 
@@ -120,6 +109,10 @@ class PaisRepository implements PaisInterface
         }
     }
 
+    /**
+     *  Retorna objeto a partir do id passado
+     * como parametro. Para instanciar objeto.
+     */
     public function findPais(int $id)
     {
         $pais = DB::table('paises')->where('id', $id)->first();
@@ -136,5 +129,22 @@ class PaisRepository implements PaisInterface
         $pais->setPais($dados["pais"]);
 
         return $pais;
+    }
+
+    /**
+     *  Retorna array a partir do objeto passado
+     * como parametro, para inserir dados no banco.
+     */
+    public function getData(Pais $pais)
+    {
+        $dados = [
+            'id' => $pais->getId(),
+            'pais' => $pais->getPais(),
+            'sigla' => $pais->getSigla(),
+            'created_at' => $pais->getCreated_at(),
+            'updated_at' => $pais->getUpdated_at()
+        ];
+
+        return $dados;
     }
 }

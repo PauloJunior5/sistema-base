@@ -45,9 +45,9 @@ class EstadoController extends Controller
         return $this->estadoInterface->update($request);
     }
 
-    public function destroy($estado_id)
+    public function destroy(int $id)
     {
-        return $this->estadoInterface->destroy($estado_id);
+        return $this->estadoInterface->destroy($id);
     }
 
     public function createEstado(EstadoRequest $request)

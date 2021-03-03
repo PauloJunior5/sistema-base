@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\PaisInterface;
 use App\Http\Requests\PaisRequest;
-use App\Models\Pais;
 use App\Services\PaisService;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+
 
 class PaisController extends Controller
 {
@@ -45,30 +43,17 @@ class PaisController extends Controller
 
     public function update(PaisRequest $request)
     {
-        $pais = new Pais;
-
-        $pais->setId($request->id);
-        $pais->setPais($request->pais);
-        $pais->setSigla($request->sigla);
-        $pais->setUpdated_at($request->created_at);
-        $pais->setUpdated_at(Carbon::now()->toDateTimeString());
-
-        return $this->paisInterface->update($pais);
+        return $this->paisInterface->update($request);
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         return $this->paisInterface->destroy($id);
     }
 
     public function createPais(PaisRequest $request)
     {
-        $pais = new Pais;
-
-        $pais->setPais($request->get('pais'));
-        $pais->setSigla($request->get('sigla'));
-        $pais->setCreated_at(Carbon::now()->toDateTimeString());
-
+        $pais = $this->paisService->store($request);
         return $this->paisInterface->createPais($pais);
     }
 }

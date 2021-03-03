@@ -97,7 +97,6 @@ class EstadoRepository implements EstadoInterface
         }
     }
 
-    
     /**
      *  Retorna objeto a partir do id passado
      * como parametro. Para instanciar objeto.
