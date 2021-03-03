@@ -11,7 +11,7 @@ class EstadoController extends Controller
     public function __construct(EstadoInterface $estadoInterface, EstadoService $estadoService)
     {
         $this->estadoInterface = $estadoInterface; //Bind com EstadoRepository
-        $this->estadoService = $estadoService; //Bind com PaisRepository
+        $this->estadoService = $estadoService; //Bind com EstadoService
     }
 
     public function index()

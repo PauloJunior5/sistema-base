@@ -11,8 +11,7 @@ class CidadeController extends Controller
     public function __construct(CidadeInterface $cidadeInterface, CidadeService $cidadeService)
     {
         $this->cidadeInterface = $cidadeInterface; //Bind com CidadeRepository
-        $this->cidadeService = $cidadeService; //Bind com EstadoRepository
-
+        $this->cidadeService = $cidadeService; //Bind com CidadeService
     }
     
     public function index()

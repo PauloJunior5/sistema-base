@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use App\Interfaces\PaisInterface;
 use App\Http\Requests\PaisRequest;
 use App\Models\Pais;
+use App\Services\PaisService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PaisController extends Controller
 {
-    public function __construct(PaisInterface $paisInterface)
+    public function __construct(PaisInterface $paisInterface, PaisService $paisService)
     {
-        $this->paisInterface = $paisInterface;
+        $this->paisInterface = $paisInterface; //Bind com PaisRepository
+        $this->paisService = $paisService; //Bind com PaisService
     }
 
     public function index()
