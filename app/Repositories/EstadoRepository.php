@@ -11,6 +11,11 @@ use App\Models\Estado;
 
 class EstadoRepository implements EstadoInterface
 {
+    public function __construct()
+    {
+        $this->paisRepository = new PaisRepository;
+    }
+
     public function index()
     {
         return view('estados.index', ['estados' => DB::table('estados')->get()]);
@@ -44,8 +49,18 @@ class EstadoRepository implements EstadoInterface
         }
     }
 
-    public function show(EstadoRequest $request)
+    public function show(int $id)
     {
+
+        $estado = DB::table('estados')->where('id', $id)->first();
+        $pais = DB::table('paises')->where('id', $estado->id_pais)->first();
+
+        $dados = [
+            'estado' => $estado,
+            'pais' => $pais,
+        ];
+
+        return response()->json($dados);
     }
 
     public function edit($estado_id)
@@ -80,8 +95,30 @@ class EstadoRepository implements EstadoInterface
         }
     }
 
+    
+    /**
+     *  Retorna objeto a partir do id passado
+     * como parametro. Para instanciar objeto.
+     */
     public function findById(int $id)
     {
+        $estado = DB::table('estados')->where('id', $id)->first();
+
+        $dados = get_object_vars($estado);
+
+        $estado = new Estado();
+
+        $estado->setId($dados["id"]);
+        $estado->setCreated_at($dados["created_at"] ?? null);
+        $estado->setUpdated_at($dados["updated_at"] ?? null);
+
+        $estado->setUF($dados["uf"]);
+
+        $pais = $this->paisRepository->findPais($dados["id_pais"]);
+
+        $estado->setPais($pais);
+
+        return $estado;
     }
 
     /**

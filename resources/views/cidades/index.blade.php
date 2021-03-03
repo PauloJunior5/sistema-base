@@ -41,13 +41,13 @@
                                     <tr>
                                         <td>{{ $cidade->ddd }}</td>
                                         <td>{{ $cidade->cidade }}</td>
-                                        <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $cidade->created_at }}</td>
+                                        <td>{{ $cidade->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('cidade.destroy', $cidade->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cidade.edit', $cidade) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cidade.edit', $cidade->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

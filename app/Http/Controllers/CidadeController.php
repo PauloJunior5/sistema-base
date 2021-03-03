@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CidadeRequest;
 use App\Interfaces\CidadeInterface;
+use App\Services\CidadeService;
 
 class CidadeController extends Controller
 {
-    public function __construct(CidadeInterface $cidadeInterface)
+    public function __construct(CidadeInterface $cidadeInterface, CidadeService $cidadeService)
     {
-        $this->cidadeInterface = $cidadeInterface;
+        $this->cidadeInterface = $cidadeInterface; //Bind com CidadeRepository
+        $this->cidadeService = $cidadeService; //Bind com EstadoRepository
+
     }
     
     public function index()
@@ -24,7 +27,8 @@ class CidadeController extends Controller
 
     public function store(CidadeRequest $request)
     {
-        return $this->cidadeInterface->store($request);
+        $cidade = $this->cidadeService->store($request);
+        return $this->cidadeInterface->store($cidade);
     }
 
     public function show(CidadeRequest $request)

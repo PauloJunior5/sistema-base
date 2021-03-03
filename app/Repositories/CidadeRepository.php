@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Requests\CidadeRequest;
-use App\Traits\CreateEntities;
 use App\Interfaces\CidadeInterface;
 use App\Models\Cidade;
 use App\Models\Estado;
@@ -14,27 +13,27 @@ use App\Models\Pais;
 
 class CidadeRepository implements CidadeInterface
 {
-    // Use CreateEntities Trait in this repository
-    use CreateEntities;
-
     public function index()
     {
-        return view('cidades.index', ['cidades' => Cidade::all()]);
+        return view('cidades.index', ['cidades' => DB::table('cidades')->get()]);
     }
 
     public function create()
     {
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
+        $estados = DB::table('estados')->get();
+        $paises = DB::table('paises')->get();
         return view('cidades.create', compact('estados', 'paises'));
     }
 
-    public function store(CidadeRequest $request)
+    public function store(Cidade $cidade)
     {
         DB::beginTransaction();
         try {
 
-            Cidade::create($request->all());
+            $dados = $this->getData($cidade);
+
+            DB::table('cidades')->insert($dados);
+
             DB::commit();
             return redirect()->route('cidade.index')->withStatus(__('Cidade criada com sucesso.'));
 
@@ -137,6 +136,32 @@ class CidadeRepository implements CidadeInterface
             return redirect()->back()->withInput()->send();
 
         }
+    }
+
+    /**
+     *  Retorna objeto a partir do id passado
+     * como parametro.
+     */
+    public function findById(int $id)
+    {
+    }
+
+    /**
+     *  Retorna array a partir do objeto passado
+     * como parametro.
+     */
+    public function getData(Cidade $cidade)
+    {
+        $dados = [
+            'id' => $cidade->getId(),
+            'cidade' => $cidade->getEstado(),
+            'DDD' => $cidade->getDDD(),
+            'id_estado' => $cidade->getEstado()->getId(),
+            'created_at' => $cidade->getCreated_at(),
+            'updated_at' => $cidade->getUpdated_at()
+        ];
+
+        return $dados;
     }
 
 }
