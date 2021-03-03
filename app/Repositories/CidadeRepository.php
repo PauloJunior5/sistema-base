@@ -35,7 +35,7 @@ class CidadeRepository implements CidadeInterface
             DB::table('cidades')->insert($dados);
 
             DB::commit();
-            return redirect()->route('cidade.index')->withStatus(__('Cidade criada com sucesso.'));
+            return redirect()->route('cidade.index')->with('Success', 'Cidade criada com sucesso.')->send();
 
         } catch (\Throwable $th) {
 
@@ -154,7 +154,7 @@ class CidadeRepository implements CidadeInterface
     {
         $dados = [
             'id' => $cidade->getId(),
-            'cidade' => $cidade->getEstado(),
+            'cidade' => $cidade->getCidade(),
             'DDD' => $cidade->getDDD(),
             'id_estado' => $cidade->getEstado()->getId(),
             'created_at' => $cidade->getCreated_at(),
