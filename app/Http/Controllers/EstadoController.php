@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Interfaces\EstadoInterface;
 use App\Http\Requests\EstadoRequest;
 use App\Services\EstadoService;
-use Illuminate\Http\Request;
 
 class EstadoController extends Controller
 {
@@ -25,7 +24,7 @@ class EstadoController extends Controller
         return $this->estadoInterface->create();
     }
 
-    public function store(Request $request)
+    public function store(EstadoRequest $request)
     {
         $estado = $this->estadoService->store($request);
         return $this->estadoInterface->store($estado);
