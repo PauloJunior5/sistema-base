@@ -2,59 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\PaisInterface;
 use App\Http\Requests\PaisRequest;
 use App\Services\PaisService;
 
 
 class PaisController extends Controller
 {
-    public function __construct(PaisInterface $paisInterface, PaisService $paisService)
+    public function __construct(PaisService $paisService)
     {
-        $this->paisInterface = $paisInterface; //Bind com PaisRepository
         $this->paisService = $paisService; //Bind com PaisService
     }
 
     public function index()
     {
-        return $this->paisInterface->index();
+        return $this->paisService->index();
     }
 
     public function create()
     {
-        return view('paises.create');
+        return $this->paisService->create();
     }
 
     public function store(PaisRequest $request)
     {
-        $pais = $this->paisService->store($request);
-        $this->paisInterface->store($pais);
+        return $this->paisService->store($request);
     }
 
     public function show(PaisRequest $request)
     {
-        return $this->paisInterface->show($request->id_pais);
+        return $this->paisService->show($request->id_pais);
     }
 
     public function edit(int $id)
     {
-        return $this->paisInterface->edit($id);
+        return $this->paisService->edit($id);
     }
 
     public function update(PaisRequest $request)
     {
-        $pais = $this->paisService->update($request);
-        return $this->paisInterface->update($pais);
+        return $this->paisService->update($request);
     }
 
     public function destroy(int $id)
     {
-        return $this->paisInterface->destroy($id);
+        return $this->paisService->destroy($id);
     }
 
     public function createPais(PaisRequest $request)
     {
-        $pais = $this->paisService->store($request);
-        return $this->paisInterface->createPais($pais);
+        return $this->paisService->createPais($request);
     }
 }
