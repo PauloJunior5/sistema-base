@@ -89,6 +89,10 @@ class PaisRepository implements PaisInterface
         }
     }
 
+    /**
+     *  Salva novo objeto no banco. porém retorna
+     * para as modais.
+     */
     public function createPais(Pais $pais)
     {
         DB::beginTransaction();
