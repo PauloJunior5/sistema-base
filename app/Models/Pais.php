@@ -28,7 +28,7 @@ class Pais extends Model
     protected $pais;
     protected $sigla;
 
-    function __construct()
+    public function __construct()
     {
         $this->pais = '';
         $this->sigla = '';

@@ -30,7 +30,7 @@ class Model
         return $this->created_at;
     }
 
-    public function setCreated_at(null | string $created_at)
+    public function setCreated_at(string $created_at = null)
     {
         $this->created_at = $created_at;
     }
@@ -40,7 +40,7 @@ class Model
         return $this->updated_at;
     }
 
-    public function setUpdated_at(null | string $updated_at)
+    public function setUpdated_at(string $updated_at = null)
     {
         $this->updated_at = $updated_at;
     }
