@@ -32,11 +32,6 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Repositories\EstadoRepository'
         );
 
-        $this->app->bind(
-            'App\Service\EstadoService',
-            'App\Repositories\EstadoRepository'
-        );
-
         /**
          * 
          * Binding - Cidades
