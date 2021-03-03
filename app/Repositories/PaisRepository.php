@@ -117,7 +117,7 @@ class PaisRepository implements PaisInterface
      *  Retorna objeto a partir do id passado
      * como parametro. Para instanciar objeto.
      */
-    public function findPais(int $id)
+    public function findById(int $id)
     {
         $pais = DB::table('paises')->where('id', $id)->first();
 
