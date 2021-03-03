@@ -7,6 +7,7 @@ use App\Models\Pais;
 interface PaisInterface
 {
     public function index();
+    public function create();
     public function store(Pais $pais);
     public function show(int $id);
     public function edit(int $id);
