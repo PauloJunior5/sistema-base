@@ -115,7 +115,7 @@ class EstadoRepository implements EstadoInterface
 
         $estado->setUF($dados["uf"]);
 
-        $pais = $this->paisRepository->findPais($dados["id_pais"]);
+        $pais = $this->paisRepository->findById($dados["id_pais"]);
 
         $estado->setPais($pais);
 

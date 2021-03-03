@@ -23,7 +23,7 @@ class EstadoService
         $estado->setUF($request->get('uf'));
         $estado->setCreated_at(Carbon::now()->toDateTimeString());
     
-        $pais = $this->paisRepository->findPais($request->id_pais);
+        $pais = $this->paisRepository->findById($request->id_pais);
         $estado->setPais($pais);
 
         return $estado;
