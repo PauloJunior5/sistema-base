@@ -27,7 +27,7 @@ class PaisService
         $pais->setId($request->id);
         $pais->setPais($request->pais);
         $pais->setSigla($request->sigla);
-        $pais->setUpdated_at($request->created_at);
+        $pais->setCreated_at($request->created_at);
         $pais->setUpdated_at(Carbon::now()->toDateTimeString());
 
         return $pais;

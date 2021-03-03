@@ -43,7 +43,8 @@ class PaisController extends Controller
 
     public function update(PaisRequest $request)
     {
-        return $this->paisInterface->update($request);
+        $pais = $this->paisService->update($request);
+        return $this->paisInterface->update($pais);
     }
 
     public function destroy(int $id)
