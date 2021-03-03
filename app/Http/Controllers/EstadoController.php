@@ -35,9 +35,9 @@ class EstadoController extends Controller
         return $this->estadoInterface->show($request->id_estado);
     }
 
-    public function edit($estado_id)
+    public function edit(int $id)
     {
-        return $this->estadoInterface->edit($estado_id);
+        return $this->estadoInterface->edit($id);
     }
 
     public function update(EstadoRequest $request)

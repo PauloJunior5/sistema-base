@@ -19,8 +19,7 @@ class PaisController extends Controller
 
     public function index()
     {
-        $paises = $this->paisInterface->index();
-        return view('paises.index', ['paises' => $paises]);
+        return $this->paisInterface->index();
     }
 
     public function create()
@@ -30,24 +29,18 @@ class PaisController extends Controller
 
     public function store(PaisRequest $request)
     {
-        $pais = new Pais;
-
-        $pais->setPais($request->get('pais'));
-        $pais->setSigla($request->get('sigla'));
-        $pais->setCreated_at(Carbon::now()->toDateTimeString());
-
+        $pais = $this->paisService->store($request);
         $this->paisInterface->store($pais);
     }
 
-    public function show(Request $request)
+    public function show(PaisRequest $request)
     {
         return $this->paisInterface->show($request->id_pais);
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
-        $pais = $this->paisInterface->edit($id);
-        return view('paises.edit', compact('pais'));
+        return $this->paisInterface->edit($id);
     }
 
     public function update(PaisRequest $request)

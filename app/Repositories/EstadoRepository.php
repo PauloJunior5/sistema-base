@@ -18,7 +18,9 @@ class EstadoRepository implements EstadoInterface
 
     public function index()
     {
-        return view('estados.index', ['estados' => DB::table('estados')->get()]);
+        $estados = DB::table('estados')->get();
+        return view('estados.index', compact('estados'));
+        
     }
 
     public function create()

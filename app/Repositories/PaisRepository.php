@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Log;
 
 use App\Interfaces\PaisInterface;
 use App\Models\Pais;
-use Illuminate\Http\Request;
 
 class PaisRepository implements PaisInterface
 {
     public function index()
     {
-        return DB::table('paises')->get();
+        $paises = DB::table('paises')->get();
+        return view('paises.index', compact('paises'));
     }
 
     public function store(Pais $pais)
@@ -49,7 +49,8 @@ class PaisRepository implements PaisInterface
 
     public function edit($id)
     {
-        return DB::table('paises')->where('id', $id)->first();
+        $pais = DB::table('paises')->where('id', $id)->first();
+        return view('paises.edit', compact('pais'));
     }
 
     public function update(Pais $pais)
