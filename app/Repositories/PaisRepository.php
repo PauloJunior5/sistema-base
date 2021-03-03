@@ -5,18 +5,15 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-use App\Interfaces\PaisInterface;
-use App\Models\Pais;
-
-class PaisRepository implements PaisInterface
+class PaisRepository
 {
-    public function index()
+    public function mostrarPaises()
     {
         $paises = DB::table('paises')->get();
         return $paises;
     }
 
-    public function store($dados)
+    public function adicionarPais($dados)
     {
         $result = null;
 
@@ -33,23 +30,16 @@ class PaisRepository implements PaisInterface
             Log::debug('Warning - Não foi possivel criar país: ' . $th);
 
         }
-
         return $result;
     }
 
-    public function show($id)
+    public function findById($id)
     {
         $pais = DB::table('paises')->where('id', $id)->first();
         return $pais;
     }
 
-    public function edit($id)
-    {
-        $pais = DB::table('paises')->where('id', $id)->first();
-        return $pais;
-    }
-
-    public function update($dados)
+    public function atualizarPais($dados)
     {
         $result = null;
 
@@ -66,11 +56,10 @@ class PaisRepository implements PaisInterface
             Log::debug('Warning - Não foi possivel editar país: ' . $th);
 
         }
-
         return $result;
     }
 
-    public function destroy($id)
+    public function removerPais($id)
     {
         $result = null;
 
@@ -87,11 +76,10 @@ class PaisRepository implements PaisInterface
             Log::debug('Warning - Não foi possivel excluir país: ' . $th);
 
         }
-
         return $result;
     }
 
-    public function createPais($dados)
+    public function criarPaisModal($dados)
     {
 
         $result = null;
@@ -100,22 +88,14 @@ class PaisRepository implements PaisInterface
         try {
 
             $result = DB::table('paises')->insert($dados);
-
             DB::commit();
-            
+
         } catch (\Throwable $th) {
 
             DB::rollBack();
             Log::debug('Warning - Não foi possivel criar país: ' . $th);
 
         }
-        
         return $result;
-    }
-
-    public function findById(int $id)
-    {
-        $pais = DB::table('paises')->where('id', $id)->first();
-        return $pais;
     }
 }

@@ -15,7 +15,7 @@ class PaisService
         $this->paisRepository = $paisRepository; //Bind com PaisService
     }
 
-    public function store(PaisRequest $request)
+    public function instanciarECriar(PaisRequest $request)
     {
         $pais = new Pais;
 
@@ -23,12 +23,12 @@ class PaisService
         $pais->setSigla($request->get('sigla'));
         $pais->setCreated_at(Carbon::now()->toDateTimeString());
 
-        $dados = $this->getData($pais);
+        $dados = $this->getDados($pais);
 
-        return $this->paisRepository->store($dados);
+        return $this->paisRepository->adicionar($dados);
     }
 
-    public function update(PaisRequest $request)
+    public function instanciarEAtualizar(PaisRequest $request)
     {
         $pais = new Pais;
 
@@ -38,9 +38,9 @@ class PaisService
         $pais->setCreated_at($request->created_at);
         $pais->setUpdated_at(Carbon::now()->toDateTimeString());
 
-        $dados = $this->getData($pais);
+        $dados = $this->getDados($pais);
 
-        return $this->paisRepository->update($dados);
+        return $this->paisRepository->atualizarPais($dados);
     }
 
     /**
@@ -67,7 +67,7 @@ class PaisService
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    private function getData(Pais $pais)
+    private function getDados(Pais $pais)
     {
         $dados = [
             'id' => $pais->getId(),

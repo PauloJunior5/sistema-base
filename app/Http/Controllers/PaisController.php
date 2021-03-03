@@ -28,7 +28,7 @@ class PaisController extends Controller implements PaisInterface
 
     public function store(PaisRequest $request)
     {
-        $pais = $this->paisService->store($request);
+        $pais = $this->paisService->instanciarECriar($request);
 
         if ($pais) {
             return redirect()->route('pais.index')->with('Success', 'Pais criado com sucesso.')->send();
@@ -39,19 +39,19 @@ class PaisController extends Controller implements PaisInterface
 
     public function show(PaisRequest $request)
     {
-        $pais = $this->paisRepository->show($request->id_pais);
+        $pais = $this->paisRepository->findById($request->id_pais);
         return response()->json($pais);
     }
 
     public function edit(int $id)
     {
-        $pais = $this->paisRepository->edit($id);
+        $pais = $this->paisRepository->findById($id);
         return view('paises.edit', compact('pais'));
     }
 
     public function update(PaisRequest $request)
     {
-        $pais = $this->paisService->update($request);
+        $pais = $this->paisService->instanciarEAtualizar($request);
 
         if ($pais) {
             return redirect()->route('pais.index')->with('Success', 'País alterado com sucesso.');
@@ -63,7 +63,7 @@ class PaisController extends Controller implements PaisInterface
 
     public function destroy(int $id)
     {
-        $pais = $this->paisRepository->destroy($id);
+        $pais = $this->paisRepository->removerPais($id);
 
         if ($pais) {
             return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
@@ -75,7 +75,7 @@ class PaisController extends Controller implements PaisInterface
 
     public function createPais(PaisRequest $request)
     {
-        $pais = $this->paisService->store($request);
+        $pais = $this->paisService->instanciarECriar($request);
 
         if ($pais) {
             return redirect()->back()->withInput()->with('error_code', 4)->send();
