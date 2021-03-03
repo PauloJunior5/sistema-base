@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaisRequest;
+use App\Interfaces\PaisInterface;
 use App\Repositories\PaisRepository;
 use App\Services\PaisService;
 
-class PaisController extends Controller
+class PaisController extends Controller implements PaisInterface
 {
     public function __construct(PaisRepository $paisRepository, PaisService $paisService)
     {
-        $this->paisRepository = $paisRepository; //Bind com PaisService
+        $this->paisRepository = $paisRepository; //Bind com PaisRepository
         $this->paisService = $paisService; //Bind com PaisService
     }
 
