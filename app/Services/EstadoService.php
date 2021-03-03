@@ -28,18 +28,4 @@ class EstadoService
 
         return $estado;
     }
-
-    public function stcreateEstadoore(Request $request)
-    {
-        $estado = new Estado;
-
-        $estado->setEstado($request->get('estado'));
-        $estado->setUF($request->get('uf'));
-        $estado->setCreated_at(Carbon::now()->toDateTimeString());
-
-        $pais = $this->paisRepository->findPais($request->id_pais);
-        $estado->setPais($pais);
-
-        return $estado;
-    }
 }
