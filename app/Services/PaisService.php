@@ -25,7 +25,7 @@ class PaisService
 
         $dados = $this->getDados($pais);
 
-        return $this->paisRepository->adicionar($dados);
+        return $this->paisRepository->adicionarPais($dados);
     }
 
     public function instanciarEAtualizar(PaisRequest $request)
