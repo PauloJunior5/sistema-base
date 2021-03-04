@@ -20,7 +20,7 @@ class PaisService
     |  Instanciar e Criar
     |--------------------------------------------------------------------------
     |
-    | Instância e envia o obj para o repository,
+    | Instância e envia o obj para o Repository,
     | aonde será criado.
     |
     */

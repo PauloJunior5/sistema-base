@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\PaisInterface;
 use App\Http\Requests\PaisRequest;
 use App\Repositories\PaisRepository;
 use App\Services\PaisService;
@@ -15,17 +14,42 @@ class PaisController extends Controller
         $this->paisService = new PaisService; //Bind com PaisService
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Index
+    |--------------------------------------------------------------------------
+    |
+    | Retorna view - Lista de objetos.
+    |
+    */
     public function index()
     {
         $paises = $this->paisRepository->mostrarTodos();
         return view('paises.index', compact('paises'));
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Create
+    |--------------------------------------------------------------------------
+    |
+    | Retorna view - Form Create.
+    |
+    */
     public function create()
     {
         return view('paises.create');
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Store
+    |--------------------------------------------------------------------------
+    |
+    | Recebe request validado e envia para o Service,
+    | aonde será criado.
+    |
+    */
     public function store(PaisRequest $request)
     {
         $pais = $this->paisService->instanciarECriar($request);
@@ -51,12 +75,29 @@ class PaisController extends Controller
         return response()->json($pais);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Edit
+    |--------------------------------------------------------------------------
+    |
+    | Retorna view - Form Edit.
+    |
+    */
     public function edit(int $id)
     {
         $pais = $this->paisService->buscarEInstanciar($id);
         return view('paises.edit', compact('pais'));
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Update
+    |--------------------------------------------------------------------------
+    |
+    | Recebe request validado e envia para o Service,
+    | aonde será atualizado.
+    |
+    */
     public function update(PaisRequest $request)
     {
         $pais = $this->paisService->instanciarEAtualizar($request);
@@ -69,6 +110,15 @@ class PaisController extends Controller
 
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Update
+    |--------------------------------------------------------------------------
+    |
+    | Recebe id e envia para o Repository,
+    | aonde será deletado.
+    |
+    */
     public function destroy(int $id)
     {
         $pais = $this->paisRepository->remover($id);
