@@ -27,7 +27,7 @@ class EstadoService
         $pais = $this->paisService->buscarEInstanciar($request->id_pais);
         $estado->setPais($pais);
 
-        $dados = $this->getDados($pais);
+        $dados = $this->getDados($estado);
 
         return $this->estadoRepository->adicionarEstado($dados);
     }

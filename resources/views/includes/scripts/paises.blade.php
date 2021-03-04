@@ -8,7 +8,6 @@
             data: { id_pais : id_pais },
             dataType: "JSON",
             success: function(response){
-                alert(response);
                 $('#input-sigla-pais').val(response.sigla);
                 $('#input-pais-pais').val(response.pais);
                 $('#input-id-pais').val(response.id);
