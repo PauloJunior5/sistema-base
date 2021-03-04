@@ -47,7 +47,7 @@ class PaisService
      *  Retorna objeto a partir do id passado
      * como parametro. Para instanciar o objeto.
      */
-    public function findById(int $id)
+    public function buscarEInstanciar(int $id)
     {
         $result = $this->paisRepository->findById($id);
 

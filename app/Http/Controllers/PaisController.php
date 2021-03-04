@@ -39,13 +39,13 @@ class PaisController extends Controller implements PaisInterface
 
     public function show(PaisRequest $request)
     {
-        $pais = $this->paisRepository->findById($request->id_pais);
+        $pais = $this->paisService->buscarEInstanciar($request->id_pais);
         return response()->json($pais);
     }
 
     public function edit(int $id)
     {
-        $pais = $this->paisRepository->findById($id);
+        $pais = $this->paisService->buscarEInstanciar($id);
         return view('paises.edit', compact('pais'));
     }
 

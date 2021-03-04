@@ -13,6 +13,7 @@ class EstadoService
     public function __construct()
     {
         $this->estadoRepository = new EstadoRepository; //Bind com EstadoRepository
+        $this->paisService = new PaisService; //Bind com PaisService
     }
 
     public function instanciarECriar(EstadoRequest $request)
@@ -36,10 +37,11 @@ class EstadoService
         $estado = new Estado;
 
         $estado->setId($request->id);
-        $estado->setEstado($request->estado);
-        $estado->setUF($request->uf);
         $estado->setCreated_at($request->created_at);
         $estado->setUpdated_at(Carbon::now()->toDateTimeString());
+
+        $estado->setEstado($request->estado);
+        $estado->setUF($request->uf);
 
         $pais = $this->paisService->findById($request->id_pais);
         $estado->setPais($pais);

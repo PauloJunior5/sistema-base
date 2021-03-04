@@ -50,8 +50,8 @@ class EstadoController extends Controller implements EstadoInterface
     public function edit(int $id)
     {
         $paises  = $this->paisRepository->mostrarPaises();
-        $estado = $this->estadoRepository->findById($id);
-        $pais  = $this->paisRepository->findById($estado->id_pais);
+        $estado = $this->estadoService->findById($id);
+        $pais  = $this->estadoService->findById($estado->id_pais);
 
         return view('estados.edit', compact('paises', 'estado', 'pais'));
     }
