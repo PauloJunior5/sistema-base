@@ -7,7 +7,7 @@ use App\Http\Requests\PaisRequest;
 use App\Repositories\PaisRepository;
 use App\Services\PaisService;
 
-class PaisController extends Controller implements PaisInterface
+class PaisController extends Controller
 {
     public function __construct()
     {
@@ -17,7 +17,7 @@ class PaisController extends Controller implements PaisInterface
 
     public function index()
     {
-        $paises = $this->paisRepository->mostrarPaises();
+        $paises = $this->paisRepository->mostrarTodos();
         return view('paises.index', compact('paises'));
     }
 
@@ -37,9 +37,14 @@ class PaisController extends Controller implements PaisInterface
         }
     }
 
-    /**
-     * Retorna JSON para as requisições AJAX das modais.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Show
+    |--------------------------------------------------------------------------
+    |
+    | Retorna JSON para as requisições AJAX das modais.
+    |
+    */
     public function show(PaisRequest $request)
     {
         $pais = $this->paisRepository->findById($request->id_pais);
@@ -66,7 +71,7 @@ class PaisController extends Controller implements PaisInterface
 
     public function destroy(int $id)
     {
-        $pais = $this->paisRepository->removerPais($id);
+        $pais = $this->paisRepository->remover($id);
 
         if ($pais) {
             return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
@@ -76,7 +81,7 @@ class PaisController extends Controller implements PaisInterface
 
     }
 
-    public function createPais(PaisRequest $request)
+    public function createModal(PaisRequest $request)
     {
         $pais = $this->paisService->instanciarECriar($request);
 

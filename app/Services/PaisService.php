@@ -15,6 +15,15 @@ class PaisService
         $this->paisRepository = new PaisRepository; //Bind com PaisRepository
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    |  Instanciar e Criar
+    |--------------------------------------------------------------------------
+    |
+    | Instância e envia o obj para o repository,
+    | aonde será criado.
+    |
+    */
     public function instanciarECriar(PaisRequest $request)
     {
         $pais = new Pais;
@@ -25,9 +34,18 @@ class PaisService
 
         $dados = $this->getDados($pais);
 
-        return $this->paisRepository->adicionarPais($dados);
+        return $this->paisRepository->adicionar($dados);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    |  Instanciar e Atualizar
+    |--------------------------------------------------------------------------
+    |
+    | Instância e envia o obj para o repository,
+    | aonde será atualizado.
+    |
+    */
     public function instanciarEAtualizar(PaisRequest $request)
     {
         $pais = new Pais;
@@ -40,13 +58,18 @@ class PaisService
 
         $dados = $this->getDados($pais);
 
-        return $this->paisRepository->atualizarPais($dados);
+        return $this->paisRepository->atualizar($dados);
     }
 
-    /**
-     *  Retorna objeto a partir do id passado
-     * como parametro. Para instânciar o objeto.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Buscar E Instanciar
+    |--------------------------------------------------------------------------
+    |
+    | Retorna objeto a partir do id passado
+    | como parametro. Para instânciar o objeto.
+    |
+    */
     public function buscarEInstanciar(int $id)
     {
         $result = $this->paisRepository->findById($id);
@@ -63,10 +86,15 @@ class PaisService
         return $pais;
     }
 
-    /**
-     *  Retorna array a partir do objeto passado
-     * como parametro, para inserir dados no banco.
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Get Dados
+    |--------------------------------------------------------------------------
+    |
+    | Retorna array a partir do objeto passado
+    | como parametro, para inserir dados no banco.
+    |
+    */
     private function getDados(Pais $pais)
     {
         $dados = [

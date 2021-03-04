@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Log;
 
 class PaisRepository
 {
-    public function mostrarPaises()
+    public function mostrarTodos()
     {
         $paises = DB::table('paises')->get();
         return $paises;
     }
 
-    public function adicionarPais($dados)
+    public function adicionar($dados)
     {
         $result = null;
 
@@ -39,7 +39,7 @@ class PaisRepository
         return $pais;
     }
 
-    public function atualizarPais($dados)
+    public function atualizar($dados)
     {
         $result = null;
 
@@ -59,7 +59,7 @@ class PaisRepository
         return $result;
     }
 
-    public function removerPais($id)
+    public function remover($id)
     {
         $result = null;
 
@@ -79,7 +79,7 @@ class PaisRepository
         return $result;
     }
 
-    public function criarPaisModal($dados)
+    public function criarModal($dados)
     {
         $result = null;
 
