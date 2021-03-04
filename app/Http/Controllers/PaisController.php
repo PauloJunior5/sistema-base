@@ -81,6 +81,14 @@ class PaisController extends Controller
 
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
     public function createModal(PaisRequest $request)
     {
         $pais = $this->paisService->instanciarECriar($request);
