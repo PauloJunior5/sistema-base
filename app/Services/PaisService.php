@@ -10,9 +10,9 @@ use App\Repositories\PaisRepository;
 
 class PaisService
 {
-    public function __construct(PaisRepository $paisRepository)
+    public function __construct()
     {
-        $this->paisRepository = $paisRepository; //Bind com PaisService
+        $this->paisRepository = new PaisRepository; //Bind com PaisRepository
     }
 
     public function instanciarECriar(PaisRequest $request)

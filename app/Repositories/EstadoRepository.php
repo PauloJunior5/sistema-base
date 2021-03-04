@@ -5,139 +5,97 @@ namespace App\Repositories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-use App\Http\Requests\EstadoRequest;
-use App\Interfaces\EstadoInterface;
-use App\Models\Estado;
-
-class EstadoRepository implements EstadoInterface
+class EstadoRepository
 {
-    public function __construct()
-    {
-        $this->paisRepository = new PaisRepository;
-    }
-
-    public function index()
+    public function mostrarEstados()
     {
         $estados = DB::table('estados')->get();
-        return view('estados.index', compact('estados'));
-        
+        return $estados;
     }
 
-    public function create()
+    public function adicionarEstado($dados)
     {
-        $paises = DB::table('paises')->get();
-        return view('estados.create', compact('paises'));
-    }
+        $result = null;
 
-    public function store(Estado $estado)
-    {
         DB::beginTransaction();
         try {
 
-            $dados = $this->getData($estado);
-
-            DB::table('estados')->insert($dados);
+            $result = DB::table('estados')->insert($dados);
 
             DB::commit();
-
-            return redirect()->route('estado.index')->with('Success', 'Estado criado com sucesso.')->send();
 
         } catch (\Throwable $th) {
 
             DB::rollBack();
             Log::debug('Warning - Não foi possivel criar estado: ' . $th);
-            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel criar estado.')->send();
 
         }
+        return $result;
     }
 
-    public function show(int $id)
+    public function findById(int $id)
     {
 
         $estado = DB::table('estados')->where('id', $id)->first();
-        $pais = DB::table('paises')->where('id', $estado->id_pais)->first();
-
-        $dados = [
-            'estado' => $estado,
-            'pais' => $pais,
-        ];
-
-        return response()->json($dados);
+        return $estado;
     }
 
-    public function edit($estado_id)
+    public function atualizarEstado($dados)
     {
-    }
+        $result = null;
 
-    public function update(EstadoRequest $request)
-    {
-    }
-
-    public function destroy($estado_id)
-    {
-    }
-
-    public function createEstado(Estado $estado)
-    {
         DB::beginTransaction();
         try {
 
-            $dados = $this->getData($estado);
-
-            DB::table('estados')->insert($dados);
+            $result = DB::table('estados')->where('id', $dados['id'])->update($dados);
 
             DB::commit();
-            return redirect()->back()->withInput()->with('error_code', 5)->send();
 
         } catch (\Throwable $th) {
 
             DB::rollBack();
-            return redirect()->back()->withInput()->send();
+            Log::debug('Warning - Não foi possivel editar estado: ' . $th);
 
         }
+        return $result;
     }
 
-    /**
-     *  Retorna objeto a partir do id passado
-     * como parametro. Para instanciar objeto.
-     */
-    public function findById(int $id)
+    public function removerEstado($id)
     {
-        $estado = DB::table('estados')->where('id', $id)->first();
+        $result = null;
 
-        $dados = get_object_vars($estado);
+        DB::beginTransaction();
+        try {
 
-        $estado = new Estado();
+            $result = DB::table('estados')->where('id', $id)->delete();
 
-        $estado->setId($dados["id"]);
-        $estado->setCreated_at($dados["created_at"] ?? null);
-        $estado->setUpdated_at($dados["updated_at"] ?? null);
+            DB::commit();
 
-        $estado->setUF($dados["uf"]);
+        } catch (\Throwable $th) {
 
-        $pais = $this->paisRepository->findById($dados["id_pais"]);
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel excluir estado: ' . $th);
 
-        $estado->setPais($pais);
-
-        return $estado;
+        }
+        return $result;
     }
 
-    /**
-     *  Retorna array a partir do objeto passado
-     * como parametro, para inserir dados no banco.
-     */
-    public function getData(Estado $estado)
+    public function criarEstadoModal($dados)
     {
-        $dados = [
-            'id' => $estado->getId(),
-            'estado' => $estado->getEstado(),
-            'uf' => $estado->getUF(),
-            'id_pais' => $estado->getPais()->getId(),
-            'created_at' => $estado->getCreated_at(),
-            'updated_at' => $estado->getUpdated_at()
-        ];
+        $result = null;
 
-        return $dados;
+        DB::beginTransaction();
+        try {
+
+            $result = DB::table('estados')->insert($dados);
+            DB::commit();
+
+        } catch (\Throwable $th) {
+
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel criar estado: ' . $th);
+
+        }
+        return $result;
     }
-
 }

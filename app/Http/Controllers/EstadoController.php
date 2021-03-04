@@ -4,55 +4,85 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\EstadoInterface;
 use App\Http\Requests\EstadoRequest;
+use App\Repositories\EstadoRepository;
 use App\Services\EstadoService;
 
-class EstadoController extends Controller
+use App\Repositories\PaisRepository;
+
+class EstadoController extends Controller implements EstadoInterface
 {
-    public function __construct(EstadoInterface $estadoInterface, EstadoService $estadoService)
+    public function __construct()
     {
-        $this->estadoInterface = $estadoInterface; //Bind com EstadoRepository
-        $this->estadoService = $estadoService; //Bind com EstadoService
+        $this->estadoRepository = new EstadoRepository; //Bind com EstadoRepository
+        $this->estadoService = new EstadoService; //Bind com EstadoService
+        $this->paisRepository = new PaisRepository; //Bind com PaisRepository
     }
 
     public function index()
     {
-        return $this->estadoInterface->index();
+        $estados = $this->estadoRepository->mostrarEstados();
+        return view('estados.index', compact('estados'));
     }
 
     public function create()
     {
-        return $this->estadoInterface->create();
+        $paises  = $this->paisRepository->mostrarPaises();
+        return view('estados.create', compact('paises'));
     }
 
     public function store(EstadoRequest $request)
     {
-        $estado = $this->estadoService->store($request);
-        return $this->estadoInterface->store($estado);
+        $estado = $this->estadoService->instanciarECriar($request);
+
+        if ($estado) {
+            return redirect()->route('estado.index')->with('Success', 'Estado criado com sucesso.')->send();
+        } else {
+            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel criar estado.')->send();
+        }
     }
 
     public function show(EstadoRequest $request)
     {
-        return $this->estadoInterface->show($request->id_estado);
+        $estado = $this->estadoRepository->findById($request->id_pais);
+        return response()->json($estado);
     }
 
     public function edit(int $id)
     {
-        return $this->estadoInterface->edit($id);
+        $estado = $this->estadoRepository->findById($id);
+        return view('estados.edit', compact('estado'));
     }
 
     public function update(EstadoRequest $request)
     {
-        return $this->estadoInterface->update($request);
+        $estado = $this->estadoService->instanciarEAtualizar($request);
+
+        if ($estado) {
+            return redirect()->route('estado.index')->with('Success', 'Estado alterado com sucesso.');
+        } else {
+            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel editar estado.');
+        }
     }
 
     public function destroy(int $id)
     {
-        return $this->estadoInterface->destroy($id);
+        $estado = $this->estadoRepository->removerEstado($id);
+
+        if ($estado) {
+            return redirect()->route('estado.index')->with('Success', 'Estado excluído com sucesso.');
+        } else {
+            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel excluir Estado. Verifique se existe vínculo com cidades.');
+        }
     }
 
     public function createEstado(EstadoRequest $request)
     {
-        $estado = $this->estadoService->store($request);
-        return $this->estadoInterface->createEstado($estado);
+        $estado = $this->estadoService->instanciarECriar($request);
+
+        if ($estado) {
+            return redirect()->back()->withInput()->with('error_code', 5)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
     }
 }

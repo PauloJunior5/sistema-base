@@ -3,16 +3,15 @@
 namespace App\Interfaces;
 
 use App\Http\Requests\EstadoRequest;
-use App\Models\Estado;
 
 interface EstadoInterface
 {
     public function index();
     public function create();
-    public function store(Estado $estado);
-    public function show(int $id);
-    public function edit($estado_id);
-    public function update(EstadoRequest $request);
-    public function destroy($estado_id);
-    public function createEstado(Estado $estado);
+    public function store(EstadoRequest $estado);
+    public function show(EstadoRequest $estado);
+    public function edit(int $id);
+    public function update(EstadoRequest $estado);
+    public function destroy(int $id);
+    public function createEstado(EstadoRequest $estado);
 }

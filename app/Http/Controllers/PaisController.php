@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PaisRequest;
 use App\Interfaces\PaisInterface;
+use App\Http\Requests\PaisRequest;
 use App\Repositories\PaisRepository;
 use App\Services\PaisService;
 
 class PaisController extends Controller implements PaisInterface
 {
-    public function __construct(PaisRepository $paisRepository, PaisService $paisService)
+    public function __construct()
     {
-        $this->paisRepository = $paisRepository; //Bind com PaisRepository
-        $this->paisService = $paisService; //Bind com PaisService
+        $this->paisRepository = new PaisRepository; //Bind com PaisRepository
+        $this->paisService = new PaisService; //Bind com PaisService
     }
 
     public function index()
     {
-        $paises = $this->paisRepository->index();
+        $paises = $this->paisRepository->mostrarPaises();
         return view('paises.index', compact('paises'));
     }
 

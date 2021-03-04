@@ -81,7 +81,6 @@ class PaisRepository
 
     public function criarPaisModal($dados)
     {
-
         $result = null;
 
         DB::beginTransaction();
