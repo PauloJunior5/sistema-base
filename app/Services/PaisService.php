@@ -45,7 +45,7 @@ class PaisService
 
     /**
      *  Retorna objeto a partir do id passado
-     * como parametro. Para instanciar o objeto.
+     * como parametro. Para instânciar o objeto.
      */
     public function buscarEInstanciar(int $id)
     {

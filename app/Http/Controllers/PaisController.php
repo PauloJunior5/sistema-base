@@ -37,9 +37,12 @@ class PaisController extends Controller implements PaisInterface
         }
     }
 
+    /**
+     * Retorna JSON para as requisições AJAX das modais.
+     */
     public function show(PaisRequest $request)
     {
-        $pais = $this->paisService->buscarEInstanciar($request->id_pais);
+        $pais = $this->paisRepository->findById($request->id_pais);
         return response()->json($pais);
     }
 
