@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('estado.update', $estado) }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('estado.update', $estado->id) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -69,14 +69,14 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ $estado->created_at->format('Y-m-d') }}" readonly>
+                                        <input type="datetime" class="form-control" value="{{ $estado->created_at }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ $estado->updated_at->format('Y-m-d') }}" readonly>
+                                        <input type="datetime" class="form-control" value="{{ $estado->updated_at }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>

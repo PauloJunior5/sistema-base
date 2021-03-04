@@ -8,7 +8,7 @@ use App\Models\Estado;
 use App\Http\Requests\EstadoRequest;
 use App\Repositories\EstadoRepository;
 
-class Estadoervice
+class EstadoService
 {
     public function __construct()
     {
