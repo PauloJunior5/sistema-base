@@ -24,12 +24,12 @@ class EstadoService
         $estado->setUF($request->get('uf'));
         $estado->setCreated_at(Carbon::now()->toDateTimeString());
 
-        $pais = $this->paisService->findById($request->id_pais);
+        $pais = $this->paisService->buscarEInstanciar($request->id_pais);
         $estado->setPais($pais);
 
         $dados = $this->getDados($pais);
 
-        return $this->estadoRepository->adicionar($dados);
+        return $this->estadoRepository->adicionarEstado($dados);
     }
 
     public function instanciarEAtualizar(EstadoRequest $request)
@@ -43,7 +43,7 @@ class EstadoService
         $estado->setEstado($request->estado);
         $estado->setUF($request->uf);
 
-        $pais = $this->paisService->findById($request->id_pais);
+        $pais = $this->paisService->buscarEInstanciar($request->id_pais);
         $estado->setPais($pais);
 
         $dados = $this->getDados($estado);
@@ -55,7 +55,7 @@ class EstadoService
      *  Retorna objeto a partir do id passado
      * como parametro. Para instanciar o objeto.
      */
-    public function findById(int $id)
+    public function buscarEInstanciar(int $id)
     {
         $result = $this->estadoRepository->findById($id);
 
@@ -68,7 +68,7 @@ class EstadoService
         $estado->setEstado($result->estado);
         $estado->setUF($result->uf);
 
-        $pais = $this->paisService->findById($result->id_pais);
+        $pais = $this->paisService->buscarEInstanciar($result->id_pais);
         $estado->setPais($pais);
 
         return $estado;

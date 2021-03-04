@@ -8,6 +8,7 @@ use App\Repositories\EstadoRepository;
 use App\Services\EstadoService;
 
 use App\Repositories\PaisRepository;
+use App\Services\PaisService;
 
 class EstadoController extends Controller implements EstadoInterface
 {
@@ -16,6 +17,7 @@ class EstadoController extends Controller implements EstadoInterface
         $this->estadoRepository = new EstadoRepository; //Bind com EstadoRepository
         $this->estadoService = new EstadoService; //Bind com EstadoService
         $this->paisRepository = new PaisRepository; //Bind com PaisRepository
+        $this->paisService = new PaisService; //Bind com PaisService
     }
 
     public function index()
@@ -43,17 +45,16 @@ class EstadoController extends Controller implements EstadoInterface
 
     public function show(EstadoRequest $request)
     {
-        $estado = $this->estadoRepository->findById($request->id_pais);
+        $estado = $this->estadoService->buscarEInstanciar($request->id_pais);
         return response()->json($estado);
     }
 
     public function edit(int $id)
     {
         $paises  = $this->paisRepository->mostrarPaises();
-        $estado = $this->estadoService->findById($id);
-        $pais  = $this->estadoService->findById($estado->id_pais);
+        $estado = $this->estadoService->buscarEInstanciar($id);
 
-        return view('estados.edit', compact('paises', 'estado', 'pais'));
+        return view('estados.edit', compact('paises', 'estado'));
     }
 
     public function update(EstadoRequest $request)
