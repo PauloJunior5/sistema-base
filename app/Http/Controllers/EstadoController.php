@@ -19,7 +19,7 @@ class EstadoController extends Controller
 
     public function index()
     {
-        $estados = $this->estadoRepository->mostrarEstados();
+        $estados = $this->estadoRepository->mostrarTodos();
         return view('estados.index', compact('estados'));
     }
 
@@ -67,7 +67,7 @@ class EstadoController extends Controller
 
     public function destroy(int $id)
     {
-        $estado = $this->estadoRepository->removerEstado($id);
+        $estado = $this->estadoRepository->remover($id);
 
         if ($estado) {
             return redirect()->route('estado.index')->with('Success', 'Estado excluído com sucesso.');

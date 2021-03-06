@@ -29,7 +29,7 @@ class EstadoService
 
         $dados = $this->getDados($estado);
 
-        return $this->estadoRepository->adicionarEstado($dados);
+        return $this->estadoRepository->adicionar($dados);
     }
 
     public function instanciarEAtualizar(EstadoRequest $request)
@@ -48,7 +48,7 @@ class EstadoService
 
         $dados = $this->getDados($estado);
 
-        return $this->estadoRepository->atualizarEstado($dados);
+        return $this->estadoRepository->atualizar($dados);
     }
 
     /**
