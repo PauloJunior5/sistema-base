@@ -45,7 +45,7 @@ class EstadoController extends Controller implements EstadoInterface
 
     public function show(EstadoRequest $request)
     {
-        $estado = $this->estadoService->buscarEInstanciar($request->id_pais);
+        $estado = $this->estadoService->buscarEInstanciar($request->id_estado);
         return response()->json($estado);
     }
 

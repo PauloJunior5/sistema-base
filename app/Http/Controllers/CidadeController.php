@@ -4,59 +4,100 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CidadeRequest;
 use App\Interfaces\CidadeInterface;
+use App\Repositories\CidadeRepository;
+use App\Repositories\EstadoRepository;
+use App\Repositories\PaisRepository;
 use App\Services\CidadeService;
 
 class CidadeController extends Controller
 {
-    public function __construct(CidadeInterface $cidadeInterface, CidadeService $cidadeService)
+    public function __construct()
     {
-        $this->cidadeInterface = $cidadeInterface; //Bind com CidadeRepository
-        $this->cidadeService = $cidadeService; //Bind com CidadeService
+        $this->cidadeRepository = New CidadeRepository; //Bind com CidadeRepository
+        $this->cidadeService = New CidadeService; //Bind com CidadeService
+        $this->estadoRepository = New EstadoRepository; //Bind com EstadoRepository
+        $this->paisRepository = New PaisRepository; //Bind com PaisRepository
     }
     
     public function index()
     {
-        return $this->cidadeInterface->index();
+        $cidades = $this->cidadeRepository->mostrarTodos();
+        return view('cidades.index', compact('cidades'));
     }
 
     public function create()
     {
-        return $this->cidadeInterface->create();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        return view('cidades.create', compact('estados'));
     }
 
     public function store(CidadeRequest $request)
     {
-        $cidade = $this->cidadeService->store($request);
-        return $this->cidadeInterface->store($cidade);
+        $cidade = $this->cidadeService->instanciarECriar($request);
+
+        if ($cidade) {
+            return redirect()->route('cidade.index')->with('Success', 'Cidade criada com sucesso.')->send();
+        } else {
+            return redirect()->route('cidade.index')->with('Warning', 'Não foi possivel criar cidade.')->send();
+        }
     }
 
     public function show(CidadeRequest $request)
     {
-        return $this->cidadeInterface->show($request);
+        $estado = $this->cidadeService->buscarEInstanciar($request->id_cidade);
+        return response()->json($estado);
     }
 
-    public function edit($id_cidade)
+    public function edit(int $id)
     {
-        return $this->cidadeInterface->edit($id_cidade);
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->EstadoRepository->mostrarTodos();
+        $cidade = $this->cidadeService->buscarEInstanciar($id);
+
+        return view('cidades.edit', compact('paises', 'estados', 'cidade'));
     }
 
     public function update(CidadeRequest $request)
     {
-        return $this->cidadeInterface->update($request);
+        $cidade = $this->cidadeService->instanciarEAtualizar($request);
+
+        if ($cidade) {
+            return redirect()->route('cidade.index')->with('Success', 'Cidade alterada com sucesso.');
+        } else {
+            return redirect()->route('cidade.index')->with('Warning', 'Não foi possivel editar cidade.');
+        }
     }
 
-    public function destroy($id_cidade)
+    public function destroy(int $id)
     {
-        return $this->cidadeInterface->destroy($id_cidade);
+        $cidade = $this->cidadeRepository->remover($id);
+
+        if ($cidade) {
+            return redirect()->route('cidade.index')->with('Success', 'Cidade excluída com sucesso.');
+        } else {
+            return redirect()->route('cidade.index')->with('Warning', 'Não foi possivel excluir Cidade.');
+        }
     }
 
     public function createCidade(CidadeRequest $request)
     {
-        return $this->cidadeInterface->createCidade($request);
+        $cidade = $this->cidadeService->instanciarECriar($request);
+
+        if ($cidade) {
+            return redirect()->back()->withInput()->with('error_code', 6)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
     }
 
     public function createCidadeMedico(CidadeRequest $request)
     {
-        return $this->cidadeInterface->createCidadeMedico($request);
+        $cidade = $this->cidadeService->instanciarECriar($request);
+
+        if ($cidade) {
+            return redirect()->back()->withInput()->with('error_code', 8)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
     }
 }
