@@ -48,7 +48,7 @@ class CidadeService
 
         $dados = $this->getDados($cidade);
 
-        return $this->cidadeRepository->atualizarEstado($dados);
+        return $this->cidadeRepository->atualizar($dados);
     }
 
     /**
