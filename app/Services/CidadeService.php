@@ -8,7 +8,7 @@ use App\Models\Cidade;
 use App\Http\Requests\CidadeRequest;
 use App\Repositories\CidadeRepository;
 
-class EstadoService
+class CidadeService
 {
     public function __construct()
     {
