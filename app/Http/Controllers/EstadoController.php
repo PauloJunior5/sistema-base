@@ -28,7 +28,7 @@ class EstadoController extends Controller implements EstadoInterface
 
     public function create()
     {
-        $paises  = $this->paisRepository->mostrarPaises();
+        $paises  = $this->paisRepository->mostrarTodos();
         return view('estados.create', compact('paises'));
     }
 
@@ -51,7 +51,7 @@ class EstadoController extends Controller implements EstadoInterface
 
     public function edit(int $id)
     {
-        $paises  = $this->paisRepository->mostrarPaises();
+        $paises  = $this->paisRepository->mostrarTodos();
         $estado = $this->estadoService->buscarEInstanciar($id);
 
         return view('estados.edit', compact('paises', 'estado'));
