@@ -110,7 +110,6 @@
             data: { id_estado : id_estado },
             dataType: "JSON",
             success: function(response){
-                console.log(response);
                 $('#uf-estado-input').val(response.estado.uf);
                 $('#estado-input').val(response.estado.estado);
                 $('#id-estado-input').val(response.estado.id);

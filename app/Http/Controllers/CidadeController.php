@@ -45,8 +45,15 @@ class CidadeController extends Controller
 
     public function show(CidadeRequest $request)
     {
-        $estado = $this->cidadeService->buscarEInstanciar($request->id_cidade);
-        return response()->json($estado);
+        $cidade = $this->cidadeRepository->findById($request->id_cidade);
+        $estado = $this->estadoRepository->findById($cidade->id_estado);
+
+        $dados = [
+            'estado' => $estado,
+            'cidade' => $cidade,
+        ];
+
+        return response()->json($dados);
     }
 
     public function edit(int $id)

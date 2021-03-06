@@ -20,7 +20,7 @@ class CidadeService
     {
         $cidade = new Cidade;
 
-        $cidade->setEstado($request->get('cidade'));
+        $cidade->setCidade($request->get('cidade'));
         $cidade->setDDD($request->get('ddd'));
         $cidade->setCreated_at(Carbon::now()->toDateTimeString());
 
