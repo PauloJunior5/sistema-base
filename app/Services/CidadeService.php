@@ -83,7 +83,7 @@ class CidadeService
         $dados = [
             'id' => $cidade->getId(),
             'cidade' => $cidade->getCidade(),
-            'uf' => $cidade->getDDD(),
+            'ddd' => $cidade->getDDD(),
             'id_estado' => $cidade->getEstado()->getId(),
             'created_at' => $cidade->getCreated_at(),
             'updated_at' => $cidade->getUpdated_at()

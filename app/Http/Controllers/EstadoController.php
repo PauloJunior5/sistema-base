@@ -42,8 +42,15 @@ class EstadoController extends Controller
 
     public function show(EstadoRequest $request)
     {
-        $estado = $this->estadoService->buscarEInstanciar($request->id_estado);
-        return response()->json($estado);
+        $estado = $this->estadoRepository->findById($request->id_estado);
+        $pais = $this->paisRepository->findById($estado->id_pais);
+
+        $dados = [
+            'pais' => $pais,
+            'estado' => $estado,
+        ];
+
+        return response()->json($dados);
     }
 
     public function edit(int $id)

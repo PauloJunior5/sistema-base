@@ -27,8 +27,9 @@ class CidadeController extends Controller
 
     public function create()
     {
+        $paises  = $this->paisRepository->mostrarTodos();
         $estados  = $this->estadoRepository->mostrarTodos();
-        return view('cidades.create', compact('estados'));
+        return view('cidades.create', compact('paises', 'estados'));
     }
 
     public function store(CidadeRequest $request)
