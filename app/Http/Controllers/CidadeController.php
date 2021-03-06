@@ -59,7 +59,7 @@ class CidadeController extends Controller
     public function edit(int $id)
     {
         $paises  = $this->paisRepository->mostrarTodos();
-        $estados  = $this->EstadoRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
         $cidade = $this->cidadeService->buscarEInstanciar($id);
 
         return view('cidades.edit', compact('paises', 'estados', 'cidade'));
