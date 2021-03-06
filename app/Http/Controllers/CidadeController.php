@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CidadeRequest;
-use App\Interfaces\CidadeInterface;
 use App\Repositories\CidadeRepository;
-use App\Repositories\EstadoRepository;
-use App\Repositories\PaisRepository;
 use App\Services\CidadeService;
+
+use App\Repositories\PaisRepository;
+use App\Repositories\EstadoRepository;
 
 class CidadeController extends Controller
 {

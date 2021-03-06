@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\EstadoInterface;
 use App\Http\Requests\EstadoRequest;
 use App\Repositories\EstadoRepository;
 use App\Services\EstadoService;
 
 use App\Repositories\PaisRepository;
-use App\Services\PaisService;
 
-class EstadoController extends Controller implements EstadoInterface
+class EstadoController extends Controller
 {
     public function __construct()
     {
         $this->estadoRepository = new EstadoRepository; //Bind com EstadoRepository
         $this->estadoService = new EstadoService; //Bind com EstadoService
         $this->paisRepository = new PaisRepository; //Bind com PaisRepository
-        $this->paisService = new PaisService; //Bind com PaisService
     }
 
     public function index()
