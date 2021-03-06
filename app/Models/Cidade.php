@@ -18,6 +18,12 @@ class Cidade extends Model
         $estado = new Estado();
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set DDD
+    |--------------------------------------------------------------------------
+    |
+    */
     public function getDDD(): int
     {
         return $this->ddd;
@@ -28,6 +34,12 @@ class Cidade extends Model
         $this->ddd = $ddd;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Cidade
+    |--------------------------------------------------------------------------
+    |
+    */
     public function getCidade(): string
     {
         return $this->cidade;
@@ -38,6 +50,12 @@ class Cidade extends Model
         $this->cidade = $cidade;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Estado
+    |--------------------------------------------------------------------------
+    |
+    */
     public function getEstado(): Estado
     {
         return $this->estado;
