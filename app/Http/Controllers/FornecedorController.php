@@ -2,117 +2,85 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cidade;
-use App\Models\CondicaoPagamento;
-use App\Models\Estado;
-use App\Models\FormaPagamento;
-use App\Models\Fornecedor;
-use App\Models\Pais;
-use Illuminate\Http\Request;
+use App\Http\Requests\FornecedorRequest;
+use App\Repositories\CidadeRepository;
+use App\Repositories\CondicaoPagamentoRepository;
+use App\Repositories\EstadoRepository;
+use App\Repositories\FormaPagamentoRepository;
+use App\Repositories\FornecedorRepository;
+use App\Repositories\PaisRepository;
 
 class FornecedorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->fornecedorRepository = New FornecedorRepository; //Bind com FornecedorRepository
+
+        $this->paisRepository = New PaisRepository; //Bind com PaisRepository
+        $this->estadoRepository = New EstadoRepository; //Bind com EstadoRepository
+        $this->cidadeRepository = New CidadeRepository; //Bind com CidadeRepository
+        $this->formasPagamentoRepository = New FormaPagamentoRepository; //Bind com FormaPagamentoRepository
+        $this->condicoesPagamentoRepository = New CondicaoPagamentoRepository; //Bind com CondicaoPagamentoRepository
+    }
+
     public function index()
     {
-        $fornecedores = Fornecedor::all();
+        $fornecedores = $this->fornecedorRepository->mostrarTodos();
         return view('fornecedores.index', compact('fornecedores'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-        $condicoesPagamento = CondicaoPagamento::all(); //Modal add condição pagamento
-        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
-        return view('fornecedores.create', compact('cidades', 'estados', 'paises', 'condicoesPagamento', 'formas_pagamento'));
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
+        $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
+
+        return view('fornecedores.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(FornecedorRequest $request)
     {
-        $validatedData = $request->validate([
-            'cnpj' => 'unique:fornecedores,cnpj',
-        ]);
+        $fornecedor = $this->fornecedorService->instanciarECriar($request);
 
-        if ($validatedData) {
-            $fornecedor = Fornecedor::create($request->all());
-            if ($fornecedor) {
-                return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor criado com sucesso.');
-            }
-        }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $fornecedor = Fornecedor::findOrFail($id);
-        $cidade = Cidade::findOrFail($fornecedor->id_cidade);
-        $estado = Estado::findOrFail($cidade->id_estado);
-        // $condicaoPagamento = CondicaoPagamento::findOrFail($fornecedor->id_condicao_pagamento);
-
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-
-        $condicoesPagamento = CondicaoPagamento::all(); //Modal add condição pagamento
-        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
-
-        return view('fornecedores.edit', compact('fornecedor', 'cidade', 'estado', 'cidades', 'estados', 'paises', 'condicoesPagamento', 'formas_pagamento'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'cnpj' => 'unique:fornecedores,cnpj,' . $id,
-        ]);
-
-        if ($validatedData) {
-            $fornecedor = Fornecedor::findOrFail($id)->update($request->except('_token', '_method'));
-            if ($fornecedor) {
-                return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor alterado com sucesso.');
-            }
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $fornecedor = Fornecedor::where('id', $id)->delete();
         if ($fornecedor) {
-            return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor excluido com sucesso.');
+            return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor criado com sucesso.')->send();
+        } else {
+            return redirect()->route('fornecedor.index')->with('Warning', 'Não foi possivel criar fornecedor.')->send();
+        }
+    }
+
+    public function edit(int $id)
+    {
+        $fornecedor = $this->fornecedorService->buscarEInstanciar($id);
+
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
+        $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
+
+        return view('fornecedores.edit', compact('fornecedor', 'paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento'));
+    }
+
+    public function update(FornecedorRequest $request)
+    {
+        $fornecedor = $this->fornecedorService->instanciarEAtualizar($request);
+
+        if ($fornecedor) {
+            return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor alterado com sucesso.')->send();
+        } else {
+            return redirect()->route('fornecedor.index')->with('Warning', 'Não foi possivel alterar fornecedor.')->send();
+        }
+    }
+
+    public function destroy(int $id)
+    {
+        $fornecedor = $this->fornecedorRepository->remover($id);
+
+        if ($fornecedor) {
+            return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor excluído com sucesso.')->send();
         }
     }
 }
