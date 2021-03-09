@@ -13,9 +13,9 @@ class Cidade extends Model
 
     public function __construct()
     {
-        $ddd = null;
-        $cidade = '';
-        $estado = new Estado();
+        $this->ddd = null;
+        $this->cidade = '';
+        $this->estado = new Estado();
     }
 
     /*

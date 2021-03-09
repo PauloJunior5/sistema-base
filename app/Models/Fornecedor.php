@@ -28,23 +28,23 @@ class Fornecedor extends Model
 
     public function __construct()
     {
-        $fornecedor = '';
-        $nomeFantasia = '';
-        $endereco = '';
-        $numero = null;
-        $complemento = '';
-        $bairro = '';
-        $cep = '';
-        $cidade = new cidade();
-        $telefone = '';
-        $celular = '';
-        $email = '';
-        $contato = '';
-        $cnpj = '';
-        $inscricaoEstadual = '';
-        $observacao = '';
-        $limiteCredito = '';
-        $condicaoPagamento = new CondicaoPagamento();
+        $this->fornecedor = '';
+        $this->nomeFantasia = '';
+        $this->endereco = '';
+        $this->numero = null;
+        $this->complemento = '';
+        $this->bairro = '';
+        $this->cep = '';
+        $this->cidade = new cidade();
+        $this->telefone = '';
+        $this->celular = '';
+        $this->email = '';
+        $this->contato = '';
+        $this->cnpj = '';
+        $this->inscricaoEstadual = '';
+        $this->observacao = '';
+        $this->limiteCredito = '';
+        $this->condicaoPagamento = new CondicaoPagamento();
     }
 
     /*
@@ -55,7 +55,7 @@ class Fornecedor extends Model
     */
     public function getFornecedor(): string
     {
-        return $this->fornecedor;
+        return $this->this->fornecedor;
     }
 
     public function setFornecedor($fornecedor)
