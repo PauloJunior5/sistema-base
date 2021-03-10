@@ -9,12 +9,14 @@ use App\Repositories\EstadoRepository;
 use App\Repositories\FormaPagamentoRepository;
 use App\Repositories\FornecedorRepository;
 use App\Repositories\PaisRepository;
+use App\Services\FornecedorService;
 
 class FornecedorController extends Controller
 {
     public function __construct()
     {
         $this->fornecedorRepository = New FornecedorRepository; //Bind com FornecedorRepository
+        $this->fornecedorService = new FornecedorService; //Bind com FornecedorService
 
         $this->paisRepository = New PaisRepository; //Bind com PaisRepository
         $this->estadoRepository = New EstadoRepository; //Bind com EstadoRepository
