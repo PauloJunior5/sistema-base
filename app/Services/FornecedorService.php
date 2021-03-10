@@ -23,7 +23,7 @@ class FornecedorService
         $fornecedor = new Fornecedor;
 
         $fornecedor->setFornecedor($request->fornecedor);
-        $fornecedor->setNomeFantasia($request->nomeFantasia);
+        $fornecedor->setNomeFantasia($request->nome_fantasia);
         $fornecedor->setEndereco($request->endereco);
         $fornecedor->setNumero($request->numero);
         $fornecedor->setComplemento($request->complemento);
@@ -35,16 +35,16 @@ class FornecedorService
         $fornecedor->setEmail($request->email);
         $fornecedor->setContato($request->contato);
         $fornecedor->setCNPJ($request->cnpj);
-        $fornecedor->setInscricaoEstadual($request->inscricaoEstadual);
+        $fornecedor->setInscricaoEstadual($request->inscricao_estadual);
         $fornecedor->setObservacao($request->observacao);
-        $fornecedor->setLimiteCredito($request->limiteCredito);
+        $fornecedor->setLimiteCredito($request->limite_credito);
 
         $fornecedor->setCreated_at(Carbon::now()->toDateTimeString());
 
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $fornecedor->setCidade($cidade);
 
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
+        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
         // $fornecedor->setCondicaoPagamento($condicaoPagamento);
 
         $dados = $this->getDados($fornecedor);
@@ -80,8 +80,8 @@ class FornecedorService
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $fornecedor->setCidade($cidade);
 
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
-        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        $fornecedor->setCondicaoPagamento($condicaoPagamento);
 
         $dados = $this->getDados($fornecedor);
 
@@ -122,8 +122,8 @@ class FornecedorService
         $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
         $fornecedor->setCidade($cidade);
 
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
-        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        $fornecedor->setCondicaoPagamento($condicaoPagamento);
 
         return $fornecedor;
     }

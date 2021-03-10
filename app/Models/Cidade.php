@@ -7,13 +7,13 @@ use App\Models\Estado;
 
 class Cidade extends Model
 {
-    protected int $ddd;
+    protected string $ddd;
     protected string $cidade;
     protected Estado $estado;
 
     public function __construct()
     {
-        $this->ddd = null;
+        $this->ddd = '';
         $this->cidade = '';
         $this->estado = new Estado();
     }
@@ -24,12 +24,12 @@ class Cidade extends Model
     |--------------------------------------------------------------------------
     |
     */
-    public function getDDD(): int
+    public function getDDD(): string
     {
         return $this->ddd;
     }
 
-    public function setDDD(int $ddd)
+    public function setDDD(string $ddd)
     {
         $this->ddd = $ddd;
     }

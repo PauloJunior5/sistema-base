@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
-    use ShowCliente;
-
     public function index()
     {
         $clientes = Cliente::all();

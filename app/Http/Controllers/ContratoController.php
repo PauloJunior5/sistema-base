@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\DB;
 class ContratoController extends Controller
 {
 
-    use ShowCliente;
-
     public function __construct(ContratoInterface $contratoInterface)
     {
         $this->contratoInterface = $contratoInterface;

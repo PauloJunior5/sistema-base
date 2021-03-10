@@ -10,7 +10,6 @@ use App\Repositories\FormaPagamentoRepository;
 use App\Repositories\FornecedorRepository;
 use App\Repositories\PaisRepository;
 use App\Services\FornecedorService;
-use Illuminate\Support\Facades\DB;
 
 class FornecedorController extends Controller
 {

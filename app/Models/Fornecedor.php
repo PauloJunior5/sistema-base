@@ -11,7 +11,7 @@ class Fornecedor extends Model
     protected string $fornecedor;
     protected string $nomeFantasia;
     protected string $endereco;
-    protected int $numero;
+    protected string $numero;
     protected string $complemento;
     protected string $bairro;
     protected string $cep;
@@ -31,7 +31,7 @@ class Fornecedor extends Model
         $this->fornecedor = '';
         $this->nomeFantasia = '';
         $this->endereco = '';
-        $this->numero = null;
+        $this->numero = '';
         $this->complemento = '';
         $this->bairro = '';
         $this->cep = '';
@@ -55,7 +55,7 @@ class Fornecedor extends Model
     */
     public function getFornecedor(): string
     {
-        return $this->this->fornecedor;
+        return $this->fornecedor;
     }
 
     public function setFornecedor($fornecedor)
@@ -101,7 +101,7 @@ class Fornecedor extends Model
     |--------------------------------------------------------------------------
     |
     */
-    public function getNumero(): int
+    public function getNumero(): string
     {
         return $this->numero;
     }
