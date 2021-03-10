@@ -48,8 +48,8 @@
                                     @foreach($condicoesPagamento as $CondicaoPagamento)
                                     <tr>
                                         <td>{{ $CondicaoPagamento->condicao_pagamento }}</td>
-                                        <td>{{ $CondicaoPagamento->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $CondicaoPagamento->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $CondicaoPagamento->created_at }}</td>
+                                        <td>{{ $CondicaoPagamento->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idCondição_pagamento-cliente" value="{{$CondicaoPagamento->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>

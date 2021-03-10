@@ -3,8 +3,8 @@
 @include('layouts.modais.chamada-modal.cidade')
 @include('layouts.modais.chamada-modal.estado')
 @include('layouts.modais.chamada-modal.pais')
-@include('layouts.modais.chamada-modal.condicao_pagamento')
-@include('layouts.modais.chamada-modal.forma_pagamento')
+{{-- @include('layouts.modais.chamada-modal.condicaoPagamento')
+@include('layouts.modais.chamada-modal.formaPagamento') --}}
 <div class="content">
     <div class="container-fluid">
         <div class="row">
