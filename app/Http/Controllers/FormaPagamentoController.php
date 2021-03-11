@@ -22,10 +22,10 @@ class FormaPagamentoController extends Controller
 
     public function create()
     {
-        return view('formas_pagamento.create');
+        return view('formasPagamento.create');
     }
 
-    public function store(Request $request)
+    public function store(FormaPagamentoRequest $request)
     {
         $validatedData = $request->validate([
             'forma_pagamento' => 'required',
