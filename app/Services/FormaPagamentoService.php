@@ -4,88 +4,42 @@ namespace App\Services;
 
 use Carbon\Carbon;
 
-use App\Models\Fornecedor;
-use App\Http\Requests\FornecedorRequest;
-use App\Repositories\FornecedorRepository;
+use App\Models\FormaPagamento;
+use App\Http\Requests\FormaPagamentoRequest;
+use App\Repositories\FormaPagamentoRepository;
 
 class FormaPagamentoService
 {
     public function __construct()
     {
-        $this->fornecedorRepository = new FornecedorRepository; //Bind com FornecedorRepository
-        $this->cidadeService = new CidadeService; //Bind com CidadeService
-        // $this->condicaoPagamentoService = new CondicaoPagamentoService; //Bind com CidadeService
-
+        $this->formaPagamentoRepository = new FormaPagamentoRepository; //Bind com FormaPagamentoRepository
     }
 
-    public function instanciarECriar(FornecedorRequest $request)
+    public function instanciarECriar(FormaPagamentoRequest $request)
     {
-        $fornecedor = new Fornecedor;
+        $formaPagamento = new FormaPagamento;
 
-        $fornecedor->setFornecedor($request->fornecedor);
-        $fornecedor->setNomeFantasia($request->nome_fantasia);
-        $fornecedor->setEndereco($request->endereco);
-        $fornecedor->setNumero($request->numero);
-        $fornecedor->setComplemento($request->complemento);
-        $fornecedor->setBairro($request->bairro);
-        $fornecedor->setCEP($request->cep);
+        $formaPagamento->setFormaPagamento($request->forma_pagamento);
+        $formaPagamento->setCreated_at(Carbon::now()->toDateTimeString());
 
-        $fornecedor->setTelefone($request->telefone);
-        $fornecedor->setCelular($request->celular);
-        $fornecedor->setEmail($request->email);
-        $fornecedor->setContato($request->contato);
-        $fornecedor->setCNPJ($request->cnpj);
-        $fornecedor->setInscricaoEstadual($request->inscricao_estadual);
-        $fornecedor->setObservacao($request->observacao);
-        $fornecedor->setLimiteCredito($request->limite_credito);
+        $dados = $this->getDados($formaPagamento);
 
-        $fornecedor->setCreated_at(Carbon::now()->toDateTimeString());
-
-        $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
-        $fornecedor->setCidade($cidade);
-
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
-        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
-
-        $dados = $this->getDados($fornecedor);
-
-        return $this->fornecedorRepository->adicionar($dados);
+        return $this->formaPagamentoRepository->adicionar($dados);
     }
 
-    public function instanciarEAtualizar(FornecedorRequest $request)
+    public function instanciarEAtualizar(FormaPagamentoRequest $request)
     {
-        $fornecedor = new Fornecedor;
+        $formaPagamento = new FormaPagamento;
 
-        $fornecedor->setId($request->id);
-        $fornecedor->setCreated_at($request->created_at);
-        $fornecedor->setUpdated_at(Carbon::now()->toDateTimeString());
+        $formaPagamento->setId($request->id);
+        $formaPagamento->setCreated_at($request->created_at);
+        $formaPagamento->setUpdated_at(Carbon::now()->toDateTimeString());
 
-        $fornecedor->setFornecedor($request->fornecedor);
-        $fornecedor->setNomeFantasia($request->nome_fantasia);
-        $fornecedor->setEndereco($request->endereco);
-        $fornecedor->setNumero($request->numero);
-        $fornecedor->setComplemento($request->complemento);
-        $fornecedor->setBairro($request->bairro);
-        $fornecedor->setCEP($request->cep);
+        $formaPagamento->setFormaPagamento($request->forma_pagamento);
 
-        $fornecedor->setTelefone($request->telefone);
-        $fornecedor->setCelular($request->celular);
-        $fornecedor->setEmail($request->email);
-        $fornecedor->setContato($request->contato);
-        $fornecedor->setCNPJ($request->cnpj);
-        $fornecedor->setInscricaoEstadual($request->inscricao_estadual);
-        $fornecedor->setObservacao($request->observacao);
-        $fornecedor->setLimiteCredito($request->limite_credito);
+        $dados = $this->getDados($formaPagamento);
 
-        $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
-        $fornecedor->setCidade($cidade);
-
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
-        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
-
-        $dados = $this->getDados($fornecedor);
-
-        return $this->fornecedorRepository->atualizar($dados);
+        return $this->formaPagamentoRepository->atualizar($dados);
     }
 
     /**
@@ -94,69 +48,31 @@ class FormaPagamentoService
      */
     public function buscarEInstanciar(int $id)
     {
-        $result = $this->fornecedorRepository->findById($id);
-        $fornecedor = new Fornecedor;
+        $result = $this->formaPagamentoRepository->findById($id);
+        $formaPagamento = new FormaPagamento;
 
-        $fornecedor->setId($result->id);
-        $fornecedor->setCreated_at($result->created_at ?? null);
-        $fornecedor->setUpdated_at($result->updated_at ?? null);
+        $formaPagamento->setId($result->id);
+        $formaPagamento->setCreated_at($result->created_at ?? null);
+        $formaPagamento->setUpdated_at($result->updated_at ?? null);
 
-        $fornecedor->setFornecedor($result->fornecedor);
-        $fornecedor->setNomeFantasia($result->nome_fantasia);
-        $fornecedor->setEndereco($result->endereco);
-        $fornecedor->setNumero($result->numero);
-        $fornecedor->setComplemento($result->complemento);
-        $fornecedor->setBairro($result->bairro);
-        $fornecedor->setCEP($result->cep);
+        $formaPagamento->setFormaPagamento($result->forma_pagamento);
 
-        $fornecedor->setTelefone($result->telefone);
-        $fornecedor->setCelular($result->celular);
-        $fornecedor->setEmail($result->email);
-        $fornecedor->setContato($result->contato);
-        $fornecedor->setCNPJ($result->cnpj);
-        $fornecedor->setInscricaoEstadual($result->inscricao_estadual);
-        $fornecedor->setObservacao($result->observacao);
-        $fornecedor->setLimiteCredito($result->limite_credito);
-
-        $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
-        $fornecedor->setCidade($cidade);
-
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
-        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
-
-        return $fornecedor;
+        return $formaPagamento;
     }
 
     /**
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    private function getDados(Fornecedor $fornecedor)
+    private function getDados(FormaPagamento $formaPagamento)
     {
         $dados = [
-            'id' => $fornecedor->getId(),
-            
-            'fornecedor' => $fornecedor->getFornecedor(),
-            'nome_fantasia' => $fornecedor->getNomeFantasia(),
-            'endereco' => $fornecedor->getEndereco(),
-            'numero' => $fornecedor->getNumero(),
-            'complemento' => $fornecedor->getComplemento(),
-            'bairro' => $fornecedor->getBairro(),
-            'cep' => $fornecedor->getCEP(),
+            'id' => $formaPagamento->getId(),
 
-            'id_cidade' => $fornecedor->getCidade()->getId(),
-            'telefone' => $fornecedor->getTelefone(),
-            'celular' => $fornecedor->getCelular(),
-            'email' => $fornecedor->getEmail(),
-            'contato' => $fornecedor->getContato(),
-            'cnpj' => $fornecedor->getCNPJ(),
+            'forma_pagamento' => $formaPagamento->getFormaPagamento(),
 
-            'inscricao_estadual' => $fornecedor->getInscricaoEstadual(),
-            'observacao' => $fornecedor->getObservacao(),
-            'limite_credito' => $fornecedor->getLimiteCredito(),
-            'id_condicao_pagamento' => 1,
-            'created_at' => $fornecedor->getCreated_at(),
-            'updated_at' => $fornecedor->getUpdated_at()
+            'created_at' => $formaPagamento->getCreated_at(),
+            'updated_at' => $formaPagamento->getUpdated_at()
         ];
 
         return $dados;
