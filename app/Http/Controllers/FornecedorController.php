@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\FornecedorService;
+use App\Repositories\PaisRepository;
 use App\Http\Requests\FornecedorRequest;
+
 use App\Repositories\CidadeRepository;
 use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\EstadoRepository;
 use App\Repositories\FormaPagamentoRepository;
 use App\Repositories\FornecedorRepository;
-use App\Repositories\PaisRepository;
-use App\Services\FornecedorService;
 
 class FornecedorController extends Controller
 {

@@ -47,7 +47,7 @@
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($formas_pagamento as $forma_pagamento)
+                                    @foreach($formasPagamento as $formaPagamento)
                                     <tr>
                                         <td>{{ $forma_pagamento->forma_pagamento }}</td>
                                         <td>{{ $forma_pagamento->created_at->format('Y-m-d') }}</td>
