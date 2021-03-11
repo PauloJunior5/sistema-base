@@ -1,5 +1,4 @@
 <script>
-    
     $(function() {
         localStorage.clear();
         var operacao = "A"; //"A"=Adição; "E"=Edição
@@ -236,5 +235,4 @@
         });
 
     });
-
 </script>
