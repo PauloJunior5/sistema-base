@@ -149,7 +149,7 @@ class FornecedorService
             'celular' => $fornecedor->getCelular(),
             'email' => $fornecedor->getEmail(),
             'contato' => $fornecedor->getContato(),
-            'cnpj' => $fornecedor->getFornecedor(),
+            'cnpj' => $fornecedor->getCNPJ(),
 
             'inscricao_estadual' => $fornecedor->getInscricaoEstadual(),
             'observacao' => $fornecedor->getObservacao(),
