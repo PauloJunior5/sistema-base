@@ -61,7 +61,7 @@ class FornecedorService
         $fornecedor->setUpdated_at(Carbon::now()->toDateTimeString());
 
         $fornecedor->setFornecedor($request->fornecedor);
-        $fornecedor->setNomeFantasia($request->nomeFantasia);
+        $fornecedor->setNomeFantasia($request->nome_fantasia);
         $fornecedor->setEndereco($request->endereco);
         $fornecedor->setNumero($request->numero);
         $fornecedor->setComplemento($request->complemento);
@@ -73,15 +73,15 @@ class FornecedorService
         $fornecedor->setEmail($request->email);
         $fornecedor->setContato($request->contato);
         $fornecedor->setCNPJ($request->cnpj);
-        $fornecedor->setInscricaoEstadual($request->inscricaoEstadual);
+        $fornecedor->setInscricaoEstadual($request->inscricao_estadual);
         $fornecedor->setObservacao($request->observacao);
-        $fornecedor->setLimiteCredito($request->limiteCredito);
+        $fornecedor->setLimiteCredito($request->limite_credito);
 
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $fornecedor->setCidade($cidade);
 
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
-        $fornecedor->setCondicaoPagamento($condicaoPagamento);
+        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
 
         $dados = $this->getDados($fornecedor);
 
@@ -103,7 +103,7 @@ class FornecedorService
         $fornecedor->setUpdated_at($result->updated_at ?? null);
 
         $fornecedor->setFornecedor($result->fornecedor);
-        $fornecedor->setNomeFantasia($result->nomeFantasia);
+        $fornecedor->setNomeFantasia($result->nome_fantasia);
         $fornecedor->setEndereco($result->endereco);
         $fornecedor->setNumero($result->numero);
         $fornecedor->setComplemento($result->complemento);
@@ -115,15 +115,15 @@ class FornecedorService
         $fornecedor->setEmail($result->email);
         $fornecedor->setContato($result->contato);
         $fornecedor->setCNPJ($result->cnpj);
-        $fornecedor->setInscricaoEstadual($result->inscricaoEstadual);
+        $fornecedor->setInscricaoEstadual($result->inscricao_estadual);
         $fornecedor->setObservacao($result->observacao);
-        $fornecedor->setLimiteCredito($result->limiteCredito);
+        $fornecedor->setLimiteCredito($result->limite_credito);
 
         $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
         $fornecedor->setCidade($cidade);
 
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
-        $fornecedor->setCondicaoPagamento($condicaoPagamento);
+        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
 
         return $fornecedor;
     }
@@ -138,7 +138,7 @@ class FornecedorService
             'id' => $fornecedor->getId(),
             
             'fornecedor' => $fornecedor->getFornecedor(),
-            'nomeFantasia' => $fornecedor->getNomeFantasia(),
+            'nome_fantasia' => $fornecedor->getNomeFantasia(),
             'endereco' => $fornecedor->getEndereco(),
             'numero' => $fornecedor->getNumero(),
             'complemento' => $fornecedor->getComplemento(),
@@ -152,11 +152,10 @@ class FornecedorService
             'contato' => $fornecedor->getContato(),
             'cnpj' => $fornecedor->getFornecedor(),
 
-            'inscricaoEstadual' => $fornecedor->getInscricaoEstadual(),
+            'inscricao_estadual' => $fornecedor->getInscricaoEstadual(),
             'observacao' => $fornecedor->getObservacao(),
-            'limiteCredito' => $fornecedor->getLimiteCredito(),
-            // 'id_condicao_pagamento' => $fornecedor->getCondicaoPagamento()->getId(),
-
+            'limite_credito' => $fornecedor->getLimiteCredito(),
+            'id_condicao_pagamento' => 1,
             'created_at' => $fornecedor->getCreated_at(),
             'updated_at' => $fornecedor->getUpdated_at()
         ];

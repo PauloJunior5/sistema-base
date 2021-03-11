@@ -52,13 +52,13 @@
                                     <tr>
                                         <td>{{ $fornecedor->cnpj }}</td>
                                         <td>{{ $fornecedor->fornecedor }}</td>
-                                        <td>{{ $fornecedor->created_at->format('Y-m-d H:i:s') }}</td>
-                                        <td>{{ $fornecedor->updated_at->format('Y-m-d H:i:s') }}</td>
+                                        <td>{{ $fornecedor->created_at }}</td>
+                                        <td>{{ $fornecedor->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('fornecedor.destroy', $fornecedor->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('fornecedor.edit', $fornecedor) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('fornecedor.edit', $fornecedor->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

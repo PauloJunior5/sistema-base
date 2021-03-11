@@ -314,7 +314,7 @@ class Fornecedor extends Model
         return $this->condicaoPagamento;
     }
 
-    public function setCondicaoPagamento($condicaoPagamento)
+    public function setCondicaoPagamento($condicaoPagamento = 1)
     {
         $this->condicaoPagamento = $condicaoPagamento;
     }
