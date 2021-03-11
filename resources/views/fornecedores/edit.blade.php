@@ -19,7 +19,7 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Código @include('includes.tooltips-campo-consulta')</label>
-                                    <input type="text" class="form-control" value="{{$fornecedor->getId()}}" readonly>
+                                    <input type="text" class="form-control" value="{{$fornecedor->getId()}}" name="id" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Fornecedor</label>

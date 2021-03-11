@@ -95,7 +95,6 @@ class FornecedorService
     public function buscarEInstanciar(int $id)
     {
         $result = $this->fornecedorRepository->findById($id);
-
         $fornecedor = new Fornecedor;
 
         $fornecedor->setId($result->id);
