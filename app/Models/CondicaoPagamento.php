@@ -1,14 +1,10 @@
 <?php
 
-$fillable = [
-    'condicao_pagamento', 'multa', 'juro', 'desconto', 'parcelas'
-];
-
 namespace App\Models;
 
 use App\Models\Model;
 
-class FormaPagamento extends Model
+class CondicaoPagamento extends Model
 {
     protected string $condicaoPagamento;
     protected float $multa;

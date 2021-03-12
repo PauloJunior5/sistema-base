@@ -36,9 +36,9 @@ class CondicaoPagamentoController extends Controller
         $condicaoPagamento = $this->condicaoPagamentoService->instanciarECriar($request);
 
         if ($condicaoPagamento) {
-            return redirect()->route('condicoesPagamento.index')->with('Success', 'Condição de Pagamento criada com sucesso.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento criada com sucesso.')->send();
         } else {
-            return redirect()->route('condicoesPagamento.index')->with('Warning', 'Não foi possivel criar condição de pagamento.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Warning', 'Não foi possivel criar condição de pagamento.')->send();
         }
     }
 
@@ -62,9 +62,9 @@ class CondicaoPagamentoController extends Controller
         $condicaoPagamento = $this->condicaoPagamentoService->instanciarEAtualizar($request);
 
         if ($condicaoPagamento) {
-            return redirect()->route('condicoesPagamento.index')->with('Success', 'Condição de Pagamento alterada com sucesso.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento alterada com sucesso.')->send();
         } else {
-            return redirect()->route('condicoesPagamento.index')->with('Warning', 'Não foi possivel condição de pagamento.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Warning', 'Não foi possivel condição de pagamento.')->send();
         }
     }
 
@@ -73,7 +73,7 @@ class CondicaoPagamentoController extends Controller
         $condicaoPagamento = $this->condicaoPagamentoRepository->remover($id);
 
         if ($condicaoPagamento) {
-            return redirect()->route('condicoesPagamento.index')->with('Success', 'Condição de Pagamento excluída com sucesso.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento excluída com sucesso.')->send();
         }
     }
 

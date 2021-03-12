@@ -1,11 +1,11 @@
 @extends('layouts.app', ['activePage' => 'condicao-pagamento-management', 'titlePage' => __('Condição de Pagamento Management')])
 @section('content')
-@include('layouts.modais.chamada-modal-forma_pagamento')
+@include('layouts.modais.chamada-modal.formaPagamento')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" action="{{ route('condicaoPagamento.update', $condicao_pagamento) }}" autocomplete="off" class="form-horizontal" id="condicaoPagamentoForm">
+                <form method="post" action="{{ route('condicaoPagamento.update', $condicaoPagamento->getId()) }}" autocomplete="off" class="form-horizontal" id="condicaoPagamentoForm">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -18,47 +18,47 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{$condicao_pagamento->id}}" readonly />
+                                        <input class="form-control" value="{{$condicaoPagamento->getId()}}" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Condição de Pagamento</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="condicao_pagamento" id="input-condicao-pagamento" type="text" value="{{old('condicao_pagamento', $condicao_pagamento->condicao_pagamento)}}" required />
+                                        <input class="form-control" name="condicao_pagamento" id="input-condicao-pagamento" type="text" value="{{old('condicao_pagamento', $condicaoPagamento->getCondicaoPagamento())}}" required />
                                     </div>
                                 </div>
 
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Multa (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="multa" id="input-multa" type="number" value="{{old('multa', $condicao_pagamento->multa)}}" required />
+                                        <input class="form-control" name="multa" id="input-multa" type="number" value="{{old('multa', $condicaoPagamento->getMulta())}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Juros (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="juro" id="input-juro" type="number" value="{{old('juro', $condicao_pagamento->juro)}}" required />
+                                        <input class="form-control" name="juro" id="input-juro" type="number" value="{{old('juro', $condicaoPagamento->getJuro())}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Desconto (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="desconto" id="input-desconto" type="number" value="{{old('desconto', $condicao_pagamento->desconto)}}" required />
+                                        <input class="form-control" name="desconto" id="input-desconto" type="number" value="{{old('desconto', $condicaoPagamento->getDesconto())}}" required />
                                     </div>
                                 </div>
-                                <input type="hidden" id="input-parcelas" name="parcelas" value="{{old('parcelas', $condicao_pagamento->parcelas)}}">
+                                <input type="hidden" id="input-parcelas" name="parcelas" value="{{old('parcelas', $condicaoPagamento->getParcelas())}}">
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
+                                        <input type="datetime" name="created_at" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
+                                        <input type="datetime" name="updated_at" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>
