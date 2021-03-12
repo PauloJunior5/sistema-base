@@ -47,9 +47,9 @@
                                 <tbody>
                                     @foreach($formasPagamento as $formaPagamento)
                                     <tr>
-                                        <td>{{ $formaPagamento->formaPagamento }}</td>
-                                        <td>{{ $formaPagamento->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $formaPagamento->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $formaPagamento->forma_pagamento }}</td>
+                                        <td>{{ $formaPagamento->created_at }}</td>
+                                        <td>{{ $formaPagamento->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idForma_pagamento" value="{{$formaPagamento->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>

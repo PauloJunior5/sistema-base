@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'condicao-pagamento-management', 'titlePage' => __('Condição de Pagamento Management')])
 @section('content')
-@include('layouts.modais.chamada-modal.forma_pagamento')
+@include('layouts.modais.chamada-modal.formaPagamento')
 <div class="content">
     <div class="container-fluid">
         <div class="row">

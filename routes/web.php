@@ -90,12 +90,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('condicaoPagamento', 'CondicaoPagamentoController');
     Route::name('condicaoPagamento.')->group(function () {
-        Route::post('condicaoPagamento/createCondicao_pagamento', 'CondicaoPagamentoController@createCondicao_pagamento')->name('condicaoPagamento.createCondicao_pagamento');
+        Route::post('condicaoPagamento/createCondicao_pagamento', 'CondicaoPagamentoController@createCondicao_pagamento')->name('createCondicao_pagamento');
     });
 
     Route::resource('formaPagamento', 'FormaPagamentoController');
     Route::name('formaPagamento.')->group(function () {
-        Route::post('formaPagamento/createForma_pagamento', 'FormaPagamentoController@createForma_pagamento')->name('formaPagamento.createForma_pagamento');
+        Route::post('formaPagamento/createForma_pagamento', 'FormaPagamentoController@createForma_pagamento')->name('createForma_pagamento');
     });
 
     Route::resource('contrato', 'ContratoController');

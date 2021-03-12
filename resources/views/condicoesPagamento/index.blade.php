@@ -50,19 +50,19 @@
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($condicoes_pagamento as $condicao_pagamento)
+                                    @foreach($condicoesPagamento as $condicaoPagamento)
                                     <tr>
-                                        <td>{{ $condicao_pagamento->condicao_pagamento }}</td>
-                                        <td>{{ $condicao_pagamento->multa }}</td>
-                                        <td>{{ $condicao_pagamento->juro }}</td>
-                                        <td>{{ $condicao_pagamento->desconto }}</td>
-                                        <td>{{ $condicao_pagamento->created_at->format('Y-m-d H:i:s') }}</td>
-                                        <td>{{ $condicao_pagamento->updated_at->format('Y-m-d H:i:s') }}</td>
+                                        <td>{{ $condicaoPagamento->condicao_pagamento }}</td>
+                                        <td>{{ $condicaoPagamento->multa }}</td>
+                                        <td>{{ $condicaoPagamento->juro }}</td>
+                                        <td>{{ $condicaoPagamento->desconto }}</td>
+                                        <td>{{ $condicaoPagamento->created_at }}</td>
+                                        <td>{{ $condicaoPagamento->updated_at }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('condicaoPagamento.destroy', $condicao_pagamento->id) }}" method="post">
+                                            <form action="{{ route('condicaoPagamento.destroy', $condicaoPagamento->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('condicaoPagamento.edit', $condicao_pagamento) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('condicaoPagamento.edit', $condicaoPagamento->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
