@@ -30,9 +30,9 @@ class FormaPagamentoController extends Controller
         $formaPagamento = $this->formaPagamentoService->instanciarECriar($request);
 
         if ($formaPagamento) {
-            return redirect()->route('formasPagamento.index')->with('Success', 'Forma de pagamento criada com sucesso.')->send();
+            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento criada com sucesso.')->send();
         } else {
-            return redirect()->route('formasPagamento.index')->with('Warning', 'Não foi possivel criar forma de pagamento.')->send();
+            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel criar forma de pagamento.')->send();
         }
     }
 
@@ -44,27 +44,27 @@ class FormaPagamentoController extends Controller
 
     public function edit($id)
     {
-        $formaPagamento = $this->formaPagamento->buscarEInstanciar($id);
+        $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($id);
         return view('formasPagamento.edit', compact('formaPagamento'));
     }
 
     public function update(FormaPagamentoRequest $request)
     {
-        $formaPagamento = $this->formPagamentoService->instanciarEAtualizar($request);
+        $formaPagamento = $this->formaPagamentoService->instanciarEAtualizar($request);
 
         if ($formaPagamento) {
-            return redirect()->route('formasPagamento.index')->with('Success', 'Forma de pagamento alterada com sucesso.')->send();
+            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento alterada com sucesso.')->send();
         } else {
-            return redirect()->route('formasPagamento.index')->with('Warning', 'Não foi possivel alterar forma de pagamento.')->send();
+            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel alterar forma de pagamento.')->send();
         }
     }
 
     public function destroy($id)
     {
-        $formaPagamento = $this->formPagamentoRepository->remover($id);
+        $formaPagamento = $this->formaPagamentoRepository->remover($id);
 
         if ($formaPagamento) {
-            return redirect()->route('formasPagamento.index')->with('Success', 'Forma de pagamento excluída com sucesso.')->send();
+            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento excluída com sucesso.')->send();
         }
     }
 

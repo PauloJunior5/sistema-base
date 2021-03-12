@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FormaPagamentoRequest extends FormRequest
 {
@@ -24,7 +25,9 @@ class FormaPagamentoRequest extends FormRequest
     public function rules()
     {
         return [
-            'forma_pagamento' => ['required'],
+            'forma_pagamento' => [
+                Rule::unique('forma_pagamentos', 'forma_pagamento')->ignore($this->id),
+            ],
         ];
     }
 }

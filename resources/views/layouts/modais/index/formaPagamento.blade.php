@@ -33,7 +33,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#forma_pagamentoCreateModal" style="margin-top: 2.7rem;">Add Forma de Pagamento</button>
+                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#formaPagamentoCreateModal" style="margin-top: 2.7rem;">Add Forma de Pagamento</button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -45,13 +45,13 @@
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($formas_pagamento as $forma_pagamento)
+                                    @foreach($formasPagamento as $formaPagamento)
                                     <tr>
-                                        <td>{{ $forma_pagamento->forma_pagamento }}</td>
-                                        <td>{{ $forma_pagamento->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $forma_pagamento->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $formaPagamento->formaPagamento }}</td>
+                                        <td>{{ $formaPagamento->created_at->format('Y-m-d') }}</td>
+                                        <td>{{ $formaPagamento->updated_at->format('Y-m-d') }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link idForma_pagamento" value="{{$forma_pagamento->id}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idForma_pagamento" value="{{$formaPagamento->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i>
                                                 <div class="ripple-container"></div>
                                             </button>

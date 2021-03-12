@@ -49,14 +49,14 @@
                                 <tbody>
                                     @foreach($formasPagamento as $formaPagamento)
                                     <tr>
-                                        <td>{{ $forma_pagamento->forma_pagamento }}</td>
-                                        <td>{{ $forma_pagamento->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $forma_pagamento->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $formaPagamento->forma_pagamento }}</td>
+                                        <td>{{ $formaPagamento->created_at }}</td>
+                                        <td>{{ $formaPagamento->updated_at }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('formaPagamento.destroy', $forma_pagamento->id) }}" method="post">
+                                            <form action="{{ route('formaPagamento.destroy', $formaPagamento->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('formaPagamento.edit', $forma_pagamento) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('formaPagamento.edit', $formaPagamento->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

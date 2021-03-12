@@ -23,7 +23,6 @@ class FormaPagamentoService
         $formaPagamento->setCreated_at(Carbon::now()->toDateTimeString());
 
         $dados = $this->getDados($formaPagamento);
-
         return $this->formaPagamentoRepository->adicionar($dados);
     }
 
