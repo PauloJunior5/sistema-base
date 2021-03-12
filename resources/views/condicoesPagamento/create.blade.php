@@ -143,7 +143,7 @@
     $('.idForma_pagamento').click(function() {
         var id_forma_pagamento = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/formaPagamento/show',
             data: { id_forma_pagamento : id_forma_pagamento },
             dataType: "JSON",
@@ -296,7 +296,7 @@
 
             var id_forma_pagamento = cli.Pagamento;
             $.ajax({
-                method: "POST",
+                method: "GET",
                 url: url_atual + '/formaPagamento/show',
                 data: { id_forma_pagamento : id_forma_pagamento },
                 dataType: "JSON",
@@ -347,7 +347,7 @@
 
             var id_forma_pagamento = cli.Pagamento;
             $.ajax({
-                method: "POST",
+                method: "GET",
                 url: url_atual + '/formaPagamento/show',
                 data: { id_forma_pagamento : id_forma_pagamento },
                 dataType: "JSON",

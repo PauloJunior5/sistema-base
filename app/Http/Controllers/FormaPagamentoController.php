@@ -38,7 +38,7 @@ class FormaPagamentoController extends Controller
 
     public function show(FormaPagamentoRequest $request)
     {
-        $formaPagamento = $this->formaPagamentoRepository->findById($request->id_formaPagamento);
+        $formaPagamento = $this->formaPagamentoRepository->findById($request->id_forma_pagamento);
         return response()->json($formaPagamento);
     }
 
