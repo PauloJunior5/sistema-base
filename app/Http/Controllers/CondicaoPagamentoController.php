@@ -2,125 +2,89 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CondicaoPagamento;
-use App\Models\FormaPagamento;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use App\Services\CondicaoPagamentoService;
+use App\Http\Requests\CondicaoPagamentoRequest;
+use App\Repositories\CondicaoPagamentoRepository;
+
+use App\Repositories\FormaPagamentoRepository;
 
 class CondicaoPagamentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->condicaoPagamentoService = new CondicaoPagamentoService; //Bind com CondicaoPagamentoService
+        $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository; //Bind com CondicaoPagamentoRepository
+
+        $this->formaPagamentoRepository = New FormaPagamentoRepository; //Bind com FormaPagamentoRepository
+
+    }
+
     public function index()
     {
-        return view('condicoes_pagamento.index', ['condicoes_pagamento' => CondicaoPagamento::all()]);
+        $condicoesPagamento = $this->condicaoPagamentoRepository->mostrarTodos();
+        return view('condicoesPagamento.index', compact('condicoesPagamento'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
-        return view('condicoes_pagamento.create', compact('formas_pagamento'));
+        $formasPagamento =  $this->formaPagamentoRepository->mostrarTodos();
+        return view('condicoesPagamento.create', compact('formasPagamento'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(CondicaoPagamentoRequest $request)
     {
-        $validatedData = $request->validate([
-            'condicao_pagamento' => 'required',
-        ]);
+        $condicaoPagamento = $this->condicaoPagamentoService->instanciarECriar($request);
 
-        if ($validatedData) {
-            $condicao_pagamento = CondicaoPagamento::create($request->all());
-            if ($condicao_pagamento) {
-                return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento criada com sucesso.');
-            }
+        if ($condicaoPagamento) {
+            return redirect()->route('condicoesPagamento.index')->with('Success', 'Condição de Pagamento criada com sucesso.')->send();
+        } else {
+            return redirect()->route('condicoesPagamento.index')->with('Warning', 'Não foi possivel criar condição de pagamento.')->send();
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
+    public function show(CondicaoPagamentoRequest $request)
     {
-        $condicao_pagamento = CondicaoPagamento::findOrFail($request->id_condicao_pagamento);
-        return $condicao_pagamento;
+        $condicaoPagamento = $this->condicaoPagamentoRepository->findById($request->id_condicao_pagamento);
+        return response()->json($condicaoPagamento);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $condicao_pagamento = CondicaoPagamento::findOrFail($id);
-        $formas_pagamento = FormaPagamento::all(); // Modal add forma de pagamento
-        return view('condicoes_pagamento.edit', compact('condicao_pagamento', 'formas_pagamento'));
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($id);
+
+        $formasPagamento =  $this->formaPagamentoRepository->mostrarTodos();
+
+        return view('condicoesPagamento.edit', compact('condicaoPagamento', 'formasPagamento'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(CondicaoPagamentoRequest $request, $id)
     {
-        $validatedData = $request->validate([
-            'condicao_pagamento' => 'required',
-        ]);
+        $condicaoPagamento = $this->condicaoPagamentoService->instanciarEAtualizar($request);
 
-        if ($validatedData) {
-            $condicao_pagamento = CondicaoPagamento::whereId($id)->update($request->except('_token', '_method', 'codigo_cidade', 'cidade', 'estado'));
-            if ($condicao_pagamento) {
-                return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento alterada com sucesso.');
-            }
+        if ($condicaoPagamento) {
+            return redirect()->route('condicoesPagamento.index')->with('Success', 'Condição de Pagamento alterada com sucesso.')->send();
+        } else {
+            return redirect()->route('condicoesPagamento.index')->with('Warning', 'Não foi possivel condição de pagamento.')->send();
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $condicao_pagamento = CondicaoPagamento::where('id', $id)->delete();
-        if ($condicao_pagamento) {
-            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento excluida com sucesso.');
+        $condicaoPagamento = $this->condicaoPagamentoRepository->remover($id);
+
+        if ($condicaoPagamento) {
+            return redirect()->route('condicoesPagamento.index')->with('Success', 'Condição de Pagamento excluída com sucesso.')->send();
         }
     }
 
-    public function createCondicao_pagamento(Request $request)
+    public function createCondicao_pagamento(CondicaoPagamentoRequest $request)
     {
-        $validatedData = $request->validate([
-            'condicao_pagamento' => 'required',
-        ]);
+        $condicaoPagamento = $this->condicaoPagamentoService->instanciarECriar($request);
 
-        if ($validatedData) {
-            $condicao_pagamento = CondicaoPagamento::create($request->all());
-            if ($condicao_pagamento) {
-                return Redirect::back()->withInput()->with('error_code', 3);
-            }
+        if ($condicaoPagamento) {
+            return redirect()->back()->withInput()->with('error_code', 3)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
         }
     }
 }

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Services\FormaPagamentoService;
-use App\Repositories\FormaPagamentoRepository;
 use App\Http\Requests\FormaPagamentoRequest;
+use App\Repositories\FormaPagamentoRepository;
 
 class FormaPagamentoController extends Controller
 {
     public function __construct()
     {
-        $this->formaPagamentoRepository = New FormaPagamentoRepository; //Bind com FormaPagamentoRepository
         $this->formaPagamentoService = new FormaPagamentoService; //Bind com FormaPagamentoService
+        $this->formaPagamentoRepository = New FormaPagamentoRepository; //Bind com FormaPagamentoRepository
     }
 
     public function index()
