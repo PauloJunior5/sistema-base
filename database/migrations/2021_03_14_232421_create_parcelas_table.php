@@ -20,12 +20,24 @@ class CreateParcelasTable extends Migration
             $table->integer('dias');
             $table->float('porcentual');
             $table->unsignedTinyInteger('forma_pagamento')->nullable(); // foreign_key formas de pagamento
-            
+            $table->unsignedTinyInteger('condicao_pagamento')->nullable(); // foreign_key condições de pagamento
+
             $table->timestamps();
 
-            $table->foreign('forma_pagamento')->references('id')->on('forma_pagamentos'); 
+            $table->foreign('forma_pagamento')->references('id')->on('forma_pagamentos');
+            $table->foreign('condicao_pagamento')->references('id')->on('condicao_pagamentos');
         });
     }
+
+    /**
+     * 
+     * Relacionamentos com parcelas
+     *
+     * parcela n-----1 forma de pagamento
+     * parcela n-----1 condicao pagamento
+     * 
+     */
+
 
     /**
      * Reverse the migrations.
