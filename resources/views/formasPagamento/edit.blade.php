@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="col-form-label">Forma de Pagament</label>
+                                    <label class="col-form-label">Forma de Pagamento</label>
                                     <div class="form-group">
                                         <input class="form-control" name="forma_pagamento" type="text" value="{{ $formaPagamento->getFormaPagamento() }}" required />
                                     </div>

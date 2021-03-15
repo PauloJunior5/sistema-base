@@ -16,19 +16,13 @@ class FormaPagamentoRepository
     public function adicionar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('forma_pagamentos')->insert($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel criar forma de pagamento: ' . $th);
-
         }
         return $result;
     }
@@ -42,19 +36,13 @@ class FormaPagamentoRepository
     public function atualizar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('forma_pagamentos')->where('id', $dados['id'])->update($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel editar forma de pagamento: ' . $th);
-
         }
         return $result;
     }
@@ -62,19 +50,13 @@ class FormaPagamentoRepository
     public function remover($id)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('forma_pagamentos')->where('id', $id)->delete();
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel excluir forma de pagamento: ' . $th);
-
         }
         return $result;
     }
