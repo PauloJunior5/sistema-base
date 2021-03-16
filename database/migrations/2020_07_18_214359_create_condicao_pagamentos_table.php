@@ -20,7 +20,6 @@ class CreateCondicaoPagamentosTable extends Migration
             $table->double('multa', 8, 2);
             $table->double('juro', 8, 2);
             $table->double('desconto', 8, 2);
-            $table->string('parcelas');
 
             $table->timestamps();
         });
