@@ -5,11 +5,14 @@ namespace App\Services;
 use Carbon\Carbon;
 
 use App\Models\CondicaoPagamento;
-use App\Http\Requests\CondicaoPagamentoRequest;
 use App\Models\Parcelas;
+
+use App\Http\Requests\CondicaoPagamentoRequest;
+
+use App\Services\FormaPagamento\BuscarEInstanciarService;
+
 use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\ParcelaRepository;
-use App\Services\FormaPagamento\BuscarEInstanciarService;
 
 class CondicaoPagamentoService
 {
@@ -36,7 +39,6 @@ class CondicaoPagamentoService
         if ($idCondicaoPagamento) {
 
             $objectsArray = json_decode($request->parcelas);
-            $result = 0;
 
             foreach ($objectsArray as $array) {
 
