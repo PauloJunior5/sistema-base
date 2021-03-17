@@ -10,8 +10,6 @@ class CondicaoPagamento extends Model
     protected float $multa;
     protected float $juro;
     protected float $desconto;
-    protected string $parcelas;
-
 
     public function __construct()
     {
@@ -19,7 +17,6 @@ class CondicaoPagamento extends Model
         $this->multa = 0;
         $this->juro = 0;
         $this->desconto = 0;
-        $this->parcelas = '';
     }
 
     /*
@@ -84,21 +81,5 @@ class CondicaoPagamento extends Model
     public function setDesconto($desconto)
     {
         $this->desconto = $desconto;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Get e Set Parcelas
-    |--------------------------------------------------------------------------
-    |
-    */
-    public function getParcelas(): string
-    {
-        return $this->parcelas;
-    }
-
-    public function setParcelas($parcelas)
-    {
-        $this->parcelas = $parcelas;
     }
 }

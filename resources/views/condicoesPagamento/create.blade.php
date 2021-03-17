@@ -105,7 +105,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#forma_pagamentoModal"><i class="material-icons">search</i></button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#formaPagamentoModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div class="col-md-1">
                                                 <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar"><i class="material-icons">add</i></button>
@@ -132,7 +132,7 @@
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 9)
     <script>
         $(function() {
-            $('#forma_pagamentoModal').modal('show');
+            $('#formaPagamentoModal').modal('show');
         });
     </script>
 @endif
@@ -150,7 +150,7 @@
             success: function(response){
                 $('#id-forma_pagamento-input').val(response.id);
                 $('#forma_pagamento-input').val(response.forma_pagamento);
-                $('#forma_pagamentoModal').modal('hide')
+                $('#formaPagamentoModal').modal('hide')
             }
         });
     });
@@ -165,6 +165,7 @@
         tbClientes = [];
         var porcentual = 0;
         var porcentualReserva = 0;
+        var contador = 1;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -175,6 +176,7 @@
 
     function Adicionar(){
         var cliente = JSON.stringify({
+            Parcela : contador++,
             Dias   : $("#id_dias").val(),
             Porcentual     : $("#id_porcentual").val(),
             Pagamento : $("#id-forma_pagamento-input").val(),
@@ -267,6 +269,7 @@
         localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
         $('#input-parcelas').val(JSON.stringify(tbClientes));
         alert("Registro excluído.");
+        contador--;
     }
 
     function Listar(){

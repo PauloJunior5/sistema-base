@@ -20,7 +20,7 @@ class CondicaoPagamentoRepository
         DB::beginTransaction();
         try {
 
-            $result = DB::table('condicao_pagamentos')->insert($dados);
+            $result = DB::table('condicao_pagamentos')->insertGetId($dados);
 
             DB::commit();
 

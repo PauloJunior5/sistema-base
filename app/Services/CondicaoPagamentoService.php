@@ -6,13 +6,18 @@ use Carbon\Carbon;
 
 use App\Models\CondicaoPagamento;
 use App\Http\Requests\CondicaoPagamentoRequest;
+use App\Models\Parcelas;
 use App\Repositories\CondicaoPagamentoRepository;
+use App\Repositories\ParcelaRepository;
+use App\Services\FormaPagamento\BuscarEInstanciarService;
 
 class CondicaoPagamentoService
 {
     public function __construct()
     {
-        $this->condicaoPagamentoRepository = new CondicaoPagamentoRepository; //Bind com CondicaoPagamentoRepository
+        $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository; //Bind com CondicaoPagamentoRepository
+        $this->parcelaRepository = New ParcelaRepository; //Bind com ParcelaRepository
+        $this->buscarEInstanciarService = New BuscarEInstanciarService; //Bind com BuscarEInstanciarService
     }
 
     public function instanciarECriar(CondicaoPagamentoRequest $request)
@@ -23,11 +28,40 @@ class CondicaoPagamentoService
         $condicaoPagamento->setMulta($request->multa);
         $condicaoPagamento->setJuro($request->juro);
         $condicaoPagamento->setdesconto($request->desconto);
-        $condicaoPagamento->setParcelas($request->parcelas);
         $condicaoPagamento->setCreated_at(Carbon::now()->toDateTimeString());
 
         $dados = $this->getDados($condicaoPagamento);
-        return $this->condicaoPagamentoRepository->adicionar($dados);
+        $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
+
+        if ($idCondicaoPagamento) {
+
+            $objectsArray = json_decode($request->parcelas);
+            $result = 0;
+
+            foreach ($objectsArray as $array) {
+
+                $objeto = json_decode($array);
+
+                $parcela = new Parcelas;
+                $parcela->setParcela($objeto->Parcela);
+                $parcela->setDias($objeto->Dias);
+                $parcela->setPorcentual($objeto->Porcentual);
+
+                $formaPagamento = $this->buscarEInstanciarService->executar($objeto->Pagamento);
+                $parcela->setFormaPagamento($formaPagamento);
+
+                $condicaoPagamento = $this->buscarEInstanciar($idCondicaoPagamento);
+                $parcela->setCondicaoPagamento($condicaoPagamento);
+
+                $parcela->setCreated_at(Carbon::now()->toDateTimeString());
+
+                $dados = $this->getDadosParcelas($parcela);
+
+                $result = $this->parcelaRepository->adicionar($dados);
+            }
+        }
+
+        return $result;
     }
 
     public function instanciarEAtualizar(CondicaoPagamentoRequest $request)
@@ -42,7 +76,6 @@ class CondicaoPagamentoService
         $condicaoPagamento->setMulta($request->multa);
         $condicaoPagamento->setJuro($request->juro);
         $condicaoPagamento->setdesconto($request->desconto);
-        $condicaoPagamento->setParcelas($request->parcelas);
 
         $dados = $this->getDados($condicaoPagamento);
 
@@ -66,7 +99,6 @@ class CondicaoPagamentoService
         $condicaoPagamento->setMulta($result->multa);
         $condicaoPagamento->setJuro($result->juro);
         $condicaoPagamento->setdesconto($result->desconto);
-        $condicaoPagamento->setParcelas($result->parcelas);
 
         return $condicaoPagamento;
     }
@@ -75,19 +107,37 @@ class CondicaoPagamentoService
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    private function getDados(CondicaoPagamento $formaPagamento)
+    private function getDados(CondicaoPagamento $condicaoPagamento)
     {
         $dados = [
-            'id' => $formaPagamento->getId(),
+            'id' => $condicaoPagamento->getId(),
 
-            'condicao_pagamento' => $formaPagamento->getCondicaoPagamento(),
-            'multa' => $formaPagamento->getMulta(),
-            'juro' => $formaPagamento->getJuro(),
-            'desconto' => $formaPagamento->getDesconto(),
-            'parcelas' => $formaPagamento->getParcelas(),
+            'condicao_pagamento' => $condicaoPagamento->getCondicaoPagamento(),
+            'multa' => $condicaoPagamento->getMulta(),
+            'juro' => $condicaoPagamento->getJuro(),
+            'desconto' => $condicaoPagamento->getDesconto(),
+            'created_at' => $condicaoPagamento->getCreated_at(),
+            'updated_at' => $condicaoPagamento->getUpdated_at()
+        ];
+        return $dados;
+    }
 
-            'created_at' => $formaPagamento->getCreated_at(),
-            'updated_at' => $formaPagamento->getUpdated_at()
+     /**
+     *  Retorna array a partir do objeto passado
+     * como parametro, para inserir dados no banco.
+     */
+    private function getDadosParcelas(parcelas $parcela)
+    {
+        $dados = [
+            'id' => $parcela->getId(),
+
+            'parcela' => $parcela->getParcela(),
+            'dias' => $parcela->getDias(),
+            'porcentual' => $parcela->getPorcentual(),
+            'condicao_pagamento' => $parcela->getCondicaoPagamento()->getId(),
+            'forma_pagamento' => $parcela->getFormaPagamento()->getId(),
+            'created_at' => $parcela->getCreated_at(),
+            'updated_at' => $parcela->getUpdated_at()
         ];
         return $dados;
     }
