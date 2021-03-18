@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\CondicaoPagamento;
 
 use App\Http\Requests\CondicaoPagamentoRequest;
 use App\Models\CondicaoPagamento;
