@@ -16,14 +16,13 @@ class FornecedorController extends Controller
 {
     public function __construct()
     {
-        $this->fornecedorRepository = New FornecedorRepository; //Bind com FornecedorRepository
-        $this->fornecedorService = new FornecedorService; //Bind com FornecedorService
-
-        $this->paisRepository = New PaisRepository; //Bind com PaisRepository
-        $this->estadoRepository = New EstadoRepository; //Bind com EstadoRepository
-        $this->cidadeRepository = New CidadeRepository; //Bind com CidadeRepository
-        $this->formasPagamentoRepository = New FormaPagamentoRepository; //Bind com FormaPagamentoRepository
-        $this->condicoesPagamentoRepository = New CondicaoPagamentoRepository; //Bind com CondicaoPagamentoRepository
+        $this->fornecedorRepository = New FornecedorRepository;
+        $this->fornecedorService = New FornecedorService;
+        $this->paisRepository = New PaisRepository;
+        $this->estadoRepository = New EstadoRepository;
+        $this->cidadeRepository = New CidadeRepository;
+        $this->formasPagamentoRepository = New FormaPagamentoRepository;
+        $this->condicoesPagamentoRepository = New CondicaoPagamentoRepository;
     }
 
     public function index()

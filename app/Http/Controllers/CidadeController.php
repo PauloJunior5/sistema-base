@@ -13,10 +13,10 @@ class CidadeController extends Controller
 {
     public function __construct()
     {
-        $this->cidadeRepository = New CidadeRepository; //Bind com CidadeRepository
-        $this->cidadeService = New CidadeService; //Bind com CidadeService
-        $this->estadoRepository = New EstadoRepository; //Bind com EstadoRepository
-        $this->paisRepository = New PaisRepository; //Bind com PaisRepository
+        $this->cidadeRepository = New CidadeRepository;
+        $this->cidadeService = New CidadeService;
+        $this->estadoRepository = New EstadoRepository;
+        $this->paisRepository = New PaisRepository;
     }
     
     public function index()

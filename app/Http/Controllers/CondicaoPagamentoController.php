@@ -20,7 +20,6 @@ class CondicaoPagamentoController extends Controller
         $this->condicaoPagamentoInstanciarECriarService = New CondicaoPagamentoInstanciarECriarService;
         $this->condicaoPagamentoInstanciarEAtualizarService = New CondicaoPagamentoInstanciarEAtualizarService;
         $this->condicaoPagamentoBuscarEInstanciarService = New CondicaoPagamentoBuscarEInstanciarService;
-
     }
 
     public function index()

@@ -12,9 +12,9 @@ class EstadoController extends Controller
 {
     public function __construct()
     {
-        $this->estadoRepository = new EstadoRepository; //Bind com EstadoRepository
-        $this->estadoService = new EstadoService; //Bind com EstadoService
-        $this->paisRepository = new PaisRepository; //Bind com PaisRepository
+        $this->estadoRepository = New EstadoRepository;
+        $this->estadoService = New EstadoService;
+        $this->paisRepository = New PaisRepository;
     }
 
     public function index()
