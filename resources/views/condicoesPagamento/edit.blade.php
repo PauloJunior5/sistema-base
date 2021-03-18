@@ -46,7 +46,7 @@
                                         <input class="form-control" name="desconto" id="input-desconto" type="number" value="{{old('desconto', $condicaoPagamento->getDesconto())}}" required />
                                     </div>
                                 </div>
-                                <input type="hidden" id="input-parcelas" name="parcelas" value="{{old('parcelas', $condicaoPagamento->getParcelas())}}">
+                                <input type="hidden" id="input-parcelas" name="parcelas" value="{{old('parcelas', $parcelas)}}">
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
@@ -158,7 +158,6 @@ var url_atual = '<?php echo URL::to(''); ?>';
         tbClientes = [];
         var porcentual = 100;
         var porcentualReserva = 0;
-
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
             return Adicionar();
@@ -337,10 +336,12 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
         for(var i in tbClientes){
 
-            var cli = JSON.parse(tbClientes[i]);
+            var cli = tbClientes[i];
+            console.log(cli);
             n++;
 
-            var id_forma_pagamento = cli.Pagamento;
+            var id_forma_pagamento = cli.forma_pagamento;
+            alert(id_forma_pagamento)
             $.ajax({
                 method: "GET",
                 url: url_atual + '/formaPagamento/show',
@@ -354,8 +355,8 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
             $("#condicao-table tbody").append("<tr>");
             $("#condicao-table tbody").append("<td>"+n+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.dias+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");

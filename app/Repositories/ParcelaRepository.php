@@ -27,11 +27,11 @@ class ParcelaRepository
         return $result;
     }
 
-    // public function findById(int $id)
-    // {
-    //     $formaPagamento = DB::table('forma_pagamentos')->where('id', $id)->first();
-    //     return $formaPagamento;
-    // }
+    public function findById(int $id)
+    {
+        $parcelas = DB::table('parcelas')->where('condicao_pagamento', $id)->get();
+        return json_encode($parcelas);
+    }
 
     // public function atualizar($dados)
     // {

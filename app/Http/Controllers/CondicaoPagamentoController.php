@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CondicaoPagamentoRequest;
 use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\FormaPagamentoRepository;
+use App\Repositories\ParcelaRepository;
 use App\Services\CondicaoPagamento\CondicaoPagamentoBuscarEInstanciarService;
 use App\Services\CondicaoPagamento\CondicaoPagamentoInstanciarEAtualizarService;
 use App\Services\CondicaoPagamento\CondicaoPagamentoInstanciarECriarService;
@@ -15,6 +16,7 @@ class CondicaoPagamentoController extends Controller
     {
         $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository;
         $this->formaPagamentoRepository = New FormaPagamentoRepository;
+        $this->parcelaRepository = New ParcelaRepository;
         $this->condicaoPagamentoInstanciarECriarService = New CondicaoPagamentoInstanciarECriarService;
         $this->condicaoPagamentoInstanciarEAtualizarService = New CondicaoPagamentoInstanciarEAtualizarService;
         $this->condicaoPagamentoBuscarEInstanciarService = New CondicaoPagamentoBuscarEInstanciarService;
@@ -55,8 +57,9 @@ class CondicaoPagamentoController extends Controller
         $condicaoPagamento = $this->condicaoPagamentoBuscarEInstanciarService->executar($id);
 
         $formasPagamento =  $this->formaPagamentoRepository->mostrarTodos();
+        $parcelas = $this->parcelaRepository->findById($id);
 
-        return view('condicoesPagamento.edit', compact('condicaoPagamento', 'formasPagamento'));
+        return view('condicoesPagamento.edit', compact('condicaoPagamento', 'formasPagamento', 'parcelas'));
     }
 
     public function update(CondicaoPagamentoRequest $request)
