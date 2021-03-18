@@ -66,6 +66,7 @@ class CondicaoPagamentoRepository
         DB::beginTransaction();
         try {
 
+            $result = DB::table('parcelas')->where('condicao_pagamento', $id)->delete();
             $result = DB::table('condicao_pagamentos')->where('id', $id)->delete();
 
             DB::commit();

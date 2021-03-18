@@ -9,7 +9,7 @@ use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\ParcelaRepository;
 use App\Services\FormaPagamento\FormaPagamentoBuscarEInstanciarService;
 use App\Services\CondicaoPagamento\CondicaoPagamentoBuscarEInstanciarService;
-use App\Services\ParcelaGetDadosService;
+use App\Services\Parcela\ParcelaGetDadosService as ParcelaParcelaGetDadosService;
 use Carbon\Carbon;
 
 class CondicaoPagamentoInstanciarECriarService
@@ -20,7 +20,7 @@ class CondicaoPagamentoInstanciarECriarService
         $this->parcelaRepository = New ParcelaRepository;
         $this->formaPagamentoBuscarEInstanciarService = New FormaPagamentoBuscarEInstanciarService;
         $this->condicaoPagamentoBuscarEInstanciarService = New CondicaoPagamentoBuscarEInstanciarService;
-        $this->parcelaGetDadosService = new ParcelaGetDadosService;
+        $this->parcelaGetDadosService = new ParcelaParcelaGetDadosService;
     }
 
     public function executar(CondicaoPagamentoRequest $request)

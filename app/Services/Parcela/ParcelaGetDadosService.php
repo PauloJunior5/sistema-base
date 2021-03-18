@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Parcela;
 
 use App\Models\Parcela;
 
@@ -10,7 +10,7 @@ class ParcelaGetDadosService
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    public function getDadosParcelas(Parcela $parcela)
+    public function executar(Parcela $parcela)
     {
         $dados = [
             'id' => $parcela->getId(),
