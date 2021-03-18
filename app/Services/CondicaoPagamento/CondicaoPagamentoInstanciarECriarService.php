@@ -9,7 +9,7 @@ use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\ParcelaRepository;
 use App\Services\FormaPagamento\FormaPagamentoBuscarEInstanciarService;
 use App\Services\CondicaoPagamento\CondicaoPagamentoBuscarEInstanciarService;
-use App\Services\Parcela\ParcelaGetDadosService as ParcelaParcelaGetDadosService;
+use App\Services\Parcela\ParcelaGetDadosService;
 use Carbon\Carbon;
 
 class CondicaoPagamentoInstanciarECriarService
@@ -20,7 +20,8 @@ class CondicaoPagamentoInstanciarECriarService
         $this->parcelaRepository = New ParcelaRepository;
         $this->formaPagamentoBuscarEInstanciarService = New FormaPagamentoBuscarEInstanciarService;
         $this->condicaoPagamentoBuscarEInstanciarService = New CondicaoPagamentoBuscarEInstanciarService;
-        $this->parcelaGetDadosService = new ParcelaParcelaGetDadosService;
+        $this->condicaoPagamentoGetDadosService = new CondicaoPagamentoGetDadosService;
+        $this->parcelaGetDadosService = new ParcelaGetDadosService;
     }
 
     public function executar(CondicaoPagamentoRequest $request)
@@ -33,7 +34,7 @@ class CondicaoPagamentoInstanciarECriarService
         $condicaoPagamento->setdesconto($request->desconto);
         $condicaoPagamento->setCreated_at(Carbon::now()->toDateTimeString());
 
-        $dados = $this->getDadosService->executar($condicaoPagamento);
+        $dados = $this->condicaoPagamentoGetDadosService->executar($condicaoPagamento);
         $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
 
         if ($idCondicaoPagamento) {
