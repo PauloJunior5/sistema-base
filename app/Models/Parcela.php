@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\Model;
 
-class Parcelas extends Model
+class Parcela extends Model
 {
     protected int $parcela;
     protected int $dias;
