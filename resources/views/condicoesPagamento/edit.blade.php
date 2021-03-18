@@ -96,7 +96,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#forma_pagamentoModal"><i class="material-icons">search</i></button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#formaPagamentoModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div>
                                                 <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar"><i class="material-icons">add</i></button>
@@ -130,32 +130,33 @@
 
 <script>
 
+
 var url_atual = '<?php echo URL::to(''); ?>';
     $('.idForma_pagamento').click(function() {
         var id_forma_pagamento = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/formaPagamento/show',
             data: { id_forma_pagamento : id_forma_pagamento },
             dataType: "JSON",
             success: function(response){
                 $('#id-forma_pagamento-input').val(response.id);
                 $('#forma_pagamento-input').val(response.forma_pagamento);
-                $('#forma_pagamentoModal').modal('hide')
+                $('#formaPagamentoModal').modal('hide')
             }
         });
     });
 
     $(function(){
         localStorage.clear();
-        var condicoes_pagamento = $('#input-parcelas').val();
-        localStorage.setItem("tbClientes", condicoes_pagamento);
+        var parcelas = $('#input-parcelas').val();
+        localStorage.setItem("parcelas", parcelas);
         var operacao = "A"; //"A"=Adição; "E"=Edição
         var indice_selecionado = -1; //Índice do item selecionado na lista
-        var tbClientes = localStorage.getItem("tbClientes");// Recupera os dados armazenados
-        tbClientes = JSON.parse(tbClientes); // Converte string para objeto
-        if(tbClientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
-        tbClientes = [];
+        var parcelas = localStorage.getItem("parcelas");// Recupera os dados armazenados
+        parcelas = JSON.parse(parcelas); // Converte string para objeto
+        if(parcelas == null) // Caso não haja conteúdo, iniciamos um vetor vazio
+        parcelas = [];
         var porcentual = 100;
         var porcentualReserva = 0;
     $("#btnSalvar").on("click",function(){
@@ -167,19 +168,19 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
     function Adicionar(){
         
-        var cliente = JSON.stringify({
-            Dias   : $("#id_dias").val(),
-            Porcentual     : $("#id_porcentual").val(),
-            Pagamento : $("#id-forma_pagamento-input").val(),
+        var parcela = JSON.stringify({
+            dias   : $("#id_dias").val(),
+            porcentual     : $("#id_porcentual").val(),
+            forma_pagamento : $("#id-forma_pagamento-input").val(),
         });
 
-        var objCliente = JSON.parse(cliente)
-        var objClientePorcentual = parseFloat(objCliente.Porcentual);
+        var objCliente = JSON.parse(parcela)
+        var objClientePorcentual = parseFloat(objCliente.porcentual);
         if ((porcentual + objClientePorcentual ) <= 100) {
             porcentual += objClientePorcentual;
-            tbClientes.push(cliente);
-            localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
-            $('#input-parcelas').val(JSON.stringify(tbClientes));
+            parcelas.push(parcela);
+            localStorage.setItem("parcelas", JSON.stringify(parcelas));
+            $('#input-parcelas').val(JSON.stringify(parcelas));
             alert("Registro adicionado.");
             Listar();
             return true;
@@ -195,14 +196,14 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
         operacao = "E";
         indice_selecionado = parseInt($(this).attr("alt"));
-        var cli = JSON.parse(tbClientes[indice_selecionado]);
-        $("#id_dias").val(cli.Dias);
-        $("#id_porcentual").val(cli.Porcentual);
-        $("#id-forma_pagamento-input").val(cli.Pagamento);
+        var cli = JSON.parse(parcelas[indice_selecionado]);
+        $("#id_dias").val(cli.dias);
+        $("#id_porcentual").val(cli.porcentual);
+        $("#id-forma_pagamento-input").val(cli.forma_pagamento);
         porcentualReserva = porcentual;
-        porcentual -= cli.Porcentual;
+        porcentual -= cli.porcentual;
 
-        var id_forma_pagamento = cli.Pagamento;
+        var id_forma_pagamento = cli.forma_pagamento;
         $.ajax({
             method: "GET",
             url: url_atual + '/formaPagamento/show',
@@ -220,17 +221,17 @@ var url_atual = '<?php echo URL::to(''); ?>';
     });
 
     function Editar(){
-        tbClientes[indice_selecionado] = JSON.stringify({
-                Dias   : $("#id_dias").val(),
-                Porcentual     : $("#id_porcentual").val(),
-                Pagamento : $("#id-forma_pagamento-input").val(),
+        parcelas[indice_selecionado] = JSON.stringify({
+                dias   : $("#id_dias").val(),
+                porcentual     : $("#id_porcentual").val(),
+                forma_pagamento : $("#id-forma_pagamento-input").val(),
             });//Altera o item selecionado na tabela
-        var objCliente = JSON.parse(tbClientes[indice_selecionado])
-        var objClientePorcentual = parseFloat(objCliente.Porcentual);
+        var objCliente = JSON.parse(parcelas[indice_selecionado])
+        var objClientePorcentual = parseFloat(objCliente.porcentual);
         if ((porcentual + objClientePorcentual ) <= 100) {
-            porcentual += parseFloat(tbClientes[indice_selecionado].Porcentual);
-            localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
-            $('#input-parcelas').val(JSON.stringify(tbClientes));
+            porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
+            localStorage.setItem("parcelas", JSON.stringify(parcelas));
+            $('#input-parcelas').val(JSON.stringify(parcelas));
             alert("Informações editadas.")
             operacao = "A"; //Volta ao padrão
             Listar();
@@ -247,19 +248,19 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
         indice_selecionado = parseInt($(this).attr("alt"));
-        var cli = JSON.parse(tbClientes[indice_selecionado]);
-        $("#id_dias").val(cli.Dias);
-        $("#id_porcentual").val(cli.Porcentual);
-        $("#id-forma_pagamento-input").val(cli.Pagamento);
-        porcentual -= cli.Porcentual;
+        var cli = JSON.parse(parcelas[indice_selecionado]);
+        $("#id_dias").val(cli.dias);
+        $("#id_porcentual").val(cli.porcentual);
+        $("#id-forma_pagamento-input").val(cli.forma_pagamento);
+        porcentual -= cli.porcentual;
         Excluir();
         Listar();
     });
 
     function Excluir(){
-        tbClientes.splice(indice_selecionado, 1);
-        localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
-        $('#input-parcelas').val(JSON.stringify(tbClientes));
+        parcelas.splice(indice_selecionado, 1);
+        localStorage.setItem("parcelas", JSON.stringify(parcelas));
+        $('#input-parcelas').val(JSON.stringify(parcelas));
         alert("Registro excluído.");
     }
 
@@ -284,12 +285,12 @@ var url_atual = '<?php echo URL::to(''); ?>';
             "</tbody>"
         );
 
-        for(var i in tbClientes){
+        for(var i in parcelas){
 
-            var cli = JSON.parse(tbClientes[i]);
+            var cli = parcelas[i];
             n++;
 
-            var id_forma_pagamento = cli.Pagamento;
+            var id_forma_pagamento = cli.forma_pagamento;
             $.ajax({
                 method: "GET",
                 url: url_atual + '/formaPagamento/show',
@@ -303,8 +304,8 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
             $("#condicao-table tbody").append("<tr>");
             $("#condicao-table tbody").append("<td>"+n+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
-            $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.dias+"</td>");
+            $("#condicao-table tbody").append("<td>"+cli.porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
@@ -334,14 +335,13 @@ var url_atual = '<?php echo URL::to(''); ?>';
             "</tbody>"
         );
 
-        for(var i in tbClientes){
+        for(var i in parcelas){
 
-            var cli = tbClientes[i];
+            var cli = parcelas[i];
             console.log(cli);
             n++;
 
             var id_forma_pagamento = cli.forma_pagamento;
-            alert(id_forma_pagamento)
             $.ajax({
                 method: "GET",
                 url: url_atual + '/formaPagamento/show',
