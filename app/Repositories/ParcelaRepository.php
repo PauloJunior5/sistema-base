@@ -30,7 +30,7 @@ class ParcelaRepository
     public function findById(int $id)
     {
         $parcelas = DB::table('parcelas')->where('condicao_pagamento', $id)->get();
-        return json_encode($parcelas);
+        return $parcelas;
     }
 
     // public function atualizar($dados)
@@ -47,17 +47,17 @@ class ParcelaRepository
     //     return $result;
     // }
 
-    // public function remover($id)
-    // {
-    //     $result = null;
-    //     DB::beginTransaction();
-    //     try {
-    //         $result = DB::table('forma_pagamentos')->where('id', $id)->delete();
-    //         DB::commit();
-    //     } catch (\Throwable $th) {
-    //         DB::rollBack();
-    //         Log::debug('Warning - Não foi possivel excluir forma de pagamento: ' . $th);
-    //     }
-    //     return $result;
-    // }
+    public function remover($id)
+    {
+        $result = null;
+        DB::beginTransaction();
+        try {
+            $result = DB::table('parcelas')->where('condicao_pagamento', $id)->delete();
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel excluir forma de pagamento: ' . $th);
+        }
+        return $result;
+    }
 }
