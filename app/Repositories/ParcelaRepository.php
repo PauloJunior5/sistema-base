@@ -30,7 +30,7 @@ class ParcelaRepository
     public function findById(int $id)
     {
         $parcelas = DB::table('parcelas')->where('condicao_pagamento', $id)->get();
-        return $parcelas;
+        return json_encode($parcelas);
     }
 
     // public function atualizar($dados)

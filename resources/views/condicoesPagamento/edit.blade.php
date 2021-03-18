@@ -147,18 +147,19 @@ var url_atual = '<?php echo URL::to(''); ?>';
         });
     });
 
-    $(function(){
-        localStorage.clear();
-        var parcelas = $('#input-parcelas').val();
-        localStorage.setItem("parcelas", parcelas);
-        var operacao = "A"; //"A"=Adição; "E"=Edição
-        var indice_selecionado = -1; //Índice do item selecionado na lista
-        var parcelas = localStorage.getItem("parcelas");// Recupera os dados armazenados
-        parcelas = JSON.parse(parcelas); // Converte string para objeto
-        if(parcelas == null) // Caso não haja conteúdo, iniciamos um vetor vazio
-        parcelas = [];
-        var porcentual = 100;
-        var porcentualReserva = 0;
+$(function(){
+    localStorage.clear();
+    var parcelas = $('#input-parcelas').val();
+    localStorage.setItem("parcelas", parcelas);
+    var operacao = "A"; //"A"=Adição; "E"=Edição
+    var indice_selecionado = -1; //Índice do item selecionado na lista
+    var parcelas = localStorage.getItem("parcelas");// Recupera os dados armazenados
+    parcelas = JSON.parse(parcelas); // Converte string para objeto
+    if(parcelas == null) // Caso não haja conteúdo, iniciamos um vetor vazio
+    parcelas = [];
+    var porcentual = 100;
+    var porcentualReserva = 0;
+
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
             return Adicionar();
@@ -167,17 +168,17 @@ var url_atual = '<?php echo URL::to(''); ?>';
     });
 
     function Adicionar(){
-        
+
         var parcela = JSON.stringify({
             dias   : $("#id_dias").val(),
             porcentual     : $("#id_porcentual").val(),
             forma_pagamento : $("#id-forma_pagamento-input").val(),
         });
 
-        var objCliente = JSON.parse(parcela)
-        var objClientePorcentual = parseFloat(objCliente.porcentual);
-        if ((porcentual + objClientePorcentual ) <= 100) {
-            porcentual += objClientePorcentual;
+        var objParcela = JSON.parse(parcela)
+        var objParcelaPorcentual = parseFloat(objParcela.porcentual);
+        if ((porcentual + objParcelaPorcentual ) <= 100) {
+            porcentual += objParcelaPorcentual;
             parcelas.push(parcela);
             localStorage.setItem("parcelas", JSON.stringify(parcelas));
             $('#input-parcelas').val(JSON.stringify(parcelas));
@@ -196,7 +197,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
 
         operacao = "E";
         indice_selecionado = parseInt($(this).attr("alt"));
-        var cli = JSON.parse(parcelas[indice_selecionado]);
+        var cli = parcelas[indice_selecionado];
         $("#id_dias").val(cli.dias);
         $("#id_porcentual").val(cli.porcentual);
         $("#id-forma_pagamento-input").val(cli.forma_pagamento);
@@ -221,17 +222,20 @@ var url_atual = '<?php echo URL::to(''); ?>';
     });
 
     function Editar(){
-        parcelas[indice_selecionado] = JSON.stringify({
-                dias   : $("#id_dias").val(),
-                porcentual     : $("#id_porcentual").val(),
-                forma_pagamento : $("#id-forma_pagamento-input").val(),
-            });//Altera o item selecionado na tabela
-        var objCliente = JSON.parse(parcelas[indice_selecionado])
-        var objClientePorcentual = parseFloat(objCliente.porcentual);
-        if ((porcentual + objClientePorcentual ) <= 100) {
+
+        parcelas[indice_selecionado].dias = $("#id_dias").val();
+        parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
+        parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
+
+        var parcelaPorcentual = parseInt(parcelas[indice_selecionado].porcentual);
+        var somaPorcentual = porcentual + parcelaPorcentual;
+
+        if (somaPorcentual <= 100) {
             porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
-            localStorage.setItem("parcelas", JSON.stringify(parcelas));
-            $('#input-parcelas').val(JSON.stringify(parcelas));
+            alert(porcentual);
+            console.log(parcelas);
+            localStorage.setItem("parcelas", parcelas);
+            $('#input-parcelas').val(parcelas);
             alert("Informações editadas.")
             operacao = "A"; //Volta ao padrão
             Listar();
@@ -284,7 +288,6 @@ var url_atual = '<?php echo URL::to(''); ?>';
             "<tbody>"+
             "</tbody>"
         );
-
         for(var i in parcelas){
 
             var cli = parcelas[i];
@@ -309,7 +312,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
-            
+
         }
         // alert(porcentual);
 
@@ -338,7 +341,6 @@ var url_atual = '<?php echo URL::to(''); ?>';
         for(var i in parcelas){
 
             var cli = parcelas[i];
-            console.log(cli);
             n++;
 
             var id_forma_pagamento = cli.forma_pagamento;
