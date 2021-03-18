@@ -4,7 +4,7 @@ namespace App\Services\CondicaoPagamento;
 
 use App\Models\CondicaoPagamento;
 
-class GetDadosService
+class CondicaoPagamentoGetDadosService
 {
     /**
      *  Retorna array a partir do objeto passado

@@ -5,11 +5,11 @@ namespace App\Services\CondicaoPagamento;
 use App\Models\CondicaoPagamento;
 use App\Repositories\CondicaoPagamentoRepository;
 
-class BuscarEInstanciarService
+class CondicaoPagamentoBuscarEInstanciarService
 {
     public function __construct()
     {
-        $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository; //Bind com CondicaoPagamentoRepository
+        $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository;
     }
 
     /**

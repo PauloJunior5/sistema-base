@@ -4,7 +4,7 @@ namespace App\Services\FormaPagamento;
 
 use App\Models\FormaPagamento;
 
-class GetDadosService
+class FormaPagamentoGetDadosService
 {
     /**
      *  Retorna array a partir do objeto passado

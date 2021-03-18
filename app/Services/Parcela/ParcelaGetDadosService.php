@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Parcela;
 
-class CondicaoPagamentoService
+class ParcelaGetDadosService
 {
      /**
      *  Retorna array a partir do objeto passado

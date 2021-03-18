@@ -5,11 +5,11 @@ namespace App\Services\FormaPagamento;
 use App\Models\FormaPagamento;
 use App\Repositories\FormaPagamentoRepository;
 
-class BuscarEInstanciarService
+class FormaPagamentoBuscarEInstanciarService
 {
     public function __construct()
     {
-        $this->formaPagamentoRepository = new FormaPagamentoRepository; //Bind com FormaPagamentoRepository
+        $this->formaPagamentoRepository = new FormaPagamentoRepository;
     }
 
     /**

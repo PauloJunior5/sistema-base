@@ -8,11 +8,12 @@ use App\Models\CondicaoPagamento;
 use App\Http\Requests\CondicaoPagamentoRequest;
 use App\Repositories\CondicaoPagamentoRepository;
 
-class InstanciarEAtualizarService
+class CondicaoPagamentoInstanciarEAtualizarService
 {
     public function __construct()
     {
-        $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository; //Bind com CondicaoPagamentoRepository
+        $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository;
+        $this->condicaoPagamentoGetDadosService = New CondicaoPagamentoGetDadosService;
     }
 
     public function executar(CondicaoPagamentoRequest $request)
@@ -28,7 +29,7 @@ class InstanciarEAtualizarService
         $condicaoPagamento->setJuro($request->juro);
         $condicaoPagamento->setdesconto($request->desconto);
 
-        $dados = $this->getDados($condicaoPagamento);
+        $dados = $this->condicaoPagamentoGetDadosService->executar($condicaoPagamento);
 
         return $this->condicaoPagamentoRepository->atualizar($dados);
     }
