@@ -33,19 +33,19 @@ class ParcelaRepository
         return json_encode($parcelas);
     }
 
-    // public function atualizar($dados)
-    // {
-    //     $result = null;
-    //     DB::beginTransaction();
-    //     try {
-    //         $result = DB::table('forma_pagamentos')->where('id', $dados['id'])->update($dados);
-    //         DB::commit();
-    //     } catch (\Throwable $th) {
-    //         DB::rollBack();
-    //         Log::debug('Warning - Não foi possivel editar forma de pagamento: ' . $th);
-    //     }
-    //     return $result;
-    // }
+    public function atualizar($dados)
+    {
+        $result = null;
+        DB::beginTransaction();
+        try {
+            $result = DB::table('parcelas')->where('id', $dados['id'])->update($dados);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel editar forma de pagamento: ' . $th);
+        }
+        return $result;
+    }
 
     public function remover($id)
     {

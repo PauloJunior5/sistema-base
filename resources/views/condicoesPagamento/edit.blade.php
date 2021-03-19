@@ -18,7 +18,7 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{$condicaoPagamento->getId()}}" readonly />
+                                        <input class="form-control" value="{{$condicaoPagamento->getId()}}" name="id" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
@@ -232,11 +232,14 @@ $(function(){
 
         if (somaPorcentual <= 100) {
             porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
-            alert(porcentual);
             console.log(parcelas);
             localStorage.setItem("parcelas", parcelas);
-            $('#input-parcelas').val(parcelas);
+            $('#input-parcelas').val(JSON.stringify(parcelas));
             alert("Informações editadas.")
+            $("#id_dias").val('');
+            $("#id_porcentual").val('');
+            $("#id-forma_pagamento-input").val('');
+            $("#forma_pagamento-input").val('');
             operacao = "A"; //Volta ao padrão
             Listar();
             return true;

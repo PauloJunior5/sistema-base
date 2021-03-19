@@ -21,8 +21,8 @@ class CondicaoPagamentoInstanciarEAtualizarService
         $this->parcelaRepository = New ParcelaRepository;
         $this->formaPagamentoBuscarEInstanciarService = New FormaPagamentoBuscarEInstanciarService;
         $this->condicaoPagamentoBuscarEInstanciarService = New CondicaoPagamentoBuscarEInstanciarService;
-        $this->condicaoPagamentoGetDadosService = new CondicaoPagamentoGetDadosService;
-        $this->parcelaGetDadosService = new ParcelaGetDadosService;
+        $this->condicaoPagamentoGetDadosService = New CondicaoPagamentoGetDadosService;
+        $this->parcelaGetDadosService = New ParcelaGetDadosService;
     }
 
     public function executar(CondicaoPagamentoRequest $request)
@@ -39,31 +39,29 @@ class CondicaoPagamentoInstanciarEAtualizarService
         $condicaoPagamento->setdesconto($request->desconto);
 
         $dados = $this->condicaoPagamentoGetDadosService->executar($condicaoPagamento);
-        $idCondicaoPagamento =  $this->condicaoPagamentoRepository->atualizar($dados);
+        $condicaoPagamento =  $this->condicaoPagamentoRepository->atualizar($dados);
 
-        if ($idCondicaoPagamento) {
+        if ($condicaoPagamento) {
 
             $objectsArray = json_decode($request->parcelas);
 
-            foreach ($objectsArray as $array) {
-
-                $objeto = json_decode($array);
+            foreach ($objectsArray as $objeto) {
 
                 $parcela = new Parcela;
-                $parcela->setParcela($objeto->Parcela);
-                $parcela->setDias($objeto->Dias);
-                $parcela->setPorcentual($objeto->Porcentual);
+                $parcela->setId($objeto->id);
+                $parcela->setParcela($objeto->parcela);
+                $parcela->setDias($objeto->dias);
+                $parcela->setPorcentual($objeto->porcentual);
 
-                $formaPagamento = $this->formaPagamentoBuscarEInstanciarService->executar($objeto->Pagamento);
+                $formaPagamento = $this->formaPagamentoBuscarEInstanciarService->executar($objeto->forma_pagamento);
                 $parcela->setFormaPagamento($formaPagamento);
 
-                $condicaoPagamento = $this->condicaoPagamentoBuscarEInstanciarService->executar($idCondicaoPagamento);
+                $condicaoPagamento = $this->condicaoPagamentoBuscarEInstanciarService->executar($request->id);
                 $parcela->setCondicaoPagamento($condicaoPagamento);
 
                 $parcela->setCreated_at(Carbon::now()->toDateTimeString());
 
                 $dados = $this->parcelaGetDadosService->executar($parcela);
-
                 $result = $this->parcelaRepository->atualizar($dados);
             }
         }
