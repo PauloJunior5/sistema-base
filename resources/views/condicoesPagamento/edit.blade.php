@@ -52,13 +52,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
-                                        <input type="datetime" name="created_at" class="form-control" readonly>
+                                        <input type="datetime" name="created_at" value="{{old('parcelas', $condicaoPagamento->getCreated_at())}}" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
-                                        <input type="datetime" name="updated_at" class="form-control" readonly>
+                                        <input type="datetime" name="updated_at" value="{{old('parcelas', $condicaoPagamento->getUpdated_at())}}" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -176,6 +176,12 @@ $(function(){
         });
 
         var objParcela = JSON.parse(parcela)
+
+        if ((objParcela.dias === "") || (objParcela.porcentual === "") || (objParcela.forma_pagamento === "")) {
+            alert("Preencha todos os campos.");
+            return true;
+        };
+
         var objParcelaPorcentual = parseFloat(objParcela.porcentual);
         if ((porcentual + objParcelaPorcentual ) <= 100) {
             porcentual += objParcelaPorcentual;
@@ -189,9 +195,9 @@ $(function(){
             alert("Parcela inserida ultrapassa os 100%");
             Listar();
             return true;
-        }
+        };
 
-    }
+    };
 
     $("#condicao-table").on("click", ".btnEditar", function(){
 
@@ -227,6 +233,11 @@ $(function(){
         parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
         parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
 
+        if ((parcelas[indice_selecionado].dias === "") || (parcelas[indice_selecionado].porcentual === "") || (parcelas[indice_selecionado].forma_pagamento === "")) {
+            alert("Preencha todos os campos.");
+            return true;
+        };
+
         var parcelaPorcentual = parseInt(parcelas[indice_selecionado].porcentual);
         var somaPorcentual = porcentual + parcelaPorcentual;
 
@@ -249,9 +260,9 @@ $(function(){
             alert("Parcela inserida ultrapassa os 100%");
             Listar();
             return true;
-        }
+        };
 
-    }
+    };
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
         indice_selecionado = parseInt($(this).attr("alt"));
@@ -269,11 +280,10 @@ $(function(){
         localStorage.setItem("parcelas", JSON.stringify(parcelas));
         $('#input-parcelas').val(JSON.stringify(parcelas));
         alert("Registro excluído.");
-    }
+    };
 
     function Listar(){
 
-        // location.reload();
         var forma_pagamento;
         var n = 0;
 
@@ -291,6 +301,7 @@ $(function(){
             "<tbody>"+
             "</tbody>"
         );
+
         for(var i in parcelas){
 
             var cli = parcelas[i];
@@ -317,9 +328,8 @@ $(function(){
             $("#condicao-table tbody").append("</tr>");
 
         }
-        // alert(porcentual);
 
-    }
+    };
 
     $(function() {
 
@@ -366,8 +376,7 @@ $(function(){
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
 
-        }
-        // alert(porcentual);
+        };
 
     });
 

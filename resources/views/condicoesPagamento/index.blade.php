@@ -42,9 +42,6 @@
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableCondicaoPagamento">
                                 <thead class=" text-primary">
                                     <th>{{ __('Condição de Pagamento') }}</th>
-                                    <th>{{ __('Multa') }}</th>
-                                    <th>{{ __('Juro') }}</th>
-                                    <th>{{ __('Desconto') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
                                     <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
@@ -53,9 +50,6 @@
                                     @foreach($condicoesPagamento as $condicaoPagamento)
                                     <tr>
                                         <td>{{ $condicaoPagamento->condicao_pagamento }}</td>
-                                        <td>{{ $condicaoPagamento->multa }}</td>
-                                        <td>{{ $condicaoPagamento->juro }}</td>
-                                        <td>{{ $condicaoPagamento->desconto }}</td>
                                         <td>{{ $condicaoPagamento->created_at }}</td>
                                         <td>{{ $condicaoPagamento->updated_at }}</td>
                                         <td class="td-actions text-right">

@@ -28,7 +28,7 @@ class CondicaoPagamentoInstanciarEAtualizarService
     public function executar(CondicaoPagamentoRequest $request)
     {
         $condicaoPagamento = new CondicaoPagamento;
-
+        
         $condicaoPagamento->setId($request->id);
         $condicaoPagamento->setCreated_at($request->created_at);
         $condicaoPagamento->setUpdated_at(Carbon::now()->toDateTimeString());
