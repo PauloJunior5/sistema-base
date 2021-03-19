@@ -7,12 +7,6 @@ use Illuminate\Support\Facades\Log;
 
 class ParcelaRepository
 {
-    // public function mostrarTodos()
-    // {
-    //     $formasPagamento = DB::table('forma_pagamentos')->get();
-    //     return $formasPagamento;
-    // }
-
     public function adicionar($dados)
     {
         $result = null;
@@ -27,6 +21,9 @@ class ParcelaRepository
         return $result;
     }
 
+    /**
+     * Retorna todas as Parcelas que pertencem a determinada Condição de Pagamento.
+     */
     public function findById(int $id)
     {
         $parcelas = DB::table('parcelas')->where('condicao_pagamento', $id)->get();
