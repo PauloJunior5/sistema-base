@@ -28,7 +28,7 @@ class CondicaoPagamentoInstanciarEAtualizarService
     public function executar(CondicaoPagamentoRequest $request)
     {
         $condicaoPagamento = new CondicaoPagamento;
-        
+
         $condicaoPagamento->setId($request->id);
         $condicaoPagamento->setCreated_at($request->created_at);
         $condicaoPagamento->setUpdated_at(Carbon::now()->toDateTimeString());
@@ -47,22 +47,45 @@ class CondicaoPagamentoInstanciarEAtualizarService
 
             foreach ($objectsArray as $objeto) {
 
-                $parcela = new Parcela;
-                $parcela->setId($objeto->id);
-                $parcela->setParcela($objeto->parcela);
-                $parcela->setDias($objeto->dias);
-                $parcela->setPorcentual($objeto->porcentual);
+                if (isset($objeto->id)) {
 
-                $formaPagamento = $this->formaPagamentoBuscarEInstanciarService->executar($objeto->forma_pagamento);
-                $parcela->setFormaPagamento($formaPagamento);
+                    $parcela = new Parcela;
+                    $parcela->setId($objeto->id);
+                    $parcela->setParcela($objeto->parcela);
+                    $parcela->setDias($objeto->dias);
+                    $parcela->setPorcentual($objeto->porcentual);
 
-                $condicaoPagamento = $this->condicaoPagamentoBuscarEInstanciarService->executar($request->id);
-                $parcela->setCondicaoPagamento($condicaoPagamento);
+                    $formaPagamento = $this->formaPagamentoBuscarEInstanciarService->executar($objeto->forma_pagamento);
+                    $parcela->setFormaPagamento($formaPagamento);
 
-                $parcela->setCreated_at(Carbon::now()->toDateTimeString());
+                    $condicaoPagamento = $this->condicaoPagamentoBuscarEInstanciarService->executar($request->id);
+                    $parcela->setCondicaoPagamento($condicaoPagamento);
 
-                $dados = $this->parcelaGetDadosService->executar($parcela);
-                $result = $this->parcelaRepository->atualizar($dados);
+                    $parcela->setCreated_at(Carbon::now()->toDateTimeString());
+
+                    $dados = $this->parcelaGetDadosService->executar($parcela);
+                    $result = $this->parcelaRepository->atualizar($dados);
+                    
+                } else {
+
+                    $parcela = new Parcela;
+                    $parcela->setParcela($objeto->parcela);
+                    $parcela->setDias($objeto->dias);
+                    $parcela->setPorcentual($objeto->porcentual);
+
+                    $formaPagamento = $this->formaPagamentoBuscarEInstanciarService->executar($objeto->forma_pagamento);
+                    $parcela->setFormaPagamento($formaPagamento);
+
+                    $condicaoPagamento = $this->condicaoPagamentoBuscarEInstanciarService->executar($request->id);
+                    $parcela->setCondicaoPagamento($condicaoPagamento);
+
+                    $parcela->setCreated_at(Carbon::now()->toDateTimeString());
+
+                    $dados = $this->parcelaGetDadosService->executar($parcela);
+
+                    $result = $this->parcelaRepository->adicionar($dados);
+                }
+
             }
         }
 

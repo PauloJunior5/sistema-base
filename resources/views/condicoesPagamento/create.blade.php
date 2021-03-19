@@ -181,8 +181,14 @@
             Porcentual     : $("#id_porcentual").val(),
             Pagamento : $("#id-forma_pagamento-input").val(),
         });
-        
-        var objCliente = JSON.parse(cliente)
+
+        var objCliente = JSON.parse(cliente);
+
+        if ((objCliente.Dias === "") || (objCliente.Porcentual === "") || (objCliente.Pagamento === "")) {
+            alert("Preencha todos os campos.");
+            return true;
+        };
+
         var objClientePorcentual = parseFloat(objCliente.Porcentual);
         if ((porcentual + objClientePorcentual ) <= 100) {
             porcentual += objClientePorcentual;
@@ -197,7 +203,7 @@
             Listar();
             return true;
         }
-        
+
     }
 
     $("#condicao-table").on("click", ".btnEditar", function(){
@@ -212,6 +218,7 @@
         porcentual -= cli.Porcentual;
 
         var id_forma_pagamento = cli.Pagamento;
+        
         $.ajax({
             method: "POST",
             url: url_atual + '/formaPagamento/show',
@@ -234,13 +241,24 @@
                 Pagamento : $("#id-forma_pagamento-input").val(),
             });//Altera o item selecionado na tabela
 
-        var objCliente = JSON.parse(tbClientes[indice_selecionado])
+        var objCliente = JSON.parse(tbClientes[indice_selecionado]);
+
+        if ((objCliente.Dias === "") || (objCliente.Porcentual === "") || (objCliente.Pagamento === "")) {
+            alert("Preencha todos os campos.");
+            return true;
+        };
+
         var objClientePorcentual = parseFloat(objCliente.Porcentual);
+
         if ((porcentual + objClientePorcentual ) <= 100) {
             porcentual += parseFloat(tbClientes[indice_selecionado].Porcentual);
             localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
             $('#input-parcelas').val(JSON.stringify(tbClientes));
-            alert("Informações editadas.")
+            alert("Informações editadas.");
+            $("#id_dias").val('');
+            $("#id_porcentual").val('');
+            $("#id-forma_pagamento-input").val('');
+            $("#forma_pagamento-input").val('');
             operacao = "A"; //Volta ao padrão
             Listar();
             return true;
@@ -250,8 +268,8 @@
             alert("Parcela inserida ultrapassa os 100%");
             Listar();
             return true;
-        }
-    }
+        };
+    };
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
         indice_selecionado = parseInt($(this).attr("alt"));
@@ -268,9 +286,14 @@
         tbClientes.splice(indice_selecionado, 1);
         localStorage.setItem("tbClientes", JSON.stringify(tbClientes));
         $('#input-parcelas').val(JSON.stringify(tbClientes));
+        $("#id_dias").val('');
+        $("#id_porcentual").val('');
+        $("#id-forma_pagamento-input").val('');
+        $("#forma_pagamento-input").val('');
         alert("Registro excluído.");
         contador--;
-    }
+        operacao = "A";
+    };
 
     function Listar(){
 
@@ -316,12 +339,10 @@
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
-            
-        }
 
-        // alert(porcentual);
+        };
 
-    }
+    };
 
     $(function() {
 
@@ -368,11 +389,8 @@
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
 
-        }
+        };
 
-        // alert(porcentual);
-
-        
     });
 
     $("#condicaoPagamentoForm").submit(function() {

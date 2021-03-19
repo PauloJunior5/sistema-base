@@ -130,7 +130,6 @@
 
 <script>
 
-
 var url_atual = '<?php echo URL::to(''); ?>';
     $('.idForma_pagamento').click(function() {
         var id_forma_pagamento = $(this).val();
@@ -159,6 +158,7 @@ $(function(){
     parcelas = [];
     var porcentual = 100;
     var porcentualReserva = 0;
+    var contador = 1;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -170,12 +170,13 @@ $(function(){
     function Adicionar(){
 
         var parcela = JSON.stringify({
+            parcela : contador++,
             dias   : $("#id_dias").val(),
             porcentual     : $("#id_porcentual").val(),
             forma_pagamento : $("#id-forma_pagamento-input").val(),
         });
 
-        var objParcela = JSON.parse(parcela)
+        var objParcela = JSON.parse(parcela);
 
         if ((objParcela.dias === "") || (objParcela.porcentual === "") || (objParcela.forma_pagamento === "")) {
             alert("Preencha todos os campos.");
@@ -185,8 +186,8 @@ $(function(){
         var objParcelaPorcentual = parseFloat(objParcela.porcentual);
         if ((porcentual + objParcelaPorcentual ) <= 100) {
             porcentual += objParcelaPorcentual;
-            parcelas.push(parcela);
-            localStorage.setItem("parcelas", JSON.stringify(parcelas));
+            parcelas.push(objParcela);
+            localStorage.setItem("parcelas", parcelas);
             $('#input-parcelas').val(JSON.stringify(parcelas));
             alert("Registro adicionado.");
             Listar();
@@ -243,7 +244,6 @@ $(function(){
 
         if (somaPorcentual <= 100) {
             porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
-            console.log(parcelas);
             localStorage.setItem("parcelas", parcelas);
             $('#input-parcelas').val(JSON.stringify(parcelas));
             alert("Informações editadas.")
