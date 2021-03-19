@@ -99,7 +99,7 @@
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#formaPagamentoModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div>
-                                                <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar"><i class="material-icons">add</i></button>
+                                                <button class="btn btn-primary" type="button" onclick="changeBtnToCreate()" value="Salvar" id="btnSalvar"><i class="material-icons">add</i></button>
                                             </div>
                                         </form>
 
@@ -107,7 +107,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="card-footer ml-auto pull-right">
                             <a href="{{ route('condicaoPagamento.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
@@ -127,6 +126,19 @@
         });
     </script>
 @endif
+
+<script>
+    function  changeBtnToEdit() {
+        document.getElementById("btnSalvar").innerHTML = "Salvar";
+    }
+
+    function changeBtnToCreate() {
+        x = document.getElementById("btnSalvar").innerText;
+        if (x == 'SALVAR') {
+            document.getElementById("btnSalvar").innerHTML = "<i class='material-icons'>add</i>";
+        };
+    }
+</script>
 
 <script>
 
@@ -324,7 +336,7 @@ $(function(){
             $("#condicao-table tbody").append("<td>"+cli.dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
-            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"' onclick='changeBtnToEdit()'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
 
         }
@@ -373,7 +385,7 @@ $(function(){
             $("#condicao-table tbody").append("<td>"+cli.dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
-            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"' onclick='changeBtnToEdit()'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
 
         };
