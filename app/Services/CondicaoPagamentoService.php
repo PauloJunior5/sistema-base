@@ -31,6 +31,7 @@ class CondicaoPagamentoService
         $condicaoPagamento->setCreated_at(Carbon::now()->toDateTimeString());
         $dados = $this->getDados($condicaoPagamento);
 
+        $result = null;
         DB::beginTransaction();
         try {
             $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
@@ -58,11 +59,8 @@ class CondicaoPagamentoService
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel editar condição de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel criar condição de pagamento: ' . $th);
         }
-
-
-
         return $result;
     }
 
@@ -77,32 +75,44 @@ class CondicaoPagamentoService
         $condicaoPagamento->setJuro($request->juro);
         $condicaoPagamento->setdesconto($request->desconto);
         $dados = $this->getDados($condicaoPagamento);
-        $condicaoPagamento =  $this->condicaoPagamentoRepository->atualizar($dados);
 
-        if ($condicaoPagamento) {
+        $result = null;
+        DB::beginTransaction();
+        try {
+            $condicaoPagamento =  $this->condicaoPagamentoRepository->atualizar($dados);
 
-            $objectsArray = json_decode($request->parcelas);
+            if ($condicaoPagamento) {
 
-            foreach ($objectsArray as $objeto) {
+                $objectsArray = json_decode($request->parcelas);
 
-                $parcela = new Parcela;
+                foreach ($objectsArray as $objeto) {
 
-                if (isset($objeto->id)) {
-                    $parcela->setId($objeto->id);
-                    $parcela->setUpdated_at(Carbon::now()->toDateTimeString());
+                    $parcela = new Parcela;
+                    $parcela->setParcela($objeto->parcela);
+                    $parcela->setDias($objeto->dias);
+                    $parcela->setPorcentual($objeto->porcentual);
+                    $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->forma_pagamento);
+                    $parcela->setFormaPagamento($formaPagamento);
+                    $condicaoPagamento = $this->buscarEInstanciar($request->id);
+                    $parcela->setCondicaoPagamento($condicaoPagamento);
+
+                    if (isset($objeto->id)) {
+                        $parcela->setId($objeto->id);
+                        $parcela->setUpdated_at(Carbon::now()->toDateTimeString());
+                        $parcela->setCreated_at($objeto->created_at);
+                        $dados = $this->parcelaService->getDados($parcela);
+                        $result = $this->parcelaRepository->atualizar($dados);
+                    } else {
+                        $parcela->setCreated_at(Carbon::now()->toDateTimeString());
+                        $dados = $this->parcelaService->getDados($parcela);
+                        $result = $this->parcelaRepository->adicionar($dados);
+                    }
                 }
-
-                $parcela->setParcela($objeto->parcela);
-                $parcela->setDias($objeto->dias);
-                $parcela->setPorcentual($objeto->porcentual);
-                $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->forma_pagamento);
-                $parcela->setFormaPagamento($formaPagamento);
-                $condicaoPagamento = $this->buscarEInstanciar($request->id);
-                $parcela->setCondicaoPagamento($condicaoPagamento);
-                $parcela->setCreated_at(Carbon::now()->toDateTimeString());
-                $dados = $this->parcelaService->getDados($parcela);
-                $result = $this->parcelaRepository->atualizar($dados);
             }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel editar condição de pagamento: ' . $th);
         }
         return $result;
     }
