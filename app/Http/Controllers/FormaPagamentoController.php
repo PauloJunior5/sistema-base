@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FormaPagamentoRequest;
 use App\Repositories\FormaPagamentoRepository;
-use App\Services\FormaPagamento\FormaPagamentoBuscarEInstanciarService;
-use App\Services\FormaPagamento\FormaPagamentoInstanciarEAtualizarService;
-use App\Services\FormaPagamento\FormaPagamentoInstanciarECriarService;
+use App\Services\FormaPagamentoService;
 
 class FormaPagamentoController extends Controller
 {
     public function __construct()
     {
         $this->formaPagamentoRepository = New FormaPagamentoRepository;
-        $this->formaPagamentoInstanciarECriarService = New FormaPagamentoInstanciarECriarService;
-        $this->formaPagamentoInstanciarEAtualizarService = New FormaPagamentoInstanciarEAtualizarService;
-        $this->formaPagamentoBuscarEInstanciarService = New FormaPagamentoBuscarEInstanciarService;
+        $this->formaPagamentoService = New FormaPagamentoService;
     }
 
     public function index()
@@ -31,8 +27,7 @@ class FormaPagamentoController extends Controller
 
     public function store(FormaPagamentoRequest $request)
     {
-        $formaPagamento = $this->formaPagamentoInstanciarECriarService->executar($request);
-
+        $formaPagamento = $this->formaPagamentoService->instanciarECriar($request);
         if ($formaPagamento) {
             return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento criada com sucesso.')->send();
         } else {
@@ -48,14 +43,13 @@ class FormaPagamentoController extends Controller
 
     public function edit($id)
     {
-        $formaPagamento = $this->formaPagamentoBuscarEInstanciarService->executar($id);
+        $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($id);
         return view('formasPagamento.edit', compact('formaPagamento'));
     }
 
     public function update(FormaPagamentoRequest $request)
     {
-        $formaPagamento = $this->formaPagamentoInstanciarEAtualizarService->executar($request);
-
+        $formaPagamento = $this->formaPagamentoService->instanciarEAtualizar($request);
         if ($formaPagamento) {
             return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento alterada com sucesso.')->send();
         } else {
@@ -66,7 +60,6 @@ class FormaPagamentoController extends Controller
     public function destroy($id)
     {
         $formaPagamento = $this->formaPagamentoRepository->remover($id);
-
         if ($formaPagamento) {
             return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento excluída com sucesso.')->send();
         }
@@ -74,8 +67,7 @@ class FormaPagamentoController extends Controller
 
     public function createForma_pagamento(FormaPagamentoRequest $request)
     {
-        $formaPagamento = $this->formaPagamentoInstanciarECriarService->executar($request);
-
+        $formaPagamento = $this->formaPagamentoService->instanciarECriar($request);
         if ($formaPagamento) {
             return redirect()->back()->withInput()->with('error_code', 9)->send();
         } else {
