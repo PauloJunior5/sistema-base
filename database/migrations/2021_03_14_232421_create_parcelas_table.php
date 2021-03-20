@@ -14,18 +14,16 @@ class CreateParcelasTable extends Migration
     public function up()
     {
         Schema::create('parcelas', function (Blueprint $table) {
-            $table->tinyIncrements('id');
-
+            $table->primary(['id_condicao_pagamento', 'parcela']);
             $table->integer('parcela');
             $table->integer('dias');
             $table->float('porcentual');
-            $table->unsignedTinyInteger('forma_pagamento')->nullable(); // foreign_key formas de pagamento
-            $table->unsignedTinyInteger('condicao_pagamento')->nullable(); // foreign_key condições de pagamento
+            $table->unsignedTinyInteger('id_forma_pagamento')->nullable();
 
             $table->timestamps();
 
-            $table->foreign('forma_pagamento')->references('id')->on('forma_pagamentos');
-            $table->foreign('condicao_pagamento')->references('id')->on('condicao_pagamentos');
+            $table->foreign('id_forma_pagamento')->references('id')->on('forma_pagamentos');
+            $table->foreign('id_condicao_pagamento')->references('id')->on('condicao_pagamentos');
         });
     }
 

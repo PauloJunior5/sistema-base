@@ -14,7 +14,7 @@ class CreateCondicaoPagamentosTable extends Migration
     public function up()
     {
         Schema::create('condicao_pagamentos', function (Blueprint $table) {
-            $table->tinyIncrements('id');
+            $table->tinyIncrements('id_condicao_pagamento');
 
             $table->string('condicao_pagamento');
             $table->double('multa', 8, 2);
