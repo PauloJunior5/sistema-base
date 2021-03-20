@@ -8,6 +8,8 @@ use App\Repositories\CondicaoPagamentoRepository;
 use App\Http\Requests\CondicaoPagamentoRequest;
 use App\Repositories\ParcelaRepository;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CondicaoPagamentoService
 {
@@ -19,7 +21,7 @@ class CondicaoPagamentoService
         $this->parcelaService = New ParcelaService;
     }
 
-    public function instaciarECriar(CondicaoPagamentoRequest $request)
+    public function instanciaECriar(CondicaoPagamentoRequest $request)
     {
         $condicaoPagamento = new CondicaoPagamento;
         $condicaoPagamento->setCondicaoPagamento($request->condicao_pagamento);
@@ -28,28 +30,39 @@ class CondicaoPagamentoService
         $condicaoPagamento->setdesconto($request->desconto);
         $condicaoPagamento->setCreated_at(Carbon::now()->toDateTimeString());
         $dados = $this->getDados($condicaoPagamento);
-        $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
 
-        if ($idCondicaoPagamento) {
+        DB::beginTransaction();
+        try {
+            $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
 
-            $objectsArray = json_decode($request->parcelas);
+            if ($idCondicaoPagamento) {
 
-            foreach ($objectsArray as $array) {
+                $objectsArray = json_decode($request->parcelas);
 
-                $objeto = json_decode($array);
-                $parcela = new Parcela;
-                $parcela->setParcela($objeto->Parcela);
-                $parcela->setDias($objeto->Dias);
-                $parcela->setPorcentual($objeto->Porcentual);
-                $formaPagamento = $this->$this->formaPagamentoService->buscarEInstanciar($objeto->Pagamento);
-                $parcela->setFormaPagamento($formaPagamento);
-                $condicaoPagamento = $this->buscarEInstanciar($idCondicaoPagamento);
-                $parcela->setCondicaoPagamento($condicaoPagamento);
-                $parcela->setCreated_at(Carbon::now()->toDateTimeString());
-                $dados = $this->parcelaService->getDados($parcela);
-                $result = $this->parcelaRepository->adicionar($dados);
+                foreach ($objectsArray as $array) {
+
+                    $objeto = json_decode($array);
+                    $parcela = new Parcela;
+                    $parcela->setParcela($objeto->Parcela);
+                    $parcela->setDias($objeto->Dias);
+                    $parcela->setPorcentual($objeto->Porcentual);
+                    $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->Pagamento);
+                    $parcela->setFormaPagamento($formaPagamento);
+                    $condicaoPagamento = $this->buscarEInstanciar($idCondicaoPagamento);
+                    $parcela->setCondicaoPagamento($condicaoPagamento);
+                    $parcela->setCreated_at(Carbon::now()->toDateTimeString());
+                    $dados = $this->parcelaService->getDados($parcela);
+                    $result = $this->parcelaRepository->adicionar($dados);
+                }
             }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel editar condição de pagamento: ' . $th);
         }
+
+
+
         return $result;
     }
 
@@ -76,6 +89,7 @@ class CondicaoPagamentoService
 
                 if (isset($objeto->id)) {
                     $parcela->setId($objeto->id);
+                    $parcela->setUpdated_at(Carbon::now()->toDateTimeString());
                 }
 
                 $parcela->setParcela($objeto->parcela);
