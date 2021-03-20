@@ -70,6 +70,8 @@ class CondicaoPagamentoController extends Controller
         $condicaoPagamento = $this->condicaoPagamentoRepository->remover($id);
         if ($condicaoPagamento && $parcelas) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento excluída com sucesso.')->send();
+        } else {
+            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel excluir condição de Ppgamento.')->send();
         }
     }
 

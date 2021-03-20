@@ -62,6 +62,8 @@ class FormaPagamentoController extends Controller
         $formaPagamento = $this->formaPagamentoRepository->remover($id);
         if ($formaPagamento) {
             return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento excluída com sucesso.')->send();
+        } else {
+            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel excluir forma de pagamento.')->send();
         }
     }
 
