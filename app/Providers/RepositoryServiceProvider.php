@@ -21,35 +21,5 @@ class RepositoryServiceProvider extends ServiceProvider
             'App\Interfaces\PaisInterface',
             'App\Repositories\PaisRepository'
         );
-
-        /**
-         * 
-         * Binding - Estados
-         * 
-         */
-        $this->app->bind(
-            'App\Interfaces\EstadoInterface',
-            'App\Repositories\EstadoRepository'
-        );
-
-        /**
-         * 
-         * Binding - Cidades
-         * 
-         */
-        $this->app->bind(
-            'App\Interfaces\CidadeInterface',
-            'App\Repositories\CidadeRepository'
-        );
-
-        /**
-         * 
-         * Binding - Contratos
-         * 
-         */
-        $this->app->bind(
-            'App\Interfaces\ContratoInterface',
-            'App\Repositories\ContratoRepository'
-        );
     }
 }
