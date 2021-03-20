@@ -16,19 +16,13 @@ class CondicaoPagamentoRepository
     public function adicionar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('condicao_pagamentos')->insertGetId($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel criar condição de pagamento: ' . $th);
-
         }
         return $result;
     }
@@ -42,19 +36,13 @@ class CondicaoPagamentoRepository
     public function atualizar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('condicao_pagamentos')->where('id', $dados['id'])->update($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel editar condição de pagamento: ' . $th);
-
         }
         return $result;
     }
@@ -62,19 +50,13 @@ class CondicaoPagamentoRepository
     public function remover($id)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('condicao_pagamentos')->where('id', $id)->delete();
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel excluir condição de pagamento: ' . $th);
-
         }
         return $result;
     }

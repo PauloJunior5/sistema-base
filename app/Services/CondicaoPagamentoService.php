@@ -73,6 +73,11 @@ class CondicaoPagamentoService
             foreach ($objectsArray as $objeto) {
 
                 $parcela = new Parcela;
+
+                if (isset($objeto->id)) {
+                    $parcela->setId($objeto->id);
+                }
+
                 $parcela->setParcela($objeto->parcela);
                 $parcela->setDias($objeto->dias);
                 $parcela->setPorcentual($objeto->porcentual);
@@ -82,11 +87,7 @@ class CondicaoPagamentoService
                 $parcela->setCondicaoPagamento($condicaoPagamento);
                 $parcela->setCreated_at(Carbon::now()->toDateTimeString());
                 $dados = $this->parcelaService->getDados($parcela);
-
-                if (isset($objeto->id)) {
-                    $parcela->setId($objeto->id);
-                    $result = $this->parcelaRepository->atualizar($dados);
-                }
+                $result = $this->parcelaRepository->atualizar($dados);
             }
         }
         return $result;

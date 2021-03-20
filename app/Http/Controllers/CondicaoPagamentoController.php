@@ -6,9 +6,7 @@ use App\Http\Requests\CondicaoPagamentoRequest;
 use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\FormaPagamentoRepository;
 use App\Repositories\ParcelaRepository;
-use App\Services\CondicaoPagamento\CondicaoPagamentoBuscarEInstanciarService;
-use App\Services\CondicaoPagamento\CondicaoPagamentoInstanciarEAtualizarService;
-use App\Services\CondicaoPagamento\CondicaoPagamentoInstanciarECriarService;
+use App\Services\CondicaoPagamentoService;
 
 class CondicaoPagamentoController extends Controller
 {
@@ -17,9 +15,7 @@ class CondicaoPagamentoController extends Controller
         $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository;
         $this->formaPagamentoRepository = New FormaPagamentoRepository;
         $this->parcelaRepository = New ParcelaRepository;
-        $this->condicaoPagamentoInstanciarECriarService = New CondicaoPagamentoInstanciarECriarService;
-        $this->condicaoPagamentoInstanciarEAtualizarService = New CondicaoPagamentoInstanciarEAtualizarService;
-        $this->condicaoPagamentoBuscarEInstanciarService = New CondicaoPagamentoBuscarEInstanciarService;
+        $this->condicaoPagamentoService = New CondicaoPagamentoService;
     }
 
     public function index()
@@ -36,8 +32,7 @@ class CondicaoPagamentoController extends Controller
 
     public function store(CondicaoPagamentoRequest $request)
     {
-        $condicaoPagamento = $this->condicaoPagamentoInstanciarECriarService->executar($request);
-
+        $condicaoPagamento = $this->condicaoPagamentoService->instanciaECriar($request);
         if ($condicaoPagamento) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento criada com sucesso.')->send();
         } else {
@@ -53,18 +48,15 @@ class CondicaoPagamentoController extends Controller
 
     public function edit($id)
     {
-        $condicaoPagamento = $this->condicaoPagamentoBuscarEInstanciarService->executar($id);
-
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($id);
         $formasPagamento =  $this->formaPagamentoRepository->mostrarTodos();
         $parcelas = $this->parcelaRepository->findById($id);
-
         return view('condicoesPagamento.edit', compact('condicaoPagamento', 'formasPagamento', 'parcelas'));
     }
 
     public function update(CondicaoPagamentoRequest $request)
     {
-        $condicaoPagamento = $this->condicaoPagamentoInstanciarEAtualizarService->executar($request);
-
+        $condicaoPagamento = $this->condicaoPagamentoService->instanciarEAtualizar($request);
         if ($condicaoPagamento) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento alterada com sucesso.')->send();
         } else {
@@ -76,7 +68,6 @@ class CondicaoPagamentoController extends Controller
     {
         $parcelas = $this->parcelaRepository->remover($id);
         $condicaoPagamento = $this->condicaoPagamentoRepository->remover($id);
-
         if ($condicaoPagamento && $parcelas) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento excluída com sucesso.')->send();
         }
@@ -84,8 +75,7 @@ class CondicaoPagamentoController extends Controller
 
     public function createCondicao_pagamento(CondicaoPagamentoRequest $request)
     {
-        $condicaoPagamento = $this->condicaoPagamentoInstanciarECriarService->executar($request);
-
+        $condicaoPagamento = $this->condicaoPagamentoService->instanciarECriar($request);
         if ($condicaoPagamento) {
             return redirect()->back()->withInput()->with('error_code', 3)->send();
         } else {
