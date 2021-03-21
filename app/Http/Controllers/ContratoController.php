@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\ContratoInterface;
 use App\Models\Contrato;
-use App\Traits\ShowCliente;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 class ContratoController extends Controller
 {
 
-    public function __construct(ContratoInterface $contratoInterface)
+    public function __construct()
     {
-        $this->contratoInterface = $contratoInterface;
+
     }
 
     public function index()
@@ -31,7 +29,7 @@ class ContratoController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $cliente = json_decode($this->showCliente($request->id_responsavel)->getContent());
 
         // $teste = get_object_vars($cliente);

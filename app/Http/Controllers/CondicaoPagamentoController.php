@@ -34,7 +34,7 @@ class CondicaoPagamentoController extends Controller
     {
         $condicaoPagamento = $this->condicaoPagamentoService->instanciaECriar($request);
         if ($condicaoPagamento) {
-            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento criada com sucesso.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de pagamento criada com sucesso.')->send();
         } else {
             return redirect()->route('condicaoPagamento.index')->with('Warning', 'Não foi possivel criar condição de pagamento.')->send();
         }
@@ -58,7 +58,7 @@ class CondicaoPagamentoController extends Controller
     {
         $condicaoPagamento = $this->condicaoPagamentoService->instanciarEAtualizar($request);
         if ($condicaoPagamento) {
-            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento alterada com sucesso.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de pagamento alterada com sucesso.')->send();
         } else {
             return redirect()->route('condicaoPagamento.index')->with('Warning', 'Não foi possivel condição de pagamento.')->send();
         }
@@ -69,9 +69,9 @@ class CondicaoPagamentoController extends Controller
         $parcelas = $this->parcelaRepository->remover($id);
         $condicaoPagamento = $this->condicaoPagamentoRepository->remover($id);
         if ($condicaoPagamento && $parcelas) {
-            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de Pagamento excluída com sucesso.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de pagamento excluída com sucesso.')->send();
         } else {
-            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel excluir condição de Ppgamento.')->send();
+            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel excluir condição de pagamento.')->send();
         }
     }
 
