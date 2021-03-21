@@ -9,8 +9,8 @@ class ClienteRepository
 {
     public function mostrarTodos()
     {
-        $formasPagamento = DB::table('forma_pagamentos')->get();
-        return $formasPagamento;
+        $clientes = DB::table('clientes')->get();
+        return $clientes;
     }
 
     public function adicionar($dados)
@@ -18,19 +18,19 @@ class ClienteRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->insert($dados);
+            $result = DB::table('clientes')->insert($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel criar forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel criar cliente: ' . $th);
         }
         return $result;
     }
 
     public function findById(int $id)
     {
-        $formaPagamento = DB::table('forma_pagamentos')->where('id', $id)->first();
-        return $formaPagamento;
+        $cliente = DB::table('clientes')->where('id', $id)->first();
+        return $cliente;
     }
 
     public function atualizar($dados)
@@ -38,11 +38,11 @@ class ClienteRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->where('id', $dados['id'])->update($dados);
+            $result = DB::table('clientes')->where('id', $dados['id'])->update($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel editar forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel editar cliente: ' . $th);
         }
         return $result;
     }
@@ -52,11 +52,11 @@ class ClienteRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->where('id', $id)->delete();
+            $result = DB::table('clientes')->where('id', $id)->delete();
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel excluir forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel excluir cliente: ' . $th);
         }
         return $result;
     }
