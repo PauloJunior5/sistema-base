@@ -9,7 +9,7 @@ class Cliente extends Model
     protected string $tipo;
     protected string $cliente;
     protected string $apelido;
-    protected string $nome_fantasia;
+    protected string $nomeFantasia;
     protected string $endereco;
     protected string $numero;
     protected string $complemento;
@@ -23,10 +23,10 @@ class Cliente extends Model
     protected string $cpf;
     protected string $rg;
     protected string $nascimento;
-    protected string $inscricao_estadual;
+    protected string $inscricaoEstadual;
     protected string $cnpj;
     protected string $observacao;
-    protected string $limite_credito;
+    protected float $limite_credito;
     protected CondicaoPagamento $condicaoPagamento;
 
     public function __construct()
@@ -34,7 +34,7 @@ class Cliente extends Model
         $this->tipo = '';
         $this->cliente = '';
         $this->apelido = '';
-        $this->nome_fantasia = '';
+        $this->nomeFantasia = '';
         $this->endereco = '';
         $this->numero = '';
         $this->complemento = '';
@@ -48,7 +48,7 @@ class Cliente extends Model
         $this->cpf = '';
         $this->rg = '';
         $this->nascimento = '';
-        $this->inscricao_estadual = '';
+        $this->inscricaoEstadual = '';
         $this->cnpj = '';
         $this->observacao = '';
         $this->limite_credito = '';
@@ -66,7 +66,7 @@ class Cliente extends Model
         return $this->tipo;
     }
 
-    public function setTipo($tipo)
+    public function setTipo(string $tipo)
     {
         $this->tipo = $tipo;
     }
@@ -82,7 +82,7 @@ class Cliente extends Model
         return $this->cliente;
     }
 
-    public function setCliente($cliente)
+    public function setCliente(string $cliente)
     {
         $this->cliente = $cliente;
     }
@@ -98,7 +98,7 @@ class Cliente extends Model
         return $this->apelido;
     }
 
-    public function setApelido($apelido)
+    public function setApelido(string $apelido)
     {
         $this->apelido = $apelido;
     }
@@ -111,12 +111,28 @@ class Cliente extends Model
     */
     public function getNomeFantasia(): string
     {
-        return $this->nome_fantasia;
+        return $this->nomeFantasia;
     }
 
-    public function setNomeFantasia($nome_fantasia)
+    public function setNomeFantasia(string $nomeFantasia)
     {
-        $this->nome_fantasia = $nome_fantasia;
+        $this->nomeFantasia = $nomeFantasia;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Endereço
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getEndereco(): string
+    {
+        return $this->endereco;
+    }
+
+    public function setEndereco(string $endereco)
+    {
+        $this->endereco = $endereco;
     }
 
     /*
@@ -130,7 +146,7 @@ class Cliente extends Model
         return $this->numero;
     }
 
-    public function setNumero($numero)
+    public function setNumero(string $numero)
     {
         $this->numero = $numero;
     }
@@ -146,7 +162,7 @@ class Cliente extends Model
         return $this->complemento;
     }
 
-    public function setComplemento($complemento)
+    public function setComplemento(string $complemento)
     {
         $this->complemento = $complemento;
     }
@@ -162,7 +178,7 @@ class Cliente extends Model
         return $this->bairro;
     }
 
-    public function setBairro($bairro)
+    public function setBairro(string $bairro)
     {
         $this->bairro = $bairro;
     }
@@ -178,7 +194,7 @@ class Cliente extends Model
         return $this->cep;
     }
 
-    public function setCEP($cep)
+    public function setCEP(string $cep)
     {
         $this->cep = $cep;
     }
@@ -210,7 +226,7 @@ class Cliente extends Model
         return $this->telefone;
     }
 
-    public function setTelefone($telefone)
+    public function setTelefone(string $telefone)
     {
         $this->telefone = $telefone;
     }
@@ -226,7 +242,7 @@ class Cliente extends Model
         return $this->celular;
     }
 
-    public function setCelular($celular)
+    public function setCelular(string $celular)
     {
         $this->celular = $celular;
     }
@@ -242,7 +258,7 @@ class Cliente extends Model
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
@@ -258,7 +274,7 @@ class Cliente extends Model
         return $this->nacionalidade;
     }
 
-    public function setNacionalidade($nacionalidade)
+    public function setNacionalidade(string $nacionalidade)
     {
         $this->nacionalidade = $nacionalidade;
     }
@@ -274,7 +290,7 @@ class Cliente extends Model
         return $this->cpf;
     }
 
-    public function setCPF($cpf)
+    public function setCPF(string $cpf)
     {
         $this->cpf = $cpf;
     }
@@ -291,7 +307,7 @@ class Cliente extends Model
         return $this->rg;
     }
 
-    public function setRG($rg)
+    public function setRG(string $rg)
     {
         $this->rg = $rg;
     }
@@ -307,7 +323,7 @@ class Cliente extends Model
         return $this->rg;
     }
 
-    public function setNascimento($rg)
+    public function setNascimento(string $rg)
     {
         $this->rg = $rg;
     }
@@ -320,12 +336,12 @@ class Cliente extends Model
     */
     public function getInscricaoEstadual(): string
     {
-        return $this->inscricao_estadual;
+        return $this->inscricaoEstadual;
     }
 
-    public function setInscricaoEstadual($inscricao_estadual)
+    public function setInscricaoEstadual(string $inscricaoEstadual)
     {
-        $this->inscricao_estadual = $inscricao_estadual;
+        $this->inscricaoEstadual = $inscricaoEstadual;
     }
 
     /*
@@ -339,7 +355,7 @@ class Cliente extends Model
         return $this->cnpj;
     }
 
-    public function setCNPJ($cnpj)
+    public function setCNPJ(string $cnpj)
     {
         $this->cnpj = $cnpj;
     }
@@ -355,7 +371,7 @@ class Cliente extends Model
         return $this->observacao;
     }
 
-    public function setObservacao($observacao)
+    public function setObservacao(string $observacao)
     {
         $this->observacao = $observacao;
     }
@@ -366,12 +382,12 @@ class Cliente extends Model
     |--------------------------------------------------------------------------
     |
     */
-    public function getLimiteCredito(): string
+    public function getLimiteCredito(): float
     {
         return $this->limite_credito;
     }
 
-    public function setLimiteCredito($limite_credito)
+    public function setLimiteCredito(float $limite_credito)
     {
         $this->limite_credito = $limite_credito;
     }
