@@ -25,6 +25,8 @@ class ClienteRequest extends FormRequest
      */
     public function rules()
     {
+        $start_date = date('2004-01-01');
+
         return [
             'cliente' => [
                 'required',
@@ -35,8 +37,11 @@ class ClienteRequest extends FormRequest
                 Rule::unique('clientes', 'cnpj')->ignore($this->id),
             ],
             'cpf' => [
-                'required_if:tipo,==,pessoaJuridica',
+                'required_if:tipo,==,pessoaFisica',
                 Rule::unique('clientes', 'cpf')->ignore($this->id),
+            ],
+            'nascimento' => [
+                'before_or_equal:' . $start_date,
             ],
         ];
     }

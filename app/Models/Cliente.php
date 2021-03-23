@@ -26,7 +26,7 @@ class Cliente extends Model
     protected string $inscricaoEstadual;
     protected string $cnpj;
     protected string $observacao;
-    protected float $limite_credito;
+    protected float $limiteCredito;
     protected CondicaoPagamento $condicaoPagamento;
 
     public function __construct()
@@ -51,7 +51,7 @@ class Cliente extends Model
         $this->inscricaoEstadual = '';
         $this->cnpj = '';
         $this->observacao = '';
-        $this->limite_credito = '';
+        $this->limiteCredito = '';
         $this->condicaoPagamento = New CondicaoPagamento;
     }
 
@@ -384,12 +384,12 @@ class Cliente extends Model
     */
     public function getLimiteCredito(): float
     {
-        return $this->limite_credito;
+        return $this->limiteCredito;
     }
 
-    public function setLimiteCredito(float $limite_credito)
+    public function setLimiteCredito(float $limiteCredito)
     {
-        $this->limite_credito = $limite_credito;
+        $this->limiteCredito = $limiteCredito;
     }
 
     /*

@@ -41,7 +41,7 @@ class FormaPagamentoController extends Controller
         return response()->json($formaPagamento);
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($id);
         return view('formasPagamento.edit', compact('formaPagamento'));

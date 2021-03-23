@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-md-4 campoPessoaJuridica">
                                     <label class="col-form-label">@include('includes.required')Nome Fantasia</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="nome_fantasia" value="{{ old('nome_fantasia') }}" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="nomeFantasia" value="{{ old('nome_fantasia') }}" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -142,7 +142,7 @@
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricao_estadual" value="{{ old('inscricao_estadual') }}" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricaoEstadual" value="{{ old('inscricao_estadual') }}" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')CNPJ</label>
@@ -152,17 +152,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
-                                    <input class="form-control" type="number" name="limite_credito" value="{{ old('limite_credito') }}" required>
+                                    <input class="form-control" type="number" name="limiteCredito" step="0.01" value="{{ old('limiteCredito') }}" required>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicao_pagamento') }}" readonly>
+                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicaoPagamento" value="{{ old('id_condicaoPagamento') }}" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
                                     <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento_input" value="{{ old('condicao_pagamento_input') }}" readonly>
-                                    <input type="hidden" id="" name="condicao_pagamento" value="{{ old('condicao_pagamento') }}">
+                                    <input type="hidden" id="" name="condicaoPagamento" value="{{ old('condicaoPagamento') }}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
@@ -235,7 +235,7 @@
     $('.idCidade').click(function() {
         var id_cidade = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/cidade/show',
             data: { id_cidade : id_cidade },
             dataType: "JSON",
@@ -253,7 +253,7 @@
     $('.idEstado').click(function() {
         var id_estado = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/estado/show',
             data: { id_estado : id_estado },
             dataType: "JSON",
@@ -270,7 +270,7 @@
     $('.idPais').click(function() {
         var id_pais = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/pais/show',
             data: { id_pais : id_pais },
             dataType: "JSON",
@@ -365,7 +365,7 @@ var url_atual = '<?php echo URL::to(''); ?>';
     $('.idForma_pagamento').click(function() {
         var id_forma_pagamento = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/formaPagamento/show',
             data: { id_forma_pagamento : id_forma_pagamento },
             dataType: "JSON",

@@ -17,6 +17,7 @@ class ClienteService
 
     public function instanciarECriar(ClienteRequest $request)
     {
+        $teste = (float)$request->get('limiteCredito');
         $cliente = new Cliente;
         $cliente->setTipo($request->tipo);
         $cliente->setCliente($request->cliente);
@@ -42,14 +43,14 @@ class ClienteService
         $cliente->setInscricaoEstadual($request->inscricaoEstadual);
         $cliente->setCNPJ($request->cnpj);
         $cliente->setObservacao ($request->observacao);
-        $cliente->setLimiteCredito ($request->limiteCredito);
+        $cliente->setLimiteCredito ($teste);
 
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->condicaoPagamento);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicaoPagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
 
         $cliente->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($cliente);
-
+        dd($dados);
         return $this->clienteRepository->adicionar($dados);
     }
 
