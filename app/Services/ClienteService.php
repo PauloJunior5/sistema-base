@@ -94,7 +94,7 @@ class ClienteService
         $cliente->setUpdated_at(now()->toDateTimeString());
 
         $dados = $this->getDados($cliente);
-        return $this->clienteRepository->adicionar($dados);
+        return $this->clienteRepository->atualizar($dados);
     }
 
     /**
