@@ -46,7 +46,7 @@ class ClienteService
         $cliente->setObservacao ($request->observacao);
         $cliente->setLimiteCredito ($request->limiteCredito);
 
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicaoPagamento);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
 
         $cliente->setCreated_at(now()->toDateTimeString());
@@ -72,13 +72,48 @@ class ClienteService
      */
     public function buscarEInstanciar(int $id)
     {
-        // $result = $this->formaPagamentoRepository->findById($id);
-        // $formaPagamento = new FormaPagamento;
-        // $formaPagamento->setId($result->id);
-        // $formaPagamento->setFormaPagamento($result->forma_pagamento);
-        // $formaPagamento->setCreated_at($result->created_at ?? null);
-        // $formaPagamento->setUpdated_at($result->updated_at ?? null);
-        // return $formaPagamento;
+
+        $result = $this->clienteRepository->findById($id);
+
+        $cliente = new Cliente;
+        $cliente->setId($result->id);
+
+        if (!empty($result->cpf)) {
+            $cliente->setApelido($result->apelido);
+            $cliente->setCPF($result->cpf);
+            $cliente->setRG ($result->rg);
+        } else {
+            $cliente->setNomeFantasia($result->nome_fantasia);
+            $cliente->setInscricaoEstadual($result->inscricao_estadual);
+            $cliente->setCNPJ($result->cnpj);
+        }
+
+        $cliente->setTipo($result->tipo);
+        $cliente->setCliente($result->cliente);
+        $cliente->setEndereco($result->endereco);
+        $cliente->setNumero($result->numero);
+        $cliente->setComplemento($result->complemento);
+        $cliente->setBairro($result->bairro);
+        $cliente->setCEP($result->cep);
+
+        $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
+        $cliente->setCidade($cidade);
+
+        $cliente->setTelefone($result->telefone);
+        $cliente->setCelular($result->celular);
+        $cliente->setEmail($result->email);
+        $cliente->setNacionalidade($result->nacionalidade);
+        $cliente->setNascimento ($result->nascimento);
+        $cliente->setObservacao ($result->observacao);
+        $cliente->setLimiteCredito ($result->limite_credito);
+
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->condicao_pagamento);
+        $cliente->setCondicaoPagamento($condicaoPagamento);
+
+        $cliente->setCreated_at($result->created_at ?? null);
+        $cliente->setUpdated_at($result->updated_at ?? null);
+
+        return $cliente;
     }
 
     /**

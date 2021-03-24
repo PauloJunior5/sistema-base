@@ -59,39 +59,23 @@ class ClienteController extends Controller
     public function edit(int $id)
     {
         $cliente = $this->clienteService->buscarEInstanciar($id);
-
         $paises  = $this->paisRepository->mostrarTodos();
         $estados  = $this->estadoRepository->mostrarTodos();
         $cidades  = $this->cidadeRepository->mostrarTodos();
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
 
-        return view('cliente.edit', compact('cliente', 'paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento'));
+        return view('clientes.edit', compact('cliente', 'paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ClienteRequest $request)
     {
-        $cpf = $request->input('cpf');
-        $start_date = date('2004-01-01');
-
-        if (!empty($cpf)) {
-            $validatedData = $request->validate([
-                'cpf' => 'unique:clientes,cpf,' . $id,
-                'rg' => 'unique:clientes,rg,' . $id,
-                'nascimento' => 'before_or_equal:' . $start_date,
-            ]);
+        dd($request);
+        $cliente = $this->clienteService->instanciarECriar($request);
+        if ($cliente) {
+            return redirect()->route('cliente.index')->with('Success', 'Cliente alterado com sucesso.')->send();
         } else {
-            $validatedData = $request->validate([
-                'cnpj' => 'unique:clientes,cnpj,' . $id,
-                'nascimento' => 'before_or_equal:' . $start_date,
-            ]);
-        }
-
-        if ($validatedData) {
-            $cliente = Cliente::whereId($id)->update($request->except('_token', '_method', 'ddd_cidade', 'cidade', 'estado', 'id_condicao_pagamento', 'condicao_pagamento_input'));
-            if ($cliente) {
-                return redirect()->route('cliente.index')->with('Success', 'Cliente alterado com sucesso.');
-            }
+            return redirect()->route('cliente.index')->with('Warning', 'Não foi possivel alterar cliente.')->send();
         }
     }
 

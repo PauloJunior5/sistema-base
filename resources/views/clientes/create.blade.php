@@ -157,12 +157,11 @@
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicaoPagamento" value="{{ old('id_condicaoPagamento') }}" readonly>
+                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
-                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento_input" value="{{ old('condicao_pagamento_input') }}" readonly>
-                                    <input type="hidden" id="" name="condicaoPagamento" value="{{ old('condicaoPagamento') }}">
+                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento" value="{{ old('condicao_pagamento_input') }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
