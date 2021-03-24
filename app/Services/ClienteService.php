@@ -17,40 +17,41 @@ class ClienteService
 
     public function instanciarECriar(ClienteRequest $request)
     {
-        $teste = (float)$request->get('limiteCredito');
         $cliente = new Cliente;
+
+        if (!empty($request->cpf)) {
+            $cliente->setApelido($request->apelido);
+            $cliente->setCPF($request->cpf);
+            $cliente->setRG ($request->rg);
+        } else {
+            $cliente->setNomeFantasia($request->nomeFantasia);
+            $cliente->setInscricaoEstadual($request->inscricaoEstadual);
+            $cliente->setCNPJ($request->cnpj);
+        }
+
         $cliente->setTipo($request->tipo);
         $cliente->setCliente($request->cliente);
-        $cliente->setApelido($request->apelido);
-        $cliente->setNomeFantasia($request->nomeFantasia);
         $cliente->setEndereco($request->endereco);
         $cliente->setNumero($request->numero);
         $cliente->setComplemento($request->complemento);
         $cliente->setBairro($request->bairro);
         $cliente->setCEP($request->cep);
-
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $cliente->setCidade($cidade);
-
         $cliente->setTelefone($request->telefone);
         $cliente->setCelular($request->celular);
         $cliente->setEmail($request->email);
         $cliente->setNacionalidade($request->nacionalidade);
-        $cliente->setCPF($request->cpf);
-        $cliente->setRG ($request->rg);
         $cliente->setNascimento ($request->nascimento);
-
-        $cliente->setInscricaoEstadual($request->inscricaoEstadual);
-        $cliente->setCNPJ($request->cnpj);
         $cliente->setObservacao ($request->observacao);
-        $cliente->setLimiteCredito ($teste);
+        $cliente->setLimiteCredito ($request->limiteCredito);
 
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicaoPagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
 
         $cliente->setCreated_at(now()->toDateTimeString());
+
         $dados = $this->getDados($cliente);
-        dd($dados);
         return $this->clienteRepository->adicionar($dados);
     }
 
@@ -90,7 +91,7 @@ class ClienteService
             'id' => $cliente->getId(),
 
             'tipo' => $cliente->getTipo(),
-            'cliente' => $cliente->getId(),
+            'cliente' => $cliente->getCliente(),
             'apelido' => $cliente->getApelido(),
             'nome_fantasia' => $cliente->getNomeFantasia(),
             'endereco' => $cliente->getEndereco(),
@@ -99,21 +100,21 @@ class ClienteService
             'bairro' => $cliente->getBairro(),
             'cep' => $cliente->getCEP(),
 
-            'id_cidade' => $cliente->getCidade(),
+            'id_cidade' => $cliente->getCidade()->getId(),
 
-            'telefone' => $cliente->getId(),
-            'celular' => $cliente->getId(),
-            'email' => $cliente->getId(),
-            'nacionalidade' => $cliente->getId(),
-            'cpf' => $cliente->getId(),
-            'rg' => $cliente->getId(),
-            'nascimento' => $cliente->getId(),
-            'inscricao_estadual' => $cliente->getId(),
-            'cnpj' => $cliente->getId(),
-            'observacao' => $cliente->getId(),
-            'limite_credito' => $cliente->getId(),
+            'telefone' => $cliente->getTelefone(),
+            'celular' => $cliente->getCelular(),
+            'email' => $cliente->getEmail(),
+            'nacionalidade' => $cliente->getNacionalidade(),
+            'cpf' => $cliente->getCPF(),
+            'rg' => $cliente->getRG(),
+            'nascimento' => $cliente->getNascimento(),
+            'inscricao_estadual' => $cliente->getInscricaoEstadual(),
+            'cnpj' => $cliente->getCNPJ(),
+            'observacao' => $cliente->getObservacao(),
+            'limite_credito' => $cliente->getLimiteCredito(),
 
-            'condicao_pagamento' => $cliente->getId(),
+            'condicao_pagamento' => $cliente->getCondicaoPagamento()->getId(),
 
             'created_at' => $cliente->getCreated_at(),
             'updated_at' => $cliente->getUpdated_at()

@@ -51,7 +51,7 @@ class Cliente extends Model
         $this->inscricaoEstadual = '';
         $this->cnpj = '';
         $this->observacao = '';
-        $this->limiteCredito = '';
+        $this->limiteCredito = 0;
         $this->condicaoPagamento = New CondicaoPagamento;
     }
 
