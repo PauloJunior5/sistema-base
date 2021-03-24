@@ -320,12 +320,12 @@ class Cliente extends Model
     */
     public function getNascimento(): string
     {
-        return $this->rg;
+        return $this->nascimento;
     }
 
-    public function setNascimento(string $rg)
+    public function setNascimento(string $nascimento)
     {
-        $this->rg = $rg;
+        $this->nascimento = $nascimento;
     }
 
     /*

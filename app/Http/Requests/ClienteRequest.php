@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Arr;
 use Illuminate\Validation\Rule;
 
 class ClienteRequest extends FormRequest
@@ -30,15 +29,15 @@ class ClienteRequest extends FormRequest
         return [
             'cliente' => [
                 'required',
-                Rule::unique('clientes', 'cliente')->ignore($this->id),
+                Rule::unique('clientes', 'cliente')->ignore($this->cliente),
             ],
             'cnpj' => [
                 'required_if:tipo,==,pessoaJuridica',
-                Rule::unique('clientes', 'cnpj')->ignore($this->id),
+                Rule::unique('clientes', 'cnpj')->ignore($this->cnpj),
             ],
             'cpf' => [
                 'required_if:tipo,==,pessoaFisica',
-                Rule::unique('clientes', 'cpf')->ignore($this->id),
+                Rule::unique('clientes', 'cpf')->ignore($this->cpf),
             ],
             'nascimento' => [
                 'before_or_equal:' . $start_date,

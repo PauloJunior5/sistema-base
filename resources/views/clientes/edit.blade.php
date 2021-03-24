@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Código</label>
-                                    <input type="text" class="form-control" value="{{$cliente->getId()}}" readonly>
+                                    <input type="text" class="form-control" name="id" value="{{$cliente->getId()}}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
@@ -78,17 +78,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input-cliente" name="ddd_cidade" value="{{old('ddd_cidade', $cliente->getCidade()->getDDD())}}" readonly required>
+                                    <input type="text" class="form-control" id="ddd-cidade-input-cliente" value="{{old('ddd_cidade', $cliente->getCidade()->getDDD())}}" readonly required>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Cidade</label>
-                                    <input class="form-control readonly" id="cidade-input-cliente" value="{{old('cidade', $cliente->getCidade()->getCidade())}}" name="cidade" required>
+                                    <input class="form-control readonly" id="cidade-input-cliente" value="{{old('cidade', $cliente->getCidade()->getCidade())}}" required>
                                     <input type="hidden" id="id-cidade-input-cliente" name="id_cidade" value="{{old('id_cidade', $cliente->getCidade()->getId())}}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input-cliente" name="estado" value="{{old('estado', $cliente->getCidade()->getEstado()->getUF())}}" readonly>
+                                    <input class="form-control" id="uf-cidade-input-cliente" value="{{old('estado', $cliente->getCidade()->getEstado()->getUF())}}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
-                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento" value="{{ old('condicao_pagamento_input', $cliente->getCondicaoPagamento()->getCondicaoPagamento()) }}" readonly>
+                                    <input class="form-control" id='condicao_pagamento-input' value="{{ old('condicao_pagamento_input', $cliente->getCondicaoPagamento()->getCondicaoPagamento()) }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
@@ -167,7 +167,7 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Data de Criação</label>
-                                    <input type="datetime-local" class="form-control" value="{{$cliente->getCreated_at()}}" readonly>
+                                    <input type="datetime-local" name="created_at" class="form-control" value="{{$cliente->getCreated_at()}}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">

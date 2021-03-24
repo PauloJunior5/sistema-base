@@ -152,7 +152,7 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
-                                    <input class="form-control" type="number" name="limiteCredito" step="0.01" value="{{ old('limiteCredito') }}" required>
+                                    <input class="form-control" type="number" name="limite_credito" step="0.01" value="{{ old('limiteCredito') }}" required>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">

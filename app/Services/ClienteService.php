@@ -44,7 +44,7 @@ class ClienteService
         $cliente->setNacionalidade($request->nacionalidade);
         $cliente->setNascimento ($request->nascimento);
         $cliente->setObservacao ($request->observacao);
-        $cliente->setLimiteCredito ($request->limiteCredito);
+        $cliente->setLimiteCredito ($request->limite_credito);
 
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
@@ -57,13 +57,44 @@ class ClienteService
 
     public function instanciarEAtualizar(ClienteRequest $request)
     {
-        // $formaPagamento = new FormaPagamento;
-        // $formaPagamento->setId($request->id);
-        // $formaPagamento->setFormaPagamento($request->forma_pagamento);
-        // $formaPagamento->setCreated_at($request->created_at);
-        // $formaPagamento->setUpdated_at(Carbon::now()->toDateTimeString());
-        // $dados = $this->getDados($formaPagamento);
-        // return $this->formaPagamentoRepository->atualizar($dados);
+        $cliente = new Cliente;
+        $cliente->setId($request->id);
+
+        if (!empty($request->cpf)) {
+            $cliente->setApelido($request->apelido);
+            $cliente->setCPF($request->cpf);
+            $cliente->setRG ($request->rg);
+        } else {
+            $cliente->setNomeFantasia($request->nomeFantasia);
+            $cliente->setInscricaoEstadual($request->inscricaoEstadual);
+            $cliente->setCNPJ($request->cnpj);
+        }
+
+        $cliente->setTipo($request->tipo);
+        $cliente->setCliente($request->cliente);
+        $cliente->setEndereco($request->endereco);
+        $cliente->setNumero($request->numero);
+        $cliente->setComplemento($request->complemento);
+        $cliente->setBairro($request->bairro);
+        $cliente->setCEP($request->cep);
+        $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
+        $cliente->setCidade($cidade);
+        $cliente->setTelefone($request->telefone);
+        $cliente->setCelular($request->celular);
+        $cliente->setEmail($request->email);
+        $cliente->setNacionalidade($request->nacionalidade);
+        $cliente->setNascimento ($request->nascimento);
+        $cliente->setObservacao ($request->observacao);
+        $cliente->setLimiteCredito ($request->limite_credito);
+
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
+        $cliente->setCondicaoPagamento($condicaoPagamento);
+
+        $cliente->setCreated_at($request->created_at);
+        $cliente->setUpdated_at(now()->toDateTimeString());
+
+        $dados = $this->getDados($cliente);
+        return $this->clienteRepository->adicionar($dados);
     }
 
     /**

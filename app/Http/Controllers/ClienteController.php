@@ -70,8 +70,7 @@ class ClienteController extends Controller
 
     public function update(ClienteRequest $request)
     {
-        dd($request);
-        $cliente = $this->clienteService->instanciarECriar($request);
+        $cliente = $this->clienteService->instanciarEAtualizar($request);
         if ($cliente) {
             return redirect()->route('cliente.index')->with('Success', 'Cliente alterado com sucesso.')->send();
         } else {
