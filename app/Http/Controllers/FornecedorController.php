@@ -84,7 +84,7 @@ class FornecedorController extends Controller
         if ($fornecedor) {
             return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor excluído com sucesso.')->send();
         } else {
-            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel excluir fornecedor.')->send();
+            return redirect()->route('fornecedor.index')->with('Warning', 'Não foi possivel excluir fornecedor.')->send();
         }
     }
 }

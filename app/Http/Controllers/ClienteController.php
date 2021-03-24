@@ -78,11 +78,14 @@ class ClienteController extends Controller
         }
     }
 
-    public function destroy($cliente_id)
+    public function destroy(int $id)
     {
-        $cliente = Cliente::where('id', $cliente_id)->delete();
+        $cliente = $this->clienteRepository->remover($id);
+
         if ($cliente) {
-            return redirect()->route('cliente.index')->with('Success', 'Cliente excluido com sucesso.');
+            return redirect()->route('cliente.index')->with('Success', 'Cliente excluído com sucesso.')->send();
+        } else {
+            return redirect()->route('cliente.index')->with('Warning', 'Não foi possivel excluir cliente.')->send();
         }
     }
 }

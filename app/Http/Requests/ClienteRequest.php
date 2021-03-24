@@ -29,7 +29,7 @@ class ClienteRequest extends FormRequest
         return [
             'cliente' => [
                 'required',
-                Rule::unique('clientes', 'cliente')->ignore($this->cliente),
+                Rule::unique('clientes', 'cliente')->ignore($this->id),
             ],
             'cnpj' => [
                 'required_if:tipo,==,pessoaJuridica',
