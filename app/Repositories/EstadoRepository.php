@@ -15,26 +15,19 @@ class EstadoRepository
     public function adicionar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('estados')->insert($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel criar estado: ' . $th);
-
         }
         return $result;
     }
 
     public function findById(int $id)
     {
-
         $estado = DB::table('estados')->where('id', $id)->first();
         return $estado;
     }
@@ -42,19 +35,13 @@ class EstadoRepository
     public function atualizar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('estados')->where('id', $dados['id'])->update($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel editar estado: ' . $th);
-
         }
         return $result;
     }
@@ -62,19 +49,13 @@ class EstadoRepository
     public function remover($id)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('estados')->where('id', $id)->delete();
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel excluir estado: ' . $th);
-
         }
         return $result;
     }

@@ -16,19 +16,13 @@ class FornecedorRepository
     public function adicionar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('fornecedores')->insert($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel criar fornecedor ' . $th);
-
         }
         return $result;
     }
@@ -42,19 +36,13 @@ class FornecedorRepository
     public function atualizar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('fornecedores')->where('id', $dados['id'])->update($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel editar fornecedor: ' . $th);
-
         }
         return $result;
     }
@@ -62,19 +50,13 @@ class FornecedorRepository
     public function remover($id)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('fornecedores')->where('id', $id)->delete();
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel excluir fornecedor: ' . $th);
-
         }
         return $result;
     }

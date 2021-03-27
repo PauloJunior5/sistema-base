@@ -28,7 +28,6 @@ class ContratoRepository
 
     public function findById(int $id)
     {
-
         $contrato = DB::table('contratos')->where('id', $id)->first();
         return $contrato;
     }
@@ -36,19 +35,13 @@ class ContratoRepository
     public function atualizar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('contratos')->where('id', $dados['id'])->update($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel editar contrato: ' . $th);
-
         }
         return $result;
     }
@@ -56,19 +49,13 @@ class ContratoRepository
     public function remover($id)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('contratos')->where('id', $id)->delete();
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel excluir contrato: ' . $th);
-
         }
         return $result;
     }
