@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Services\FornecedorService;
 use App\Repositories\PaisRepository;
 use App\Http\Requests\FornecedorRequest;
-
 use App\Repositories\CidadeRepository;
 use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\EstadoRepository;
@@ -38,14 +37,12 @@ class FornecedorController extends Controller
         $cidades  = $this->cidadeRepository->mostrarTodos();
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
-
         return view('fornecedores.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento'));
     }
 
     public function store(FornecedorRequest $request)
     {
         $fornecedor = $this->fornecedorService->instanciarECriar($request);
-
         if ($fornecedor) {
             return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor criado com sucesso.')->send();
         } else {
@@ -56,20 +53,17 @@ class FornecedorController extends Controller
     public function edit(int $id)
     {
         $fornecedor = $this->fornecedorService->buscarEInstanciar($id);
-
         $paises  = $this->paisRepository->mostrarTodos();
         $estados  = $this->estadoRepository->mostrarTodos();
         $cidades  = $this->cidadeRepository->mostrarTodos();
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
-
         return view('fornecedores.edit', compact('fornecedor', 'paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento'));
     }
 
     public function update(FornecedorRequest $request)
     {
         $fornecedor = $this->fornecedorService->instanciarEAtualizar($request);
-
         if ($fornecedor) {
             return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor alterado com sucesso.')->send();
         } else {
@@ -80,7 +74,6 @@ class FornecedorController extends Controller
     public function destroy(int $id)
     {
         $fornecedor = $this->fornecedorRepository->remover($id);
-
         if ($fornecedor) {
             return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor excluído com sucesso.')->send();
         } else {

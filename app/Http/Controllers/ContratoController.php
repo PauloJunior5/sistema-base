@@ -9,7 +9,6 @@ use App\Services\ContratoService;
 
 class ContratoController extends Controller
 {
-
     public function __construct()
     {
         $this->contratoRepository = New ContratoRepository;
