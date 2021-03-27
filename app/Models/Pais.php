@@ -6,16 +6,22 @@ use App\Models\Model;
 
 class Pais extends Model
 {
-    protected $pais;
-    protected $sigla;
+    protected string $pais;
+    protected string $sigla;
 
     public function __construct()
     {
-        $this->pais = '';
-        $this->sigla = '';
+        $this->pais = null;
+        $this->sigla = null;
     }
 
-    public function getPais()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set País
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getPais(): string
     {
         return $this->pais;
     }
@@ -25,7 +31,13 @@ class Pais extends Model
         $this->pais = $pais;
     }
 
-    public function getSigla()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Sigla
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getSigla(): string
     {
         return $this->sigla;
     }

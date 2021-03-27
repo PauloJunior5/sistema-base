@@ -4,9 +4,9 @@ namespace App\Models;
 
 class Model
 {
-    protected $id;
-    protected $created_at;
-    protected $updated_at;
+    protected int $id;
+    protected string $created_at;
+    protected string $updated_at;
 
     function __construct()
     {
@@ -15,7 +15,13 @@ class Model
         $this->updated_at = null;
     }
 
-    public function getId()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Id
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getId(): int
     {
         return $this->id;
     }
@@ -25,7 +31,13 @@ class Model
         $this->id = $id;
     }
 
-    public function getCreated_at()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Created_at
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getCreated_at(): string
     {
         return $this->created_at;
     }
@@ -35,7 +47,13 @@ class Model
         $this->created_at = $created_at;
     }
 
-    public function getUpdated_at()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Updated_at
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getUpdated_at(): string
     {
         return $this->updated_at;
     }

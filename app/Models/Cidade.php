@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Model;
-use App\Models\Estado;
 
 class Cidade extends Model
 {

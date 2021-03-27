@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Cliente;
-
 class Contrato extends Model
 {
-    protected $contrato;
-    protected Object $responsavel;
+    protected string $contrato;
+    protected Cliente $responsavel;
 
     function __construct()
     {
@@ -15,7 +13,13 @@ class Contrato extends Model
         $this->responsavel = new Cliente;
     }
 
-    public function getContrato()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Contrato
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getContrato(): string
     {
         return $this->contrato;
     }
@@ -25,7 +29,13 @@ class Contrato extends Model
         $this->contrato = $contrato;
     }
 
-    public function getResponsavel()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Responsável
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getResponsavel(): Cliente
     {
         return $this->responsavel;
     }

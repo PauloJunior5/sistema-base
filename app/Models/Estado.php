@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use App\Models\Model;
-use App\Models\Pais;
 
 class Estado extends Model
-{    
-    protected $uf;
-    protected $estado;
-    protected $pais;
+{
+    protected string $uf;
+    protected string $estado;
+    protected Pais $pais;
 
     public function __construct()
     {
@@ -18,6 +17,12 @@ class Estado extends Model
         $this->pais = new Pais();
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set UF
+    |--------------------------------------------------------------------------
+    |
+    */
     public function getUF(): string
     {
         return $this->uf;
@@ -28,6 +33,12 @@ class Estado extends Model
         $this->uf = $uf;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Estado
+    |--------------------------------------------------------------------------
+    |
+    */
     public function getEstado(): string
     {
         return $this->estado;
@@ -38,6 +49,12 @@ class Estado extends Model
         $this->estado = $estado;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set País
+    |--------------------------------------------------------------------------
+    |
+    */
     public function getPais(): Pais
     {
         return $this->pais;

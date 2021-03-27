@@ -32,7 +32,7 @@ class Parcela extends Model
         return $this->parcela;
     }
 
-    public function setParcela($parcela)
+    public function setParcela(int $parcela)
     {
         $this->parcela = $parcela;
     }
@@ -48,7 +48,7 @@ class Parcela extends Model
         return $this->dias;
     }
 
-    public function setDias($dias)
+    public function setDias(int $dias)
     {
         $this->dias = $dias;
     }
@@ -64,7 +64,7 @@ class Parcela extends Model
         return $this->porcentual;
     }
 
-    public function setPorcentual($porcentual)
+    public function setPorcentual(float $porcentual)
     {
         $this->porcentual = $porcentual;
     }
@@ -80,7 +80,7 @@ class Parcela extends Model
         return $this->condicaoPagamento;
     }
 
-    public function setCondicaoPagamento($condicaoPagamento = 1)
+    public function setCondicaoPagamento(CondicaoPagamento $condicaoPagamento)
     {
         $this->condicaoPagamento = $condicaoPagamento;
     }
@@ -96,7 +96,7 @@ class Parcela extends Model
         return $this->formaPagamento;
     }
 
-    public function setFormaPagamento($formaPagamento)
+    public function setFormaPagamento(FormaPagamento $formaPagamento)
     {
         $this->formaPagamento = $formaPagamento;
     }

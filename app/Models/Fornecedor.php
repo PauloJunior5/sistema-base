@@ -3,8 +3,6 @@
 namespace App\Models;
 
 use App\Models\Model;
-use App\Models\Cidade;
-use App\Models\CondicaoPagamento;
 
 class Fornecedor extends Model
 {
@@ -58,7 +56,7 @@ class Fornecedor extends Model
         return $this->fornecedor;
     }
 
-    public function setFornecedor($fornecedor)
+    public function setFornecedor(string $fornecedor)
     {
         $this->fornecedor = $fornecedor;
     }
@@ -74,7 +72,7 @@ class Fornecedor extends Model
         return $this->nomeFantasia;
     }
 
-    public function setNomeFantasia($nomeFantasia)
+    public function setNomeFantasia(string $nomeFantasia)
     {
         $this->nomeFantasia = $nomeFantasia;
     }
@@ -90,7 +88,7 @@ class Fornecedor extends Model
         return $this->endereco;
     }
 
-    public function setEndereco($endereco)
+    public function setEndereco(string $endereco)
     {
         $this->endereco = $endereco;
     }
@@ -106,7 +104,7 @@ class Fornecedor extends Model
         return $this->numero;
     }
 
-    public function setNumero($numero)
+    public function setNumero(string $numero)
     {
         $this->numero = $numero;
     }
@@ -122,7 +120,7 @@ class Fornecedor extends Model
         return $this->complemento;
     }
 
-    public function setComplemento($complemento)
+    public function setComplemento(string $complemento)
     {
         $this->complemento = $complemento;
     }
@@ -138,7 +136,7 @@ class Fornecedor extends Model
         return $this->bairro;
     }
 
-    public function setBairro($bairro)
+    public function setBairro(string $bairro)
     {
         $this->bairro = $bairro;
     }
@@ -154,7 +152,7 @@ class Fornecedor extends Model
         return $this->cep;
     }
 
-    public function setCEP($cep)
+    public function setCEP(string $cep)
     {
         $this->cep = $cep;
     }
@@ -170,7 +168,7 @@ class Fornecedor extends Model
         return $this->cidade;
     }
 
-    public function setCidade($cidade)
+    public function setCidade(string $cidade)
     {
         $this->cidade = $cidade;
     }
@@ -186,7 +184,7 @@ class Fornecedor extends Model
         return $this->telefone;
     }
 
-    public function setTelefone($telefone)
+    public function setTelefone(string $telefone)
     {
         $this->telefone = $telefone;
     }
@@ -202,7 +200,7 @@ class Fornecedor extends Model
         return $this->celular;
     }
 
-    public function setCelular($celular)
+    public function setCelular(string $celular)
     {
         $this->celular = $celular;
     }
@@ -218,7 +216,7 @@ class Fornecedor extends Model
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }
@@ -234,7 +232,7 @@ class Fornecedor extends Model
         return $this->contato;
     }
 
-    public function setContato($contato)
+    public function setContato(string $contato)
     {
         $this->contato = $contato;
     }
@@ -250,7 +248,7 @@ class Fornecedor extends Model
         return $this->cnpj;
     }
 
-    public function setCNPJ($cnpj)
+    public function setCNPJ(string $cnpj)
     {
         $this->cnpj = $cnpj;
     }
@@ -266,7 +264,7 @@ class Fornecedor extends Model
         return $this->inscricaoEstadual;
     }
 
-    public function setInscricaoEstadual($inscricaoEstadual)
+    public function setInscricaoEstadual(string $inscricaoEstadual)
     {
         $this->inscricaoEstadual = $inscricaoEstadual;
     }
@@ -282,7 +280,7 @@ class Fornecedor extends Model
         return $this->observacao;
     }
 
-    public function setObservacao($observacao)
+    public function setObservacao(string $observacao)
     {
         $this->observacao = $observacao;
     }
@@ -298,7 +296,7 @@ class Fornecedor extends Model
         return $this->limiteCredito;
     }
 
-    public function setLimiteCredito($limiteCredito)
+    public function setLimiteCredito(string $limiteCredito)
     {
         $this->limiteCredito = $limiteCredito;
     }

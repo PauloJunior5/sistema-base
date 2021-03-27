@@ -24,7 +24,7 @@ class FormaPagamento extends Model
         return $this->formaPagamento;
     }
 
-    public function setFormaPagamento($formaPagamento)
+    public function setFormaPagamento(string $formaPagamento)
     {
         $this->formaPagamento = $formaPagamento;
     }

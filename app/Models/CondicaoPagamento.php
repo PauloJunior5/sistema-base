@@ -30,7 +30,7 @@ class CondicaoPagamento extends Model
         return $this->condicaoPagamento;
     }
 
-    public function setCondicaoPagamento($condicaoPagamento)
+    public function setCondicaoPagamento(string $condicaoPagamento)
     {
         $this->condicaoPagamento = $condicaoPagamento;
     }
@@ -46,7 +46,7 @@ class CondicaoPagamento extends Model
         return $this->multa;
     }
 
-    public function setMulta($multa)
+    public function setMulta(string $multa)
     {
         $this->multa = $multa;
     }
@@ -62,7 +62,7 @@ class CondicaoPagamento extends Model
         return $this->juro;
     }
 
-    public function setJuro($juro)
+    public function setJuro(float $juro)
     {
         $this->juro = $juro;
     }
@@ -78,7 +78,7 @@ class CondicaoPagamento extends Model
         return $this->desconto;
     }
 
-    public function setDesconto($desconto)
+    public function setDesconto(float $desconto)
     {
         $this->desconto = $desconto;
     }
