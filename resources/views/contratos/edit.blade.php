@@ -14,9 +14,9 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('contrato.update', $contrato->id) }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('contrato.update', $contrato->getId()) }}" autocomplete="off" class="form-horizontal">
                     @csrf
-                    @method('post')
+                    @method('PUT')
                     <div class="card ">
                         <div class="card-header card-header-primary">
                             <h4 class="card-title">Novo Contrato</h4>
@@ -27,26 +27,28 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" readonly placeholder="#" value="{{$contrato->id}}"/>
+                                        <input class="form-control" readonly placeholder="#" name="id" value="{{$contrato->getId()}}"/>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-10">
                                     <label class="col-form-label">Contrato</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="contrato" id="input-contrato" type="text" value="{{$contrato->contrato}}" required />
+                                        <input class="form-control" name="contrato" id="input-contrato" type="text" value="{{$contrato->getContrato()}}" required />
                                     </div>
                                 </div>
-                                <div class="col-sm-1">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Id do responsável</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-id-responsavel" type="text" name="id_responsavel" value="{{$contrato->id_responsavel}}" required/>
+                                        <input class="form-control" id="input-id-responsavel" type="text" name="id_responsavel" value="{{$contrato->getResponsavel()->getId()}}" required/>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <label class="col-form-label">Responsável</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-responsavel" value="{{$cliente->cliente}}" readonly />
+                                        <input class="form-control" id="input-responsavel" value="{{$contrato->getResponsavel()->getCliente()}}" readonly />
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
@@ -57,24 +59,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="datetime" class="form-control" value="{{$contrato->created_at}}" readonly>
+                                        <input type="datetime" class="form-control" value="{{$contrato->getCreated_at()}}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
-                                        <input type="datetime" class="form-control" value="{{$contrato->updated_at}}" readonly>
+                                        <input type="datetime" class="form-control" value="{{$contrato->getUpdated_at()}}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('estado.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <a href="{{ route('contrato.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
@@ -83,5 +85,5 @@
         </div>
     </div>
 </div>
-@include('includes.scripts.paises')
+@include('includes.scripts.clientes')
 @endsection

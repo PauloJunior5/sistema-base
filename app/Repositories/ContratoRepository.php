@@ -26,61 +26,50 @@ class ContratoRepository
         return $result;
     }
 
-    public function edit($id)
+    public function findById(int $id)
     {
-        $clientes = DB::table('clientes')->get();
+
         $contrato = DB::table('contratos')->where('id', $id)->first();
-        $cliente = DB::table('clientes')->where('id', $contrato->id_responsavel)->first();
-
-        $resultado = [
-            'clientes' => $clientes,
-            'contrato' => $contrato,
-            'cliente' => $cliente
-        ];
-
-        return $resultado;
+        return $contrato;
     }
 
-    public function update(Contrato $pais)
+    public function atualizar($dados)
     {
+        $result = null;
+
         DB::beginTransaction();
         try {
 
-            $dados = [
-                // 'pais' => $pais->getPais(),
-                // 'sigla' => $pais->getSigla(),
-                // 'updated_at' => $pais->getUpdated_at()
-            ];
-
-            DB::table('paises')->where('id', $pais->getId())->update($dados);
+            $result = DB::table('contratos')->where('id', $dados['id'])->update($dados);
 
             DB::commit();
-            return redirect()->route('pais.index')->with('Success', 'País alterado com sucesso.');
 
         } catch (\Throwable $th) {
 
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel editar país: ' . $th);
-            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel editar país.');
+            Log::debug('Warning - Não foi possivel editar contrato: ' . $th);
 
         }
+        return $result;
     }
 
-    public function destroy($id)
+    public function remover($id)
     {
+        $result = null;
+
         DB::beginTransaction();
         try {
 
-            DB::table('paises')->where('id', $id)->delete();
+            $result = DB::table('contratos')->where('id', $id)->delete();
+
             DB::commit();
-            return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
 
         } catch (\Throwable $th) {
 
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel excluir país: ' . $th);
-            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Verifique se existe vínculo com cidades e/ou estados.');
+            Log::debug('Warning - Não foi possivel excluir contrato: ' . $th);
 
         }
+        return $result;
     }
 }

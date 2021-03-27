@@ -42,16 +42,20 @@ class ContratoController extends Controller
 
     public function edit($id)
     {
-        $resultado = $this->contratoInterface->edit($id);
-        $clientes = $resultado['clientes'];
-        $contrato = $resultado['contrato'];
-        $cliente = $resultado['cliente'];
-        return view('contratos.edit', compact('clientes', 'contrato', 'cliente'));
+        $clientes = $this->clienteRepository->mostrarTodos();
+        $contrato = $this->contratoService->buscarEInstanciar($id);
+        return view('contratos.edit', compact('clientes', 'contrato'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ContratoRequest $request)
     {
-        //
+        $contrato = $this->contratoService->instanciarEAtualizar($request);
+
+        if ($contrato) {
+            return redirect()->route('contrato.index')->with('Success', 'Contrato alterado com sucesso.');
+        } else {
+            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel editar contrato.');
+        }
     }
 
     public function destroy($id)

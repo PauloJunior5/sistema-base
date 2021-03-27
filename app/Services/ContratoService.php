@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Http\Requests\ContratoRequest;
 use App\Models\Contrato;
-use App\Repositories\ClienteRepository;
 use App\Repositories\ContratoRepository;
 
 class ContratoService
@@ -12,14 +11,14 @@ class ContratoService
     public function __construct()
     {
         $this->contratoRepository = New ContratoRepository;
-        $this->clienteService = New ClienteRepository;
+        $this->clienteService = New ClienteService;
     }
 
     public function instanciarECriar(ContratoRequest $request)
     {
         $contrato = New Contrato;
         $contrato->setContrato($request->contrato);
-        $cliente = $this->clienteService->buscarEInstanciar($request->id_cliente);
+        $cliente = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $contrato->setResponsavel($cliente);
         $contrato->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($contrato);
@@ -33,7 +32,7 @@ class ContratoService
         $contrato->setCreated_at($request->created_at);
         $contrato->setUpdated_at(now()->toDateTimeString());
         $contrato->setContrato($request->contrato);
-        $cliente = $this->clienteService->buscarEInstanciar($request->id_cliente);
+        $cliente = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $contrato->setResponsavel($cliente);
         $dados = $this->getDados($contrato);
         return $this->contratoRepository->atualizar($dados);
@@ -51,7 +50,7 @@ class ContratoService
         $contrato->setCreated_at($result->created_at ?? null);
         $contrato->setUpdated_at($result->updated_at ?? null);
         $contrato->setContrato($result->contrato);
-        $cliente = $this->clienteService->buscarEInstanciar($result->id_cliente);
+        $cliente = $this->clienteService->buscarEInstanciar($result->id_responsavel);
         $contrato->setResponsavel($cliente);
         return $contrato;
     }
@@ -65,7 +64,7 @@ class ContratoService
         $dados = [
             'id' => $contrato->getId(),
             'contrato' => $contrato->getContrato(),
-            'id_cliente' => $contrato->getResponsavel()->getId(),
+            'id_responsavel' => $contrato->getResponsavel()->getId(),
             'created_at' => $contrato->getCreated_at(),
             'updated_at' => $contrato->getUpdated_at()
         ];
