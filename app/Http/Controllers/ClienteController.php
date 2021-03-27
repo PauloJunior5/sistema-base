@@ -82,11 +82,10 @@ class ClienteController extends Controller
     public function destroy(int $id)
     {
         $cliente = $this->clienteRepository->remover($id);
-
         if ($cliente) {
             return redirect()->route('cliente.index')->with('Success', 'Cliente excluído com sucesso.')->send();
         } else {
-            return redirect()->route('cliente.index')->with('Warning', 'Não foi possivel excluir cliente.')->send();
+            return redirect()->route('cliente.index')->with('Warning', 'Não foi possivel excluir cliente. Verifique se existem vínculos')->send();
         }
     }
 }

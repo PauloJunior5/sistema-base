@@ -16,19 +16,13 @@ class CidadeRepository
     public function adicionar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('cidades')->insert($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel criar cidade: ' . $th);
-
         }
         return $result;
     }
@@ -42,19 +36,13 @@ class CidadeRepository
     public function atualizar($dados)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('cidades')->where('id', $dados['id'])->update($dados);
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel editar cidade: ' . $th);
-
         }
         return $result;
     }
@@ -62,19 +50,13 @@ class CidadeRepository
     public function remover($id)
     {
         $result = null;
-
         DB::beginTransaction();
         try {
-
             $result = DB::table('cidades')->where('id', $id)->delete();
-
             DB::commit();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel excluir cidade: ' . $th);
-
         }
         return $result;
     }
