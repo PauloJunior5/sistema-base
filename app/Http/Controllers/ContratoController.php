@@ -50,7 +50,6 @@ class ContratoController extends Controller
     public function update(ContratoRequest $request)
     {
         $contrato = $this->contratoService->instanciarEAtualizar($request);
-
         if ($contrato) {
             return redirect()->route('contrato.index')->with('Success', 'Contrato alterado com sucesso.');
         } else {
@@ -60,6 +59,11 @@ class ContratoController extends Controller
 
     public function destroy($id)
     {
-        //
+        $contrato = $this->contratoRepository->remover($id);
+        if ($contrato) {
+            return redirect()->route('contrato.index')->with('Success', 'Contrato excluído com sucesso.');
+        } else {
+            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel excluir contrato');
+        }
     }
 }

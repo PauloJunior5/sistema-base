@@ -62,14 +62,14 @@
                                 <div class="col-md-3">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="datetime" class="form-control" value="{{$contrato->getCreated_at()}}" readonly>
+                                        <input type="datetime" class="form-control" name="created_at" value="{{$contrato->getCreated_at()}}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
-                                        <input type="datetime" class="form-control" value="{{$contrato->getUpdated_at()}}" readonly>
+                                        <input type="datetime" class="form-control" name="updated_at" value="{{$contrato->getUpdated_at()}}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
