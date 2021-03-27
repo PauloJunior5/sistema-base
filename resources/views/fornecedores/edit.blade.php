@@ -3,6 +3,8 @@
 @include('layouts.modais.chamada-modal.cidade')
 @include('layouts.modais.chamada-modal.estado')
 @include('layouts.modais.chamada-modal.pais')
+@include('layouts.modais.chamada-modal.condicaoPagamento')
+@include('layouts.modais.chamada-modal.formaPagamento')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -143,6 +145,8 @@
         </div>
     </div>
 </div>
+
 @include('includes.scripts.cidades')
-@include('includes.scripts.cliente-condicao-pagamento')
+@include('includes.scripts.condicoesPagamento')
+@include('includes.scripts.parcelas')
 @endsection
