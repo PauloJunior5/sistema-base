@@ -7,7 +7,6 @@ use App\Models\Parcela;
 use App\Repositories\CondicaoPagamentoRepository;
 use App\Http\Requests\CondicaoPagamentoRequest;
 use App\Repositories\ParcelaRepository;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -28,7 +27,7 @@ class CondicaoPagamentoService
         $condicaoPagamento->setMulta($request->multa);
         $condicaoPagamento->setJuro($request->juro);
         $condicaoPagamento->setdesconto($request->desconto);
-        $condicaoPagamento->setCreated_at(Carbon::now()->toDateTimeString());
+        $condicaoPagamento->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($condicaoPagamento);
 
         $result = null;
@@ -51,7 +50,7 @@ class CondicaoPagamentoService
                     $parcela->setFormaPagamento($formaPagamento);
                     $condicaoPagamento = $this->buscarEInstanciar($idCondicaoPagamento);
                     $parcela->setCondicaoPagamento($condicaoPagamento);
-                    $parcela->setCreated_at(Carbon::now()->toDateTimeString());
+                    $parcela->setCreated_at(now()->toDateTimeString());
                     $dados = $this->parcelaService->getDados($parcela);
                     $result = $this->parcelaRepository->adicionar($dados);
                 }
@@ -69,7 +68,7 @@ class CondicaoPagamentoService
         $condicaoPagamento = new CondicaoPagamento;
         $condicaoPagamento->setId($request->id);
         $condicaoPagamento->setCreated_at($request->created_at);
-        $condicaoPagamento->setUpdated_at(Carbon::now()->toDateTimeString());
+        $condicaoPagamento->setUpdated_at(now()->toDateTimeString());
         $condicaoPagamento->setCondicaoPagamento($request->condicao_pagamento);
         $condicaoPagamento->setMulta($request->multa);
         $condicaoPagamento->setJuro($request->juro);
@@ -98,12 +97,12 @@ class CondicaoPagamentoService
 
                     if (isset($objeto->id)) {
                         $parcela->setId($objeto->id);
-                        $parcela->setUpdated_at(Carbon::now()->toDateTimeString());
+                        $parcela->setUpdated_at(now()->toDateTimeString());
                         $parcela->setCreated_at($objeto->created_at);
                         $dados = $this->parcelaService->getDados($parcela);
                         $result = $this->parcelaRepository->atualizar($dados);
                     } else {
-                        $parcela->setCreated_at(Carbon::now()->toDateTimeString());
+                        $parcela->setCreated_at(now()->toDateTimeString());
                         $dados = $this->parcelaService->getDados($parcela);
                         $result = $this->parcelaRepository->adicionar($dados);
                     }

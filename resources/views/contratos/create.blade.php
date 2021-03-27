@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Id do responsável</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-id-responsavel"  name="id_responsavel" type="text" required/>

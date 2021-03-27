@@ -10,6 +10,7 @@ use App\Repositories\EstadoRepository;
 use App\Repositories\FormaPagamentoRepository;
 use App\Repositories\PaisRepository;
 use App\Services\ClienteService;
+use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
@@ -50,7 +51,7 @@ class ClienteController extends Controller
         }
     }
 
-    public function show(ClienteRequest $request)
+    public function show(Request $request)
     {
         $cliente = $this->clienteRepository->findById($request->id_cliente);
         return response()->json($cliente);

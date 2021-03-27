@@ -2,51 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contrato;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ContratoRequest;
+use App\Repositories\ClienteRepository;
+use App\Repositories\ContratoRepository;
+use App\Services\ContratoService;
 
 class ContratoController extends Controller
 {
 
     public function __construct()
     {
-
+        $this->contratoRepository = New ContratoRepository;
+        $this->contratoService = New ContratoService;
+        $this->clienteRepository = New ClienteRepository;
     }
 
     public function index()
     {
-        $contratos = $this->contratoInterface->index();
+        $contratos = $this->contratoRepository->mostrarTodos();
         return view('contratos.index', compact('contratos'));
     }
 
     public function create()
     {
-        $clientes = $this->contratoInterface->create();
+        $clientes = $this->clienteRepository->mostrarTodos();
         return view('contratos.create', compact('clientes'));
     }
 
-    public function store(Request $request)
+    public function store(ContratoRequest $request)
     {
+        $contrato = $this->contratoService->instanciarECriar($request);
 
-        $cliente = json_decode($this->showCliente($request->id_responsavel)->getContent());
-
-        // $teste = get_object_vars($cliente);
-
-        $teste = DB::table('paises')->where('id', 1)->first();
-
-        $contrato = new Contrato;
-        $contrato->setContrato($request->get('contrato'));
-        $contrato->setResponsavel($teste);
-        $contrato->setCreated_at(Carbon::now()->toDateTimeString());
-
-        $this->contratoInterface->store($contrato);
-    }
-
-    public function show($id)
-    {
-        return $this->contratoInterface->show($id);
+        if ($contrato) {
+            return redirect()->route('contrato.index')->with('Success', 'Contrato criado com sucesso.')->send();
+        } else {
+            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel criar contrato.')->send();
+        }
     }
 
     public function edit($id)

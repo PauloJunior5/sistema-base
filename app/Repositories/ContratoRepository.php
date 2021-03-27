@@ -4,49 +4,26 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Interfaces\ContratoInterface;
-use App\Models\Contrato;
 
-class ContratoRepository implements ContratoInterface
+class ContratoRepository
 {
-    public function index()
+    public function mostrarTodos()
     {
         return DB::table('contratos')->get();
     }
 
-    public function create()
+    public function adicionar($dados)
     {
-        return DB::table('clientes')->get();
-    }
-
-    public function store(Contrato $contrato)
-    {
+        $result = null;
         DB::beginTransaction();
         try {
-
-            $dados = [
-                'contrato' => $contrato->getContrato(),
-                'id_responsavel' => $contrato->getResponsavel()->id,
-                'created_at' => $contrato->getCreated_at(),
-            ];
-
-            DB::table('contratos')->insert($dados);
-
+            $result = DB::table('contratos')->insert($dados);
             DB::commit();
-            return redirect()->route('contrato.index')->with('Success', 'Contrato criado com sucesso.')->send();
-
         } catch (\Throwable $th) {
-
             DB::rollBack();
             Log::debug('Warning - Não foi possivel criar contrato: ' . $th);
-            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel criar contrato.')->send();
-
         }
-    }
-
-    public function show($id)
-    {
-        //
+        return $result;
     }
 
     public function edit($id)
