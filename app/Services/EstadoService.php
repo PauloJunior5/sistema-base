@@ -10,13 +10,13 @@ class EstadoService
 {
     public function __construct()
     {
-        $this->estadoRepository = New EstadoRepository;
-        $this->paisService = New PaisService;
+        $this->estadoRepository = new EstadoRepository;
+        $this->paisService = new PaisService;
     }
 
     public function instanciarECriar(EstadoRequest $request)
     {
-        $estado = New Estado;
+        $estado = new Estado;
         $estado->setEstado($request->estado);
         $estado->setUF($request->uf);
         $estado->setCreated_at(now()->toDateTimeString());
@@ -28,7 +28,7 @@ class EstadoService
 
     public function instanciarEAtualizar(EstadoRequest $request)
     {
-        $estado = New Estado;
+        $estado = new Estado;
         $estado->setId($request->id);
         $estado->setCreated_at($request->created_at);
         $estado->setUpdated_at(now()->toDateTimeString());
@@ -47,7 +47,7 @@ class EstadoService
     public function buscarEInstanciar(int $id)
     {
         $result = $this->estadoRepository->findById($id);
-        $estado = New Estado();
+        $estado = new Estado();
         $estado->setId($result->id);
         $estado->setCreated_at($result->created_at ?? null);
         $estado->setUpdated_at($result->updated_at ?? null);

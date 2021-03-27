@@ -10,8 +10,8 @@ class FormaPagamentoController extends Controller
 {
     public function __construct()
     {
-        $this->formaPagamentoRepository = New FormaPagamentoRepository;
-        $this->formaPagamentoService = New FormaPagamentoService;
+        $this->formaPagamentoRepository = new FormaPagamentoRepository;
+        $this->formaPagamentoService = new FormaPagamentoService;
     }
 
     public function index()

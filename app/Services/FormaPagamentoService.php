@@ -10,7 +10,7 @@ class FormaPagamentoService
 {
     public function __construct()
     {
-        $this->formaPagamentoRepository = New FormaPagamentoRepository;
+        $this->formaPagamentoRepository = new FormaPagamentoRepository;
     }
 
     public function instanciarECriar(FormaPagamentoRequest $request)

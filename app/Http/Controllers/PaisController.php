@@ -10,8 +10,8 @@ class PaisController extends Controller
 {
     public function __construct()
     {
-        $this->paisRepository = New PaisRepository;
-        $this->paisService = New PaisService;
+        $this->paisRepository = new PaisRepository;
+        $this->paisService = new PaisService;
     }
 
     public function index()

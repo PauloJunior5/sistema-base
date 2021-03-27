@@ -10,13 +10,13 @@ class ContratoService
 {
     public function __construct()
     {
-        $this->contratoRepository = New ContratoRepository;
-        $this->clienteService = New ClienteService;
+        $this->contratoRepository = new ContratoRepository;
+        $this->clienteService = new ClienteService;
     }
 
     public function instanciarECriar(ContratoRequest $request)
     {
-        $contrato = New Contrato;
+        $contrato = new Contrato;
         $contrato->setContrato($request->contrato);
         $cliente = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $contrato->setResponsavel($cliente);
@@ -27,7 +27,7 @@ class ContratoService
 
     public function instanciarEAtualizar(ContratoRequest $request)
     {
-        $contrato = New Contrato;
+        $contrato = new Contrato;
         $contrato->setId($request->id);
         $contrato->setCreated_at($request->created_at);
         $contrato->setUpdated_at(now()->toDateTimeString());
@@ -45,7 +45,7 @@ class ContratoService
     public function buscarEInstanciar(int $id)
     {
         $result = $this->contratoRepository->findById($id);
-        $contrato = New Contrato;
+        $contrato = new Contrato;
         $contrato->setId($result->id);
         $contrato->setCreated_at($result->created_at ?? null);
         $contrato->setUpdated_at($result->updated_at ?? null);

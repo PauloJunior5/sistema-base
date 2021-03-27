@@ -16,13 +16,13 @@ class ClienteController extends Controller
 {
     public function __construct()
     {
-        $this->clienteRepository = New ClienteRepository;
-        $this->clienteService = New ClienteService;
-        $this->paisRepository = New PaisRepository;
-        $this->estadoRepository = New EstadoRepository;
-        $this->cidadeRepository = New CidadeRepository;
-        $this->formasPagamentoRepository = New FormaPagamentoRepository;
-        $this->condicoesPagamentoRepository = New CondicaoPagamentoRepository;
+        $this->clienteRepository = new ClienteRepository;
+        $this->clienteService = new ClienteService;
+        $this->paisRepository = new PaisRepository;
+        $this->estadoRepository = new EstadoRepository;
+        $this->cidadeRepository = new CidadeRepository;
+        $this->formasPagamentoRepository = new FormaPagamentoRepository;
+        $this->condicoesPagamentoRepository = new CondicaoPagamentoRepository;
     }
 
     public function index()

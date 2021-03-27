@@ -40,7 +40,7 @@ class Cliente extends Model
         $this->complemento = '';
         $this->bairro = '';
         $this->cep = '';
-        $this->cidade = New Cidade;
+        $this->cidade = new Cidade;
         $this->telefone = '';
         $this->celular = '';
         $this->email = '';
@@ -52,7 +52,7 @@ class Cliente extends Model
         $this->cnpj = '';
         $this->observacao = '';
         $this->limiteCredito = 0;
-        $this->condicaoPagamento = New CondicaoPagamento;
+        $this->condicaoPagamento = new CondicaoPagamento;
     }
 
     /*

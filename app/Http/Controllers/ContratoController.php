@@ -11,9 +11,9 @@ class ContratoController extends Controller
 {
     public function __construct()
     {
-        $this->contratoRepository = New ContratoRepository;
-        $this->contratoService = New ContratoService;
-        $this->clienteRepository = New ClienteRepository;
+        $this->contratoRepository = new ContratoRepository;
+        $this->contratoService = new ContratoService;
+        $this->clienteRepository = new ClienteRepository;
     }
 
     public function index()

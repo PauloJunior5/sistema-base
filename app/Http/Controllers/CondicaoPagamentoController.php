@@ -12,10 +12,10 @@ class CondicaoPagamentoController extends Controller
 {
     public function __construct()
     {
-        $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository;
-        $this->formaPagamentoRepository = New FormaPagamentoRepository;
-        $this->parcelaRepository = New ParcelaRepository;
-        $this->condicaoPagamentoService = New CondicaoPagamentoService;
+        $this->condicaoPagamentoRepository = new CondicaoPagamentoRepository;
+        $this->formaPagamentoRepository = new FormaPagamentoRepository;
+        $this->parcelaRepository = new ParcelaRepository;
+        $this->condicaoPagamentoService = new CondicaoPagamentoService;
     }
 
     public function index()

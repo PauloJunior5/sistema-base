@@ -14,10 +14,10 @@ class CondicaoPagamentoService
 {
     public function __construct()
     {
-        $this->condicaoPagamentoRepository = New CondicaoPagamentoRepository;
-        $this->parcelaRepository = New ParcelaRepository;
-        $this->formaPagamentoService = New FormaPagamentoService;
-        $this->parcelaService = New ParcelaService;
+        $this->condicaoPagamentoRepository = new CondicaoPagamentoRepository;
+        $this->parcelaRepository = new ParcelaRepository;
+        $this->formaPagamentoService = new FormaPagamentoService;
+        $this->parcelaService = new ParcelaService;
     }
 
     public function instanciaECriar(CondicaoPagamentoRequest $request)

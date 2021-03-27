@@ -10,9 +10,9 @@ class ClienteService
 {
     public function __construct()
     {
-        $this->clienteRepository = New ClienteRepository;
-        $this->cidadeService = New CidadeService;
-        $this->condicaoPagamentoService = New CondicaoPagamentoService;
+        $this->clienteRepository = new ClienteRepository;
+        $this->cidadeService = new CidadeService;
+        $this->condicaoPagamentoService = new CondicaoPagamentoService;
     }
 
     public function instanciarECriar(ClienteRequest $request)
