@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Http\Requests\FormaPagamentoRequest;
 use App\Models\FormaPagamento;
 use App\Repositories\FormaPagamentoRepository;
-use Carbon\Carbon;
 
 class FormaPagamentoService
 {
@@ -18,7 +17,7 @@ class FormaPagamentoService
     {
         $formaPagamento = new FormaPagamento;
         $formaPagamento->setFormaPagamento($request->forma_pagamento);
-        $formaPagamento->setCreated_at(Carbon::now()->toDateTimeString());
+        $formaPagamento->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($formaPagamento);
         return $this->formaPagamentoRepository->adicionar($dados);
     }
@@ -29,7 +28,7 @@ class FormaPagamentoService
         $formaPagamento->setId($request->id);
         $formaPagamento->setFormaPagamento($request->forma_pagamento);
         $formaPagamento->setCreated_at($request->created_at);
-        $formaPagamento->setUpdated_at(Carbon::now()->toDateTimeString());
+        $formaPagamento->setUpdated_at(now()->toDateTimeString());
         $dados = $this->getDados($formaPagamento);
         return $this->formaPagamentoRepository->atualizar($dados);
     }

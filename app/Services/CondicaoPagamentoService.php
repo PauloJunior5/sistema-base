@@ -29,18 +29,13 @@ class CondicaoPagamentoService
         $condicaoPagamento->setdesconto($request->desconto);
         $condicaoPagamento->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($condicaoPagamento);
-
         $result = null;
         DB::beginTransaction();
         try {
             $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
-
             if ($idCondicaoPagamento) {
-
                 $objectsArray = json_decode($request->parcelas);
-
                 foreach ($objectsArray as $array) {
-
                     $objeto = json_decode($array);
                     $parcela = new Parcela;
                     $parcela->setParcela($objeto->Parcela);
@@ -74,18 +69,13 @@ class CondicaoPagamentoService
         $condicaoPagamento->setJuro($request->juro);
         $condicaoPagamento->setdesconto($request->desconto);
         $dados = $this->getDados($condicaoPagamento);
-
         $result = null;
         DB::beginTransaction();
         try {
             $condicaoPagamento =  $this->condicaoPagamentoRepository->atualizar($dados);
-
             if ($condicaoPagamento) {
-
                 $objectsArray = json_decode($request->parcelas);
-
                 foreach ($objectsArray as $objeto) {
-
                     $parcela = new Parcela;
                     $parcela->setParcela($objeto->parcela);
                     $parcela->setDias($objeto->dias);
@@ -94,7 +84,6 @@ class CondicaoPagamentoService
                     $parcela->setFormaPagamento($formaPagamento);
                     $condicaoPagamento = $this->buscarEInstanciar($request->id);
                     $parcela->setCondicaoPagamento($condicaoPagamento);
-
                     if (isset($objeto->id)) {
                         $parcela->setId($objeto->id);
                         $parcela->setUpdated_at(now()->toDateTimeString());

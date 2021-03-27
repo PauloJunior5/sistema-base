@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
-
 use App\Models\Cidade;
 use App\Http\Requests\CidadeRequest;
 use App\Repositories\CidadeRepository;
@@ -12,42 +10,33 @@ class CidadeService
 {
     public function __construct()
     {
-        $this->cidadeRepository = new CidadeRepository; //Bind com CidadeRepository
-        $this->estadoService = new EstadoService; //Bind com EstadoService
+        $this->cidadeRepository = new CidadeRepository;
+        $this->estadoService = new EstadoService;
     }
 
     public function instanciarECriar(CidadeRequest $request)
     {
         $cidade = new Cidade;
-
         $cidade->setCidade($request->get('cidade'));
         $cidade->setDDD($request->get('ddd'));
-        $cidade->setCreated_at(Carbon::now()->toDateTimeString());
-
+        $cidade->setCreated_at(now()->toDateTimeString());
         $estado = $this->estadoService->buscarEInstanciar($request->id_estado);
         $cidade->setEstado($estado);
-
         $dados = $this->getDados($cidade);
-
         return $this->cidadeRepository->adicionar($dados);
     }
 
     public function instanciarEAtualizar(CidadeRequest $request)
     {
         $cidade = new Cidade;
-
         $cidade->setId($request->id);
         $cidade->setCreated_at($request->created_at);
-        $cidade->setUpdated_at(Carbon::now()->toDateTimeString());
-
+        $cidade->setUpdated_at(now()->toDateTimeString());
         $cidade->setCidade($request->cidade);
         $cidade->setDDD($request->ddd);
-
         $estado = $this->estadoService->buscarEInstanciar($request->id_estado);
         $cidade->setEstado($estado);
-
         $dados = $this->getDados($cidade);
-
         return $this->cidadeRepository->atualizar($dados);
     }
 
@@ -58,19 +47,14 @@ class CidadeService
     public function buscarEInstanciar(int $id)
     {
         $result = $this->cidadeRepository->findById($id);
-
         $cidade = new Cidade();
-
         $cidade->setId($result->id);
         $cidade->setCreated_at($result->created_at ?? null);
         $cidade->setUpdated_at($result->updated_at ?? null);
-
         $cidade->setCidade($result->cidade);
         $cidade->setDDD($result->ddd);
-
         $estado = $this->estadoService->buscarEInstanciar($result->id_estado);
         $cidade->setEstado($estado);
-
         return $cidade;
     }
 
@@ -88,7 +72,6 @@ class CidadeService
             'created_at' => $cidade->getCreated_at(),
             'updated_at' => $cidade->getUpdated_at()
         ];
-
         return $dados;
     }
 }

@@ -18,7 +18,6 @@ class ClienteService
     public function instanciarECriar(ClienteRequest $request)
     {
         $cliente = new Cliente;
-
         if (!empty($request->cpf)) {
             $cliente->setApelido($request->apelido);
             $cliente->setCPF($request->cpf);
@@ -28,7 +27,6 @@ class ClienteService
             $cliente->setInscricaoEstadual($request->inscricaoEstadual);
             $cliente->setCNPJ($request->cnpj);
         }
-
         $cliente->setTipo($request->tipo);
         $cliente->setCliente($request->cliente);
         $cliente->setEndereco($request->endereco);
@@ -45,12 +43,9 @@ class ClienteService
         $cliente->setNascimento ($request->nascimento);
         $cliente->setObservacao ($request->observacao);
         $cliente->setLimiteCredito ($request->limite_credito);
-
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
-
         $cliente->setCreated_at(now()->toDateTimeString());
-
         $dados = $this->getDados($cliente);
         return $this->clienteRepository->adicionar($dados);
     }
@@ -59,7 +54,6 @@ class ClienteService
     {
         $cliente = new Cliente;
         $cliente->setId($request->id);
-
         if (!empty($request->cpf)) {
             $cliente->setApelido($request->apelido);
             $cliente->setCPF($request->cpf);
@@ -69,7 +63,6 @@ class ClienteService
             $cliente->setInscricaoEstadual($request->inscricaoEstadual);
             $cliente->setCNPJ($request->cnpj);
         }
-
         $cliente->setTipo($request->tipo);
         $cliente->setCliente($request->cliente);
         $cliente->setEndereco($request->endereco);
@@ -86,13 +79,10 @@ class ClienteService
         $cliente->setNascimento ($request->nascimento);
         $cliente->setObservacao ($request->observacao);
         $cliente->setLimiteCredito ($request->limite_credito);
-
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
-
         $cliente->setCreated_at($request->created_at);
         $cliente->setUpdated_at(now()->toDateTimeString());
-
         $dados = $this->getDados($cliente);
         return $this->clienteRepository->atualizar($dados);
     }
@@ -103,12 +93,9 @@ class ClienteService
      */
     public function buscarEInstanciar(int $id)
     {
-
         $result = $this->clienteRepository->findById($id);
-
         $cliente = new Cliente;
         $cliente->setId($result->id);
-
         if (!empty($result->cpf)) {
             $cliente->setApelido($result->apelido);
             $cliente->setCPF($result->cpf);
@@ -118,7 +105,6 @@ class ClienteService
             $cliente->setInscricaoEstadual($result->inscricao_estadual);
             $cliente->setCNPJ($result->cnpj);
         }
-
         $cliente->setTipo($result->tipo);
         $cliente->setCliente($result->cliente);
         $cliente->setEndereco($result->endereco);
@@ -126,10 +112,8 @@ class ClienteService
         $cliente->setComplemento($result->complemento);
         $cliente->setBairro($result->bairro);
         $cliente->setCEP($result->cep);
-
         $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
         $cliente->setCidade($cidade);
-
         $cliente->setTelefone($result->telefone);
         $cliente->setCelular($result->celular);
         $cliente->setEmail($result->email);
@@ -137,13 +121,10 @@ class ClienteService
         $cliente->setNascimento ($result->nascimento);
         $cliente->setObservacao ($result->observacao);
         $cliente->setLimiteCredito ($result->limite_credito);
-
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->condicao_pagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
-
         $cliente->setCreated_at($result->created_at ?? null);
         $cliente->setUpdated_at($result->updated_at ?? null);
-
         return $cliente;
     }
 
@@ -155,7 +136,6 @@ class ClienteService
     {
         $dados = [
             'id' => $cliente->getId(),
-
             'tipo' => $cliente->getTipo(),
             'cliente' => $cliente->getCliente(),
             'apelido' => $cliente->getApelido(),
@@ -165,9 +145,7 @@ class ClienteService
             'complemento' => $cliente->getComplemento(),
             'bairro' => $cliente->getBairro(),
             'cep' => $cliente->getCEP(),
-
             'id_cidade' => $cliente->getCidade()->getId(),
-
             'telefone' => $cliente->getTelefone(),
             'celular' => $cliente->getCelular(),
             'email' => $cliente->getEmail(),
@@ -179,9 +157,7 @@ class ClienteService
             'cnpj' => $cliente->getCNPJ(),
             'observacao' => $cliente->getObservacao(),
             'limite_credito' => $cliente->getLimiteCredito(),
-
             'condicao_pagamento' => $cliente->getCondicaoPagamento()->getId(),
-
             'created_at' => $cliente->getCreated_at(),
             'updated_at' => $cliente->getUpdated_at()
         ];

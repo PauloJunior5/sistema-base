@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
-
 use App\Models\Fornecedor;
 use App\Http\Requests\FornecedorRequest;
 use App\Repositories\FornecedorRepository;
@@ -12,16 +10,14 @@ class FornecedorService
 {
     public function __construct()
     {
-        $this->fornecedorRepository = new FornecedorRepository; //Bind com FornecedorRepository
-        $this->cidadeService = new CidadeService; //Bind com CidadeService
-        // $this->condicaoPagamentoService = new CondicaoPagamentoService; //Bind com CidadeService
-
+        $this->fornecedorRepository = new FornecedorRepository;
+        $this->cidadeService = new CidadeService;
+        $this->condicaoPagamentoService = new CondicaoPagamentoService;
     }
 
     public function instanciarECriar(FornecedorRequest $request)
     {
         $fornecedor = new Fornecedor;
-
         $fornecedor->setFornecedor($request->fornecedor);
         $fornecedor->setNomeFantasia($request->nome_fantasia);
         $fornecedor->setEndereco($request->endereco);
@@ -29,7 +25,6 @@ class FornecedorService
         $fornecedor->setComplemento($request->complemento);
         $fornecedor->setBairro($request->bairro);
         $fornecedor->setCEP($request->cep);
-
         $fornecedor->setTelefone($request->telefone);
         $fornecedor->setCelular($request->celular);
         $fornecedor->setEmail($request->email);
@@ -38,28 +33,21 @@ class FornecedorService
         $fornecedor->setInscricaoEstadual($request->inscricao_estadual);
         $fornecedor->setObservacao($request->observacao);
         $fornecedor->setLimiteCredito($request->limite_credito);
-
-        $fornecedor->setCreated_at(Carbon::now()->toDateTimeString());
-
+        $fornecedor->setCreated_at(now()->toDateTimeString());
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $fornecedor->setCidade($cidade);
-
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
-        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
-
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        $fornecedor->setCondicaoPagamento($condicaoPagamento);
         $dados = $this->getDados($fornecedor);
-
         return $this->fornecedorRepository->adicionar($dados);
     }
 
     public function instanciarEAtualizar(FornecedorRequest $request)
     {
         $fornecedor = new Fornecedor;
-
         $fornecedor->setId($request->id);
         $fornecedor->setCreated_at($request->created_at);
-        $fornecedor->setUpdated_at(Carbon::now()->toDateTimeString());
-
+        $fornecedor->setUpdated_at(now()->toDateTimeString());
         $fornecedor->setFornecedor($request->fornecedor);
         $fornecedor->setNomeFantasia($request->nome_fantasia);
         $fornecedor->setEndereco($request->endereco);
@@ -67,7 +55,6 @@ class FornecedorService
         $fornecedor->setComplemento($request->complemento);
         $fornecedor->setBairro($request->bairro);
         $fornecedor->setCEP($request->cep);
-
         $fornecedor->setTelefone($request->telefone);
         $fornecedor->setCelular($request->celular);
         $fornecedor->setEmail($request->email);
@@ -76,15 +63,11 @@ class FornecedorService
         $fornecedor->setInscricaoEstadual($request->inscricao_estadual);
         $fornecedor->setObservacao($request->observacao);
         $fornecedor->setLimiteCredito($request->limite_credito);
-
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $fornecedor->setCidade($cidade);
-
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
-        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
-
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        $fornecedor->setCondicaoPagamento($condicaoPagamento);
         $dados = $this->getDados($fornecedor);
-
         return $this->fornecedorRepository->atualizar($dados);
     }
 
@@ -96,11 +79,9 @@ class FornecedorService
     {
         $result = $this->fornecedorRepository->findById($id);
         $fornecedor = new Fornecedor;
-
         $fornecedor->setId($result->id);
         $fornecedor->setCreated_at($result->created_at ?? null);
         $fornecedor->setUpdated_at($result->updated_at ?? null);
-
         $fornecedor->setFornecedor($result->fornecedor);
         $fornecedor->setNomeFantasia($result->nome_fantasia);
         $fornecedor->setEndereco($result->endereco);
@@ -108,7 +89,6 @@ class FornecedorService
         $fornecedor->setComplemento($result->complemento);
         $fornecedor->setBairro($result->bairro);
         $fornecedor->setCEP($result->cep);
-
         $fornecedor->setTelefone($result->telefone);
         $fornecedor->setCelular($result->celular);
         $fornecedor->setEmail($result->email);
@@ -117,13 +97,10 @@ class FornecedorService
         $fornecedor->setInscricaoEstadual($result->inscricao_estadual);
         $fornecedor->setObservacao($result->observacao);
         $fornecedor->setLimiteCredito($result->limite_credito);
-
         $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
         $fornecedor->setCidade($cidade);
-
-        // $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
-        // $fornecedor->setCondicaoPagamento($condicaoPagamento);
-
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        $fornecedor->setCondicaoPagamento($condicaoPagamento);
         return $fornecedor;
     }
 
@@ -135,7 +112,6 @@ class FornecedorService
     {
         $dados = [
             'id' => $fornecedor->getId(),
-            
             'fornecedor' => $fornecedor->getFornecedor(),
             'nome_fantasia' => $fornecedor->getNomeFantasia(),
             'endereco' => $fornecedor->getEndereco(),
@@ -143,22 +119,19 @@ class FornecedorService
             'complemento' => $fornecedor->getComplemento(),
             'bairro' => $fornecedor->getBairro(),
             'cep' => $fornecedor->getCEP(),
-
             'id_cidade' => $fornecedor->getCidade()->getId(),
             'telefone' => $fornecedor->getTelefone(),
             'celular' => $fornecedor->getCelular(),
             'email' => $fornecedor->getEmail(),
             'contato' => $fornecedor->getContato(),
             'cnpj' => $fornecedor->getCNPJ(),
-
             'inscricao_estadual' => $fornecedor->getInscricaoEstadual(),
             'observacao' => $fornecedor->getObservacao(),
             'limite_credito' => $fornecedor->getLimiteCredito(),
-            'id_condicao_pagamento' => 1,
+            'id_condicao_pagamento' => $fornecedor->getCondicaoPagamento()->getId(),
             'created_at' => $fornecedor->getCreated_at(),
             'updated_at' => $fornecedor->getUpdated_at()
         ];
-
         return $dados;
     }
 }
