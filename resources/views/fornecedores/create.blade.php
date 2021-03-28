@@ -163,5 +163,5 @@
 
 @include('includes.scripts.cidades')
 @include('includes.scripts.condicoesPagamento')
-@include('includes.scripts.parcelas')
+@include('includes.scripts.parcelasCreate')
 @endsection

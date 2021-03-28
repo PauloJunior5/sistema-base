@@ -60,7 +60,7 @@ class CondicaoPagamentoController extends Controller
         if ($condicaoPagamento) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de pagamento alterada com sucesso.')->send();
         } else {
-            return redirect()->route('condicaoPagamento.index')->with('Warning', 'Não foi possivel condição de pagamento.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Warning', 'Não foi possivel alterar condição de pagamento.')->send();
         }
     }
 
@@ -78,7 +78,6 @@ class CondicaoPagamentoController extends Controller
     public function createCondicao_pagamento(CondicaoPagamentoRequest $request)
     {
         $condicaoPagamento = $this->condicaoPagamentoService->instanciarECriar($request);
-        dd($condicaoPagamento);
         if ($condicaoPagamento) {
             return redirect()->back()->withInput()->with('error_code', 3)->send();
         } else {
