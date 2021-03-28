@@ -55,8 +55,8 @@
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Estado</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="estado-input" value="{{$cidade->getEstado()->getId()}}" readonly />
-                                        <input type="hidden" id="id-estado-input" name="id_estado" value="{{$cidade->getEstado()->getEstado()}}">
+                                        <input class="form-control" id="estado-input" value="{{$cidade->getEstado()->getEstado()}}" readonly />
+                                        <input type="hidden" id="id-estado-input" name="id_estado" value="{{$cidade->getEstado()->getId()}}">
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
@@ -77,14 +77,14 @@
                                 <div class="col-md-2">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="datetime" class="form-control" value="{{ $cidade->getCreated_at() }}" readonly>
+                                        <input type="datetime" class="form-control" name="created_at" value="{{ $cidade->getCreated_at() }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Data de Alreração</label>
                                     <div class="form-group">
-                                        <input type="datetime" class="form-control" value="{{ $cidade->getUpdated_at() }}" readonly>
+                                        <input type="datetime" class="form-control" name="updated_at" value="{{ $cidade->getUpdated_at() }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
