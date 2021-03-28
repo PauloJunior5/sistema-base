@@ -11,8 +11,8 @@ class Pais extends Model
 
     public function __construct()
     {
-        $this->pais = null;
-        $this->sigla = null;
+        $this->pais = '';
+        $this->sigla = '';
     }
 
     /*

@@ -4,15 +4,15 @@ namespace App\Models;
 
 class Model
 {
-    protected int $id;
-    protected string $created_at;
-    protected string $updated_at;
+    private ?int $id = 0;
+    private $created_at = null;
+    private $updated_at = null;
 
     function __construct()
     {
         $this->id = 0;
-        $this->created_at = null;
-        $this->updated_at = null;
+        $this->created_at = '';
+        $this->updated_at = '';
     }
 
     /*
@@ -37,7 +37,7 @@ class Model
     |--------------------------------------------------------------------------
     |
     */
-    public function getCreated_at(): string
+    public function getCreated_at()
     {
         return $this->created_at;
     }
@@ -53,7 +53,7 @@ class Model
     |--------------------------------------------------------------------------
     |
     */
-    public function getUpdated_at(): string
+    public function getUpdated_at()
     {
         return $this->updated_at;
     }

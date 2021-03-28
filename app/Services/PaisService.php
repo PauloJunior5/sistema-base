@@ -10,7 +10,7 @@ class PaisService
 {
     public function __construct()
     {
-        $this->paisRepository = new PaisRepository; //Bind com PaisRepository
+        $this->paisRepository = new PaisRepository;
     }
 
     public function instanciarECriar(PaisRequest $request)
