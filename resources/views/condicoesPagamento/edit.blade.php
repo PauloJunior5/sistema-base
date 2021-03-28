@@ -119,5 +119,5 @@
     </div>
 </div>
 @include('includes.scripts.condicoesPagamento')
-@include('includes.scripts.parcelasCreate')
+@include('includes.scripts.parcelasUpdate')
 @endsection
