@@ -36,7 +36,7 @@ class FornecedorService
         $fornecedor->setCreated_at(now()->toDateTimeString());
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $fornecedor->setCidade($cidade);
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $fornecedor->setCondicaoPagamento($condicaoPagamento);
         $dados = $this->getDados($fornecedor);
         return $this->fornecedorRepository->adicionar($dados);
@@ -65,7 +65,7 @@ class FornecedorService
         $fornecedor->setLimiteCredito($request->limite_credito);
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $fornecedor->setCidade($cidade);
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $fornecedor->setCondicaoPagamento($condicaoPagamento);
         $dados = $this->getDados($fornecedor);
         return $this->fornecedorRepository->atualizar($dados);
@@ -99,7 +99,7 @@ class FornecedorService
         $fornecedor->setLimiteCredito($result->limite_credito);
         $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
         $fornecedor->setCidade($cidade);
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar(1);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
         $fornecedor->setCondicaoPagamento($condicaoPagamento);
         return $fornecedor;
     }

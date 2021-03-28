@@ -33,7 +33,7 @@ class Fornecedor extends Model
         $this->complemento = '';
         $this->bairro = '';
         $this->cep = '';
-        $this->cidade = new cidade();
+        $this->cidade = new Cidade();
         $this->telefone = '';
         $this->celular = '';
         $this->email = '';
@@ -168,7 +168,7 @@ class Fornecedor extends Model
         return $this->cidade;
     }
 
-    public function setCidade(string $cidade)
+    public function setCidade(Cidade $cidade)
     {
         $this->cidade = $cidade;
     }

@@ -100,20 +100,22 @@
                                     <input type="text" class="form-control inputPessoaJuridica" value="{{$fornecedor->getCNPJ()}}" name="cnpj" required>
                                 </div>
                             </div>
-                            <div class="row">
+                             {{-- INICIO CONDICAO PAGAMENTO --}}
+                             <div class="row">
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control readonly">
+                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ $fornecedor->getCondicaoPagamento()->getId() }}" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
-                                    <input class="form-control" id='condicao_pagamento-input' value=1 name="condicao_pagamento" readonly>
+                                    <input class="form-control" id='condicao_pagamento-input' value="{{ $fornecedor->getCondicaoPagamento()->getCondicaoPagamento() }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamamento" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
+                            {{-- FIM CONDICAO PAGAMENTO --}}
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
