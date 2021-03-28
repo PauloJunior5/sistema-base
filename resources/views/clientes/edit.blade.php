@@ -154,7 +154,7 @@
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicao_pagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                             </div>

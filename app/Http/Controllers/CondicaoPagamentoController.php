@@ -32,7 +32,7 @@ class CondicaoPagamentoController extends Controller
 
     public function store(CondicaoPagamentoRequest $request)
     {
-        $condicaoPagamento = $this->condicaoPagamentoService->instanciaECriar($request);
+        $condicaoPagamento = $this->condicaoPagamentoService->instanciarECriar($request);
         if ($condicaoPagamento) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de pagamento criada com sucesso.')->send();
         } else {
@@ -78,6 +78,7 @@ class CondicaoPagamentoController extends Controller
     public function createCondicao_pagamento(CondicaoPagamentoRequest $request)
     {
         $condicaoPagamento = $this->condicaoPagamentoService->instanciarECriar($request);
+        dd($condicaoPagamento);
         if ($condicaoPagamento) {
             return redirect()->back()->withInput()->with('error_code', 3)->send();
         } else {

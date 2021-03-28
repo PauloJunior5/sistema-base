@@ -20,7 +20,7 @@ class CondicaoPagamentoService
         $this->parcelaService = new ParcelaService;
     }
 
-    public function instanciaECriar(CondicaoPagamentoRequest $request)
+    public function instanciarECriar(CondicaoPagamentoRequest $request)
     {
         $condicaoPagamento = new CondicaoPagamento;
         $condicaoPagamento->setCondicaoPagamento($request->condicao_pagamento);
