@@ -63,7 +63,6 @@ class FornecedorController extends Controller
 
     public function update(FornecedorRequest $request)
     {
-        dd($request);
         $fornecedor = $this->fornecedorService->instanciarEAtualizar($request);
         if ($fornecedor) {
             return redirect()->route('fornecedor.index')->with('Success', 'Fornecedor alterado com sucesso.')->send();

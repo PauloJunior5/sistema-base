@@ -26,7 +26,7 @@ class FornecedorRequest extends FormRequest
     {
         return [
             'cnpj' => [
-                Rule::unique('fornecedores', 'cnpj')->ignore($this->cnpj),
+                Rule::unique('fornecedores', 'cnpj')->ignore($this->id),
             ]
         ];
     }
