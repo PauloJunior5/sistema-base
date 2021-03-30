@@ -79,6 +79,10 @@
             $('#input-parcelas').val(JSON.stringify(tbClientes));
             alert("Registro adicionado.");
             Listar();
+            document.getElementById("id_dias").value = '';
+            document.getElementById("id_porcentual").value = '';
+            document.getElementById("id-forma_pagamento-input").value = '';
+            document.getElementById("forma_pagamento-input").value = '';
             return true;
         } else {
             alert("Parcela inserida ultrapassa os 100%");
@@ -219,7 +223,7 @@
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
-            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"' onclick='changeBtnToEdit()'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
 
         };
@@ -268,7 +272,7 @@
             $("#condicao-table tbody").append("<td>"+cli.Dias+"</td>");
             $("#condicao-table tbody").append("<td>"+cli.Porcentual+"</td>");
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
-            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+            $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"' onclick='changeBtnToEdit()'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
 
         };

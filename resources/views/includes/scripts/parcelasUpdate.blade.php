@@ -82,6 +82,10 @@ $(function(){
             $('#input-parcelas').val(JSON.stringify(parcelas));
             alert("Registro adicionado.");
             Listar();
+            document.getElementById("id_dias").value = '';
+            document.getElementById("id_porcentual").value = '';
+            document.getElementById("id-forma_pagamento-input").value = '';
+            document.getElementById("forma_pagamento-input").value = '';
             return true;
         } else {
             alert("Parcela inserida ultrapassa os 100%");

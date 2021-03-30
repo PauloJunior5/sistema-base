@@ -108,7 +108,7 @@
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#formaPagamentoModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div class="col-md-1">
-                                                <button class="btn btn-primary" type="button" value="Salvar" id="btnSalvar"><i class="material-icons">add</i></button>
+                                                <button class="btn btn-primary" type="button" value="Salvar" onclick="changeBtnToCreate()" id="btnSalvar"><i class="material-icons">add</i></button>
                                             </div>
                                         </form>
 
