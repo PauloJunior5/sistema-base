@@ -14033,7 +14033,7 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .navbar .collapse .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
-  color       : #3C4858;
+  color       : #fff;
   margin-top  : -3px;
   top         : 0px;
   position    : relative;
@@ -14837,7 +14837,7 @@ h2.title {
 .dropdown-menu a:focus,
 .dropdown-menu a:active {
   box-shadow      : 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px #c1bbbb;
-  background-color: #3c3c3c;
+  background-color: #284b63;
   color           : #FFFFFF;
 }
 
@@ -15168,7 +15168,6 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .wrapper {
   position: relative;
   top     : 0;
-  height  : 100vh;
 }
 
 .sidebar {
@@ -17000,8 +16999,7 @@ thead.thead-inverse th,
 }
 
 body {
-  /*background-image: url('../img/nova01.jpg');*/
-  background-color: gainsboro;
+  background-color: #0E1822;
   color           : #3C4858;
   font-weight     : 300;
 }
