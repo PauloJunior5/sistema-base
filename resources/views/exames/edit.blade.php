@@ -25,7 +25,7 @@
                             <div class="row new-row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código @include('includes.tooltips-campo-consulta')</label>
-                                    <input class="form-control" value="{{$exame->getId()}}" readonly />
+                                    <input class="form-control" name="id" value="{{$exame->getId()}}" readonly />
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="col-form-label">Exame</label>
@@ -57,11 +57,11 @@
                             <div class="row new-row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
-                                    <input type="datetime" class="form-control" value="{{ $exame->getCreated_at() }}" readonly>
+                                    <input type="datetime" name="created_at" class="form-control" value="{{ $exame->getCreated_at() }}" readonly>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
-                                    <input type="datetime" class="form-control" value="{{ $exame->getUpdated_at() }}" readonly>
+                                    <input type="datetime" name="updated_at" class="form-control" value="{{ $exame->getUpdated_at() }}" readonly>
                                 </div>
                             </div>
                         </div>

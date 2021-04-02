@@ -38,11 +38,11 @@ class ExameRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->where('id', $dados['id'])->update($dados);
+            $result = DB::table('exames')->where('id', $dados['id'])->update($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel editar forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel editar exame: ' . $th);
         }
         return $result;
     }

@@ -41,17 +41,13 @@ class ExameController extends Controller
         return view('exames.edit', compact('exame'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ExameRequest $request)
     {
-        $validatedData = $request->validate([
-            'exame' => 'unique:exames,exame,' . $id,
-        ]);
-
-        if ($validatedData) {
-            $exame = Exame::whereId($id)->update($request->except('_token', '_method'));
-            if ($exame) {
-                return redirect()->route('exame.index')->with('Success', 'Exame alterado com sucesso.');
-            }
+        $exame = $this->exameService->instanciarEAtualizar($request);
+        if ($exame) {
+            return redirect()->route('exame.index')->with('Success', 'Exame alterado com sucesso.')->send();
+        } else {
+            return redirect()->route('exame.index')->with('Warning', 'Não foi possivel alterar exame.')->send();
         }
     }
 
