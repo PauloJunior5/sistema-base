@@ -54,8 +54,8 @@
                                         <td>{{$exame->exame}}</td>
                                         <td>{{$exame->valor}}</td>
                                         <td>{{$exame->categoria}}</td>
-                                        <td>{{$exame->created_at->format('Y-m-d H:i:s')}}</td>
-                                        <td>{{$exame->updated_at->format('Y-m-d H:i:s')}}</td>
+                                        <td>{{$exame->created_at}}</td>
+                                        <td>{{$exame->updated_at}}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('exame.destroy', $exame->id) }}" method="post">
                                                 @csrf

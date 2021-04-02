@@ -13,7 +13,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('exame.update', $exame->id) }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('exame.update', $exame->getId()) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -25,21 +25,21 @@
                             <div class="row new-row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código @include('includes.tooltips-campo-consulta')</label>
-                                    <input class="form-control" value="{{$exame->id}}" readonly />
+                                    <input class="form-control" value="{{$exame->getId()}}" readonly />
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="col-form-label">Exame</label>
-                                    <input class="form-control" name="exame" id="input-exame" type="text" value="{{$exame->exame}}" required />
+                                    <input class="form-control" name="exame" id="input-exame" type="text" value="{{$exame->getExame()}}" required />
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Valor (R$)</label>
-                                    <input class="form-control" name="valor" id="input-valor" type="number" value="{{$exame->valor}}" required />
+                                    <input class="form-control" name="valor" id="input-valor" type="number" value="{{$exame->getValor()}}" required />
                                 </div>
                             </div>
                             <div class="row new-row">
                                 <div class="col-md-4">
                                     <label class="col-form-label">Plano</label>
-                                    <input class="form-control" name="plano" value="{{$exame->plano}}" />
+                                    <input class="form-control" name="plano" value="{{$exame->getPlano()}}" />
                                     {{-- <input type="hidden" id="input-plano" name="plano"> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">Categoria</label>
-                                    <input class="form-control" name="categoria" value="{{$exame->categoria}}" />
+                                    <input class="form-control" name="categoria" value="{{$exame->getCategoria()}}" />
                                     {{-- <input type="hidden" id="input-categoria" name="categoria"> --}}
                                 </div>
                                 <div class="col-md-1">
@@ -57,11 +57,11 @@
                             <div class="row new-row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
-                                    <input type="datetime-local" class="form-control" value="{{ $exame->created_at->format('Y-m-d H:i:s') }}" readonly>
+                                    <input type="datetime" class="form-control" value="{{ $exame->getCreated_at() }}" readonly>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
-                                    <input type="datetime-local" class="form-control" value="{{ $exame->updated_at->format('Y-m-d H:i:s') }}" readonly>
+                                    <input type="datetime" class="form-control" value="{{ $exame->getUpdated_at() }}" readonly>
                                 </div>
                             </div>
                         </div>

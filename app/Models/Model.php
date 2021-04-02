@@ -4,9 +4,9 @@ namespace App\Models;
 
 class Model
 {
-    private ?int $id = 0;
-    private $created_at = null;
-    private $updated_at = null;
+    protected ?int $id = 0;
+    protected $created_at = null;
+    protected $updated_at = null;
 
     function __construct()
     {

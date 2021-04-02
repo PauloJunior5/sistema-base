@@ -20,19 +20,22 @@ class ExameService
         $exame->setValor($request->valor);
         $exame->setPlano($request->plano);
         $exame->setCategoria($request->categoria);
-        $exame->setCreated_at(now()->toDateString());
+        $exame->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($exame);
         return $this->exameRepository->adicionar($dados);
     }
 
     public function instanciarEAtualizar(ExameRequest $request)
     {
-        $formaPagamento = new Exame;
-        $formaPagamento->setId($request->id);
-        $formaPagamento->setFormaPagamento($request->forma_pagamento);
-        $formaPagamento->setCreated_at($request->created_at);
-        $formaPagamento->setUpdated_at(now()->toDateTimeString());
-        $dados = $this->getDados($formaPagamento);
+        $exame = new Exame;
+        $exame->setId($request->id);
+        $exame->setExame($request->exame);
+        $exame->setValor($request->valor);
+        $exame->setPlano($request->plano);
+        $exame->setCategoria($request->categoria);
+        $exame->setCreated_at($request->created_at);
+        $exame->setUpdated_at(now()->toDateTimeString());
+        $dados = $this->getDados($exame);
         return $this->exameRepository->atualizar($dados);
     }
 
@@ -43,12 +46,15 @@ class ExameService
     public function buscarEInstanciar(int $id)
     {
         $result = $this->exameRepository->findById($id);
-        $formaPagamento = new Exame;
-        $formaPagamento->setId($result->id);
-        $formaPagamento->setFormaPagamento($result->forma_pagamento);
-        $formaPagamento->setCreated_at($result->created_at ?? null);
-        $formaPagamento->setUpdated_at($result->updated_at ?? null);
-        return $formaPagamento;
+        $exame = new Exame;
+        $exame->setId($result->id);
+        $exame->setExame($result->exame);
+        $exame->setValor($result->valor);
+        $exame->setPlano($result->plano);
+        $exame->setCategoria($result->categoria);
+        $exame->setCreated_at($result->created_at ?? null);
+        $exame->setUpdated_at($result->updated_at ?? null);
+        return $exame;
     }
 
     /**
@@ -66,7 +72,6 @@ class ExameService
             'created_at' => $exame->getCreated_at(),
             'updated_at' => $exame->getUpdated_at()
         ];
-        dd($dados);
         return $dados;
     }
 }

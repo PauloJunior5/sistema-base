@@ -18,19 +18,19 @@ class ExameRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->insert($dados);
+            $result = DB::table('exames')->insert($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel criar forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel criar exame: ' . $th);
         }
         return $result;
     }
 
     public function findById(int $id)
     {
-        $formaPagamento = DB::table('forma_pagamentos')->where('id', $id)->first();
-        return $formaPagamento;
+        $exame = DB::table('exames')->where('id', $id)->first();
+        return $exame;
     }
 
     public function atualizar($dados)
