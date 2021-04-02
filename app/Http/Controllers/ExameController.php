@@ -2,49 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exame;
-use Illuminate\Http\Request;
+use App\Http\Requests\ExameRequest;
+use App\Repositories\ExameRepository;
+use App\Services\ExameService;
 
 class ExameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->exameRepository = new ExameRepository;
+        $this->exameService = new ExameService;
+    }
+
     public function index()
     {
-        $exames = Exame::all();
+        $exames = $this->exameRepository->mostrarTodos();
         return view('exames.index', compact('exames'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('exames.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(ExameRequest $request)
     {
-        $validatedData = $request->validate([
-            'exame' => 'unique:exames,exame',
-        ]);
-
-        if ($validatedData) {
-            $exame = Exame::create($request->all());
-            if ($exame) {
-                return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.');
-            }
+        $exame = $this->exameService->instanciarECriar($request);
+        if ($exame) {
+            return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.')->send();
+        } else {
+            return redirect()->route('exame.index')->with('Warning', 'Não foi possivel criar exame.')->send();
         }
     }
 
