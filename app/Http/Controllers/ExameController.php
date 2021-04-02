@@ -51,11 +51,13 @@ class ExameController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $exame = Exame::where('id', $id)->delete();
+        $exame = $this->exameRepository->remover($id);
         if ($exame) {
-            return redirect()->route('exame.index')->with('Success', 'Exame excluido com sucesso.');
+            return redirect()->route('exame.index')->with('Success', 'Exame excluído com sucesso.')->send();
+        } else {
+            return redirect()->route('exame.index')->with('Warning', 'Não foi possivel excluir exame.')->send();
         }
     }
 }

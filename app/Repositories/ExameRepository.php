@@ -52,11 +52,11 @@ class ExameRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->where('id', $id)->delete();
+            $result = DB::table('exames')->where('id', $id)->delete();
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel excluir forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel excluir exame: ' . $th);
         }
         return $result;
     }
