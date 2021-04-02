@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Valor (R$)</label>
-                                    <input class="form-control" name="valor" id="input-valor" type="number" value="{{$exame->getValor()}}" required />
+                                    <input class="form-control" name="valor" id="input-valor" type="number" step="0.01" value="{{$exame->getValor()}}" required />
                                 </div>
                             </div>
                             <div class="row new-row">
