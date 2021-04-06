@@ -9,8 +9,8 @@ class MedicoRepository
 {
     public function mostrarTodos()
     {
-        $formasPagamento = DB::table('forma_pagamentos')->get();
-        return $formasPagamento;
+        $medicos = DB::table('medicos')->get();
+        return $medicos;
     }
 
     public function adicionar($dados)
