@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cidade;
-use App\Models\Estado;
-use App\Models\Medico;
-use App\Models\Pais;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use App\Repositories\CidadeRepository;
+use App\Repositories\EstadoRepository;
+use App\Repositories\MedicoRepository;
+use App\Repositories\PaisRepository;
+use App\Services\MedicoService;
 
 class MedicoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->medicoRepository = new MedicoRepository;
+        $this->medicoService = new MedicoService;
+        $this->paisRepository = new PaisRepository;
+        $this->estadoRepository = new EstadoRepository;
+        $this->cidadeRepository = new CidadeRepository;
+    }
+
     public function index()
     {
-        $medicos = Medico::all();
+        $medicos = $this->medicoRepository->mostrarTodos();
         return view('medicos.index', compact('medicos'));
     }
 
@@ -100,7 +103,7 @@ class MedicoController extends Controller
             'cpf' => 'unique:medicos,cpf,' . $id,
             'rg' => 'unique:medicos,rg,' . $id,
         ]);
-        
+
         if ($validatedData) {
             $medico = Medico::whereId($id)->update($request->except('_token', '_method'));
             if ($medico) {
@@ -134,7 +137,7 @@ class MedicoController extends Controller
             'cpf' => 'unique:medicos,cpf',
             'rg' => 'unique:medicos,rg',
         ]);
-        
+
         if ($validatedData) {
             $medico = Medico::create($request->all());
             if ($medico) {
