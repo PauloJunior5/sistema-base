@@ -33,11 +33,11 @@ class ClienteRequest extends FormRequest
             ],
             'cnpj' => [
                 'required_if:tipo,==,pessoaJuridica',
-                Rule::unique('clientes', 'cnpj')->ignore($this->cnpj),
+                Rule::unique('clientes', 'cnpj')->ignore($this->id),
             ],
             'cpf' => [
                 'required_if:tipo,==,pessoaFisica',
-                Rule::unique('clientes', 'cpf')->ignore($this->cpf),
+                Rule::unique('clientes', 'cpf')->ignore($this->id),
             ],
             'nascimento' => [
                 'before_or_equal:' . $start_date,

@@ -89,17 +89,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input-cliente" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
+                                    <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Cidade</label>
-                                    <input class="form-control readonly" id="cidade-input-cliente" name="cidade-cliente" value="{{ old('cidade-cliente') }}" required>
-                                    <input type="hidden" id="id-cidade-input-cliente" name="id_cidade" value="{{ old('id_cidade') }}">
+                                    <input class="form-control readonly" id="cidade-input" name="cidade" value="{{ old('cidade') }}" required>
+                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{ old('id_cidade') }}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input-cliente" name="estado" value="{{ old('estado') }}" readonly>
+                                    <input class="form-control" id="uf-cidade-input" name="estado" value="{{ old('estado') }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
@@ -202,5 +202,5 @@
 @include('includes.scripts.fisicaJuridica')
 @include('includes.scripts.cidades')
 @include('includes.scripts.condicoesPagamento')
-@include('includes.scripts.parcelas')
+@include('includes.scripts.parcelasCreate')
 @endsection

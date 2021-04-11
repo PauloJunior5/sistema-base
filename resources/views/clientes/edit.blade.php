@@ -33,6 +33,7 @@
                                     <input type="text" class="form-control" name="id" value="{{$cliente->getId()}}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
+                                
                                 <div class="col-md-2">
                                     <label class="col-form-label">Tipo</label>
                                     <input class="form-control" placeholder="{{ ($cliente->getTipo() == "pessoaFisica") ? "Pessoa Fisica" : "Pessoa Jurídica" }}" readonly>
@@ -78,17 +79,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input-cliente" value="{{old('ddd_cidade', $cliente->getCidade()->getDDD())}}" readonly required>
+                                    <input type="text" class="form-control" id="ddd-cidade-input" value="{{old('ddd_cidade', $cliente->getCidade()->getDDD())}}" readonly required>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Cidade</label>
-                                    <input class="form-control readonly" id="cidade-input-cliente" value="{{old('cidade', $cliente->getCidade()->getCidade())}}" required>
-                                    <input type="hidden" id="id-cidade-input-cliente" name="id_cidade" value="{{old('id_cidade', $cliente->getCidade()->getId())}}">
+                                    <input class="form-control readonly" id="cidade-input" value="{{old('cidade', $cliente->getCidade()->getCidade())}}" required>
+                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{old('id_cidade', $cliente->getCidade()->getId())}}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input-cliente" value="{{old('estado', $cliente->getCidade()->getEstado()->getUF())}}" readonly>
+                                    <input class="form-control" id="uf-cidade-input" value="{{old('estado', $cliente->getCidade()->getEstado()->getUF())}}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
@@ -191,5 +192,5 @@
 @include('includes.scripts.fisicaJuridica')
 @include('includes.scripts.cidades')
 @include('includes.scripts.condicoesPagamento')
-@include('includes.scripts.parcelas')
+@include('includes.scripts.parcelasUpdate')
 @endsection
