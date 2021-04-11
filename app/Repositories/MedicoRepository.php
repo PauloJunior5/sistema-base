@@ -18,19 +18,19 @@ class MedicoRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->insert($dados);
+            $result = DB::table('medicos')->insert($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel criar forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel criar médico: ' . $th);
         }
         return $result;
     }
 
     public function findById(int $id)
     {
-        $formaPagamento = DB::table('forma_pagamentos')->where('id', $id)->first();
-        return $formaPagamento;
+        $medico = DB::table('medicos')->where('id', $id)->first();
+        return $medico;
     }
 
     public function atualizar($dados)

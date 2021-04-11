@@ -54,13 +54,13 @@
                                         <td>{{ $medico->medico }}</td>
                                         <td>{{ $medico->crm }}</td>
                                         <td>{{ $medico->especialidade }}</td>
-                                        <td>{{ $medico->created_at->format('Y-m-d H:i:s') }}</td>
-                                        <td>{{ $medico->updated_at->format('Y-m-d H:i:s') }}</td>
+                                        <td>{{ $medico->created_at }}</td>
+                                        <td>{{ $medico->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('medico.destroy', $medico->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('medico.edit', $medico) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('medico.edit', $medico->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

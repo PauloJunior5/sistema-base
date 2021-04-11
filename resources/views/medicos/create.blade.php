@@ -96,7 +96,7 @@
                                     <label class="col-form-label">Celular</label>
                                     <input type="text" class="form-control" name="celular">
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-5">
                                     <label class="col-form-label">@include('includes.required')Email</label>
                                     <input type="text" class="form-control" name="email" required>
                                 </div>
@@ -113,6 +113,10 @@
                                 <div class="col-md-2">
                                     <label class="col-form-label" for="nascimento">@include('includes.required')Nascimento</label>
                                     <input type="date" class="form-control" name="nascimento" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="nacionalidade">@include('includes.required')Nacionalidade</label>
+                                    <input type="text" class="form-control" name="nacionalidade" required>
                                 </div>
                             </div>
                             <div class="row">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MedicoRequest;
 use App\Repositories\CidadeRepository;
 use App\Repositories\EstadoRepository;
 use App\Repositories\MedicoRepository;
@@ -33,55 +34,29 @@ class MedicoController extends Controller
         return view('medicos.create', compact('paises', 'estados', 'cidades'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(MedicoRequest $request)
     {
-        $validatedData = $request->validate([
-            'crm' => 'unique:medicos,crm',
-            'cpf' => 'unique:medicos,cpf',
-            'rg' => 'unique:medicos,rg',
-        ]);
-
-        if ($validatedData) {
-            $medico = Medico::create($request->all());
-            if ($medico) {
-                return redirect()->route('medico.index')->with('Success', 'Médico criado com sucesso.');
-            }
+        $medico = $this->medicoService->instanciarECriar($request);
+        if ($medico) {
+            return redirect()->route('medico.index')->with('Success', 'Médico criado com sucesso.')->send();
+        } else {
+            return redirect()->route('medico.index')->with('Warning', 'Não foi possivel criar médico.')->send();
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
+    public function show(MedicoRequest $request)
     {
-        $medico = Medico::findOrFail($request->id_medico);
-        return $medico;
+        $medico = $this->medicoRepository->findById($request->id_medico);
+        return response()->json($medico);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(int $id)
     {
-        $medico = Medico::findOrFail($id);
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-        $cidade = Cidade::findOrFail($medico->id_cidade);
-        $estado = Estado::findOrFail($cidade->id_estado);
-        return view('medicos.edit', compact('medico', 'cidades', 'estados', 'paises', 'cidade', 'estado'));
+        $medico = $this->medicoService->buscarEInstanciar($id);
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        return view('medicos.edit', compact('medico', 'paises', 'estados', 'cidades'));
     }
 
     /**
@@ -91,7 +66,7 @@ class MedicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MedicoRequest $request)
     {
         $validatedData = $request->validate([
             'crm' => 'unique:medicos,crm,' . $id,
