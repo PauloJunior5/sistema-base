@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Código</label>
-                                    <input class="form-control" value="{{$medico->getId()}}" readonly />
+                                    <input class="form-control" value="{{$medico->getId()}}" name="id" readonly />
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-4">

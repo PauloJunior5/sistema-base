@@ -38,11 +38,11 @@ class MedicoRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->where('id', $dados['id'])->update($dados);
+            $result = DB::table('medicos')->where('id', $dados['id'])->update($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel editar forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel editar médico: ' . $th);
         }
         return $result;
     }
@@ -52,11 +52,11 @@ class MedicoRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('forma_pagamentos')->where('id', $id)->delete();
+            $result = DB::table('medicos')->where('id', $id)->delete();
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel excluir forma de pagamento: ' . $th);
+            Log::debug('Warning - Não foi possivel excluir médico: ' . $th);
         }
         return $result;
     }

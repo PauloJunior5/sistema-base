@@ -59,60 +59,41 @@ class MedicoController extends Controller
         return view('medicos.edit', compact('medico', 'paises', 'estados', 'cidades'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(MedicoRequest $request)
     {
-        $validatedData = $request->validate([
-            'crm' => 'unique:medicos,crm,' . $id,
-            'cpf' => 'unique:medicos,cpf,' . $id,
-            'rg' => 'unique:medicos,rg,' . $id,
-        ]);
-
-        if ($validatedData) {
-            $medico = Medico::whereId($id)->update($request->except('_token', '_method'));
-            if ($medico) {
-                return redirect()->route('medico.index')->with('Success', 'Médico alterado com sucesso.');
-            }
+        $medico = $this->medicoService->instanciarEAtualizar($request);
+        if ($medico) {
+            return redirect()->route('medico.index')->with('Success', 'Médico alterado com sucesso.')->send();
+        } else {
+            return redirect()->route('medico.index')->with('Warning', 'Não foi possivel alterar médico.')->send();
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        try {
-            $medico = Medico::where('id', $id)->delete();
-        } catch (\Illuminate\Database\QueryException $ex) {
-            return redirect()->route('medico.index')->with('Warning', 'Não foi possivel excluir médico. Esse Médico possui vínculo com Pacientes.');
-        }
+        $medico = $this->medicoRepository->remover($id);
         if ($medico) {
-            return redirect()->route('medico.index')->with('Success', 'Médico excluido com sucesso.');
+            return redirect()->route('medico.index')->with('Success', 'Médico excluído com sucesso.')->send();
+        } else {
+            return redirect()->route('medico.index')->with('Warning', 'Não foi possivel excluir médico.')->send();
         }
     }
 
-    public function createMedico(Request $request)
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createMedico(MedicoRequest $request)
     {
-        $validatedData = $request->validate([
-            'crm' => 'unique:medicos,crm',
-            'cpf' => 'unique:medicos,cpf',
-            'rg' => 'unique:medicos,rg',
-        ]);
-
-        if ($validatedData) {
-            $medico = Medico::create($request->all());
-            if ($medico) {
-                return Redirect::back()->withInput()->with('error_code', 7);
-            }
+        $medico = $this->medicoService->instanciarECriar($request);
+        if ($medico) {
+            return redirect()->back()->withInput()->with('error_code', 7)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
         }
     }
 }

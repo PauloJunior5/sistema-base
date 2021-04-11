@@ -40,15 +40,32 @@ class MedicoService
         return $this->medicoRepository->adicionar($dados);
     }
 
-    public function instanciarEAtualizar(FormaPagamentoRequest $request)
+    public function instanciarEAtualizar(MedicoRequest $request)
     {
-        $formaPagamento = new FormaPagamento;
-        $formaPagamento->setId($request->id);
-        $formaPagamento->setFormaPagamento($request->forma_pagamento);
-        $formaPagamento->setCreated_at($request->created_at);
-        $formaPagamento->setUpdated_at(now()->toDateTimeString());
-        $dados = $this->getDados($formaPagamento);
-        return $this->formaPagamentoRepository->atualizar($dados);
+        $medico = new Medico;
+        $medico->setId($request->id);
+        $medico->setCreated_at($request->created_at);
+        $medico->setUpdated_at(now()->toDateTimeString());
+        $medico->setMedico($request->medico);
+        $medico->setCRM($request->crm);
+        $medico->setEspecialidade($request->especialidade);
+        $medico->setEndereco($request->endereco);
+        $medico->setNumero($request->numero);
+        $medico->setComplemento($request->complemento);
+        $medico->setBairro($request->bairro);
+        $medico->setCEP($request->cep);
+        $medico->setTelefone($request->telefone);
+        $medico->setCelular($request->celular);
+        $medico->setEmail($request->email);
+        $medico->setCPF($request->cpf);
+        $medico->setRG($request->rg);
+        $medico->setNascimento($request->nascimento);
+        $medico->setNacionalidade($request->nacionalidade);
+        $medico->setObservacao($request->observacao);
+        $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
+        $medico->setCidade($cidade);
+        $dados = $this->getDados($medico);
+        return $this->medicoRepository->atualizar($dados);
     }
 
     /**
