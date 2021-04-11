@@ -25,17 +25,12 @@ class MedicoController extends Controller
         return view('medicos.index', compact('medicos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-        return view('medicos.create', compact('cidades', 'estados', 'paises'));
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        return view('medicos.create', compact('paises', 'estados', 'cidades'));
     }
 
     /**

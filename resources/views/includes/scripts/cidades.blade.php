@@ -8,10 +8,10 @@
             data: { id_cidade : id_cidade },
             dataType: "JSON",
             success: function(response){
-                $('#ddd-cidade-input-fornecedor').val(response.cidade.ddd);
-                $('#cidade-input-fornecedor').val(response.cidade.cidade);
-                $('#uf-cidade-input-fornecedor').val(response.estado.uf);
-                $('#id-cidade-input-fornecedor').val(response.cidade.id);
+                $('#ddd-cidade-input').val(response.cidade.ddd);
+                $('#cidade-input').val(response.cidade.cidade);
+                $('#uf-cidade-input').val(response.estado.uf);
+                $('#id-cidade-input').val(response.cidade.id);
                 $('#cidadeModal').modal('hide')
             }
         });
