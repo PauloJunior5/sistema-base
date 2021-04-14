@@ -2,31 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cidade;
-use App\Models\Estado;
-use App\Models\Medico;
-use App\Models\Paciente;
-use App\Models\Pais;
-use Illuminate\Http\Request;
+use App\Repositories\CidadeRepository;
+use App\Repositories\EstadoRepository;
+use App\Repositories\PaisRepository;
+use App\Repositories\MedicoRepository;
+use App\Repositories\PacienteRepository;
+use App\Services\PacienteService;
 
 class PacienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->pacienteRepository = new PacienteRepository;
+        $this->pacienteSerivce = new PacienteService;
+        $this->paisRepository = new PaisRepository;
+        $this->estadoRepository = new EstadoRepository;
+        $this->cidadeRepository = new CidadeRepository;
+        $this->medicoRepository = new MedicoRepository;
+    }
+
     public function index()
     {
-        $pacientes = Paciente::all();
+        $pacientes = $this->pacienteRepository->mostrarTodos();
         return view('pacientes.index', compact('pacientes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $cidades = Cidade::all(); // Modal add cidade
@@ -36,12 +36,6 @@ class PacienteController extends Controller
         return view('pacientes.create', compact('cidades', 'estados', 'paises', 'medicos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -57,19 +51,13 @@ class PacienteController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $paciente = Paciente::findOrFail($id);
         $medico = Medico::findOrFail($paciente->id_medico);
         $cidade = Cidade::findOrFail($paciente->id_cidade);
         $estado = Estado::findOrFail($cidade->id_estado);
-        
+
         $cidades = Cidade::all(); // Modal add cidade
         $estados = Estado::all(); // Modal add estado
         $paises = Pais::all(); // Modal add pais
@@ -78,20 +66,13 @@ class PacienteController extends Controller
         return view('pacientes.edit', compact('paciente', 'medico', 'cidade', 'estado', 'cidades', 'estados', 'paises', 'medicos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
             'cpf' => 'unique:pacientes,cpf,' . $id,
             'rg' => 'unique:pacientes,rg,' . $id,
         ]);
-        
+
         if ($validatedData) {
             $paciente = Paciente::whereId($id)->update($request->except('_token', '_method'));
             if ($paciente) {
@@ -100,12 +81,6 @@ class PacienteController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $paciente = Paciente::where('id', $id)->delete();

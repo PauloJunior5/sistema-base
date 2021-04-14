@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MedicoRequest;
 use App\Repositories\CidadeRepository;
 use App\Repositories\EstadoRepository;
-use App\Repositories\MedicoRepository;
 use App\Repositories\PaisRepository;
+use App\Http\Requests\MedicoRequest;
+use App\Repositories\MedicoRepository;
 use App\Services\MedicoService;
 
 class MedicoController extends Controller

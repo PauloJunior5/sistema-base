@@ -9,8 +9,8 @@ class PacienteRepository
 {
     public function mostrarTodos()
     {
-        $medicos = DB::table('medicos')->get();
-        return $medicos;
+        $pacientes = DB::table('pacientes')->get();
+        return $pacientes;
     }
 
     public function adicionar($dados)
