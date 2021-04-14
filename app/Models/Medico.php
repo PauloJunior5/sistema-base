@@ -77,7 +77,6 @@ class Medico extends Model
         $this->crm = $crm;
     }
 
-
     /*
     |--------------------------------------------------------------------------
     | Get e Set Especialidade
