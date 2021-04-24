@@ -36,15 +36,11 @@
                                 </thead>
                                 <tbody>
                                     @foreach($cidades as $cidade)
-                                    @php
-                                    $estado = App\Models\Estado::where('id', $cidade->id_estado)->get();
-                                    $pais = App\Models\Pais::where('id', $estado->first()->id_pais)->get();
-                                    @endphp
                                     <tr>
                                         <td>{{ $cidade->ddd }}</td>
                                         <td>{{ $cidade->cidade }}</td>
-                                        <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $cidade->created_at }}</td>
+                                        <td>{{ $cidade->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idCidade-medico" value="{{$cidade->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i> Selecionar

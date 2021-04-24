@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('medico', 'MedicoController');
     Route::name('medico.')->group(function () {
-        Route::post('medico/createMedico', 'MedicoController@createMedico')->name('medico.createMedico');
+        Route::post('medico/createMedico', 'MedicoController@createMedico')->name('createMedico');
     });
 
 });

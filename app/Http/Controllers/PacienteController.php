@@ -29,11 +29,11 @@ class PacienteController extends Controller
 
     public function create()
     {
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-        $medicos = Medico::all(); // Modal add medico
-        return view('pacientes.create', compact('cidades', 'estados', 'paises', 'medicos'));
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        $medicos = $this->medicoRepository->mostrarTodos();
+        return view('pacientes.create', compact('paises', 'estados', 'cidades', 'medicos'));
     }
 
     public function store(Request $request)
