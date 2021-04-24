@@ -24,7 +24,7 @@
     $('.idMedico').click(function() {
         var id_medico = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/medico/show',
             data: { id_medico : id_medico },
             dataType: "JSON",
@@ -39,7 +39,7 @@
     $('.idCidade').click(function() {
         var id_cidade = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/cidade/show',
             data: { id_cidade : id_cidade },
             dataType: "JSON",
@@ -55,7 +55,7 @@
     $('.idEstado').click(function() {
         var id_estado = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/estado/show',
             data: { id_estado : id_estado },
             dataType: "JSON",
@@ -71,7 +71,7 @@
     $('.idPais').click(function() {
         var id_pais = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/pais/show',
             data: { id_pais : id_pais },
             dataType: "JSON",
@@ -87,7 +87,7 @@
     $('.idCidade-medico').click(function() {
         var id_cidade = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/cidade/show',
             data: { id_cidade : id_cidade },
             dataType: "JSON",
@@ -103,7 +103,7 @@
     $('.idEstado-medico').click(function() {
         var id_estado = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/estado/show',
             data: { id_estado : id_estado },
             dataType: "JSON",
@@ -119,7 +119,7 @@
     $('.idPais-medico').click(function() {
         var id_pais = $(this).val();
         $.ajax({
-            method: "POST",
+            method: "GET",
             url: url_atual + '/pais/show',
             data: { id_pais : id_pais },
             dataType: "JSON",

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PacienteRequest;
 use App\Repositories\CidadeRepository;
 use App\Repositories\EstadoRepository;
 use App\Repositories\PaisRepository;
@@ -36,18 +37,14 @@ class PacienteController extends Controller
         return view('pacientes.create', compact('paises', 'estados', 'cidades', 'medicos'));
     }
 
-    public function store(Request $request)
+    public function store(PacienteRequest $request)
     {
-        $validatedData = $request->validate([
-            'cpf' => 'unique:pacientes,cpf',
-            'rg' => 'unique:pacientes,rg',
-        ]);
-
-        if ($validatedData) {
-            $paciente = Paciente::create($request->all());
-            if ($paciente) {
-                return redirect()->route('paciente.index')->with('Success', 'Paciente criado com sucesso.');
-            }
+        dd($request->all());
+        $paciente = $this->pacienteSerivce->instanciarECriar($request);
+        if ($paciente) {
+            return redirect()->route('paciente.index')->with('Success', 'Paciente criado com sucesso.')->send();
+        } else {
+            return redirect()->route('paciente.index')->with('Warning', 'Não foi possivel criar paciente.')->send();
         }
     }
 
@@ -66,7 +63,7 @@ class PacienteController extends Controller
         return view('pacientes.edit', compact('paciente', 'medico', 'cidade', 'estado', 'cidades', 'estados', 'paises', 'medicos'));
     }
 
-    public function update(Request $request, $id)
+    public function update(PacienteRequest $request, $id)
     {
         $validatedData = $request->validate([
             'cpf' => 'unique:pacientes,cpf,' . $id,

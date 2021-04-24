@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PacienteRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class PacienteRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,12 @@ class PacienteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'cpf' => [
+                Rule::unique('pacientes', 'cpf')->ignore($this->cpf),
+            ],
+            'rg' => [
+                Rule::unique('pacientes', 'rg')->ignore($this->rg),
+            ],
         ];
     }
 }
