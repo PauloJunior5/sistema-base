@@ -39,7 +39,6 @@ class PacienteController extends Controller
 
     public function store(PacienteRequest $request)
     {
-        dd($request->all());
         $paciente = $this->pacienteSerivce->instanciarECriar($request);
         if ($paciente) {
             return redirect()->route('paciente.index')->with('Success', 'Paciente criado com sucesso.')->send();

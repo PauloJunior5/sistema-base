@@ -2,45 +2,49 @@
 
 namespace App\Services;
 
-use App\Models\Medico;
-use App\Http\Requests\MedicoRequest;
-use App\Repositories\MedicoRepository;
+use App\Models\Paciente;
+use App\Http\Requests\PacienteRequest;
+use App\Repositories\PacienteRepository;
 
 class pacienteService
 {
     public function __construct()
     {
-        $this->medicoRepository = new MedicoRepository;
+        $this->pacienteRepository = new PacienteRepository;
+        $this->medicoService = new MedicoService;
         $this->cidadeService = new CidadeService;
     }
 
-    public function instanciarECriar(MedicoRequest $request)
+    public function instanciarECriar(PacienteRequest $request)
     {
-        $medico = new Medico;
-        $medico->setMedico($request->medico);
-        $medico->setCRM($request->crm);
-        $medico->setEspecialidade($request->especialidade);
-        $medico->setEndereco($request->endereco);
-        $medico->setNumero($request->numero);
-        $medico->setComplemento($request->complemento);
-        $medico->setBairro($request->bairro);
-        $medico->setCEP($request->cep);
-        $medico->setTelefone($request->telefone);
-        $medico->setCelular($request->celular);
-        $medico->setEmail($request->email);
-        $medico->setCPF($request->cpf);
-        $medico->setRG($request->rg);
-        $medico->setNascimento($request->nascimento);
-        $medico->setNacionalidade($request->nacionalidade);
-        $medico->setObservacao($request->observacao);
+        $paciente = new Paciente;
+        $paciente->setPaciente($request->paciente);
+        $paciente->setApelido($request->apelido);
+        $paciente->setEndereco($request->endereco);
+        $paciente->setNumero($request->numero);
+        $paciente->setComplemento($request->complemento);
+        $paciente->setBairro($request->bairro);
+        $paciente->setCEP($request->cep);
+        $paciente->setSexo($request->sexo);
+        $paciente->setNascimento($request->nascimento);
+        $paciente->setEstadoCivil($request->estado_civil);
+        $paciente->setNacionalidade($request->nacionalidade);
+        $paciente->setTelefone($request->telefone);
+        $paciente->setCelular($request->celular);
+        $paciente->setEmail($request->email);
+        $paciente->setCPF($request->cpf);
+        $paciente->setRG($request->rg);
+        $paciente->setObservacao($request->observacao);
+        $medico = $this->medicoService->buscarEInstanciar($request->id_medico);
+        $paciente->setMedico($medico);
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
-        $medico->setCidade($cidade);
-        $medico->setCreated_at(now()->toDateTimeString());
-        $dados = $this->getDados($medico);
-        return $this->medicoRepository->adicionar($dados);
+        $paciente->setCidade($cidade);
+        $paciente->setCreated_at(now()->toDateTimeString());
+        $dados = $this->getDados($paciente);
+        return $this->pacienteRepository->adicionar($dados);
     }
 
-    public function instanciarEAtualizar(MedicoRequest $request)
+    public function instanciarEAtualizar(PacienteRequest $request)
     {
         $medico = new Medico;
         $medico->setId($request->id);
@@ -65,7 +69,7 @@ class pacienteService
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
         $medico->setCidade($cidade);
         $dados = $this->getDados($medico);
-        return $this->medicoRepository->atualizar($dados);
+        return $this->pacienteRepository->atualizar($dados);
     }
 
     /**
@@ -74,7 +78,7 @@ class pacienteService
      */
     public function buscarEInstanciar(int $id)
     {
-        $result = $this->medicoRepository->findById($id);
+        $result = $this->pacienteRepository->findById($id);
         $medico = new Medico;
         $medico->setId($result->id);
         $medico->setCreated_at($result->created_at ?? null);
@@ -104,7 +108,7 @@ class pacienteService
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    public function getDados(Medico $medico)
+    public function getDados(Paciente $medico)
     {
         $dados = [
             'id' => $medico->getId(),

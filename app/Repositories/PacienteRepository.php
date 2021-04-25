@@ -18,11 +18,11 @@ class PacienteRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('medicos')->insert($dados);
+            $result = DB::table('pacientes')->insert($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel criar médico: ' . $th);
+            Log::debug('Warning - Não foi possivel criar paciente: ' . $th);
         }
         return $result;
     }
