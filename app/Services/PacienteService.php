@@ -108,28 +108,31 @@ class pacienteService
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    public function getDados(Paciente $medico)
+    public function getDados(Paciente $paciente)
     {
         $dados = [
-            'id' => $medico->getId(),
-            'medico' => $medico->getMedico(),
-            'crm' => $medico->getCRM(),
-            'especialidade' => $medico->getEspecialidade(),
-            'endereco' => $medico->getEndereco(),
-            'numero' => $medico->getNumero(),
-            'complemento' => $medico->getComplemento(),
-            'bairro' => $medico->getBairro(),
-            'cep' => $medico->getCEP(),
-            'id_cidade' => $medico->getCidade()->getId(),
-            'telefone' => $medico->getTelefone(),
-            'celular' => $medico->getCelular(),
-            'email' => $medico->getEmail(),
-            'cpf' => $medico->getCPF(),
-            'rg' => $medico->getRG(),
-            'nascimento' => $medico->getNascimento(),
-            'observacao' => $medico->getObservacao(),
-            'created_at' => $medico->getCreated_at(),
-            'updated_at' => $medico->getUpdated_at()
+            'id' => $paciente->getId(),
+            'paciente' => $paciente->getPaciente(),
+            'apelido' => $paciente->getPaciente(),
+            'id_medico' => $paciente->getMedico()->getId(),
+            'endereco' => $paciente->getEndereco(),
+            'numero' => $paciente->getNumero(),
+            'complemento' => $paciente->getComplemento(),
+            'bairro' => $paciente->getBairro(),
+            'cep' => $paciente->getCEP(),
+            'id_cidade' => $paciente->getCidade()->getId(),
+            'sexo' => $paciente->getSexo(),
+            'nascimento' => $paciente->getNascimento(),
+            'estado_civil' => $paciente->getEstadoCivil(),
+            'nacionalidade' => $paciente->getNacionalidade(),
+            'telefone' => $paciente->getTelefone(),
+            'celular' => $paciente->getCelular(),
+            'email' => $paciente->getEmail(),
+            'cpf' => $paciente->getCPF(),
+            'rg' => $paciente->getRG(),
+            'observacao' => $paciente->getObservacao(),
+            'created_at' => $paciente->getCreated_at(),
+            'updated_at' => $paciente->getUpdated_at()
         ];
         return $dados;
     }
