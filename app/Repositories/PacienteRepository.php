@@ -29,8 +29,8 @@ class PacienteRepository
 
     public function findById(int $id)
     {
-        $medico = DB::table('medicos')->where('id', $id)->first();
-        return $medico;
+        $paciente = DB::table('pacientes')->where('id', $id)->first();
+        return $paciente;
     }
 
     public function atualizar($dados)
@@ -38,11 +38,11 @@ class PacienteRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('medicos')->where('id', $dados['id'])->update($dados);
+            $result = DB::table('pacientes')->where('id', $dados['id'])->update($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel editar médico: ' . $th);
+            Log::debug('Warning - Não foi possivel editar paciente: ' . $th);
         }
         return $result;
     }
@@ -52,11 +52,11 @@ class PacienteRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('medicos')->where('id', $id)->delete();
+            $result = DB::table('pacientes')->where('id', $id)->delete();
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - Não foi possivel excluir médico: ' . $th);
+            Log::debug('Warning - Não foi possivel excluir paciente: ' . $th);
         }
         return $result;
     }

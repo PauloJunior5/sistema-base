@@ -46,29 +46,33 @@ class pacienteService
 
     public function instanciarEAtualizar(PacienteRequest $request)
     {
-        $medico = new Medico;
-        $medico->setId($request->id);
-        $medico->setCreated_at($request->created_at);
-        $medico->setUpdated_at(now()->toDateTimeString());
-        $medico->setMedico($request->medico);
-        $medico->setCRM($request->crm);
-        $medico->setEspecialidade($request->especialidade);
-        $medico->setEndereco($request->endereco);
-        $medico->setNumero($request->numero);
-        $medico->setComplemento($request->complemento);
-        $medico->setBairro($request->bairro);
-        $medico->setCEP($request->cep);
-        $medico->setTelefone($request->telefone);
-        $medico->setCelular($request->celular);
-        $medico->setEmail($request->email);
-        $medico->setCPF($request->cpf);
-        $medico->setRG($request->rg);
-        $medico->setNascimento($request->nascimento);
-        $medico->setNacionalidade($request->nacionalidade);
-        $medico->setObservacao($request->observacao);
+        $paciente = new Paciente;
+        $paciente->setId($request->id);
+        $paciente->setCreated_at($request->created_at);
+        $paciente->setUpdated_at(now()->toDateTimeString());
+        $paciente->setPaciente($request->paciente);
+        $paciente->setApelido($request->apelido);
+        $paciente->setEndereco($request->endereco);
+        $paciente->setNumero($request->numero);
+        $paciente->setComplemento($request->complemento);
+        $paciente->setBairro($request->bairro);
+        $paciente->setCEP($request->cep);
+        $paciente->setSexo($request->sexo);
+        $paciente->setNascimento($request->nascimento);
+        $paciente->setEstadoCivil($request->estado_civil);
+        $paciente->setNacionalidade($request->nacionalidade);
+        $paciente->setTelefone($request->telefone);
+        $paciente->setCelular($request->celular);
+        $paciente->setEmail($request->email);
+        $paciente->setCPF($request->cpf);
+        $paciente->setRG($request->rg);
+        $paciente->setObservacao($request->observacao);
+        $medico = $this->medicoService->buscarEInstanciar($request->id_medico);
+        $paciente->setMedico($medico);
         $cidade = $this->cidadeService->buscarEInstanciar($request->id_cidade);
-        $medico->setCidade($cidade);
-        $dados = $this->getDados($medico);
+        $paciente->setCidade($cidade);
+        $paciente->setCreated_at(now()->toDateTimeString());
+        $dados = $this->getDados($paciente);
         return $this->pacienteRepository->atualizar($dados);
     }
 
@@ -79,29 +83,32 @@ class pacienteService
     public function buscarEInstanciar(int $id)
     {
         $result = $this->pacienteRepository->findById($id);
-        $medico = new Medico;
-        $medico->setId($result->id);
-        $medico->setCreated_at($result->created_at ?? null);
-        $medico->setUpdated_at($result->updated_at ?? null);
-        $medico->setMedico($result->medico);
-        $medico->setCRM($result->crm);
-        $medico->setEspecialidade($result->especialidade);
-        $medico->setEndereco($result->endereco);
-        $medico->setNumero($result->numero);
-        $medico->setComplemento($result->complemento);
-        $medico->setBairro($result->bairro);
-        $medico->setCEP($result->cep);
-        $medico->setTelefone($result->telefone);
-        $medico->setCelular($result->celular);
-        $medico->setEmail($result->email);
-        $medico->setCPF($result->cpf);
-        $medico->setRG($result->rg);
-        $medico->setNascimento($result->nascimento);
-        $medico->setNacionalidade($result->nacionalidade);
-        $medico->setObservacao($result->observacao);
+        $paciente = new Paciente;
+        $paciente->setId($result->id);
+        $paciente->setCreated_at($result->created_at ?? null);
+        $paciente->setUpdated_at($result->updated_at ?? null);
+        $paciente->setPaciente($result->paciente);
+        $paciente->setApelido($result->apelido);
+        $paciente->setEndereco($result->endereco);
+        $paciente->setNumero($result->numero);
+        $paciente->setComplemento($result->complemento);
+        $paciente->setBairro($result->bairro);
+        $paciente->setCEP($result->cep);
+        $paciente->setSexo($result->sexo);
+        $paciente->setNascimento($result->nascimento);
+        $paciente->setEstadoCivil($result->estado_civil);
+        $paciente->setNacionalidade($result->nacionalidade);
+        $paciente->setTelefone($result->telefone);
+        $paciente->setCelular($result->celular);
+        $paciente->setEmail($result->email);
+        $paciente->setCPF($result->cpf);
+        $paciente->setRG($result->rg);
+        $paciente->setObservacao($result->observacao);
+        $medico = $this->medicoService->buscarEInstanciar($result->id_medico);
+        $paciente->setMedico($medico);
         $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
-        $medico->setCidade($cidade);
-        return $medico;
+        $paciente->setCidade($cidade);
+        return $paciente;
     }
 
     /**
