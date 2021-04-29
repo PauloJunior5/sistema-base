@@ -20,7 +20,7 @@ class CreateExamesTable extends Migration
             $table->double('valor', 8, 2);
             $table->string('plano');
             $table->string('categoria');
-            
+
             $table->timestamps();
         });
     }

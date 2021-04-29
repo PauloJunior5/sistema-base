@@ -18,7 +18,7 @@ class CreateContratosTable extends Migration
             $table->string('contrato');
             $table->unsignedTinyInteger('id_responsavel');
             $table->timestamps();
-            $table->foreign('id_responsavel')->references('id')->on('clientes'); 
+            $table->foreign('id_responsavel')->references('id')->on('clientes');
         });
     }
 

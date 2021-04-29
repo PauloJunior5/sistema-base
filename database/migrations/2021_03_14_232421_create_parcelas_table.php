@@ -36,7 +36,6 @@ class CreateParcelasTable extends Migration
      * 
      */
 
-
     /**
      * Reverse the migrations.
      *
