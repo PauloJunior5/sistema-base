@@ -49,7 +49,7 @@ $(function(){
     parcelas = [];
     var porcentual = 100;
     var porcentualReserva = 0;
-    var contador = 1;
+    var contador = Object.keys(parcelas).length;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -60,8 +60,10 @@ $(function(){
 
     function Adicionar(){
 
+        contador++;
+
         var parcela = JSON.stringify({
-            parcela : contador++,
+            parcela : contador,
             dias   : $("#id_dias").val(),
             porcentual     : $("#id_porcentual").val(),
             forma_pagamento : $("#id-forma_pagamento-input").val(),
@@ -124,7 +126,7 @@ $(function(){
     });
 
     function Editar(){
-
+        
         parcelas[indice_selecionado].dias = $("#id_dias").val();
         parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
         parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();

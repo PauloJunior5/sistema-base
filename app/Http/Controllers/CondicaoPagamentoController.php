@@ -56,6 +56,7 @@ class CondicaoPagamentoController extends Controller
 
     public function update(CondicaoPagamentoRequest $request)
     {
+        dd($request->all());
         $condicaoPagamento = $this->condicaoPagamentoService->instanciarEAtualizar($request);
         if ($condicaoPagamento) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de pagamento alterada com sucesso.')->send();

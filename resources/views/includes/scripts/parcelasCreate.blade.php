@@ -47,7 +47,7 @@
         tbClientes = [];
         var porcentual = 0;
         var porcentualReserva = 0;
-        var contador = 1;
+        var contador = Object.keys(parcelas).length;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -57,8 +57,11 @@
     });
 
     function Adicionar(){
+
+        contador++;
+
         var cliente = JSON.stringify({
-            Parcela : contador++,
+            Parcela : contador,
             Dias   : $("#id_dias").val(),
             Porcentual     : $("#id_porcentual").val(),
             Pagamento : $("#id-forma_pagamento-input").val(),
