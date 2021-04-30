@@ -15,6 +15,7 @@ class CreateParcelasTable extends Migration
     {
         Schema::create('parcelas', function (Blueprint $table) {
             $table->primary(['id_condicao_pagamento', 'parcela']);
+            $table->unsignedTinyInteger('id_condicao_pagamento');
             $table->integer('parcela');
             $table->integer('dias');
             $table->float('porcentual');
