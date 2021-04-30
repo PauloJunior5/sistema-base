@@ -2,123 +2,78 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FormaPagamento;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\FormaPagamentoRequest;
+use App\Repositories\FormaPagamentoRepository;
+use App\Services\FormaPagamentoService;
 
 class FormaPagamentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->formaPagamentoRepository = new FormaPagamentoRepository;
+        $this->formaPagamentoService = new FormaPagamentoService;
+    }
+
     public function index()
     {
-        return view('formas_pagamento.index', ['formas_pagamento' => FormaPagamento::all()]);
+        $formasPagamento = $this->formaPagamentoRepository->mostrarTodos();
+        return view('formasPagamento.index', compact('formasPagamento'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('formas_pagamento.create');
+        return view('formasPagamento.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(FormaPagamentoRequest $request)
     {
-        $validatedData = $request->validate([
-            'forma_pagamento' => 'required',
-        ]);
-
-        if ($validatedData) {
-            $forma_pagamento = FormaPagamento::create($request->all());
-            if ($forma_pagamento) {
-                return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento criada com sucesso.');
-            }
+        $formaPagamento = $this->formaPagamentoService->instanciarECriar($request);
+        if ($formaPagamento) {
+            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento criada com sucesso.')->send();
+        } else {
+            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel criar forma de pagamento.')->send();
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request)
+    public function show(FormaPagamentoRequest $request)
     {
-        $forma_pagamento = FormaPagamento::findOrFail($request->id_forma_pagamento);
-        return $forma_pagamento;
+        $formaPagamento = $this->formaPagamentoRepository->findById($request->id_forma_pagamento);
+        return response()->json($formaPagamento);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(int $id)
     {
-        $forma_pagamento = FormaPagamento::findOrFail($id);
-        return view('formas_pagamento.edit', compact('forma_pagamento'));
+        $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($id);
+        return view('formasPagamento.edit', compact('formaPagamento'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(FormaPagamentoRequest $request)
     {
-        $validatedData = $request->validate([
-            'forma_pagamento' => 'required',
-        ]);
-
-        if ($validatedData) {
-            $forma_pagamento = FormaPagamento::whereId($id)->update($request->except('_token', '_method'));
-            if ($forma_pagamento) {
-                return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento alterada com sucesso.');
-            }
+        $formaPagamento = $this->formaPagamentoService->instanciarEAtualizar($request);
+        if ($formaPagamento) {
+            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento alterada com sucesso.')->send();
+        } else {
+            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel alterar forma de pagamento.')->send();
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $forma_pagamento = FormaPagamento::where('id', $id)->delete();
-        if ($forma_pagamento) {
-            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de Pagamento excluida com sucesso.');
+        $formaPagamento = $this->formaPagamentoRepository->remover($id);
+        if ($formaPagamento) {
+            return redirect()->route('formaPagamento.index')->with('Success', 'Forma de pagamento excluída com sucesso.')->send();
+        } else {
+            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel excluir forma de pagamento.')->send();
         }
     }
 
-    public function createForma_pagamento(Request $request)
+    public function createForma_pagamento(FormaPagamentoRequest $request)
     {
-        $validatedData = $request->validate([
-            'forma_pagamento' => 'required',
-        ]);
-
-        if ($validatedData) {
-            $forma_pagamento = FormaPagamento::create($request->all());
-            if ($forma_pagamento) {
-                return Redirect::back()->withInput()->with('error_code', 9);
-            }
+        $formaPagamento = $this->formaPagamentoService->instanciarECriar($request);
+        if ($formaPagamento) {
+            return redirect()->back()->withInput()->with('error_code', 9)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
         }
     }
-
 }

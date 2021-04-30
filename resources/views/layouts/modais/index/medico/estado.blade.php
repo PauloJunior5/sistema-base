@@ -50,8 +50,8 @@
                                     <tr>
                                         <td>{{ $estado->uf }}</td>
                                         <td>{{ $estado->estado }}</td>
-                                        <td>{{ $estado->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $estado->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $estado->created_at }}</td>
+                                        <td>{{ $estado->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idEstado-medico" value="{{$estado->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i> Selecionar

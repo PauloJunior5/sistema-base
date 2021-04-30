@@ -15,7 +15,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('cidade.update', $cidade) }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('cidade.update', $cidade->getId()) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -28,20 +28,20 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="id" value="{{$cidade->id}}" readonly placeholder="#"/>
+                                        <input class="form-control" name="id" value="{{$cidade->getId()}}" readonly placeholder="#"/>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">DDD</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="ddd" type="text" value="{{$cidade->ddd}}" required />
+                                        <input class="form-control" name="ddd" type="text" value="{{$cidade->getDDD()}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Cidade</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="cidade" type="text" value="{{$cidade->cidade}}" required />
+                                        <input class="form-control" name="cidade" type="text" value="{{$cidade->getCidade()}}" required />
                                     </div>
                                 </div>
                             </div>
@@ -49,14 +49,14 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">UF</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="uf-estado-input" type="text" value="{{$estado->uf}}" required />
+                                        <input class="form-control" id="uf-estado-input" type="text" value="{{$cidade->getEstado()->getUF()}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Estado</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="estado-input" value="{{$estado->estado}}" readonly />
-                                        <input type="hidden" id="id-estado-input" name="id_estado" value="{{$estado->id}}">
+                                        <input class="form-control" id="estado-input" value="{{$cidade->getEstado()->getEstado()}}" readonly />
+                                        <input type="hidden" id="id-estado-input" name="id_estado" value="{{$cidade->getEstado()->getId()}}">
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                 <div class="col-sm-4">
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="pais-input" value="{{$pais->pais}}" readonly />
+                                        <input class="form-control" id="pais-input" value="{{$cidade->getEstado()->getPais()->getPais()}}" readonly />
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
@@ -77,14 +77,14 @@
                                 <div class="col-md-2">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ $cidade->created_at->format('Y-m-d') }}" readonly>
+                                        <input type="datetime" class="form-control" name="created_at" value="{{ $cidade->getCreated_at() }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Data de Alreração</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ $cidade->updated_at->format('Y-m-d') }}" readonly>
+                                        <input type="datetime" class="form-control" name="updated_at" value="{{ $cidade->getUpdated_at() }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
@@ -100,63 +100,5 @@
         </div>
     </div>
 </div>
-</div>
-<script>
-    var url_atual = '<?php echo URL::to(''); ?>';
-    $('.idEstado').click(function() {
-        var id_estado = $(this).val();
-        $.ajax({
-            method: "POST",
-            url: url_atual + '/cidade/getEstado',
-            data: { id_estado : id_estado },
-            dataType: "JSON",
-            success: function(response){
-                $('#uf-estado-input').val(response.estado.uf);
-                $('#estado-input').val(response.estado.estado);
-                $('#id-estado-input').val(response.estado.id);
-                $('#pais-input').val(response.pais.pais);
-                $('#estadoModal').modal('hide')
-            }
-        });
-    });
-
-    $('.idPais').click(function() {
-        var id_pais = $(this).val();
-        $.ajax({
-            method: "POST",
-            url: url_atual + '/estado/getPais',
-            data: { id_pais : id_pais },
-            dataType: "JSON",
-            success: function(response){
-                $('#input-sigla-pais').val(response.sigla);
-                $('#input-pais').val(response.pais);
-                $('#input-id-pais').val(response.id);
-                $('#paisModal').modal('hide')
-            }
-        });
-    });
-</script>
-
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
-    <script>
-        $(function() {
-            $('#estadoModal').modal('show');
-        });
-    </script>
-@endif
-
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
-    <script>
-        $(function() {
-            $('#estadoModal').modal('show');
-        });
-        $(function() {
-            $('#estadoCreateModal').modal('show');
-        });
-        $(function() {
-            $('#paisModal').modal('show');
-        });
-    </script>
-@endif
-
+@include('includes.scripts.estados')
 @endsection

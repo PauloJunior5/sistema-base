@@ -13,7 +13,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('pais.update', $pais) }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('pais.update', $pais->getId()) }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('put')
                     <div class="card ">
@@ -26,20 +26,20 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="id" type="text" value="{{ $pais->id }}" readonly/>
+                                        <input class="form-control" name="id" type="text" value="{{ $pais->getId() }}" readonly/>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Sigla</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="sigla" type="text" value="{{ $pais->sigla }}" placeholder="Sigla do País"  required />
+                                        <input class="form-control" name="sigla" type="text" value="{{ $pais->getSigla() }}" placeholder="Sigla do País"  required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">País</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="pais" type="text" value="{{ $pais->pais }}" required />
+                                        <input class="form-control" name="pais" type="text" value="{{ $pais->getPais() }}" required />
                                     </div>
                                 </div>
                             </div>
@@ -47,14 +47,14 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ $pais->created_at->format('Y-m-d') }}" readonly>
+                                        <input type="datetime" name="created_at" class="form-control" value="{{ $pais->getCreated_at() }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" value="{{ $pais->updated_at->format('Y-m-d') }}" readonly>
+                                        <input type="datetime" name="updated_at" class="form-control" value="{{ $pais->getUpdated_at() }}" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>

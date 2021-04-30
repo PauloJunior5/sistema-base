@@ -3,8 +3,8 @@
 @include('layouts.modais.chamada-modal.cidade')
 @include('layouts.modais.chamada-modal.estado')
 @include('layouts.modais.chamada-modal.pais')
-@include('layouts.modais.all-condicao_pagamento')
-@include('layouts.modais.all-forma_pagamento')
+@include('layouts.modais.chamada-modal.condicaoPagamento')
+@include('layouts.modais.chamada-modal.formaPagamento')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-md-4 campoPessoaJuridica">
                                     <label class="col-form-label">@include('includes.required')Nome Fantasia</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="nome_fantasia" value="{{ old('nome_fantasia') }}" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="nomeFantasia" value="{{ old('nomeFantasia') }}" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -89,17 +89,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input-cliente" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
+                                    <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Cidade</label>
-                                    <input class="form-control readonly" id="cidade-input-cliente" name="cidade-cliente" value="{{ old('cidade-cliente') }}" required>
-                                    <input type="hidden" id="id-cidade-input-cliente" name="id_cidade" value="{{ old('id_cidade') }}">
+                                    <input class="form-control readonly" id="cidade-input" name="cidade" value="{{ old('cidade') }}" required>
+                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{ old('id_cidade') }}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input-cliente" name="estado" value="{{ old('estado') }}" readonly>
+                                    <input class="form-control" id="uf-cidade-input" name="estado" value="{{ old('estado') }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
@@ -142,7 +142,7 @@
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricao_estadual" value="{{ old('inscricao_estadual') }}" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricaoEstadual" value="{{ old('inscricao_estadual') }}" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')CNPJ</label>
@@ -152,21 +152,20 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
-                                    <input class="form-control" type="number" name="limite_credito" value="{{ old('limite_credito') }}" required>
+                                    <input class="form-control" type="number" name="limite_credito" step="0.01" value="{{ old('limiteCredito') }}" required>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicao_pagamento') }}" readonly>
+                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
-                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento_input" value="{{ old('condicao_pagamento_input') }}" readonly>
-                                    <input type="hidden" id="" name="condicao_pagamento" value="{{ old('condicao_pagamento') }}">
+                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento" value="{{ old('condicao_pagamento_input') }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicao_pagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                                 {{-- FIM CONDICAO PAGAMENTO --}}
                             </div>
@@ -200,183 +199,8 @@
     </div>
 </div>
 
-<script>
-   $( document ).ready(function() {
-        if($(".tipo").val() == "pessoaFisica") {
-            $(".campoPessoaFisica").show();
-            $(".campoPessoaJuridica").hide();
-            $('.inputPessoaJuridica').prop('required',false);
-        } else {
-            $(".campoPessoaJuridica").show();
-            $(".campoPessoaFisica").hide();
-            $('.inputPessoaFisica').prop('required',false);
-        }
-    });
-
-    $(".tipo").on("change", function () {
-        if($(this).val() == "pessoaFisica") {
-            $(".campoPessoaFisica").show();
-            $(".campoPessoaJuridica").hide();
-            $('.inputPessoaJuridica').prop('required',false);
-            $('.inputPessoaFisica').prop('required',true);
-        }
-        else if($(this).val() == "pessoaJuridica") {
-            $(".campoPessoaFisica").hide();
-            $(".campoPessoaJuridica").show();
-            $('.inputPessoaFisica').prop('required',false);
-            $('.inputPessoaJuridica').prop('required',true);
-        }
-    });
-
-</script>
-
-<script>
-    var url_atual = '<?php echo URL::to(''); ?>';
-    $('.idCidade').click(function() {
-        var id_cidade = $(this).val();
-        $.ajax({
-            method: "POST",
-            url: url_atual + '/cidade/show',
-            data: { id_cidade : id_cidade },
-            dataType: "JSON",
-            success: function(response){
-                console.log(response);
-                $('#ddd-cidade-input-cliente').val(response.cidade.ddd);
-                $('#cidade-input-cliente').val(response.cidade.cidade);
-                $('#uf-cidade-input-cliente').val(response.estado.uf);
-                $('#id-cidade-input-cliente').val(response.cidade.id);
-                $('#cidadeModal').modal('hide')
-            }
-        });
-    });
-
-    $('.idEstado').click(function() {
-        var id_estado = $(this).val();
-        $.ajax({
-            method: "POST",
-            url: url_atual + '/cidade/getEstado',
-            data: { id_estado : id_estado },
-            dataType: "JSON",
-            success: function(response){
-                $('#uf-estado-input').val(response.estado.uf);
-                $('#estado-input').val(response.estado.estado);
-                $('#id-estado-input').val(response.estado.id);
-                $('#pais-input').val(response.pais.pais);
-                $('#estadoModal').modal('hide')
-            }
-        });
-    });
-
-    $('.idPais').click(function() {
-        var id_pais = $(this).val();
-        $.ajax({
-            method: "POST",
-            url: url_atual + '/estado/getPais',
-            data: { id_pais : id_pais },
-            dataType: "JSON",
-            success: function(response){
-                $('#input-sigla-pais').val(response.sigla);
-                $('#input-pais').val(response.pais);
-                $('#input-id-pais').val(response.id);
-                $('#paisModal').modal('hide')
-            }
-        });
-    });
-</script>
-
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
-    <script>
-        $(function() {
-            $('#cidadeModal').modal('show');
-        });
-    </script>
-@endif
-
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
-    <script>
-        $(function() {
-            $('#cidadeModal').modal('show');
-        });
-        $(function() {
-            $('#cidadeCreateModal').modal('show');
-        });
-        $(function() {
-            $('#estadoModal').modal('show');
-        });
-    </script>
-@endif
-
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 4)
-    <script>
-        $(function() {
-            $('#estadoModal').modal('show');
-        });
-        $(function() {
-            $('#estadoCreateModal').modal('show');
-        });
-        $(function() {
-            $('#paisModal').modal('show');
-        });
-    </script>
-@endif
-
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 3)
-    <script>
-        $(function() {
-            $('#condicao_pagamentoModal').modal('show');
-        });
-    </script>
-@endif
-
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 9)
-    <script>
-        $(function() {
-            $('#condicao_pagamentoModal').modal('show');
-        });
-        $(function() {
-            $('#condicao_pagamentoCreateModal').modal('show');
-        });
-        $(function() {
-            $('#forma_pagamentoModal').modal('show');
-        });
-    </script>
-@endif
-
-<script>
-
-var url_atual = '<?php echo URL::to(''); ?>';
-    $('.idCondição_pagamento-cliente').click(function() {
-        var id_condicao_pagamento = $(this).val();
-        $.ajax({
-            method: "GET",
-            url: url_atual + '/condicaoPagamento/show',
-            data: { id_condicao_pagamento : id_condicao_pagamento },
-            dataType: "JSON",
-            success: function(response){
-                console.log(response);
-                $('#id-condicao_pagamento-input').val(response.id);
-                $('#condicao_pagamento-input').val(response.condicao_pagamento);
-                $('#condicao_pagamentoModal').modal('hide')
-            }
-        });
-    });
-
-    var url_atual = '<?php echo URL::to(''); ?>';
-    $('.idForma_pagamento').click(function() {
-        var id_forma_pagamento = $(this).val();
-        $.ajax({
-            method: "POST",
-            url: url_atual + '/formaPagamento/show',
-            data: { id_forma_pagamento : id_forma_pagamento },
-            dataType: "JSON",
-            success: function(response){
-                $('#id-forma_pagamento-input').val(response.id);
-                $('#forma_pagamento-input').val(response.forma_pagamento);
-                $('#forma_pagamentoModal').modal('hide')
-            }
-        });
-    });
-
-</script>
-@include('includes.scripts.cliente-condicao-pagamento')
+@include('includes.scripts.fisicaJuridica')
+@include('includes.scripts.cidades')
+@include('includes.scripts.condicoesPagamento')
+@include('includes.scripts.parcelasCreate')
 @endsection

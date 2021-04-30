@@ -3,48 +3,85 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaisRequest;
-
-use App\Interfaces\PaisInterface;
+use App\Repositories\PaisRepository;
+use App\Services\PaisService;
 
 class PaisController extends Controller
 {
-    public function __construct(PaisInterface $paisInterface)
+    public function __construct()
     {
-        $this->paisInterface = $paisInterface;
+        $this->paisRepository = new PaisRepository;
+        $this->paisService = new PaisService;
     }
 
     public function index()
     {
-        return $this->paisInterface->index();
+        $paises = $this->paisRepository->mostrarTodos();
+        return view('paises.index', compact('paises'));
     }
 
     public function create()
     {
-        return $this->paisInterface->create();
+        return view('paises.create');
     }
 
     public function store(PaisRequest $request)
     {
-        return $this->paisInterface->store($request);
+        $pais = $this->paisService->instanciarECriar($request);
+        if ($pais) {
+            return redirect()->route('pais.index')->with('Success', 'Pais criado com sucesso.')->send();
+        } else {
+            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel criar país.')->send();
+        }
     }
 
-    public function edit($pais_id)
+    public function show(PaisRequest $request)
     {
-        return $this->paisInterface->edit($pais_id);
+        $pais = $this->paisRepository->findById($request->id_pais);
+        return response()->json($pais);
+    }
+
+    public function edit(int $id)
+    {
+        $pais = $this->paisService->buscarEInstanciar($id);
+        return view('paises.edit', compact('pais'));
     }
 
     public function update(PaisRequest $request)
     {
-        return $this->paisInterface->update($request);
+        $pais = $this->paisService->instanciarEAtualizar($request);
+        if ($pais) {
+            return redirect()->route('pais.index')->with('Success', 'País alterado com sucesso.');
+        } else {
+            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel editar país.');
+        }
     }
 
-    public function destroy($pais_id)
+    public function destroy(int $id)
     {
-        return $this->paisInterface->destroy($pais_id);
+        $pais = $this->paisRepository->remover($id);
+        if ($pais) {
+            return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
+        } else {
+            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Verifique se existe vínculo com cidades e/ou estados.');
+        }
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
     public function createPais(PaisRequest $request)
     {
-        return $this->paisInterface->createPais($request);
+        $pais = $this->paisService->instanciarECriar($request);
+        if ($pais) {
+            return redirect()->back()->withInput()->with('error_code', 4)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
     }
 }

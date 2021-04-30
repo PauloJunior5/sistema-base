@@ -2,87 +2,95 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estado;
-use App\Models\Medico;
-use App\Models\Pais;
-use Illuminate\Http\Request;
-use Redirect;
+use App\Http\Requests\EstadoRequest;
+use App\Repositories\EstadoRepository;
+use App\Services\EstadoService;
+use App\Repositories\PaisRepository;
 
 class EstadoController extends Controller
 {
+    public function __construct()
+    {
+        $this->estadoRepository = new EstadoRepository;
+        $this->estadoService = new EstadoService;
+        $this->paisRepository = new PaisRepository;
+    }
+
     public function index()
     {
-        // $pacientes = Medico::find(3)->cidades;
-        // dd($cidades);
-        return view('estados.index', ['estados' => Estado::all()]);
+        $estados = $this->estadoRepository->mostrarTodos();
+        return view('estados.index', compact('estados'));
     }
+
     public function create()
     {
-        $paises = Pais::all(); // Modal add pais
+        $paises  = $this->paisRepository->mostrarTodos();
         return view('estados.create', compact('paises'));
     }
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'id_pais' => 'exists:paises,id',
-            'estado' => 'unique:estados,estado',
-        ]);
 
-        if ($validatedData) {
-            $estado = Estado::create($request->all());
-            if ($estado) {
-                return redirect()->route('estado.index')->with('Success', 'Estado criado com sucesso.');
-            }
-        }
-    }
-    public function edit($estado_id)
+    public function store(EstadoRequest $request)
     {
-        $estado = Estado::findOrFail($estado_id);
-        $pais = Pais::findOrFail($estado->id_pais);
-        $paises = Pais::all(); // Modal add pais
+        $estado = $this->estadoService->instanciarECriar($request);
         if ($estado) {
-            return view('estados.edit', compact('estado', 'pais', 'paises'));
+            return redirect()->route('estado.index')->with('Success', 'Estado criado com sucesso.')->send();
         } else {
-            return redirect()->back();
+            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel criar estado.')->send();
         }
     }
-    public function update(Request $request)
+
+    public function show(EstadoRequest $request)
     {
-        $estado = Estado::whereId($request->get('id'))->update($request->except('_token', '_method'));
+        $estado = $this->estadoRepository->findById($request->id_estado);
+        $pais = $this->paisRepository->findById($estado->id_pais);
+        $dados = [
+            'pais' => $pais,
+            'estado' => $estado,
+        ];
+        return response()->json($dados);
+    }
+
+    public function edit(int $id)
+    {
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estado = $this->estadoService->buscarEInstanciar($id);
+        return view('estados.edit', compact('paises', 'estado'));
+    }
+
+    public function update(EstadoRequest $request)
+    {
+        $estado = $this->estadoService->instanciarEAtualizar($request);
         if ($estado) {
             return redirect()->route('estado.index')->with('Success', 'Estado alterado com sucesso.');
+        } else {
+            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel editar estado.');
         }
     }
-    public function destroy($estado_id)
+
+    public function destroy(int $id)
     {
-        try {
-            $estado = Estado::where('id', $estado_id)->delete();
-        } catch (\Illuminate\Database\QueryException $ex) {
-            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel excluir estado. Esse estado possui vínculo com cidades.');
-        }
+        $estado = $this->estadoRepository->remover($id);
         if ($estado) {
-            return redirect()->route('estado.index')->with('Success', 'Estado excluido com sucesso.');
+            return redirect()->route('estado.index')->with('Success', 'Estado excluído com sucesso.');
+        } else {
+            return redirect()->route('estado.index')->with('Warning', 'Não foi possivel excluir Estado. Verifique se existe vínculo com cidades.');
         }
     }
 
-    public function getPais(Request $request)
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createEstado(EstadoRequest $request)
     {
-        $pais = Pais::find($request->id_pais);
-        return $pais;
-    }
-
-    public function createEstado(Request $request)
-    {
-        $validatedData = $request->validate([
-            'id_pais' => 'exists:paises,id',
-            'estado' => 'unique:estados,estado',
-        ]);
-
-        if ($validatedData) {
-            $estado = Estado::create($request->all());
-            if ($estado) {
-                return Redirect::back()->withInput()->with('error_code', 5);
-            }
+        $estado = $this->estadoService->instanciarECriar($request);
+        if ($estado) {
+            return redirect()->back()->withInput()->with('error_code', 5)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
         }
     }
 }

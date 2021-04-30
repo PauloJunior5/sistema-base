@@ -2,35 +2,66 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Model;
 
 class Cidade extends Model
 {
-    protected $table = 'cidades';
-    
-    protected $fillable = [
-        'id', 'ddd', 'cidade', 'id_estado','created_at', 'updated_at'
-    ];
+    protected string $ddd;
+    protected string $cidade;
+    protected Estado $estado;
 
-    public function estado()
+    public function __construct()
     {
-        return $this->belongsTo('App\Estado');
+        $this->ddd = '';
+        $this->cidade = '';
+        $this->estado = new Estado();
     }
 
-    public function medicos()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set DDD
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getDDD(): string
     {
-        return $this->hasMany('App\Medicos', 'id_cidade', 'id');
+        return $this->ddd;
     }
 
-    public function pacientes()
+    public function setDDD(string $ddd)
     {
-        return $this->hasMany('App\Pacientes', 'id_cidade', 'id');
+        $this->ddd = $ddd;
     }
 
-    public function fornecedores()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Cidade
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getCidade(): string
     {
-        return $this->hasMany('App\Forncecedores', 'id_cidade', 'id');
+        return $this->cidade;
     }
 
+    public function setCidade(string $cidade)
+    {
+        $this->cidade = $cidade;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Estado
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getEstado(): Estado
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(Estado $estado)
+    {
+        $this->estado = $estado;
+    }
 }

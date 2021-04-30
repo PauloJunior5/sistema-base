@@ -2,19 +2,48 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Model;
 
 class Pais extends Model
 {
-    protected $table = 'paises';
-    
-    protected $fillable = [
-        'id', 'sigla', 'pais', 'updated_at', 'created_at'
-    ];
+    protected string $pais;
+    protected string $sigla;
 
-    public function Estados()
+    public function __construct()
     {
-        return $this->hasMany('App\Estado', 'id_pais', 'id');
+        $this->pais = '';
+        $this->sigla = '';
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set País
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getPais(): string
+    {
+        return $this->pais;
+    }
+
+    public function setPais(string $pais)
+    {
+        $this->pais = $pais;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Sigla
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getSigla(): string
+    {
+        return $this->sigla;
+    }
+
+    public function setSigla(string $sigla)
+    {
+        $this->sigla = $sigla;
+    }
 }

@@ -2,25 +2,66 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Model;
 
 class Estado extends Model
 {
-    protected $table = 'estados';
-    
-    protected $fillable = [
-        'id', 'uf', 'estado', 'id_pais', 'updated_at', 'created_at'
-    ];
+    protected string $uf;
+    protected string $estado;
+    protected Pais $pais;
 
-    public function pais()
+    public function __construct()
     {
-        return $this->belongsTo('App\Pais');
+        $this->uf = '';
+        $this->estado = '';
+        $this->pais = new Pais();
     }
 
-    public function cidades()
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set UF
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getUF(): string
     {
-        return $this->hasMany('App\Cidade', 'id_estado', 'id');
+        return $this->uf;
     }
 
+    public function setUF(string $uf)
+    {
+        $this->uf = $uf;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Estado
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getEstado(): string
+    {
+        return $this->estado;
+    }
+
+    public function setEstado(string $estado)
+    {
+        $this->estado = $estado;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set País
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getPais(): Pais
+    {
+        return $this->pais;
+    }
+
+    public function setPais(Pais $pais)
+    {
+        $this->pais = $pais;
+    }
 }

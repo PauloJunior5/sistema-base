@@ -10,14 +10,25 @@
                         <p class="card-category"> {{ __('Aqui você pode gerenciar cidades') }}</p>
                     </div>
                     <div class="card-body">
-                        @if (session('status'))
+                        @if (session('Success'))
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="alert alert-success">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <i class="material-icons">close</i>
                                     </button>
-                                    <span>{{ session('status') }}</span>
+                                    <span>{{ session('Success') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif (session('Warning'))
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="alert alert-warning">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span>{{ session('Warning') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -38,20 +49,16 @@
                                 </thead>
                                 <tbody>
                                     @foreach($cidades as $cidade)
-                                    @php
-                                    $estado = App\Models\Estado::where('id', $cidade->id_estado)->get();
-                                    $pais = App\Models\Pais::where('id', $estado->first()->id_pais)->get();
-                                    @endphp
                                     <tr>
                                         <td>{{ $cidade->ddd }}</td>
                                         <td>{{ $cidade->cidade }}</td>
-                                        <td>{{ $cidade->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $cidade->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $cidade->created_at }}</td>
+                                        <td>{{ $cidade->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <form action="{{ route('cidade.destroy', $cidade->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cidade.edit', $cidade) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cidade.edit', $cidade->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

@@ -39,7 +39,7 @@ class CreatePacientesTable extends Migration
             $table->timestamps();
 
             $table->foreign('id_medico')->references('id')->on('medicos');
-            $table->foreign('id_cidade')->references('id')->on('cidades'); 
+            $table->foreign('id_cidade')->references('id')->on('cidades');
         });
     }
 

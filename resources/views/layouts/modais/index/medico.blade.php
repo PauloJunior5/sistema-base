@@ -52,8 +52,8 @@
                                         <td>{{ $medico->medico }}</td>
                                         <td>{{ $medico->crm }}</td>
                                         <td>{{ $medico->especialidade }}</td>
-                                        <td>{{ $medico->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $medico->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $medico->created_at }}</td>
+                                        <td>{{ $medico->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idMedico" value="{{$medico->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i> Selecionar

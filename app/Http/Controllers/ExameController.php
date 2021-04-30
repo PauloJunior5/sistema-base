@@ -2,96 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exame;
-use Illuminate\Http\Request;
+use App\Http\Requests\ExameRequest;
+use App\Repositories\ExameRepository;
+use App\Services\ExameService;
 
 class ExameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->exameRepository = new ExameRepository;
+        $this->exameService = new ExameService;
+    }
+
     public function index()
     {
-        $exames = Exame::all();
+        $exames = $this->exameRepository->mostrarTodos();
         return view('exames.index', compact('exames'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('exames.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(ExameRequest $request)
     {
-        $validatedData = $request->validate([
-            'exame' => 'unique:exames,exame',
-        ]);
-
-        if ($validatedData) {
-            $exame = Exame::create($request->all());
-            if ($exame) {
-                return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.');
-            }
+        $exame = $this->exameService->instanciarECriar($request);
+        if ($exame) {
+            return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.')->send();
+        } else {
+            return redirect()->route('exame.index')->with('Warning', 'Não foi possivel criar exame.')->send();
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(int $id)
     {
-        $exame = Exame::findOrFail($id);
+        $exame = $this->exameService->buscarEInstanciar($id);
         return view('exames.edit', compact('exame'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(ExameRequest $request)
     {
-        $validatedData = $request->validate([
-            'exame' => 'unique:exames,exame,' . $id,
-        ]);
-
-        if ($validatedData) {
-            $exame = Exame::whereId($id)->update($request->except('_token', '_method'));
-            if ($exame) {
-                return redirect()->route('exame.index')->with('Success', 'Exame alterado com sucesso.');
-            }
+        $exame = $this->exameService->instanciarEAtualizar($request);
+        if ($exame) {
+            return redirect()->route('exame.index')->with('Success', 'Exame alterado com sucesso.')->send();
+        } else {
+            return redirect()->route('exame.index')->with('Warning', 'Não foi possivel alterar exame.')->send();
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $exame = Exame::where('id', $id)->delete();
+        $exame = $this->exameRepository->remover($id);
         if ($exame) {
-            return redirect()->route('exame.index')->with('Success', 'Exame excluido com sucesso.');
+            return redirect()->route('exame.index')->with('Success', 'Exame excluído com sucesso.')->send();
+        } else {
+            return redirect()->route('exame.index')->with('Warning', 'Não foi possivel excluir exame.')->send();
         }
     }
 }

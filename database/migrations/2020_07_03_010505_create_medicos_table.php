@@ -36,7 +36,7 @@ class CreateMedicosTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('id_cidade')->references('id')->on('cidades'); 
+            $table->foreign('id_cidade')->references('id')->on('cidades');
         });
     }
 

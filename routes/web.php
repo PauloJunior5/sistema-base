@@ -23,9 +23,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// HOME
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
@@ -36,9 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
 
-
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// REGIÕES
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -60,50 +58,46 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// EQUIPE
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::resource('fornecedor', 'FornecedorController');
+
+    Route::resource('medico', 'MedicoController');
+    Route::name('medico.')->group(function () {
+        Route::post('medico/createMedico', 'MedicoController@createMedico')->name('createMedico');
+    });
+
+});
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('cliente', 'ClienteController', ['except' => ['show']]);
-    Route::put('cliente/{id}', 'ClienteController@update')->name('cliente.update');
-    Route::post('cliente/getCidade', 'ClienteController@getCidade');
-});
+// GERAL
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('medico', 'MedicoController', ['except' => ['show']]);
-    Route::put('medico/{id}', 'MedicoController@update')->name('medico.update');
-    Route::post('medico/show', 'MedicoController@show');
-    Route::post('medico/createMedico', 'MedicoController@createMedico')->name('medico.createMedico');
-});
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('exame', 'ExameController', ['except' => ['show']]);
-    Route::put('exame/{id}', 'ExameController@update')->name('exame.update');
-});
+    Route::resource('cliente', 'ClienteController');
+    Route::resource('paciente', 'PacienteController');
+    Route::resource('exame', 'ExameController');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('paciente', 'PacienteController', ['except' => ['show']]);
-    Route::put('paciente/{id}', 'PacienteController@update')->name('paciente.update');
 });
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('fornecedor', 'FornecedorController', ['except' => ['show']]);
-    Route::put('fornecedor/{id}', 'FornecedorController@update')->name('fornecedor.update');
-});
-
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::resource('condicaoPagamento', 'CondicaoPagamentoController', ['except' => ['show']]);
-    Route::get('condicaoPagamento/show', 'CondicaoPagamentoController@show');
-    Route::post('condicaoPagamento/createCondicao_pagamento', 'CondicaoPagamentoController@createCondicao_pagamento')->name('condicaoPagamento.createCondicao_pagamento');
-});
+// NEGÓCIO
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('formaPagamento', 'FormaPagamentoController', ['except' => ['show']]);
-    Route::post('formaPagamento/show', 'FormaPagamentoController@show');
-    Route::post('formaPagamento/createForma_pagamento', 'FormaPagamentoController@createForma_pagamento')->name('formaPagamento.createForma_pagamento');
+
+    Route::resource('condicaoPagamento', 'CondicaoPagamentoController');
+    Route::name('condicaoPagamento.')->group(function () {
+        Route::post('condicaoPagamento/createCondicao_pagamento', 'CondicaoPagamentoController@createCondicao_pagamento')->name('createCondicao_pagamento');
+    });
+
+    Route::resource('formaPagamento', 'FormaPagamentoController');
+    Route::name('formaPagamento.')->group(function () {
+        Route::post('formaPagamento/createForma_pagamento', 'FormaPagamentoController@createForma_pagamento')->name('createForma_pagamento');
+    });
+
+    Route::resource('contrato', 'ContratoController');
+
 });

@@ -2,11 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Model;
 
 class FormaPagamento extends Model
 {
-    protected $fillable = [
-        'forma_pagamento'
-    ];
+    protected string $formaPagamento;
+
+    public function __construct()
+    {
+        $this->formaPagamento = '';
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Forma de Pagamento
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getFormaPagamento(): string
+    {
+        return $this->formaPagamento;
+    }
+
+    public function setFormaPagamento(string $formaPagamento)
+    {
+        $this->formaPagamento = $formaPagamento;
+    }
 }

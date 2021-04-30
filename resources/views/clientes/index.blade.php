@@ -52,13 +52,13 @@
                                     <tr>
                                         <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
                                         <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
-                                        <td>{{$cliente->created_at->format('Y-m-d H:i:s')}}</td>
-                                        <td>{{$cliente->updated_at->format('Y-m-d H:i:s')}}</td>
+                                        <td>{{$cliente->created_at}}</td>
+                                        <td>{{$cliente->updated_at}}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('cliente.destroy', $cliente) }}" method="post">
+                                            <form action="{{ route('cliente.destroy', $cliente->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente->id) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

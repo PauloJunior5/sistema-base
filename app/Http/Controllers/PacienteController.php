@@ -2,115 +2,79 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cidade;
-use App\Models\Estado;
-use App\Models\Medico;
-use App\Models\Paciente;
-use App\Models\Pais;
-use Illuminate\Http\Request;
+use App\Http\Requests\PacienteRequest;
+use App\Repositories\CidadeRepository;
+use App\Repositories\EstadoRepository;
+use App\Repositories\PaisRepository;
+use App\Repositories\MedicoRepository;
+use App\Repositories\PacienteRepository;
+use App\Services\PacienteService;
 
 class PacienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->pacienteRepository = new PacienteRepository;
+        $this->pacienteService = new PacienteService;
+        $this->paisRepository = new PaisRepository;
+        $this->estadoRepository = new EstadoRepository;
+        $this->cidadeRepository = new CidadeRepository;
+        $this->medicoRepository = new MedicoRepository;
+    }
+
     public function index()
     {
-        $pacientes = Paciente::all();
+        $pacientes = $this->pacienteRepository->mostrarTodos();
         return view('pacientes.index', compact('pacientes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-        $medicos = Medico::all(); // Modal add medico
-        return view('pacientes.create', compact('cidades', 'estados', 'paises', 'medicos'));
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        $medicos = $this->medicoRepository->mostrarTodos();
+        return view('pacientes.create', compact('paises', 'estados', 'cidades', 'medicos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(PacienteRequest $request)
     {
-        $validatedData = $request->validate([
-            'cpf' => 'unique:pacientes,cpf',
-            'rg' => 'unique:pacientes,rg',
-        ]);
-
-        if ($validatedData) {
-            $paciente = Paciente::create($request->all());
-            if ($paciente) {
-                return redirect()->route('paciente.index')->with('Success', 'Paciente criado com sucesso.');
-            }
+        $paciente = $this->pacienteService->instanciarECriar($request);
+        if ($paciente) {
+            return redirect()->route('paciente.index')->with('Success', 'Paciente criado com sucesso.')->send();
+        } else {
+            return redirect()->route('paciente.index')->with('Warning', 'Não foi possivel criar paciente.')->send();
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $paciente = Paciente::findOrFail($id);
-        $medico = Medico::findOrFail($paciente->id_medico);
-        $cidade = Cidade::findOrFail($paciente->id_cidade);
-        $estado = Estado::findOrFail($cidade->id_estado);
-        
-        $cidades = Cidade::all(); // Modal add cidade
-        $estados = Estado::all(); // Modal add estado
-        $paises = Pais::all(); // Modal add pais
-        $medicos = Medico::all(); // Modal add medico
+        $paciente = $this->pacienteService->buscarEInstanciar($id);
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        $medicos  = $this->medicoRepository->mostrarTodos();
 
-        return view('pacientes.edit', compact('paciente', 'medico', 'cidade', 'estado', 'cidades', 'estados', 'paises', 'medicos'));
+        return view('pacientes.edit', compact('paciente', 'paises', 'estados', 'cidades', 'medicos'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(PacienteRequest $request)
     {
-        $validatedData = $request->validate([
-            'cpf' => 'unique:pacientes,cpf,' . $id,
-            'rg' => 'unique:pacientes,rg,' . $id,
-        ]);
-        
-        if ($validatedData) {
-            $paciente = Paciente::whereId($id)->update($request->except('_token', '_method'));
-            if ($paciente) {
-                return redirect()->route('paciente.index')->with('Success', 'Paciente alterado com sucesso.');
-            }
+        $paciente = $this->pacienteService->instanciarEAtualizar($request);
+        if ($paciente) {
+            return redirect()->route('paciente.index')->with('Success', 'Paciente alterado com sucesso.')->send();
+        } else {
+            return redirect()->route('paciente.index')->with('Warning', 'Não foi possivel alterar paciente.')->send();
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        $paciente = Paciente::where('id', $id)->delete();
+        $paciente = $this->pacienteRepository->remover($id);
         if ($paciente) {
-            return redirect()->route('paciente.index')->with('Success', 'Paciente excluido com sucesso.');
+            return redirect()->route('paciente.index')->with('Success', 'Paciente excluído com sucesso.')->send();
+        } else {
+            return redirect()->route('paciente.index')->with('Warning', 'Não foi possivel excluir paciente.')->send();
         }
     }
 

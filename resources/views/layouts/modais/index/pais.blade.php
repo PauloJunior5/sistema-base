@@ -50,8 +50,8 @@
                                     <tr>
                                         <td>{{ $pais->sigla }}</td>
                                         <td>{{ $pais->pais }}</td>
-                                        <td>{{ $pais->created_at->format('Y-m-d') }}</td>
-                                        <td>{{ $pais->updated_at->format('Y-m-d') }}</td>
+                                        <td>{{ $pais->created_at }}</td>
+                                        <td>{{ $pais->updated_at }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idPais" value="{{$pais->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i> Selecionar
