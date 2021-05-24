@@ -50,15 +50,15 @@
                                 <tbody>
                                     @foreach($paises as $pais)
                                     <tr>
-                                        <td>{{ $pais->sigla }}</td>
-                                        <td>{{ $pais->pais }}</td>
-                                        <td>{{ $pais->created_at }}</td>
-                                        <td>{{ $pais->updated_at }}</td>
+                                        <td>{{ $pais->getSigla() }}</td>
+                                        <td>{{ $pais->getPais() }}</td>
+                                        <td>{{ $pais->getCreated_at() }}</td>
+                                        <td>{{ $pais->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('pais.destroy', $pais->id) }}" method="post">
+                                            <form action="{{ route('pais.destroy', $pais->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('pais.edit', $pais->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('pais.edit', $pais->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

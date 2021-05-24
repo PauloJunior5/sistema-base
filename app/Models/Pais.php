@@ -6,8 +6,8 @@ use App\Models\Model;
 
 class Pais extends Model
 {
-    protected string $pais;
-    protected string $sigla;
+    protected $pais;
+    protected $sigla;
 
     public function __construct()
     {

@@ -13,6 +13,24 @@ class PaisService
         $this->paisRepository = new PaisRepository;
     }
 
+    public function InstanciarTodos()
+    {
+        $results = $this->paisRepository->mostrarTodos();
+        $paises = collect();
+
+        foreach ($results as $result) {
+            $pais = new Pais();
+            $pais->setId($result->id);
+            $pais->setCreated_at($result->created_at ?? null);
+            $pais->setUpdated_at($result->updated_at ?? null);
+            $pais->setSigla($result->sigla);
+            $pais->setPais($result->pais);
+            $paises->push($pais);
+        }
+
+        return $paises;
+    }
+
     public function instanciarECriar(PaisRequest $request)
     {
         $pais = new Pais;

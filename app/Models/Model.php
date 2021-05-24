@@ -4,9 +4,9 @@ namespace App\Models;
 
 class Model
 {
-    protected ?int $id = 0;
-    protected $created_at = null;
-    protected $updated_at = null;
+    protected $id;
+    protected $created_at;
+    protected $updated_at;
 
     function __construct()
     {
@@ -21,7 +21,7 @@ class Model
     |--------------------------------------------------------------------------
     |
     */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
