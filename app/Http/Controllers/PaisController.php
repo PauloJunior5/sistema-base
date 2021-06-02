@@ -16,7 +16,7 @@ class PaisController extends Controller
 
     public function index()
     {
-        $paises = $this->paisService->InstanciarTodos();
+        $paises = $this->paisService->instanciarTodos();
         return view('paises.index', compact('paises'));
     }
 

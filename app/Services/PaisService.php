@@ -13,7 +13,7 @@ class PaisService
         $this->paisRepository = new PaisRepository;
     }
 
-    public function InstanciarTodos()
+    public function instanciarTodos()
     {
         $results = $this->paisRepository->mostrarTodos();
         $paises = collect();

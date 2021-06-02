@@ -14,6 +14,10 @@ class EstadoService
         $this->paisService = new PaisService;
     }
 
+    public function instanciarTodos() {
+        $result = $this->estadoRepository->mostrarTodos();
+    }
+
     public function instanciarECriar(EstadoRequest $request)
     {
         $estado = new Estado;
