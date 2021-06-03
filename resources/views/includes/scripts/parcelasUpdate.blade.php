@@ -108,13 +108,14 @@ $(function(){
         porcentualReserva = porcentual;
         porcentual -= cli.porcentual;
 
-        var id_forma_pagamento = cli.forma_pagamento;
+        var id_forma_pagamento = cli.id_forma_pagamento;
         $.ajax({
             method: "GET",
             url: url_atual + '/formaPagamento/show',
             data: { id_forma_pagamento : id_forma_pagamento },
             dataType: "JSON",
             success: function(response){
+                console.log(response);
                 $('#id-forma_pagamento-input').val(response.id);
                 $('#forma_pagamento-input').val(response.forma_pagamento);
                 $('#forma_pagamentoModal').modal('hide')
