@@ -38,14 +38,6 @@
                             </div>
                             <div class="row new-row">
                                 <div class="col-md-4">
-                                    <label class="col-form-label">Plano</label>
-                                    <input class="form-control" name="plano" value="{{$exame->getPlano()}}" />
-                                    {{-- <input type="hidden" id="input-plano" name="plano"> --}}
-                                </div>
-                                <div class="col-md-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
-                                </div>
-                                <div class="col-md-4">
                                     <label class="col-form-label">Categoria</label>
                                     <input class="form-control" name="categoria" value="{{$exame->getCategoria()}}" />
                                     {{-- <input type="hidden" id="input-categoria" name="categoria"> --}}
@@ -55,11 +47,11 @@
                                 </div>
                             </div>
                             <div class="row new-row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
                                     <input type="datetime" name="created_at" class="form-control" value="{{ $exame->getCreated_at() }}" readonly>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
                                     <input type="datetime" name="updated_at" class="form-control" value="{{ $exame->getUpdated_at() }}" readonly>
                                 </div>

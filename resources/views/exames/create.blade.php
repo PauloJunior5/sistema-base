@@ -37,15 +37,7 @@
                                 </div>
                             </div>
                             <div class="row new-row">
-                                <div class="col-md-4">
-                                    <label class="col-form-label">Plano</label>
-                                    <input class="form-control" name="plano" />
-                                    {{-- <input type="hidden" id="input-plano" name="plano"> --}}
-                                </div>
-                                <div class="col-md-1 mt-auto">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"><i class="material-icons">search</i></button>
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                     <label class="col-form-label">Categoria</label>
                                     <input class="form-control" name="categoria" />
                                     {{-- <input type="hidden" id="input-categoria" name="categoria"> --}}
@@ -55,11 +47,11 @@
                                 </div>
                             </div>
                             <div class="row new-row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
                                     <input type="date" class="form-control" readonly>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
                                     <input type="date" class="form-control" readonly>
                                 </div>

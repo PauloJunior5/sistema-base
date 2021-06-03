@@ -6,10 +6,10 @@ use App\Models\Model;
 
 class Exame extends Model
 {
-    protected string $exame;
-    protected float $valor;
-    protected string $plano;
-    protected string $categoria;
+    protected $exame;
+    protected $valor;
+    protected $plano;
+    protected $categoria;
 
     public function __construct()
     {

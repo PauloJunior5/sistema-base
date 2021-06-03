@@ -42,8 +42,6 @@
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableExames">
                                 <thead class=" text-primary">
                                     <th>{{ __('Exame') }}</th>
-                                    <th>{{ __('Valor') }}</th>
-                                    <th>{{ __('Categoria') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
                                     <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
@@ -52,8 +50,6 @@
                                     @foreach($exames as $exame)
                                     <tr>
                                         <td>{{$exame->exame}}</td>
-                                        <td>{{ number_format($exame->valor, 2, ",") }}</td>
-                                        <td>{{$exame->categoria}}</td>
                                         <td>{{$exame->created_at}}</td>
                                         <td>{{$exame->updated_at}}</td>
                                         <td class="td-actions text-right">

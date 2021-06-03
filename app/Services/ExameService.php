@@ -18,7 +18,6 @@ class ExameService
         $exame = new Exame;
         $exame->setExame($request->exame);
         $exame->setValor($request->valor);
-        $exame->setPlano($request->plano);
         $exame->setCategoria($request->categoria);
         $exame->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($exame);
@@ -31,7 +30,6 @@ class ExameService
         $exame->setId($request->id);
         $exame->setExame($request->exame);
         $exame->setValor($request->valor);
-        $exame->setPlano($request->plano);
         $exame->setCategoria($request->categoria);
         $exame->setCreated_at($request->created_at);
         $exame->setUpdated_at(now()->toDateTimeString());
@@ -50,7 +48,6 @@ class ExameService
         $exame->setId($result->id);
         $exame->setExame($result->exame);
         $exame->setValor($result->valor);
-        $exame->setPlano($result->plano);
         $exame->setCategoria($result->categoria);
         $exame->setCreated_at($result->created_at ?? null);
         $exame->setUpdated_at($result->updated_at ?? null);
@@ -67,7 +64,6 @@ class ExameService
             'id' => $exame->getId(),
             'exame' => $exame->getExame(),
             'valor' => $exame->getValor(),
-            'plano' => $exame->getPlano(),
             'categoria' => $exame->getCategoria(), 
             'created_at' => $exame->getCreated_at(),
             'updated_at' => $exame->getUpdated_at()
