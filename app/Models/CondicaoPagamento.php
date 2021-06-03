@@ -6,10 +6,10 @@ use App\Models\Model;
 
 class CondicaoPagamento extends Model
 {
-    protected string $condicaoPagamento;
-    protected float $multa;
-    protected float $juro;
-    protected float $desconto;
+    protected $condicaoPagamento;
+    protected $multa;
+    protected $juro;
+    protected $desconto;
 
     public function __construct()
     {

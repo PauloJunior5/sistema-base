@@ -6,7 +6,7 @@ use App\Models\Model;
 
 class FormaPagamento extends Model
 {
-    protected string $formaPagamento;
+    protected $formaPagamento;
 
     public function __construct()
     {
