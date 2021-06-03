@@ -6,9 +6,9 @@ use App\Models\Model;
 
 class Estado extends Model
 {
-    protected string $uf;
-    protected string $estado;
-    protected Pais $pais;
+    protected $uf;
+    protected $estado;
+    protected $pais;
 
     public function __construct()
     {

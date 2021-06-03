@@ -18,7 +18,7 @@ class EstadoController extends Controller
 
     public function index()
     {
-        $estados = $this->estadoRepository->mostrarTodos();
+        $estados = $this->estadoService->instanciarTodos();
         return view('estados.index', compact('estados'));
     }
 

@@ -50,15 +50,15 @@
                                 <tbody>
                                     @foreach($estados as $estado)
                                     <tr>
-                                        <td>{{ $estado->uf }}</td>
-                                        <td>{{ $estado->estado }}</td>
-                                        <td>{{ $estado->created_at }}</td>
-                                        <td>{{ $estado->updated_at }}</td>
+                                        <td>{{ $estado->getUf() }}</td>
+                                        <td>{{ $estado->getEstado() }}</td>
+                                        <td>{{ $estado->getCreated_at() }}</td>
+                                        <td>{{ $estado->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('estado.destroy', $estado->id) }}" method="post">
+                                            <form action="{{ route('estado.destroy', $estado->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('estado.edit', $estado->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('estado.edit', $estado->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

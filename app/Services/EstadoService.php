@@ -15,7 +15,22 @@ class EstadoService
     }
 
     public function instanciarTodos() {
-        $result = $this->estadoRepository->mostrarTodos();
+        $results = $this->estadoRepository->mostrarTodos();
+        $estados = collect();
+
+        foreach ($results as $result) {
+            $estado = new Estado();
+            $estado->setId($result->id);
+            $estado->setCreated_at($result->created_at ?? null);
+            $estado->setUpdated_at($result->updated_at ?? null);
+            $estado->setEstado($result->estado);
+            $estado->setUF($result->uf);
+            $pais = $this->paisService->buscarEInstanciar($result->id_pais);
+            $estado->setPais($pais);
+            $estados->push($estado);
+        }
+
+        return $estados;
     }
 
     public function instanciarECriar(EstadoRequest $request)

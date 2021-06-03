@@ -9,7 +9,8 @@ class EstadoRepository
 {
     public function mostrarTodos()
     {
-        return DB::table('estados')->get();
+        $estados = DB::table('estados')->get();
+        return $estados;
     }
 
     public function adicionar($dados)
