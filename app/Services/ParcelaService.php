@@ -13,12 +13,11 @@ class ParcelaService
     public function getDados(Parcela $parcela)
     {
         $dados = [
-            'id' => $parcela->getId(),
+            'id_condicao_pagamento' => $parcela->getCondicaoPagamento()->getId(),
             'parcela' => $parcela->getParcela(),
             'dias' => $parcela->getDias(),
             'porcentual' => $parcela->getPorcentual(),
-            'condicao_pagamento' => $parcela->getCondicaoPagamento()->getId(),
-            'forma_pagamento' => $parcela->getFormaPagamento()->getId(),
+            'id_forma_pagamento' => $parcela->getFormaPagamento()->getId(),
             'created_at' => $parcela->getCreated_at(),
             'updated_at' => $parcela->getUpdated_at()
         ];

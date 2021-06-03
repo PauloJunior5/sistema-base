@@ -86,6 +86,10 @@ $(function(){
             document.getElementById("id_porcentual").value = '';
             document.getElementById("id-forma_pagamento-input").value = '';
             document.getElementById("forma_pagamento-input").value = '';
+
+            $("#qtd_parcelas").val(contador);
+            alert($("#qtd_parcelas").val());
+
             return true;
         } else {
             alert("Parcela inserida ultrapassa os 100%");
@@ -178,6 +182,10 @@ $(function(){
         localStorage.setItem("parcelas", JSON.stringify(parcelas));
         $('#input-parcelas').val(JSON.stringify(parcelas));
         alert("Registro excluído.");
+
+        $("#qtd_parcelas").val(contador);
+        alert($("#qtd_parcelas").val());
+        
     }; operacao = "A";
 
     function Listar(){

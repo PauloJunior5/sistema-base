@@ -253,7 +253,8 @@ $(function(){
             var cli = parcelas[i];
             n++;
 
-            var id_forma_pagamento = cli.forma_pagamento;
+            var id_forma_pagamento = cli.id_forma_pagamento;
+            console.log(cli)
             $.ajax({
                 method: "GET",
                 url: url_atual + '/formaPagamento/show',

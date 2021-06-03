@@ -6,11 +6,11 @@ use App\Models\Model;
 
 class Parcela extends Model
 {
-    protected int $parcela;
-    protected int $dias;
-    protected float $porcentual;
-    protected CondicaoPagamento $condicaoPagamento;
-    protected FormaPagamento $formaPagamento;
+    protected $parcela;
+    protected $dias;
+    protected $porcentual;
+    protected $condicaoPagamento;
+    protected $formaPagamento;
 
     public function __construct()
     {

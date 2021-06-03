@@ -26,7 +26,7 @@ class ParcelaRepository
      */
     public function findById(int $id)
     {
-        $parcelas = DB::table('parcelas')->where('condicao_pagamento', $id)->get();
+        $parcelas = DB::table('parcelas')->where('id_condicao_pagamento', $id)->get();
         return json_encode($parcelas);
     }
 
@@ -35,7 +35,7 @@ class ParcelaRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('parcelas')->where('id', $dados['id'])->update($dados);
+            $result = DB::table('parcelas')->where('id_condicao_pagamento', $dados['id_condicao_pagamento'])->where('parcela', $dados['parcela'])->update($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -49,7 +49,7 @@ class ParcelaRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('parcelas')->where('condicao_pagamento', $id)->delete();
+            $result = DB::table('parcelas')->where('id_condicao_pagamento', $id)->delete();
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();

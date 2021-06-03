@@ -27,23 +27,23 @@ class CondicaoPagamentoService
         $condicaoPagamento->setMulta($request->multa);
         $condicaoPagamento->setJuro($request->juro);
         $condicaoPagamento->setdesconto($request->desconto);
+        $condicaoPagamento->setQtdParcelas($request->qtd_parcelas);
         $condicaoPagamento->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($condicaoPagamento);
         $result = null;
         DB::beginTransaction();
         try {
-            $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
-            if ($idCondicaoPagamento) {
+            $condicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
+            if ($condicaoPagamento) {
                 $objectsArray = json_decode($request->parcelas);
-                foreach ($objectsArray as $array) {
-                    $objeto = json_decode($array);
+                foreach ($objectsArray as $objeto) {
                     $parcela = new Parcela;
-                    $parcela->setParcela($objeto->Parcela);
-                    $parcela->setDias($objeto->Dias);
-                    $parcela->setPorcentual($objeto->Porcentual);
-                    $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->Pagamento);
+                    $parcela->setParcela($objeto->parcela);
+                    $parcela->setDias($objeto->dias);
+                    $parcela->setPorcentual($objeto->porcentual);
+                    $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->forma_pagamento);
                     $parcela->setFormaPagamento($formaPagamento);
-                    $condicaoPagamento = $this->buscarEInstanciar($idCondicaoPagamento);
+                    $condicaoPagamento = $this->buscarEInstanciar($condicaoPagamento);
                     $parcela->setCondicaoPagamento($condicaoPagamento);
                     $parcela->setCreated_at(now()->toDateTimeString());
                     $dados = $this->parcelaService->getDados($parcela);
@@ -80,12 +80,11 @@ class CondicaoPagamentoService
                     $parcela->setParcela($objeto->parcela);
                     $parcela->setDias($objeto->dias);
                     $parcela->setPorcentual($objeto->porcentual);
-                    $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->forma_pagamento);
+                    $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->id_forma_pagamento);
                     $parcela->setFormaPagamento($formaPagamento);
                     $condicaoPagamento = $this->buscarEInstanciar($request->id);
                     $parcela->setCondicaoPagamento($condicaoPagamento);
-                    if (isset($objeto->id)) {
-                        $parcela->setId($objeto->id);
+                    if (isset($objeto->parcela) and isset($objeto->id_condicao_pagamento)) {
                         $parcela->setUpdated_at(now()->toDateTimeString());
                         $parcela->setCreated_at($objeto->created_at);
                         $dados = $this->parcelaService->getDados($parcela);
@@ -135,6 +134,7 @@ class CondicaoPagamentoService
             'multa' => $condicaoPagamento->getMulta(),
             'juro' => $condicaoPagamento->getJuro(),
             'desconto' => $condicaoPagamento->getDesconto(),
+            'qtd_parcelas' => $condicaoPagamento->getQtdParcelas(),
             'created_at' => $condicaoPagamento->getCreated_at(),
             'updated_at' => $condicaoPagamento->getUpdated_at()
         ];

@@ -10,6 +10,7 @@ class CondicaoPagamento extends Model
     protected $multa;
     protected $juro;
     protected $desconto;
+    protected $qtdParcelas;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class CondicaoPagamento extends Model
         $this->multa = 0;
         $this->juro = 0;
         $this->desconto = 0;
+        $this->qtdParcelas = 0;
     }
 
     /*
@@ -81,5 +83,21 @@ class CondicaoPagamento extends Model
     public function setDesconto(float $desconto)
     {
         $this->desconto = $desconto;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Qtd de Parcelas
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getQtdParcelas(): int
+    {
+        return $this->qtdParcelas;
+    }
+
+    public function setQtdParcelas(int $qtdParcelas)
+    {
+        $this->qtdParcelas = $qtdParcelas;
     }
 }

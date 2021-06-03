@@ -56,6 +56,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" id="input-parcelas" name="parcelas" value="">
+                                <input type="hidden" id="qtd_parcelas" name="qtd_parcelas" value="">
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
