@@ -14,6 +14,26 @@ class CidadeService
         $this->estadoService = new EstadoService;
     }
 
+    public function instanciarTodos()
+    {
+        $results = $this->cidadeRepository->mostrarTodos();
+        $cidades = collect();
+
+        foreach ($results as $result) {
+            $cidade = new Cidade();
+            $cidade->setId($result->id);
+            $cidade->setCreated_at($result->created_at ?? null);
+            $cidade->setUpdated_at($result->updated_at ?? null);
+            $cidade->setCidade($result->cidade);
+            $cidade->setDDD($result->ddd);
+            $estado = $this->estadoService->buscarEInstanciar($result->id_estado);
+            $cidade->setEstado($estado);
+            $cidades->push($cidade);
+        }
+
+        return $cidades;
+    }
+
     public function instanciarECriar(CidadeRequest $request)
     {
         $cidade = new Cidade;

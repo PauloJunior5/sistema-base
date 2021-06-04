@@ -20,7 +20,7 @@ class CidadeController extends Controller
 
     public function index()
     {
-        $cidades = $this->cidadeRepository->mostrarTodos();
+        $cidades = $this->cidadeService->instanciarTodos();
         return view('cidades.index', compact('cidades'));
     }
 
