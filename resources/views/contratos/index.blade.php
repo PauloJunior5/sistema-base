@@ -42,7 +42,6 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableContratos">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Id') }}</th>
                                     <th>{{ __('Contrato') }}</th>
                                     <th>{{ __('Responsavel') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
@@ -52,16 +51,15 @@
                                 <tbody>
                                     @foreach($contratos as $contrato)
                                     <tr>
-                                        <td>{{$contrato->id}}</td>
-                                        <td>{{$contrato->contrato}}</td>
-                                        <td>{{$contrato->id_responsavel}}</td>
-                                        <td>{{$contrato->created_at}}</td>
-                                        <td>{{$contrato->updated_at}}</td>
+                                        <td>{{$contrato->getContrato()}}</td>
+                                        <td>{{$contrato->getResponsavel()->getCliente()}}</td>
+                                        <td>{{$contrato->getCreated_at()}}</td>
+                                        <td>{{$contrato->getUpdated_at()}}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('contrato.destroy', $contrato->id) }}" method="post">
+                                            <form action="{{ route('contrato.destroy', $contrato->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('contrato.edit', $contrato->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('contrato.edit', $contrato->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

@@ -14,6 +14,25 @@ class ContratoService
         $this->clienteService = new ClienteService;
     }
 
+    public function instanciarTodos()
+    {
+        $results = $this->contratoRepository->mostrarTodos();
+        $contratos = collect();
+
+        foreach ($results as $result) {
+            $contrato = new Contrato;
+            $contrato->setId($result->id);
+            $contrato->setCreated_at($result->created_at ?? null);
+            $contrato->setUpdated_at($result->updated_at ?? null);
+            $contrato->setContrato($result->contrato);
+            $cliente = $this->clienteService->buscarEInstanciar($result->id_responsavel);
+            $contrato->setResponsavel($cliente);
+            $contratos->push($contrato);
+        }
+
+        return $contratos;
+    }
+
     public function instanciarECriar(ContratoRequest $request)
     {
         $contrato = new Contrato;

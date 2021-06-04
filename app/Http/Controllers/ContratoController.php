@@ -18,7 +18,7 @@ class ContratoController extends Controller
 
     public function index()
     {
-        $contratos = $this->contratoRepository->mostrarTodos();
+        $contratos = $this->contratoService->instanciarTodos();
         return view('contratos.index', compact('contratos'));
     }
 
