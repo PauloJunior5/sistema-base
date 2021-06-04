@@ -27,7 +27,7 @@ class ClienteController extends Controller
 
     public function index()
     {
-        $clientes = $this->clienteRepository->mostrarTodos();
+        $clientes = $this->clienteService->instanciarTodos();
         return view('clientes.index', compact('clientes'));
     }
 
