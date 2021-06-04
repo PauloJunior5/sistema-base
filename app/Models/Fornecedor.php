@@ -6,23 +6,23 @@ use App\Models\Model;
 
 class Fornecedor extends Model
 {
-    protected string $fornecedor;
-    protected string $nomeFantasia;
-    protected string $endereco;
-    protected string $numero;
-    protected string $complemento;
-    protected string $bairro;
-    protected string $cep;
-    protected Cidade $cidade;
-    protected string $telefone;
-    protected string $celular;
-    protected string $email;
-    protected string $contato;
-    protected string $cnpj;
-    protected string $inscricaoEstadual;
-    protected string $observacao;
-    protected string $limiteCredito;
-    protected CondicaoPagamento $condicaoPagamento;
+    protected $fornecedor;
+    protected $nomeFantasia;
+    protected $endereco;
+    protected $numero;
+    protected $complemento;
+    protected $bairro;
+    protected $cep;
+    protected $cidade;
+    protected $telefone;
+    protected $celular;
+    protected $email;
+    protected $contato;
+    protected $cnpj;
+    protected $inscricaoEstadual;
+    protected $observacao;
+    protected $limiteCredito;
+    protected $condicaoPagamento;
 
     public function __construct()
     {
