@@ -26,7 +26,7 @@ class FornecedorController extends Controller
 
     public function index()
     {
-        $fornecedores = $this->fornecedorRepository->mostrarTodos();
+        $fornecedores = $this->fornecedorService->instanciarTodos();
         return view('fornecedores.index', compact('fornecedores'));
     }
 

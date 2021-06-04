@@ -50,15 +50,15 @@
                                 <tbody>
                                     @foreach($fornecedores as $fornecedor)
                                     <tr>
-                                        <td>{{ $fornecedor->cnpj }}</td>
-                                        <td>{{ $fornecedor->fornecedor }}</td>
-                                        <td>{{ $fornecedor->created_at }}</td>
-                                        <td>{{ $fornecedor->updated_at }}</td>
+                                        <td>{{ $fornecedor->getCNPJ() }}</td>
+                                        <td>{{ $fornecedor->getFornecedor() }}</td>
+                                        <td>{{ $fornecedor->getCreated_at() }}</td>
+                                        <td>{{ $fornecedor->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('fornecedor.destroy', $fornecedor->id) }}" method="post">
+                                            <form action="{{ route('fornecedor.destroy', $fornecedor->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('fornecedor.edit', $fornecedor->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('fornecedor.edit', $fornecedor->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

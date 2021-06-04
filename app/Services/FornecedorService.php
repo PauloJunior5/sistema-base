@@ -15,6 +15,41 @@ class FornecedorService
         $this->condicaoPagamentoService = new CondicaoPagamentoService;
     }
 
+    public function instanciarTodos()
+    {
+        $results = $this->fornecedorRepository->mostrarTodos();
+        $fornecedores = collect();
+
+        foreach ($results as $result) {
+            $fornecedor = new Fornecedor;
+            $fornecedor->setId($result->id);
+            $fornecedor->setCreated_at($result->created_at ?? null);
+            $fornecedor->setUpdated_at($result->updated_at ?? null);
+            $fornecedor->setFornecedor($result->fornecedor);
+            $fornecedor->setNomeFantasia($result->nome_fantasia);
+            $fornecedor->setEndereco($result->endereco);
+            $fornecedor->setNumero($result->numero);
+            $fornecedor->setComplemento($result->complemento);
+            $fornecedor->setBairro($result->bairro);
+            $fornecedor->setCEP($result->cep);
+            $fornecedor->setTelefone($result->telefone);
+            $fornecedor->setCelular($result->celular);
+            $fornecedor->setEmail($result->email);
+            $fornecedor->setContato($result->contato);
+            $fornecedor->setCNPJ($result->cnpj);
+            $fornecedor->setInscricaoEstadual($result->inscricao_estadual);
+            $fornecedor->setObservacao($result->observacao);
+            $fornecedor->setLimiteCredito($result->limite_credito);
+            $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
+            $fornecedor->setCidade($cidade);
+            $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
+            $fornecedor->setCondicaoPagamento($condicaoPagamento);
+            $fornecedores->push($fornecedor);
+        }
+
+        return $fornecedores;
+    }
+
     public function instanciarECriar(FornecedorRequest $request)
     {
         $fornecedor = new Fornecedor;
