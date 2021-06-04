@@ -86,11 +86,11 @@
                             </div>
                             {{-- FIM ESCOLHER CIDADE --}}
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Telefone</label>
                                     <input type="text" class="form-control" name="telefone" required>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">Celular</label>
                                     <input type="text" class="form-control" name="celular">
                                 </div>
@@ -98,12 +98,12 @@
                                     <label class="col-form-label">@include('includes.required')Email</label>
                                     <input type="text" class="form-control" name="email" required>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Contato</label>
                                     <input type="text" class="form-control" name="contato" required>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
                                     <input type="text" class="form-control" name="inscricao_estadual" required>
@@ -130,21 +130,21 @@
                             </div>
                             {{-- FIM CONDICAO PAGAMENTO --}}
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
                                     <input class="form-control" type="number" name="limite_credito" required>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-9">
                                     <label class="col-form-label">Observação</label>
                                     <input type="text" class="form-control" name="observacao">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
                                     <input type="date" class="form-control" name="created_at" readonly>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
                                     <input type="date" class="form-control" name="updated_at" readonly>
                                 </div>
