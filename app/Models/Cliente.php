@@ -6,28 +6,28 @@ use App\Models\Model;
 
 class Cliente extends Model
 {
-    protected string $tipo;
-    protected string $cliente;
-    protected string $apelido;
-    protected string $nomeFantasia;
-    protected string $endereco;
-    protected string $numero;
-    protected string $complemento;
-    protected string $bairro;
-    protected string $cep;
-    protected Cidade $cidade;
-    protected string $telefone;
-    protected string $celular;
-    protected string $email;
-    protected string $nacionalidade;
-    protected string $cpf;
-    protected string $rg;
-    protected string $nascimento;
-    protected string $inscricaoEstadual;
-    protected string $cnpj;
-    protected string $observacao;
-    protected float $limiteCredito;
-    protected CondicaoPagamento $condicaoPagamento;
+    protected $tipo;
+    protected $cliente;
+    protected $apelido;
+    protected $nomeFantasia;
+    protected $endereco;
+    protected $numero;
+    protected $complemento;
+    protected $bairro;
+    protected $cep;
+    protected $cidade;
+    protected $telefone;
+    protected $celular;
+    protected $email;
+    protected $nacionalidade;
+    protected $cpf;
+    protected $rg;
+    protected $nascimento;
+    protected $inscricaoEstadual;
+    protected $cnpj;
+    protected $observacao;
+    protected $limiteCredito;
+    protected $condicaoPagamento;
 
     public function __construct()
     {
