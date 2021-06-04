@@ -51,16 +51,16 @@
                                 <tbody>
                                     @foreach($medicos as $medico)
                                     <tr>
-                                        <td>{{ $medico->medico }}</td>
-                                        <td>{{ $medico->crm }}</td>
-                                        <td>{{ $medico->especialidade }}</td>
-                                        <td>{{ $medico->created_at }}</td>
-                                        <td>{{ $medico->updated_at }}</td>
+                                        <td>{{ $medico->getMedico() }}</td>
+                                        <td>{{ $medico->getCRM() }}</td>
+                                        <td>{{ $medico->getEspecialidade() }}</td>
+                                        <td>{{ $medico->getCreated_at() }}</td>
+                                        <td>{{ $medico->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('medico.destroy', $medico->id) }}" method="post">
+                                            <form action="{{ route('medico.destroy', $medico->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('medico.edit', $medico->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('medico.edit', $medico->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

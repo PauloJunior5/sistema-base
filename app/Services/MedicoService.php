@@ -14,6 +14,40 @@ class MedicoService
         $this->cidadeService = new CidadeService;
     }
 
+    public function instanciarTodos()
+    {
+        $results = $this->medicoRepository->mostrarTodos();
+        $medicos = collect();
+
+        foreach ($results as $result) {
+            $medico = new Medico;
+            $medico->setId($result->id);
+            $medico->setCreated_at($result->created_at ?? null);
+            $medico->setUpdated_at($result->updated_at ?? null);
+            $medico->setMedico($result->medico);
+            $medico->setCRM($result->crm);
+            $medico->setEspecialidade($result->especialidade);
+            $medico->setEndereco($result->endereco);
+            $medico->setNumero($result->numero);
+            $medico->setComplemento($result->complemento);
+            $medico->setBairro($result->bairro);
+            $medico->setCEP($result->cep);
+            $medico->setTelefone($result->telefone);
+            $medico->setCelular($result->celular);
+            $medico->setEmail($result->email);
+            $medico->setCPF($result->cpf);
+            $medico->setRG($result->rg);
+            $medico->setNascimento($result->nascimento);
+            $medico->setNacionalidade($result->nacionalidade);
+            $medico->setObservacao($result->observacao);
+            $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
+            $medico->setCidade($cidade);
+            $medicos->push($medico);
+        }
+
+        return $medicos;
+    }
+
     public function instanciarECriar(MedicoRequest $request)
     {
         $medico = new Medico;
@@ -123,6 +157,7 @@ class MedicoService
             'cpf' => $medico->getCPF(),
             'rg' => $medico->getRG(),
             'nascimento' => $medico->getNascimento(),
+            'nacionalidade' => $medico->getNacionalidade(),
             'observacao' => $medico->getObservacao(),
             'created_at' => $medico->getCreated_at(),
             'updated_at' => $medico->getUpdated_at()

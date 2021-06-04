@@ -22,7 +22,7 @@ class MedicoController extends Controller
 
     public function index()
     {
-        $medicos = $this->medicoRepository->mostrarTodos();
+        $medicos = $this->medicoService->instanciarTodos();
         return view('medicos.index', compact('medicos'));
     }
 
