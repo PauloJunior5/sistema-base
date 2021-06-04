@@ -4,27 +4,27 @@ namespace App\Models;
 
 class Paciente extends Model
 {
-    protected string $paciente;
-    protected string $apelido;
-    protected Medico $medico;
-    protected string $endereco;
-    protected string $numero;
-    protected string $complemento;
+    protected $paciente;
+    protected $apelido;
+    protected $medico;
+    protected $endereco;
+    protected $numero;
+    protected $complemento;
 
-    protected string $bairro;
-    protected string $cep;
-    protected Cidade $cidade;
-    protected string $sexo;
-    protected string $nascimento;
-    protected string $estadoCivil;
-    protected string $nacionalidade;
+    protected $bairro;
+    protected $cep;
+    protected $cidade;
+    protected $sexo;
+    protected $nascimento;
+    protected $estadoCivil;
+    protected $nacionalidade;
 
-    protected string $telefone;
-    protected string $celular;
-    protected string $email;
-    protected string $cpf;
-    protected string $rg;
-    protected string $observacao;
+    protected $telefone;
+    protected $celular;
+    protected $email;
+    protected $cpf;
+    protected $rg;
+    protected $observacao;
 
     public function __construct()
     {
