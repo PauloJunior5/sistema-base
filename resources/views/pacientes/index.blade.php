@@ -49,14 +49,14 @@
                                 <tbody>
                                     @foreach($pacientes as $paciente)
                                     <tr>
-                                        <td>{{ $paciente->paciente. " " .$paciente->apelido }}</td>
-                                        <td>{{ $paciente->created_at }}</td>
-                                        <td>{{ $paciente->updated_at }}</td>
+                                        <td>{{ $paciente->getPaciente(). " " .$paciente->getApelido() }}</td>
+                                        <td>{{ $paciente->getCreated_at() }}</td>
+                                        <td>{{ $paciente->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('paciente.destroy', $paciente->id) }}" method="post">
+                                            <form action="{{ route('paciente.destroy', $paciente->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('paciente.edit', $paciente->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('paciente.edit', $paciente->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>

@@ -15,6 +15,44 @@ class pacienteService
         $this->cidadeService = new CidadeService;
     }
 
+    public function instanciarTodos()
+    {
+        $results = $this->pacienteRepository->mostrarTodos();
+        $pacientes = collect();
+
+        foreach ($results as $result) {
+            $paciente = new Paciente;
+            $paciente->setId($result->id);
+            $paciente->setCreated_at($result->created_at ?? null);
+            $paciente->setUpdated_at($result->updated_at ?? null);
+            $paciente->setPaciente($result->paciente);
+            $paciente->setApelido($result->apelido);
+            $paciente->setEndereco($result->endereco);
+            $paciente->setNumero($result->numero);
+            $paciente->setComplemento($result->complemento);
+            $paciente->setBairro($result->bairro);
+            $paciente->setCEP($result->cep);
+            $paciente->setSexo($result->sexo);
+            $paciente->setNascimento($result->nascimento);
+            $paciente->setEstadoCivil($result->estado_civil);
+            $paciente->setNacionalidade($result->nacionalidade);
+            $paciente->setTelefone($result->telefone);
+            $paciente->setCelular($result->celular);
+            $paciente->setEmail($result->email);
+            $paciente->setCPF($result->cpf);
+            $paciente->setRG($result->rg);
+            $paciente->setObservacao($result->observacao);
+            $medico = $this->medicoService->buscarEInstanciar($result->id_medico);
+            $paciente->setMedico($medico);
+            $cidade = $this->cidadeService->buscarEInstanciar($result->id_cidade);
+            $paciente->setCidade($cidade);
+            $pacientes->push($paciente);
+        }
+
+        return $pacientes;
+
+    }
+
     public function instanciarECriar(PacienteRequest $request)
     {
         $paciente = new Paciente;

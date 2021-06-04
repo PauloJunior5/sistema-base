@@ -24,7 +24,7 @@ class PacienteController extends Controller
 
     public function index()
     {
-        $pacientes = $this->pacienteRepository->mostrarTodos();
+        $pacientes = $this->pacienteService->instanciarTodos();
         return view('pacientes.index', compact('pacientes'));
     }
 
