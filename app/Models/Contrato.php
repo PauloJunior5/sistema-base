@@ -4,8 +4,8 @@ namespace App\Models;
 
 class Contrato extends Model
 {
-    protected string $contrato;
-    protected Cliente $responsavel;
+    protected $contrato;
+    protected $responsavel;
 
     function __construct()
     {
