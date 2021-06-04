@@ -6,9 +6,9 @@ use App\Models\Model;
 
 class Cidade extends Model
 {
-    protected string $ddd;
-    protected string $cidade;
-    protected Estado $estado;
+    protected $ddd;
+    protected $cidade;
+    protected $estado;
 
     public function __construct()
     {
