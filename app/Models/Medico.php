@@ -6,23 +6,23 @@ use App\Models\Model;
 
 class Medico extends Model
 {
-    protected string $medico;
-    protected string $crm;
-    protected string $especialidade;
-    protected string $endereco;
-    protected string $numero;
-    protected string $complemento;
-    protected string $bairro;
-    protected string $cep;
-    protected Cidade $cidade;
-    protected string $nascimento;
-    protected string $nacionalidade;
-    protected string $telefone;
-    protected string $celular;
-    protected string $email;
-    protected string $cpf;
-    protected string $rg;
-    protected string $observacao;
+    protected $medico;
+    protected $crm;
+    protected $especialidade;
+    protected $endereco;
+    protected $numero;
+    protected $complemento;
+    protected $bairro;
+    protected $cep;
+    protected $cidade;
+    protected $nascimento;
+    protected $nacionalidade;
+    protected $telefone;
+    protected $celular;
+    protected $email;
+    protected $cpf;
+    protected $rg;
+    protected $observacao;
 
     public function __construct()
     {
