@@ -190,8 +190,3 @@
         </div>
     </div>
 </div>
-
-@include('includes.scripts.fisicaJuridica')
-@include('includes.scripts.cidades')
-@include('includes.scripts.condicoesPagamento')
-@include('includes.scripts.parcelasCreate')
