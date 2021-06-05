@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContratoRequest;
-use App\Repositories\ClienteRepository;
 use App\Repositories\ContratoRepository;
 use App\Services\ContratoService;
+
+use App\Repositories\PaisRepository;
+use App\Repositories\EstadoRepository;
+use App\Repositories\CidadeRepository;
+use App\Repositories\FormaPagamentoRepository;
+use App\Repositories\CondicaoPagamentoRepository;
+use App\Repositories\ClienteRepository;
 
 class ContratoController extends Controller
 {
@@ -13,6 +19,12 @@ class ContratoController extends Controller
     {
         $this->contratoRepository = new ContratoRepository;
         $this->contratoService = new ContratoService;
+        
+        $this->paisRepository = new PaisRepository;
+        $this->estadoRepository = new EstadoRepository;
+        $this->cidadeRepository = new CidadeRepository;
+        $this->formasPagamentoRepository = new FormaPagamentoRepository;
+        $this->condicoesPagamentoRepository = new CondicaoPagamentoRepository;
         $this->clienteRepository = new ClienteRepository;
     }
 
@@ -24,8 +36,13 @@ class ContratoController extends Controller
 
     public function create()
     {
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
+        $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
         $clientes = $this->clienteRepository->mostrarTodos();
-        return view('contratos.create', compact('clientes'));
+        return view('contratos.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'clientes'));
     }
 
     public function store(ContratoRequest $request)
