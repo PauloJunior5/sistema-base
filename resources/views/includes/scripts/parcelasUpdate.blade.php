@@ -88,6 +88,9 @@ $(function(){
             document.getElementById("id_porcentual").value = '';
             document.getElementById("id-forma_pagamento-input").value = '';
             document.getElementById("forma_pagamento-input").value = '';
+
+            $("#qtd_parcelas").val(contador);
+
             return true;
         } else {
             alert("Parcela inserida ultrapassa os 100%");
@@ -127,7 +130,7 @@ $(function(){
     });
 
     function Editar(){
-        
+
         parcelas[indice_selecionado].dias = $("#id_dias").val();
         parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
         parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
@@ -178,6 +181,8 @@ $(function(){
         localStorage.setItem("parcelas", JSON.stringify(parcelas));
         $('#input-parcelas').val(JSON.stringify(parcelas));
         alert("Registro excluído.");
+
+        $("#qtd_parcelas").val(contador);
     };
 
     function Listar(){
@@ -230,6 +235,8 @@ $(function(){
     };
 
     $(function() {
+
+        $("#qtd_parcelas").val(contador);
 
         var forma_pagamento;
         var n = 0;

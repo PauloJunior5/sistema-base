@@ -68,6 +68,7 @@ class CondicaoPagamentoService
         $condicaoPagamento->setMulta($request->multa);
         $condicaoPagamento->setJuro($request->juro);
         $condicaoPagamento->setdesconto($request->desconto);
+        $condicaoPagamento->setQtdParcelas($request->qtd_parcelas);
         $dados = $this->getDados($condicaoPagamento);
         $result = null;
         DB::beginTransaction();
@@ -119,6 +120,7 @@ class CondicaoPagamentoService
         $condicaoPagamento->setMulta($result->multa);
         $condicaoPagamento->setJuro($result->juro);
         $condicaoPagamento->setdesconto($result->desconto);
+        $condicaoPagamento->setQtdParcelas($result->qtd_parcelas);
         return $condicaoPagamento;
     }
 

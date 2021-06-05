@@ -88,7 +88,6 @@ $(function(){
             document.getElementById("forma_pagamento-input").value = '';
 
             $("#qtd_parcelas").val(contador);
-            alert($("#qtd_parcelas").val());
 
             return true;
         } else {
@@ -130,7 +129,7 @@ $(function(){
 
 
     function Editar(){
-        
+
         parcelas[indice_selecionado].dias = $("#id_dias").val();
         parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
         parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
@@ -184,9 +183,7 @@ $(function(){
         alert("Registro excluído.");
 
         $("#qtd_parcelas").val(contador);
-        alert($("#qtd_parcelas").val());
-        
-    }; operacao = "A";
+    };
 
     function Listar(){
 
@@ -238,6 +235,8 @@ $(function(){
     };
 
     $(function() {
+
+        $("#qtd_parcelas").val(contador);
 
         var forma_pagamento;
         var n = 0;
