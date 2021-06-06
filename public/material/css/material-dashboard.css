@@ -5762,7 +5762,7 @@ button.close {
   outline : 0;
 }
 
-.modal-open .modal {
+.modal {
   overflow-x: hidden;
   overflow-y: auto;
 }

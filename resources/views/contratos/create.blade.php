@@ -2,13 +2,13 @@
 @section('content')
 @include('layouts.modais.chamada-modal.cliente')
 
-// inicio - includes para clientes
+{{-- inicio - includes para clientes --}}
 @include('layouts.modais.chamada-modal.cidade')
 @include('layouts.modais.chamada-modal.estado')
 @include('layouts.modais.chamada-modal.pais')
 @include('layouts.modais.chamada-modal.condicaoPagamento')
 @include('layouts.modais.chamada-modal.formaPagamento')
-// fim - includes para clientes
+{{-- fim - includes para clientes --}}
 
 <div class="content">
     <div class="container-fluid">
