@@ -35,12 +35,6 @@
                                                 <span class="check"></span>
                                             </span>
                                         </label>
-                                        <label class="form-check-label">
-                                            <input class="form-check-input tipo" type="radio" name="tipo" value="pessoaJuridica" {{ old('tipo') == 'pessoaJuridica' ? 'checked' : '' }} id="pessoa-juridica" required> Jurídica
-                                            <span class="circle">
-                                                <span class="check"></span>
-                                            </span>
-                                        </label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">

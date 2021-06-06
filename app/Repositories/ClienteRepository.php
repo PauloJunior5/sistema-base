@@ -13,6 +13,18 @@ class ClienteRepository
         return $clientes;
     }
 
+    public function mostrarTodosFisicos()
+    {
+        $clientes = DB::table('clientes')->get()->where('tipo', 'pessoaFisica');
+        return $clientes;
+    }
+
+    public function mostrarTodosJuridicos()
+    {
+        $clientes = DB::table('clientes')->get()->where('tipo', 'pessoaJuridica');
+        return $clientes;
+    }
+
     public function adicionar($dados)
     {
         $result = null;

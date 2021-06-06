@@ -41,8 +41,9 @@ class ContratoController extends Controller
         $cidades  = $this->cidadeRepository->mostrarTodos();
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
-        $clientes = $this->clienteRepository->mostrarTodos();
-        return view('contratos.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'clientes'));
+        $clientesFisicos = $this->clienteRepository->mostrarTodosFisicos();
+        $clientesJuridicos = $this->clienteRepository->mostrarTodosJuridicos();
+        return view('contratos.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'clientesFisicos', 'clientesJuridicos'));
     }
 
     public function store(ContratoRequest $request)

@@ -1,6 +1,6 @@
 @extends('layouts.app', ['activePage' => 'contrato-management', 'titlePage' => __('Contrato Management')])
 @section('content')
-@include('layouts.modais.chamada-modal.cliente')
+@include('layouts.modais.chamada-modal.clienteFisico')
 
 {{-- inicio - includes para clientes --}}
 @include('layouts.modais.chamada-modal.cidade')
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteFisicoModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
                                     </div>
                                 </div>
                             </div>
