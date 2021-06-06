@@ -52,7 +52,7 @@
                                     @foreach($contratos as $contrato)
                                     <tr>
                                         <td>{{$contrato->getContrato()}}</td>
-                                        <td>{{$contrato->getResponsavel()->getCliente()}}</td>
+                                        <td>{{$contrato->getResponsavel()->getCliente() . " " . $contrato->getResponsavel()->getApelido()}}</td>
                                         <td>{{$contrato->getCreated_at()}}</td>
                                         <td>{{$contrato->getUpdated_at()}}</td>
                                         <td class="td-actions text-right">

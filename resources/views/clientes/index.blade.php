@@ -41,7 +41,7 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('CPF/CNPJ') }}</th>
+                                    <th>{{ __('Tipo') }}</th>
                                     <th>{{ __('Cliente') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
                                     <th>{{ __('Data de Alteração') }}</th>
@@ -50,7 +50,12 @@
                                 <tbody>
                                     @foreach($clientes as $cliente)
                                     <tr>
-                                        <td>{{ !empty($cliente->getCPF()) ? $cliente->getCPF() : $cliente->getCNPJ() }}</td>
+                                        {{-- <td>{{ !empty($cliente->getCPF()) ? $cliente->getCPF() : $cliente->getCNPJ() }}</td> --}}
+                                        @if($cliente->getTipo() == "pessoaFisica")
+                                            <td>Pessoa Física</td>
+                                        @else
+                                            <td>Pessoa Jurídica</td>
+                                        @endif
                                         <td>{{ $cliente->getCliente() . " " . $cliente->getApelido() }}</td>
                                         <td>{{$cliente->getCreated_at()}}</td>
                                         <td>{{$cliente->getUpdated_at()}}</td>
