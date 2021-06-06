@@ -88,4 +88,22 @@ class ClienteController extends Controller
             return redirect()->route('cliente.index')->with('Warning', 'Não foi possivel excluir cliente. Verifique se existem vínculos')->send();
         }
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createCliente(ClienteRequest $request)
+    {
+        $cliente = $this->clienteService->instanciarECriar($request);
+        if ($cliente) {
+            return redirect()->back()->withInput()->with('error_code', 1)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
+    }
 }

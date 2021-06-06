@@ -11,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{route('cliente.store')}}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{route('cliente.createCliente')}}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">
