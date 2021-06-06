@@ -116,7 +116,6 @@
 
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a onclick="$('#condicao_pagamentoCreateModal').modal('hide')" class="btn btn-secondary">{{ __('Voltar') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>

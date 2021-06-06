@@ -33,7 +33,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicao_pagamentoCreateModal" style="margin-top: 2.7rem;">Add Condição de Pagamento</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#condicao_pagamentoCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
