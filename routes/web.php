@@ -79,7 +79,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('cliente', 'ClienteController');
     Route::name('cliente.')->group(function () {
-        Route::post('cliente/createMedico', 'ClienteController@createCliente')->name('createCliente');
+        Route::post('cliente/fisico', 'ClienteController@createClienteFisico')->name('createClienteFisico');
+        Route::post('cliente/juridico', 'ClienteController@createClienteJuridico')->name('createClienteJuridico');
     });
     Route::resource('paciente', 'PacienteController');
     Route::resource('exame', 'ExameController');

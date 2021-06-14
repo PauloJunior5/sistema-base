@@ -97,11 +97,29 @@ class ClienteController extends Controller
     | Cria obj para ser retornado para dentro de uma modal
     |
     */
-    public function createCliente(ClienteRequest $request)
+    public function createClienteFisico(ClienteRequest $request)
     {
         $cliente = $this->clienteService->instanciarECriar($request);
         if ($cliente) {
             return redirect()->back()->withInput()->with('error_code', 1)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createClienteJuridico(ClienteRequest $request)
+    {
+        $cliente = $this->clienteService->instanciarECriar($request);
+        if ($cliente) {
+            return redirect()->back()->withInput()->with('error_code', 2)->send();
         } else {
             return redirect()->back()->withInput()->send();
         }

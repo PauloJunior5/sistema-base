@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Responsáveis') }}</h4>
-                        <p class="card-category"> {{ __('Aqui você pode gerenciar responsáveis') }}</p>
+                        <h4 class="card-title ">{{ __('Clientes') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar clientes') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -33,14 +33,14 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clienteFisicoCreateModal" style="margin-top: 2.7rem;">Novo</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clienteJuridicoCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" id="tableClientesFisicos">
+                            <table class="table" id="tableClientesJuridicos">
                                 <thead class=" text-primary">
-                                    <th>{{ __('CPF') }}</th>
-                                    <th>{{ __('Responável') }}</th>
+                                    <th>{{ __('CNPJ') }}</th>
+                                    <th>{{ __('Cliente') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
@@ -49,7 +49,7 @@
                                         <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
                                         <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link idClienteFisico" value="{{$cliente->id}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idClienteJuridico" value="{{$cliente->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i> Selecionar
                                                 <div class="ripple-container"></div>
                                             </button>
@@ -65,4 +65,4 @@
         </div>
     </div>
 </div>
-@include('includes.datatables.script-datatables', ['tableId' => '#tableClientesFisicos'])
+@include('includes.datatables.script-datatables', ['tableId' => '#tableClientesJuridicos'])

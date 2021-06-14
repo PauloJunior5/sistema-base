@@ -11,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{route('cliente.createClienteFisico')}}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{route('cliente.createClienteJuridico')}}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">
@@ -30,7 +30,7 @@
                                     <label class="col-form-label">@include('includes.required')Tipo</label>
                                     <div class="form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input tipo" type="radio" name="tipo" value="pessoaFisica" {{ old('tipo') == 'pessoaFisica' ? 'checked' : '' }} id="pessoa-fisica" checked required> Física
+                                            <input class="form-check-input tipo" type="radio" name="tipo" value="pessoaJuridica" {{ old('tipo') == 'pessoaJuridica' ? 'checked' : '' }} id="pessoa-juridica" checked required> Jurídica
                                             <span class="circle">
                                                 <span class="check"></span>
                                             </span>
@@ -118,12 +118,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label class="col-form-label">@include('includes.required')CPF</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="cpf" value="{{ old('cpf') }}" required>
+                                    <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricaoEstadual" value="{{ old('inscricao_estadual') }}" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">@include('includes.required')RG</label>
-                                    <input type="text" class="form-control inputPessoaFisica" name="rg" value="{{ old('rg') }}" required>
+                                    <label class="col-form-label">@include('includes.required')CNPJ</label>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="cnpj" value="{{ old('cnpj') }}" required>
                                 </div>
                             </div>
                             <div class="row">
