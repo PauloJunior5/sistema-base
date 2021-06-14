@@ -6,11 +6,13 @@ class Contrato extends Model
 {
     protected $contrato;
     protected $responsavel;
+    protected $cliente;
 
     function __construct()
     {
         $this->contrato = '';
         $this->responsavel = new Cliente;
+        $this->cliente = new Cliente;
     }
 
     /*
@@ -43,5 +45,21 @@ class Contrato extends Model
     public function setResponsavel(Cliente $responsavel)
     {
         $this->responsavel = $responsavel;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Cliente
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getCliente(): Cliente
+    {
+        return $this->cliente;
+    }
+
+    public function setCliente(Cliente $cliente)
+    {
+        $this->cliente = $cliente;
     }
 }
