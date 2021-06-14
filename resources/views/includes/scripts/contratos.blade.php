@@ -10,7 +10,7 @@
             success: function(response){
                 $('#input-id-responsavel').val(response.id);
                 $('#input-responsavel').val(response.cliente + ' ' + response.apelido);
-                $('#clienteModal').modal('hide')
+                $('#clienteFisicoModal').modal('hide')
             }
         });
     });
