@@ -85,7 +85,7 @@ class ClienteService
         $cliente->setNacionalidade($request->nacionalidade);
         $cliente->setNascimento ($request->nascimento);
         $cliente->setObservacao ($request->observacao);
-        $cliente->setLimiteCredito ($request->limite_credito);
+        $cliente->setLimiteCredito ($request->limiteCredito);
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
         $cliente->setCreated_at(now()->toDateTimeString());
@@ -121,7 +121,7 @@ class ClienteService
         $cliente->setNacionalidade($request->nacionalidade);
         $cliente->setNascimento ($request->nascimento);
         $cliente->setObservacao ($request->observacao);
-        $cliente->setLimiteCredito ($request->limite_credito);
+        $cliente->setLimiteCredito ($request->limiteCredito);
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $cliente->setCondicaoPagamento($condicaoPagamento);
         $cliente->setCreated_at($request->created_at);
@@ -139,7 +139,7 @@ class ClienteService
         $result = $this->clienteRepository->findById($id);
         $cliente = new Cliente;
         $cliente->setId($result->id);
-        if (!empty($result->cpf)) {
+        if ($result->tipo == 'pessoaFisica') {
             $cliente->setApelido($result->apelido);
             $cliente->setCPF($result->cpf);
             $cliente->setRG ($result->rg);

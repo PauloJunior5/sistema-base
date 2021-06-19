@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-md-4 campoPessoaJuridica">
                                     <label class="col-form-label">@include('includes.required')Nome Fantasia</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" value="{{old('nome_fantasia', $cliente->getNomeFantasia())}}" name="nome_fantasia" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" value="{{old('nomeFantasia', $cliente->getNomeFantasia())}}" name="nomeFantasia" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -132,7 +132,7 @@
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" value="{{old('inscricao_estadual', $cliente->getInscricaoEstadual())}}" name="inscricao_estadual" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" value="{{old('inscricaoEstadual', $cliente->getInscricaoEstadual())}}" name="inscricaoEstadual" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')CNPJ</label>
@@ -142,7 +142,7 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
-                                    <input class="form-control" type="number" value="{{old('limite_credito', $cliente->getLimiteCredito())}}" name="limite_credito" required>
+                                    <input class="form-control" type="number" name="limiteCredito" step="0.01"value="{{old('limiteCredito', $cliente->getLimiteCredito())}}" required>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">

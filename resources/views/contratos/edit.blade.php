@@ -1,6 +1,16 @@
 @extends('layouts.app', ['activePage' => 'contrato-management', 'titlePage' => __('Contrato Management')])
 @section('content')
-@include('layouts.modais.chamada-modal.cliente')
+@include('layouts.modais.chamada-modal.clienteFisico')
+@include('layouts.modais.chamada-modal.clienteJuridico')
+
+{{-- inicio - includes para clientes --}}
+@include('layouts.modais.chamada-modal.cidade')
+@include('layouts.modais.chamada-modal.estado')
+@include('layouts.modais.chamada-modal.pais')
+@include('layouts.modais.chamada-modal.condicaoPagamento')
+@include('layouts.modais.chamada-modal.formaPagamento')
+{{-- fim - includes para clientes --}}
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -42,7 +52,7 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Id do responsável</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-id-responsavel" type="text" name="id_responsavel" value="{{$contrato->getResponsavel()->getId()}}" required/>
+                                        <input class="form-control" id="input-id-responsavel"  name="id_responsavel" value="{{$contrato->getResponsavel()->getId()}}" type="text" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -54,7 +64,27 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteFisicoModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Id do cliente</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id="input-id-cliente"  name="id_cliente" value="{{$contrato->getCliente()->getId()}}" type="text" required/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-form-label">Cliente</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id="input-cliente" value="{{$contrato->getCliente()->getCliente()}}" readonly />
+                                        <p class="read-only">Campo apenas para consulta.</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteJuridicoModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
                                     </div>
                                 </div>
                             </div>
@@ -85,5 +115,8 @@
         </div>
     </div>
 </div>
-@include('includes.scripts.clientes')
+@include('includes.scripts.contratos')
+@include('includes.scripts.cidades')
+@include('includes.scripts.condicoesPagamento')
+@include('includes.scripts.parcelasCreate')
 @endsection

@@ -49,7 +49,6 @@ class ContratoController extends Controller
     public function store(ContratoRequest $request)
     {
         $contrato = $this->contratoService->instanciarECriar($request);
-
         if ($contrato) {
             return redirect()->route('contrato.index')->with('Success', 'Contrato criado com sucesso.')->send();
         } else {
@@ -59,9 +58,15 @@ class ContratoController extends Controller
 
     public function edit($id)
     {
-        $clientes = $this->clienteRepository->mostrarTodos();
+        $paises  = $this->paisRepository->mostrarTodos();
+        $estados  = $this->estadoRepository->mostrarTodos();
+        $cidades  = $this->cidadeRepository->mostrarTodos();
+        $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
+        $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
+        $clientesFisicos = $this->clienteRepository->mostrarTodosFisicos();
+        $clientesJuridicos = $this->clienteRepository->mostrarTodosJuridicos();
         $contrato = $this->contratoService->buscarEInstanciar($id);
-        return view('contratos.edit', compact('clientes', 'contrato'));
+        return view('contratos.edit', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'clientesFisicos', 'clientesJuridicos', 'contrato'));
     }
 
     public function update(ContratoRequest $request)
