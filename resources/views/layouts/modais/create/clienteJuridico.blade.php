@@ -76,17 +76,17 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')DDD</label>
-                                    <input type="text" class="form-control" id="ddd-cidade-input" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
+                                    <input type="text" class="form-control" id="ddd-cidade-input-juridico" name="ddd_cidade" value="{{ old('ddd_cidade') }}" required readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label">@include('includes.required')Cidade</label>
-                                    <input class="form-control readonly" id="cidade-input" name="cidade" value="{{ old('cidade') }}" required>
-                                    <input type="hidden" id="id-cidade-input" name="id_cidade" value="{{ old('id_cidade') }}">
+                                    <input class="form-control readonly" id="cidade-input-juridico" name="cidade" value="{{ old('cidade') }}" required>
+                                    <input type="hidden" id="id-cidade-input-juridico" name="id_cidade" value="{{ old('id_cidade') }}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">UF</label>
-                                    <input class="form-control" id="uf-cidade-input" name="estado" value="{{ old('estado') }}" readonly>
+                                    <input class="form-control" id="uf-cidade-input-juridico" name="estado" value="{{ old('estado') }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
@@ -134,11 +134,11 @@
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
                                     <label class="col-form-label">Código</label>
-                                    <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" readonly>
+                                    <input class="form-control" id='id-condicao_pagamento-input-juridico' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" readonly>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
-                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento" value="{{ old('condicao_pagamento_input') }}" readonly>
+                                    <input class="form-control" id='condicao_pagamento-input-juridico' name="condicao_pagamento" value="{{ old('condicao_pagamento_input') }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">

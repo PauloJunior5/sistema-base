@@ -12,6 +12,12 @@
                 $('#cidade-input').val(response.cidade.cidade);
                 $('#uf-cidade-input').val(response.estado.uf);
                 $('#id-cidade-input').val(response.cidade.id);
+                if(window.location.href == url_atual + '{{ "/contrato/create" }}') {
+                    $('#ddd-cidade-input-juridico').val(response.cidade.ddd);
+                    $('#cidade-input-juridico').val(response.cidade.cidade);
+                    $('#uf-cidade-input-juridico').val(response.estado.uf);
+                    $('#id-cidade-input-juridico').val(response.cidade.id);
+                }
                 $('#cidadeModal').modal('hide')
             }
         });

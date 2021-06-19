@@ -48,7 +48,7 @@
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 2)
     <script>
         $(function() {
-            $('#clienteFisicoModal').modal('show');
+            $('#clienteJuridicoModal').modal('show');
         });
     </script>
 @endif
