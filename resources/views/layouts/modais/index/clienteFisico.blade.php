@@ -46,7 +46,7 @@
                                 <tbody>
                                     @foreach($clientesFisicos as $cliente)
                                     <tr>
-                                        <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
+                                        <td>{{ $cliente->cpf }}</td>
                                         <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idClienteFisico" value="{{$cliente->id}}" data-original-title="" title="">

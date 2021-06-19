@@ -44,9 +44,9 @@
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($clientesFisicos as $cliente)
+                                    @foreach($clientesJuridicos as $cliente)
                                     <tr>
-                                        <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
+                                        <td>{{ $cliente->cnpj }}</td>
                                         <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
                                         <td class="td-actions text-right">
                                             <button rel="tooltip" class="btn btn-success btn-link idClienteJuridico" value="{{$cliente->id}}" data-original-title="" title="">
