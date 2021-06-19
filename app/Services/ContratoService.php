@@ -44,6 +44,7 @@ class ContratoService
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
         $contrato->setCreated_at(now()->toDateTimeString());
+        $contrato->setVigencia(now()->addYear()->toDateTimeString());
         $dados = $this->getDados($contrato);
         return $this->contratoRepository->adicionar($dados);
     }
@@ -54,6 +55,7 @@ class ContratoService
         $contrato->setId($request->id);
         $contrato->setCreated_at($request->created_at);
         $contrato->setUpdated_at(now()->toDateTimeString());
+        $contrato->setVigencia($request->vigencia);
         $contrato->setContrato($request->contrato);
         $clienteFisico = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($request->id_cliente);
@@ -74,6 +76,7 @@ class ContratoService
         $contrato->setId($result->id);
         $contrato->setCreated_at($result->created_at ?? null);
         $contrato->setUpdated_at($result->updated_at ?? null);
+        $contrato->setVigencia($result->vigencia);
         $contrato->setContrato($result->contrato);
         $clienteFisico = $this->clienteService->buscarEInstanciar($result->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($result->id_cliente);
@@ -94,7 +97,8 @@ class ContratoService
             'id_responsavel' => $contrato->getResponsavel()->getId(),
             'id_cliente' => $contrato->getCliente()->getId(),
             'created_at' => $contrato->getCreated_at(),
-            'updated_at' => $contrato->getUpdated_at()
+            'updated_at' => $contrato->getUpdated_at(),
+            'vigencia' => $contrato->getVigencia()
         ];
         return $dados;
     }

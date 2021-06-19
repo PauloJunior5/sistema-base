@@ -103,6 +103,13 @@
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label">Data de Vigência</label>
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" name="vigencia" readonly>
+                                        <p class="read-only">Campo apenas para consulta.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">

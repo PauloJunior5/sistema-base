@@ -7,12 +7,14 @@ class Contrato extends Model
     protected $contrato;
     protected $responsavel;
     protected $cliente;
+    protected $vigencia;
 
     function __construct()
     {
         $this->contrato = '';
         $this->responsavel = new Cliente;
         $this->cliente = new Cliente;
+        $this->vigencia = '';
     }
 
     /*
@@ -61,5 +63,21 @@ class Contrato extends Model
     public function setCliente(Cliente $cliente)
     {
         $this->cliente = $cliente;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Vigência
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getVigencia()
+    {
+        return $this->vigencia;
+    }
+
+    public function setVigencia(string $vigencia = null)
+    {
+        $this->vigencia = $vigencia;
     }
 }
