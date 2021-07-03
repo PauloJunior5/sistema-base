@@ -12,6 +12,7 @@ use App\Repositories\CidadeRepository;
 use App\Repositories\FormaPagamentoRepository;
 use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\ClienteRepository;
+use App\Repositories\PacienteRepository;
 
 class ContratoController extends Controller
 {
@@ -26,6 +27,7 @@ class ContratoController extends Controller
         $this->formasPagamentoRepository = new FormaPagamentoRepository;
         $this->condicoesPagamentoRepository = new CondicaoPagamentoRepository;
         $this->clienteRepository = new ClienteRepository;
+        $this->pacienteRepository = new PacienteRepository;
     }
 
     public function index()
@@ -41,9 +43,10 @@ class ContratoController extends Controller
         $cidades  = $this->cidadeRepository->mostrarTodos();
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
+        $pacientes  = $this->pacienteRepository->mostrarTodos();
         $clientesFisicos = $this->clienteRepository->mostrarTodosFisicos();
         $clientesJuridicos = $this->clienteRepository->mostrarTodosJuridicos();
-        return view('contratos.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'clientesFisicos', 'clientesJuridicos'));
+        return view('contratos.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'pacientes', 'clientesFisicos', 'clientesJuridicos'));
     }
 
     public function store(ContratoRequest $request)

@@ -10,6 +10,7 @@
 @include('layouts.modais.chamada-modal.condicaoPagamento')
 @include('layouts.modais.chamada-modal.formaPagamento')
 {{-- fim - includes para clientes --}}
+@include('layouts.modais.chamada-modal.paciente')
 
 <div class="content">
     <div class="container-fluid">
