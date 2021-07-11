@@ -42,22 +42,14 @@
                                 <tbody>
                                     @foreach($pacientes as $paciente)
                                     <tr>
-                                        <td>{{ $paciente->getPaciente(). " " .$paciente->getApelido() }}</td>
-                                        <td>{{ $paciente->getCreated_at() }}</td>
-                                        <td>{{ $paciente->getUpdated_at() }}</td>
+                                        <td>{{ $paciente->paciente. " " .$paciente->apelido }}</td>
+                                        <td>{{ $paciente->created_at }}</td>
+                                        <td>{{ $paciente->updated_at }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('paciente.destroy', $paciente->getId()) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('paciente.edit', $paciente->getId()) }}" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Voce tem certeza que deseja excluir?") }}') ? this.parentElement.submit() : ''">
-                                                    <i class="material-icons">close</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>
-                                            </form>
+                                            <button rel="tooltip" class="btn btn-success btn-link idPaciente" value="{{$paciente->id}}" data-original-title="" title="">
+                                                <i class="material-icons">check</i> Selecionar
+                                                <div class="ripple-container"></div>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach

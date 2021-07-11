@@ -47,6 +47,12 @@ class PacienteController extends Controller
         }
     }
 
+    public function show(PacienteRequest $request)
+    {
+        $paciente = $this->pacienteRepository->findById($request->id_paciente);
+        return response()->json($paciente);
+    }
+
     public function edit($id)
     {
         $paciente = $this->pacienteService->buscarEInstanciar($id);

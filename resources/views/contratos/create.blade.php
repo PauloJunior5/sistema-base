@@ -96,10 +96,16 @@
                                 <div class="card-body">
                                     <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
                                         <form id="frmCadastroPaciente" class="form-horizontal">
-                                            <div class="col-md-10">
+                                            <div class="col-sm-2">
+                                                <label class="col-form-label">Id do paciente</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="input-id-paciente"  name="id_paciente" type="text" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
                                                 <label class="col-form-label">Paciente</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="paciente-input" placeholder="Pesquisa de paciente"/>
+                                                    <input class="form-control" id="input-paciente" placeholder="Pesquisa de paciente"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
