@@ -36,7 +36,7 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
-    - name: deploy 01
+    - name: deploy 02
       run: |
         git config user.email "pjunior.live@gmail.com"
         git config user.name "Paulo Junior"
