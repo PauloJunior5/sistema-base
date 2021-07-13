@@ -2,8 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches:
-    - master
+    branches: [ teste ]
+  pull_request:
+    branches: [ teste ]
 
 jobs:
   laravel-tests:
@@ -37,8 +38,7 @@ jobs:
       run: vendor/bin/phpunit
     - name: deploy 01
       run: |
-        git status
-        # git config user.email "pjunior.live@gmail.com"
-        # git config user.name "Paulo Junior"
-        # git merge origin/master
-        # git push origin teste:master
+        git config user.email "pjunior.live@gmail.com"
+        git config user.name "Paulo Junior"
+        git merge origin/master
+        git push origin teste:master
