@@ -65,7 +65,6 @@
             data: { id_paciente : id_paciente },
             dataType: "JSON",
             success: function(response){
-                console.log(response);
                 $('#input-id-paciente').val(response.id);
                 $('#input-paciente').val(response.paciente + ' ' + response.apelido);
                 $('#pacienteModal').modal('hide')

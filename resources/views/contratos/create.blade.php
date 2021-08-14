@@ -112,8 +112,9 @@
                                                 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#pacienteModal"><i class="material-icons">search</i></button>
                                             </div>
                                             <div class="col-md-1">
-                                                <button class="btn btn-primary" type="button" value="Salvar-paciente" onclick="changeBtnToCreatePaciente()" id="btnSalvarPaciente"><i class="material-icons">add</i></button>
+                                                <button class="btn btn-primary" type="button" value="Salvar-paciente" id="btnSalvarPaciente"><i class="material-icons">add</i></button>
                                             </div>
+                                            <input type="hidden" id="input-pacientes" name="pacientes" value="">
                                         </form>
                                         <table class="table table-hover table-sm" id="contrato-pacientes-table"></table>
                                     </div>

@@ -69,7 +69,7 @@
     <!-- Library for adding dinamically elements -->
     <script src="{{ asset('material') }}/js/plugins/arrive.min.js"></script>
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'"></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'"></script> --}}
     <!-- Chartist JS -->
     <script src="{{ asset('material') }}/js/plugins/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
@@ -77,8 +77,8 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('material') }}/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="{{ asset('material') }}/demo/demo.js"></script>
-    <script src="{{ asset('material') }}/js/settings.js"></script>
+    {{-- <script src="{{ asset('material') }}/demo/demo.js"></script> --}}
+    {{-- <script src="{{ asset('material') }}/js/settings.js"></script> --}}
     @stack('js')
 </body>
 
