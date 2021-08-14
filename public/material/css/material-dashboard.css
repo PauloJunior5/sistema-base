@@ -13847,7 +13847,7 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar .navbar-brand {
   position   : relative;
-  color      : #3C4858;
+  color      : #ffffff;
   height     : 50px;
   font-size  : 1.125rem;
   line-height: 30px;
@@ -14051,7 +14051,7 @@ fieldset[disabled] .form-group .form-control {
   font-size     : 12px;
   text-transform: uppercase;
   border-radius : 3px;
-  color         : #3C4858;
+  color         : #ffffff;
   margin        : 0 15px;
 }
 
@@ -16999,7 +16999,7 @@ thead.thead-inverse th,
 }
 
 body {
-  background-color: #0E1822;
+  background-color: #8d9ca6;
   color           : #3C4858;
   font-weight     : 300;
 }
