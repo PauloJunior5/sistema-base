@@ -158,7 +158,7 @@ class pacienteService
         $dados = [
             'id' => $paciente->getId(),
             'paciente' => $paciente->getPaciente(),
-            'apelido' => $paciente->getPaciente(),
+            'apelido' => $paciente->getApelido(),
             'id_medico' => $paciente->getMedico()->getId(),
             'endereco' => $paciente->getEndereco(),
             'numero' => $paciente->getNumero(),

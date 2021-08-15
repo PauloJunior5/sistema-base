@@ -1,5 +1,26 @@
 <script>
 
+    //Função que mostra o nome e apelido conforme o id do paciente inserido
+    function myFunction(e) {
+        var id_paciente = e;
+        $.ajax({
+            method: "GET",
+            url: url_atual + '/paciente/show',
+            data: { id_paciente : id_paciente },
+            dataType: "JSON",
+            async: false,
+            success: function(response){
+                paciente = response;
+            }
+        });
+
+        document.getElementById("input-paciente").value = paciente.paciente + ' ' + paciente.apelido;
+    }
+
+</script>
+
+<script>
+
     $(function()
     {
         //"A"=Adição; "E"=Edição
@@ -14,7 +35,7 @@
         $("#btnSalvarPaciente").on("click",function(){
             if(operacao == "A"){
                 return Adicionar();
-            } else{
+            } else {
                 return Editar();
             }
         });
@@ -28,7 +49,7 @@
 
             var paciente = JSON.parse(paciente);
 
-            if (paciente.id === "" || paciente.paciente === "") {
+            if (paciente.id === "") {
                 alert("Selecione um paciente existente no sistema.");
                 return;
             };
@@ -56,9 +77,9 @@
                 }).catch(swal.noop);
             }
 
-            Listar();
             document.getElementById("input-paciente").value = '';
             document.getElementById("input-id-paciente").value = '';
+            Listar();
         };
 
         $("#contrato-pacientes-table").on("click", ".btnExcluirPaciente",function(){
@@ -111,9 +132,9 @@
                 });
 
                 $("#contrato-pacientes-table tbody").append("<tr>");
-                $("#contrato-pacientes-table tbody").append("<td>"+n+"</td>");
-                $("#contrato-pacientes-table tbody").append("<td>"+ paciente.paciente +"</td>");
-                $("#contrato-pacientes-table tbody").append("<td>"+ paciente.paciente +"</td>");
+                $("#contrato-pacientes-table tbody").append("<td>" + n + "</td>");
+                $("#contrato-pacientes-table tbody").append("<td>" + paciente.paciente + " " + paciente.apelido + "</td>");
+                $("#contrato-pacientes-table tbody").append("<td>" + paciente.cpf + "</td>");
                 $("#contrato-pacientes-table tbody").append("<td><a class='btn btn-sm btn-danger btnExcluirPaciente' alt='"+i+"'>Excluir</a></td>");
                 $("#contrato-pacientes-table tbody").append("</tr>");
             }

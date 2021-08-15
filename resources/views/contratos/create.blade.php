@@ -99,13 +99,13 @@
                                             <div class="col-sm-2">
                                                 <label class="col-form-label">Id do paciente</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="input-id-paciente"  name="id_paciente" type="text" required/>
+                                                    <input class="form-control" id="input-id-paciente"  name="id_paciente" type="text" required oninput="myFunction(this.value)"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
                                                 <label class="col-form-label">Paciente</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="input-paciente" placeholder="Pesquisa de paciente"/>
+                                                    <input class="form-control" id="input-paciente" placeholder="Pesquisa de paciente" readonly/>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
