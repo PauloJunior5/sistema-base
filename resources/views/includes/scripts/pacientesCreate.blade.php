@@ -59,29 +59,30 @@
 
             if (pacientes.includes(paciente.id)) {
                 swal({
-                    title:'Erro! Paciente já existe.',
+                    title:"Erro! Paciente já existe.",
                     text:"{{Session::get('fail')}}",
-                    type:'error',
+                    type:"error",
                     timer:5000
                 }).then((value) => {
                 //location.reload();
                 }).catch(swal.noop);
             } else {
                 pacientes.push(paciente.id);
-                $('#input-pacientes').val(pacientes);
+                $("#input-pacientes").val(pacientes);
 
                 swal({
-                title:'Sucesso!',
-                text:"{{Session::get('success')}}",
-                timer:5000,
-                type:'success'
-                }).then((value) => {
-                //location.reload();
-                }).catch(swal.noop);
+                    title:"Incluído com sucesso!",
+                    text:"{{Session::get('success')}}",
+                    timer:5000,
+                    type:"success"
+                    }).then((value) => {
+                        //location.reload();
+                    }).catch(swal.noop);
             }
 
-            document.getElementById("input-paciente").value = '';
-            document.getElementById("input-id-paciente").value = '';
+            document.getElementById("input-paciente").value = "";
+            document.getElementById("input-id-paciente").value = "";
+
             Listar();
         };
 
@@ -89,20 +90,30 @@
             indice_selecionado = parseInt($(this).attr("alt"));
             var cli = pacientes[indice_selecionado];
             $("#input-pacientes").val(cli.paciente);
+
             Excluir();
+
             Listar();
         });
 
-        function Excluir(){
+        function Excluir()
+        {
             pacientes.splice(indice_selecionado, 1);
             localStorage.setItem("pacientes", JSON.stringify(pacientes));
-            $('#input-pacientes').val(JSON.stringify(pacientes));
-            alert("Registro excluído.");
+            $("#input-pacientes").val(JSON.stringify(pacientes));
+
+            swal({
+                title:"Excluido com sucesso!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"success"
+                }).then((value) => {
+                    //location.reload();
+                }).catch(swal.noop);
         };
 
-        function Listar(){
-
-            var paciente;
+        function Listar()
+        {
             var n = 0;
 
             $("#contrato-pacientes-table").html("");
@@ -119,14 +130,11 @@
             );
 
             for(var i in pacientes){
-                var id = pacientes[i];
                 n++;
-
-                var id_paciente = id;
                 $.ajax({
                     method: "GET",
-                    url: url_atual + '/paciente/show',
-                    data: { id_paciente : id_paciente },
+                    url: url_atual + "/paciente/show",
+                    data: { id_paciente :  pacientes[i] },
                     dataType: "JSON",
                     async: false,
                     success: function(response){
@@ -142,38 +150,6 @@
                 $("#contrato-pacientes-table tbody").append("</tr>");
             }
         };
-
-        $(function() {
-            var n = 0;
-
-            $("#contrato-pacientes-table").html("");
-            $("#contrato-pacientes-table").html(
-                "<thead>"+
-                "   <tr>"+
-                "    <th scope='col'>#</th>"+
-                "    <th scope='col'>Paciente</th>"+
-                "    <th scope='col'>Apelido</th>"+
-                "    <th scope='col'>CPF</th>"+
-                "    <th scope='col'>Ações</th>"+
-                "   </tr>"+
-                "</thead>"+
-                "<tbody>"+"</tbody>"
-            );
-
-            for(var i in pacientes){
-
-                var cli = pacientes[i];
-                n++;
-
-                $("#contrato-pacientes-table tbody").append("<tr>");
-                $("#contrato-pacientes-table tbody").append("<td>"+n+"</td>");
-                $("#contrato-pacientes-table tbody").append("<td>"+cli.paciente+"</td>");
-                $("#contrato-pacientes-table tbody").append("<td> not ready</td>");
-                $("#contrato-pacientes-table tbody").append("<td><a class='btn btn-sm btn-danger btnExcluirPaciente' alt='"+i+"'>Excluir</a></td>");
-                $("#contrato-pacientes-table tbody").append("</tr>");
-
-            };
-        });
     });
 
 </script>
