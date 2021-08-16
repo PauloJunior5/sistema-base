@@ -1,6 +1,11 @@
-{{-- CLIENTES FISICOS --}}
+{{-- URL ATUAL --}}
 <script>
-    var url_atual = '<?php echo URL::to(''); ?>';
+        var url_atual = '<?php echo URL::to(''); ?>';
+</script>
+
+{{-- CLIENTES FISICOS --}}
+
+<script>
     $('.idClienteFisico').click(function() {
         var id_cliente = $(this).val();
         $.ajax({
@@ -28,7 +33,6 @@
 {{-- CLIENTES JURIDICOS --}}
 
 <script>
-    var url_atual = '<?php echo URL::to(''); ?>';
     $('.idClienteJuridico').click(function() {
         var id_cliente = $(this).val();
         $.ajax({
@@ -56,7 +60,6 @@
 {{-- PACIENTES --}}
 
 <script>
-    var url_atual = '<?php echo URL::to(''); ?>';
     $('.idPaciente').click(function() {
         var id_paciente = $(this).val();
         $.ajax({
@@ -72,11 +75,3 @@
         });
     });
 </script>
-
-{{-- @if(!empty(Session::get('error_code')) && Session::get('error_code') == 2)
-    <script>
-        $(function() {
-            $('#clienteJuridicoModal').modal('show');
-        });
-    </script>
-@endif --}}

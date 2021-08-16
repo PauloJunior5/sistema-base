@@ -164,10 +164,9 @@ $(function(){
 
     };
 
-
     $("#condicao-table").on("click", ".btnExcluir",function(){
         indice_selecionado = parseInt($(this).attr("alt"));
-        var cli = JSON.parse(parcelas[indice_selecionado]);
+        var cli = parcelas[indice_selecionado];
         $("#id_dias").val(cli.dias);
         $("#id_porcentual").val(cli.porcentual);
         $("#id-forma_pagamento-input").val(cli.forma_pagamento);
