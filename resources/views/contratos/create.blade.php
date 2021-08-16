@@ -99,7 +99,7 @@
                                             <div class="col-sm-2">
                                                 <label class="col-form-label">Id do paciente</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="input-id-paciente"  name="id_paciente" type="text" required oninput="myFunction(this.value)"/>
+                                                    <input class="form-control" id="input-id-paciente"  name="" type="text" oninput="myFunction(this.value)"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
@@ -114,7 +114,7 @@
                                             <div class="col-md-1">
                                                 <button class="btn btn-primary" type="button" value="Salvar-paciente" id="btnSalvarPaciente"><i class="material-icons">add</i></button>
                                             </div>
-                                            <input type="hidden" id="input-pacientes" name="pacientes" value="">
+                                            <input type="hidden" id="pacientes" name="pacientes" value="">
                                         </form>
                                         <table class="table table-hover table-sm" id="contrato-pacientes-table"></table>
                                     </div>

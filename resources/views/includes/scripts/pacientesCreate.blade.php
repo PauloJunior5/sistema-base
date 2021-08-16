@@ -31,8 +31,8 @@
 
         //Índice do item selecionado na lista
         var indice_selecionado = -1;
-        
-        //Iniciamos um vetor vazio
+
+        //Inicia um array vazio
         var pacientes = [];
 
         $("#btnSalvarPaciente").on("click",function(){
@@ -42,6 +42,20 @@
                 return Editar();
             }
         });
+
+        $("#contrato-pacientes-table").html("");
+        $("#contrato-pacientes-table").html(
+            "<thead>"+
+            "   <tr>"+
+            "    <th scope='col'>#</th>"+
+            "    <th scope='col'>Paciente</th>"+
+            "    <th scope='col'>Apelido</th>"+
+            "    <th scope='col'>CPF</th>"+
+            "    <th scope='col'>Ações</th>"+
+            "   </tr>"+
+            "</thead>"+
+            "<tbody>"+"</tbody>"
+        );
 
         function Adicionar()
         {
@@ -53,6 +67,7 @@
             var paciente = JSON.parse(paciente);
 
             if (paciente.id === "" || paciente.paciente === "") {
+
                 swal({
                     title:"Erro! Preencha todos os campos",
                     text:"{{Session::get('fail')}}",
@@ -61,7 +76,9 @@
                 }).then((value) => {
                     //location.reload();
                 }).catch(swal.noop);
+
                 return;
+
             };
 
             $.ajax({
@@ -79,6 +96,7 @@
             });
 
             if (Object.keys(paciente).length === 0) {
+
                 swal({
                     title:"Erro! Selecione um paciente existente no sistema.",
                     text:"{{Session::get('fail')}}",
@@ -88,33 +106,35 @@
                     //location.reload();
                 }).catch(swal.noop);
 
-                document.getElementById("input-paciente").value = "";
-                document.getElementById("input-id-paciente").value = "";
-
-                return;
-            }
-
-            if (pacientes.includes(paciente.id)) {
-                swal({
-                    title:"Erro! Paciente já se econtra incluído no contrato.",
-                    text:"{{Session::get('fail')}}",
-                    type:"error",
-                    timer:5000
-                }).then((value) => {
-                    //location.reload();
-                }).catch(swal.noop);
             } else {
-                pacientes.push(paciente.id);
-                $("#input-pacientes").val(pacientes);
 
-                swal({
-                        title:"Incluído com sucesso!",
-                        text:"{{Session::get('success')}}",
-                        timer:5000,
-                        type:"success"
+                if (pacientes.includes(paciente.id)) {
+
+                    swal({
+                        title:"Erro! Paciente já se econtra incluído no contrato.",
+                        text:"{{Session::get('fail')}}",
+                        type:"error",
+                        timer:5000
                     }).then((value) => {
                         //location.reload();
                     }).catch(swal.noop);
+
+                } else {
+
+                    pacientes.push(paciente.id);
+                    $("#pacientes").val(JSON.stringify(pacientes));
+
+                    swal({
+                            title:"Incluído com sucesso!",
+                            text:"{{Session::get('success')}}",
+                            timer:5000,
+                            type:"success"
+                        }).then((value) => {
+                            //location.reload();
+                        }).catch(swal.noop);
+
+                }
+
             }
 
             document.getElementById("input-paciente").value = "";
@@ -125,8 +145,8 @@
 
         $("#contrato-pacientes-table").on("click", ".btnExcluirPaciente",function(){
             indice_selecionado = parseInt($(this).attr("alt"));
+
             var cli = pacientes[indice_selecionado];
-            $("#input-pacientes").val(cli.paciente);
 
             Excluir();
 
@@ -136,8 +156,10 @@
         function Excluir()
         {
             pacientes.splice(indice_selecionado, 1);
+
             localStorage.setItem("pacientes", JSON.stringify(pacientes));
-            $("#input-pacientes").val(JSON.stringify(pacientes));
+
+            $("#pacientes").val(JSON.stringify(pacientes));
 
             swal({
                     title:"Excluido com sucesso!",
@@ -167,7 +189,9 @@
             );
 
             for(var i in pacientes){
+
                 n++;
+
                 $.ajax({
                     method: "GET",
                     url: url_atual + "/paciente/show",
@@ -187,39 +211,6 @@
                 $("#contrato-pacientes-table tbody").append("</tr>");
             }
         };
-
-        $(function() 
-        {
-            var n = 0;
-
-            $("#contrato-pacientes-table").html("");
-            $("#contrato-pacientes-table").html(
-                "<thead>"+
-                "   <tr>"+
-                "    <th scope='col'>#</th>"+
-                "    <th scope='col'>Paciente</th>"+
-                "    <th scope='col'>Apelido</th>"+
-                "    <th scope='col'>CPF</th>"+
-                "    <th scope='col'>Ações</th>"+
-                "   </tr>"+
-                "</thead>"+
-                "<tbody>"+"</tbody>"
-            );
-
-            for(var i in pacientes){
-
-                var cli = pacientes[i];
-                n++;
-
-                $("#contrato-pacientes-table tbody").append("<tr>");
-                $("#contrato-pacientes-table tbody").append("<td>"+n+"</td>");
-                $("#contrato-pacientes-table tbody").append("<td>"+cli.paciente+"</td>");
-                $("#contrato-pacientes-table tbody").append("<td> not ready</td>");
-                $("#contrato-pacientes-table tbody").append("<td><a class='btn btn-sm btn-danger btnExcluirPaciente' alt='"+i+"'>Excluir</a></td>");
-                $("#contrato-pacientes-table tbody").append("</tr>");
-
-            };
-        });
     });
 
 </script>

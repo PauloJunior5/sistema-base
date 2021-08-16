@@ -51,6 +51,7 @@ class ContratoController extends Controller
 
     public function store(ContratoRequest $request)
     {
+        dd(json_decode($request->pacientes));
         $contrato = $this->contratoService->instanciarECriar($request);
         if ($contrato) {
             return redirect()->route('contrato.index')->with('Success', 'Contrato criado com sucesso.')->send();
