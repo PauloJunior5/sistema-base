@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Http\Requests\ContratoRequest;
 use App\Models\Contrato;
 use App\Repositories\ContratoRepository;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ContratoService
 {
@@ -46,7 +48,21 @@ class ContratoService
         $contrato->setCreated_at(now()->toDateTimeString());
         $contrato->setVigencia(now()->addYear()->toDateTimeString());
         $dados = $this->getDados($contrato);
-        return $this->contratoRepository->adicionar($dados);
+        $contrato =  $this->contratoRepository->adicionar($dados);
+
+        $objectsArray = json_decode($request->pacientes);
+
+        foreach ($objectsArray as $objeto) {
+            DB::table('contratos_pacientes')->insert(
+                [
+                    'id_contrato' => $contrato,
+                    'id_paciente' => $objeto,
+                    'created_at' => now()->toDateTimeString()
+                ]
+            );
+        }
+
+        return $contrato;
     }
 
     public function instanciarEAtualizar(ContratoRequest $request)

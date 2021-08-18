@@ -17,7 +17,7 @@ class ContratoRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('contratos')->insert($dados);
+            $result = DB::table('contratos')->insertGetId($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
