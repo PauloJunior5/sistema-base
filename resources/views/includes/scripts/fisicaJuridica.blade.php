@@ -1,6 +1,6 @@
 <script>
    $( document ).ready(function() {
-        if($("#tipo").val() == "pessoaFisica") {
+        if($(".tipo").val() == "pessoaFisica") {
             $(".campoPessoaFisica").show();
             $(".campoPessoaJuridica").hide();
             $('.inputPessoaJuridica').prop('required',false);
@@ -11,7 +11,7 @@
         }
     });
 
-    $("#tipo").on("change", function () {
+    $(".tipo").on("change", function () {
         if($(this).val() == "pessoaFisica") {
             $(".campoPessoaFisica").show();
             $(".campoPessoaJuridica").hide();
