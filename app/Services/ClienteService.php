@@ -23,7 +23,7 @@ class ClienteService
         foreach ($results as $result) {
             $cliente = new Cliente;
             $cliente->setId($result->id);
-            if (!empty($result->cpf)) {
+            if ($result->tipo == "pessoaFisica") {
                 $cliente->setApelido($result->apelido);
                 $cliente->setCPF($result->cpf);
                 $cliente->setRG ($result->rg);

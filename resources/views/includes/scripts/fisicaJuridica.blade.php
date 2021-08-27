@@ -1,5 +1,5 @@
 <script>
-   $( document ).ready(function() {
+    $( document ).ready(function() {
         if($(".tipo").val() == "pessoaFisica") {
             $(".campoPessoaFisica").show();
             $(".campoPessoaJuridica").hide();

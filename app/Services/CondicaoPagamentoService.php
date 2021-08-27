@@ -33,7 +33,7 @@ class CondicaoPagamentoService
         $result = null;
         DB::beginTransaction();
         try {
-            $condicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
+            $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
             if ($condicaoPagamento) {
                 $objectsArray = json_decode($request->parcelas);
                 foreach ($objectsArray as $objeto) {
@@ -43,7 +43,7 @@ class CondicaoPagamentoService
                     $parcela->setPorcentual($objeto->porcentual);
                     $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->forma_pagamento);
                     $parcela->setFormaPagamento($formaPagamento);
-                    $condicaoPagamento = $this->buscarEInstanciar($condicaoPagamento);
+                    $condicaoPagamento = $this->buscarEInstanciar($idCondicaoPagamento);
                     $parcela->setCondicaoPagamento($condicaoPagamento);
                     $parcela->setCreated_at(now()->toDateTimeString());
                     $dados = $this->parcelaService->getDados($parcela);
