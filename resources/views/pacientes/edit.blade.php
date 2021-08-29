@@ -96,8 +96,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Sexo</label>
-                                    <input type="text" class="form-control" name="sexo" value="{{$paciente->getSexo()}}">
+                                    <label class="col-form-label" for="sexo-id">Sexo</label>
+                                    <select id="sexo-id" name="sexo" class="form-control">
+                                        <option @if ($paciente->getSexo() == 'Indefinido') selected disabled @endif value='Indefinido'>Indefinido</option>
+                                        <option @if ($paciente->getSexo() == 'Masculino') selected disabled @endif value='Masculino'>Masculino</option>
+                                        <option @if ($paciente->getSexo() == 'Feminino') selected disabled @endif value='Feminino'>Feminino</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-2">
                                     <label for="nascimento">@include('includes.required')Nascimento</label>
