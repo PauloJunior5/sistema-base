@@ -9,6 +9,7 @@ use App\Repositories\PaisRepository;
 use App\Repositories\MedicoRepository;
 use App\Repositories\PacienteRepository;
 use App\Services\PacienteService;
+use Illuminate\Http\Request;
 
 class PacienteController extends Controller
 {
@@ -30,9 +31,9 @@ class PacienteController extends Controller
 
     public function create()
     {
-        $paises  = $this->paisRepository->mostrarTodos();
-        $estados  = $this->estadoRepository->mostrarTodos();
-        $cidades  = $this->cidadeRepository->mostrarTodos();
+        $paises = $this->paisRepository->mostrarTodos();
+        $estados = $this->estadoRepository->mostrarTodos();
+        $cidades = $this->cidadeRepository->mostrarTodos();
         $medicos = $this->medicoRepository->mostrarTodos();
         return view('pacientes.create', compact('paises', 'estados', 'cidades', 'medicos'));
     }
@@ -47,9 +48,9 @@ class PacienteController extends Controller
         }
     }
 
-    public function show(PacienteRequest $request)
+    public function show(Request $request)
     {
-        $paciente = $this->pacienteRepository->findById($request->id_paciente);
+        $paciente = $this->pacienteRepository->findById($request->id);
         return response()->json($paciente);
     }
 

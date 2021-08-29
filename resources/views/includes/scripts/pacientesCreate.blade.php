@@ -1,11 +1,11 @@
 <script>
 
     //Função que mostra o nome e apelido conforme o id do paciente inserido
-    function myFunction(e) {
+    function myFunction(id_paciente) {
         $.ajax({
             method: "GET",
             url: url_atual + "/paciente/show",
-            data: { id_paciente : e },
+            data: { id : id_paciente },
             dataType: "JSON",
             async: false,
             success: function(response){
@@ -13,7 +13,7 @@
             }
         });
 
-        if (!e || Object.keys(paciente).length === 0) {
+        if (!id_paciente || Object.keys(paciente).length === 0) {
             document.getElementById("input-paciente").value = "";
         } else {
             document.getElementById("input-paciente").value = paciente.paciente + " " + paciente.apelido;
