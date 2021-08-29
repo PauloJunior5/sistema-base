@@ -65,7 +65,7 @@
         $.ajax({
             method: "GET",
             url: url_atual + '/paciente/show',
-            data: { id_paciente : id_paciente },
+            data: { id : id_paciente },
             dataType: "JSON",
             success: function(response){
                 $('#input-id-paciente').val(response.id);

@@ -84,7 +84,7 @@
             $.ajax({
                 method: "GET",
                 url: url_atual + "/paciente/show",
-                data: { id_paciente : paciente.id },
+                data: { id : paciente.id },
                 dataType: "JSON",
                 async: false,
                 success: function(response){
@@ -195,7 +195,7 @@
                 $.ajax({
                     method: "GET",
                     url: url_atual + "/paciente/show",
-                    data: { id_paciente :  pacientes[i] },
+                    data: { id :  pacientes[i] },
                     dataType: "JSON",
                     async: false,
                     success: function(response){
