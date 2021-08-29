@@ -3,7 +3,7 @@
         $('{{ $tableId }}').DataTable({
             "language": {
                 "url": '{{ $dataTableLanguage }}'
-            },            
+            },
         });
     });
 </script>

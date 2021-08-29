@@ -37,7 +37,7 @@
                                 <div class="col-md-2">
                                     <label class="col-form-label">Tipo</label>
                                     <input class="form-control" placeholder="{{ ($cliente->getTipo() == "pessoaFisica") ? "Pessoa Fisica" : "Pessoa Jurídica" }}" readonly>
-                                    <input type="hidden" id="tipo" name="tipo" value="{{$cliente->getTipo()}}">
+                                    <input type="hidden" class="tipo" name="tipo" value="{{$cliente->getTipo()}}">
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-4">
