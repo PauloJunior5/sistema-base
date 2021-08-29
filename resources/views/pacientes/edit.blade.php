@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')CRM</label>
                                     <input class="form-control" id="crm-medico-input" value="{{$paciente->getMedico()->getCRM()}}" />
                                 </div>
