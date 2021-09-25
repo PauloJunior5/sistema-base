@@ -53,13 +53,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
-                                        <input type="datetime" name="created_at" value="{{old('parcelas', $condicaoPagamento->getCreated_at())}}" class="form-control" readonly>
+                                        <input type="datetime" name="created_at" value="{{old('created_at', $condicaoPagamento->getCreated_at())}}" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
-                                        <input type="datetime" name="updated_at" value="{{old('parcelas', $condicaoPagamento->getUpdated_at())}}" class="form-control" readonly>
+                                        <input type="datetime" name="updated_at" value="{{old('updated_at', $condicaoPagamento->getUpdated_at())}}" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>

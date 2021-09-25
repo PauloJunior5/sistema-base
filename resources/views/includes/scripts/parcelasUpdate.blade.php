@@ -118,7 +118,6 @@ $(function(){
             data: { id_forma_pagamento : id_forma_pagamento },
             dataType: "JSON",
             success: function(response){
-                console.log(response);
                 $('#id-forma_pagamento-input').val(response.id);
                 $('#forma_pagamento-input').val(response.forma_pagamento);
                 $('#forma_pagamentoModal').modal('hide')
@@ -147,6 +146,7 @@ $(function(){
             porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
             localStorage.setItem("parcelas", parcelas);
             $('#input-parcelas').val(JSON.stringify(parcelas));
+            console.log(parcelas);
             alert("Informações editadas.")
             $("#id_dias").val('');
             $("#id_porcentual").val('');
@@ -262,7 +262,6 @@ $(function(){
             n++;
 
             var id_forma_pagamento = cli.id_forma_pagamento;
-            console.log(cli)
             $.ajax({
                 method: "GET",
                 url: url_atual + '/formaPagamento/show',
