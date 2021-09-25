@@ -82,7 +82,7 @@ class CondicaoPagamentoService
                     $parcela->setParcela($objeto->parcela);
                     $parcela->setDias($objeto->dias);
                     $parcela->setPorcentual($objeto->porcentual);
-                    $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->forma_pagamento);
+                    $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->id_forma_pagamento);
                     $parcela->setFormaPagamento($formaPagamento);
                     $condicaoPagamento = $this->buscarEInstanciar($request->id);
                     $parcela->setCondicaoPagamento($condicaoPagamento);

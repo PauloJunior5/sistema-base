@@ -71,7 +71,7 @@ class CondicaoPagamentoController extends Controller
         if ($condicaoPagamento && $parcelas) {
             return redirect()->route('condicaoPagamento.index')->with('Success', 'Condição de pagamento excluída com sucesso.')->send();
         } else {
-            return redirect()->route('formaPagamento.index')->with('Warning', 'Não foi possivel excluir condição de pagamento.')->send();
+            return redirect()->route('condicaoPagamento.index')->with('Warning', 'Não foi possivel excluir condição de pagamento.')->send();
         }
     }
 

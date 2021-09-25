@@ -66,7 +66,7 @@ $(function(){
             parcela : contador,
             dias   : $("#id_dias").val(),
             porcentual     : $("#id_porcentual").val(),
-            forma_pagamento : $("#id-forma_pagamento-input").val(),
+            id_forma_pagamento : $("#id-forma_pagamento-input").val(),
         });
 
         var objParcela = JSON.parse(parcela);
@@ -77,13 +77,13 @@ $(function(){
         };
 
         var objParcelaPorcentual = parseFloat(objParcela.porcentual);
-        if ((porcentual + objParcelaPorcentual ) <= 100) {
+
+        if ((parseFloat(porcentual) + objParcelaPorcentual) <= 100) {
             porcentual += objParcelaPorcentual;
             parcelas.push(objParcela);
             localStorage.setItem("parcelas", parcelas);
             $('#input-parcelas').val(JSON.stringify(parcelas));
             alert("Registro adicionado.");
-            Listar();
             document.getElementById("id_dias").value = '';
             document.getElementById("id_porcentual").value = '';
             document.getElementById("id-forma_pagamento-input").value = '';
@@ -91,6 +91,7 @@ $(function(){
 
             $("#qtd_parcelas").val(contador);
 
+            Listar();
             return true;
         } else {
             alert("Parcela inserida ultrapassa os 100%");
@@ -108,8 +109,7 @@ $(function(){
         $("#id_dias").val(cli.dias);
         $("#id_porcentual").val(cli.porcentual);
         $("#id-forma_pagamento-input").val(cli.forma_pagamento);
-        porcentualReserva = porcentual;
-        porcentual -= cli.porcentual;
+        porcentualReserva = cli.porcentual;
 
         var id_forma_pagamento = cli.id_forma_pagamento;
         $.ajax({
@@ -130,24 +130,26 @@ $(function(){
 
     function Editar(){
 
-        parcelas[indice_selecionado].dias = $("#id_dias").val();
-        parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
-        parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
-
-        if ((parcelas[indice_selecionado].dias === "") || (parcelas[indice_selecionado].porcentual === "") || (parcelas[indice_selecionado].forma_pagamento === "")) {
+        if (($("#id_dias").val() === "") || ($("#id_porcentual").val() === "") || ($("#id-forma_pagamento-input").val() === "")) {
             alert("Preencha todos os campos.");
             return true;
         };
 
-        var parcelaPorcentual = parseInt(parcelas[indice_selecionado].porcentual);
-        var somaPorcentual = porcentual + parcelaPorcentual;
+        var parcelaPorcentual = parseFloat($("#id_porcentual").val());
+        var somaPorcentual = (porcentual + parcelaPorcentual) - porcentualReserva;
 
         if (somaPorcentual <= 100) {
+            parcelas[indice_selecionado].dias = $("#id_dias").val();
+            parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
+            parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
+
             porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
             localStorage.setItem("parcelas", parcelas);
             $('#input-parcelas').val(JSON.stringify(parcelas));
-            console.log(parcelas);
             alert("Informações editadas.")
+            porcentual = somaPorcentual;
+            porcentualReserva = 0;
+
             $("#id_dias").val('');
             $("#id_porcentual").val('');
             $("#id-forma_pagamento-input").val('');
@@ -156,11 +158,15 @@ $(function(){
             Listar();
             return true;
         } else {
-            porcentual = porcentualReserva;
+            porcentual = somaPorcentual;
             porcentualReserva = 0;
             alert("Parcela inserida ultrapassa os 100%");
+            $("#id_dias").val('');
+            $("#id_porcentual").val('');
+            $("#id-forma_pagamento-input").val('');
+            $("#forma_pagamento-input").val('');
             Listar();
-            return true;
+            return false;
         };
 
     };
@@ -208,9 +214,9 @@ $(function(){
         for(var i in parcelas){
 
             var cli = parcelas[i];
+            console.log(cli);
             n++;
-
-            var id_forma_pagamento = cli.forma_pagamento;
+            var id_forma_pagamento = cli.id_forma_pagamento;
             $.ajax({
                 method: "GET",
                 url: url_atual + '/formaPagamento/show',
@@ -286,7 +292,7 @@ $(function(){
     });
 
     $("#condicaoPagamentoForm").submit(function() {
-        if(parseFloat(porcentual) < 100){
+        if(parseFloat(porcentual).toFixed(2) < 100){
             alert("Parcelas não atingem os 100%");
             return false;
         }
