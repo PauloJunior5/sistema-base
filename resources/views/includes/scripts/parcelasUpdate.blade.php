@@ -50,6 +50,7 @@ $(function(){
     var porcentual = 100;
     var porcentualReserva = 0;
     var contador = Object.keys(parcelas).length;
+    var excluidas = [];
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -173,7 +174,7 @@ $(function(){
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
         indice_selecionado = parseInt($(this).attr("alt"));
-        var cli = JSON.parse(parcelas[indice_selecionado]);
+        var cli = parcelas[indice_selecionado];
         $("#id_dias").val(cli.dias);
         $("#id_porcentual").val(cli.porcentual);
         $("#id-forma_pagamento-input").val(cli.forma_pagamento);
@@ -183,11 +184,12 @@ $(function(){
     });
 
     function Excluir(){
+        excluidas.push(parcelas[indice_selecionado]);
         parcelas.splice(indice_selecionado, 1);
         localStorage.setItem("parcelas", JSON.stringify(parcelas));
         $('#input-parcelas').val(JSON.stringify(parcelas));
+        $('#input-parcelas-exluidas').val(JSON.stringify(excluidas));
         alert("Registro excluído.");
-
         $("#qtd_parcelas").val(contador);
     };
 

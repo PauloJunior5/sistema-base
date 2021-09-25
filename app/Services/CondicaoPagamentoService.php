@@ -71,10 +71,17 @@ class CondicaoPagamentoService
         $condicaoPagamento->setQtdParcelas($request->qtd_parcelas);
         $dados = $this->getDados($condicaoPagamento);
         $result = null;
+
+        if (isset($request->parcelasExluidas)) {
+            $parcelasExluidas = json_decode($request->parcelasExluidas);
+            foreach ($parcelasExluidas as $parcela) {
+                DB::table('parcelas')->where('id_condicao_pagamento', $parcela->id_condicao_pagamento)->where('parcela', $parcela->parcela)->delete();
+            }
+        }
+        
         DB::beginTransaction();
         try {
             $condicaoPagamento =  $this->condicaoPagamentoRepository->atualizar($dados);
-
             if ($condicaoPagamento) {
                 $objectsArray = json_decode($request->parcelas);
                 foreach ($objectsArray as $objeto) {
