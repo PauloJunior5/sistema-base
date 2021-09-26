@@ -29,7 +29,7 @@ class CondicaoPagamentoRepository
 
     public function findById(int $id)
     {
-        $condicaoPagamento = DB::table('condicao_pagamentos')->where('id', $id)->first();
+        $condicaoPagamento = DB::table('condicao_pagamentos')->find($id);
         return $condicaoPagamento;
     }
 
