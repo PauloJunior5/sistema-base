@@ -68,4 +68,20 @@ class ContratoRepository
         }
         return $result;
     }
+
+    public function removerPacientes($dados)
+    {
+        $result = null;
+        DB::beginTransaction();
+        try {
+            foreach ($dados['pacientesExluidos'] as $paciente) {
+                DB::table('contratos_pacientes')->where('id_paciente', $paciente->id)->where('id_contrato', $dados['contrato_id'])->delete();
+            }
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel excluir pacientes: ' . $th);
+        }
+        return $result;
+    }
 }

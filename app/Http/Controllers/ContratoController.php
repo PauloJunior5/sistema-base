@@ -76,7 +76,6 @@ class ContratoController extends Controller
 
     public function update(ContratoRequest $request)
     {
-        dd($request->all());
         $contrato = $this->contratoService->instanciarEAtualizar($request);
         if ($contrato) {
             return redirect()->route('contrato.index')->with('Success', 'Contrato alterado com sucesso.');

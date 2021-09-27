@@ -67,6 +67,15 @@ class ContratoService
 
     public function instanciarEAtualizar(ContratoRequest $request)
     {
+
+        $pacientesExluidos = json_decode($request->pacientesExluidos);
+        $dados = [
+            'pacientesExluidos' => $pacientesExluidos,
+            'contrato_id' => $request->id
+        ];
+
+        $this->contratoRepository->removerPacientes($dados);
+
         $contrato = new Contrato;
         $contrato->setId($request->id);
         $contrato->setCreated_at($request->created_at);
