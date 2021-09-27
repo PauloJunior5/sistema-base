@@ -11,6 +11,8 @@
 @include('layouts.modais.chamada-modal.formaPagamento')
 {{-- fim - includes para clientes --}}
 
+@include('layouts.modais.chamada-modal.paciente')
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -88,6 +90,38 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="card">
+                                <div style="text-align: center"><h3>PACIENTES</h3></div>
+                                <hr>
+                                <div class="card-body">
+                                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                                        <form id="frmCadastroPaciente" class="form-horizontal">
+                                            <div class="col-sm-2">
+                                                <label class="col-form-label">Id do paciente</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="input-id-paciente"  name="" type="text" oninput="myFunction(this.value)"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label class="col-form-label">Paciente</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="input-paciente" placeholder="Pesquisa de paciente" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#pacienteModal"><i class="material-icons">search</i></button>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button class="btn btn-primary" type="button" value="Salvar-paciente" id="btnSalvarPaciente"><i class="material-icons">add</i></button>
+                                            </div>
+                                            <input type="hidden" id="pacientes" name="pacientes" value="{{ $pacientesContrato }}">
+                                        </form>
+                                        <table class="table table-hover table-sm" id="contrato-pacientes-table"></table>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-3">
                                     <label class="col-form-label">Data de Criação</label>
@@ -126,4 +160,5 @@
 @include('includes.scripts.cidades')
 @include('includes.scripts.condicoesPagamento')
 @include('includes.scripts.parcelasCreate')
+@include('includes.scripts.pacientesUpdate')
 @endsection

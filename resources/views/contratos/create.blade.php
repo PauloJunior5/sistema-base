@@ -10,6 +10,7 @@
 @include('layouts.modais.chamada-modal.condicaoPagamento')
 @include('layouts.modais.chamada-modal.formaPagamento')
 {{-- fim - includes para clientes --}}
+
 @include('layouts.modais.chamada-modal.paciente')
 
 <div class="content">
@@ -125,21 +126,21 @@
                                 <div class="col-md-3">
                                     <label class="col-form-label">Data de Criação</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" name="created_at" readonly>
+                                        <input type="datetime" class="form-control" name="created_at" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">Data de Alteração</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" name="updated_at" readonly>
+                                        <input type="datetime" class="form-control" name="updated_at" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">Data de Vigência</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" name="vigencia" readonly>
+                                        <input type="datetime" class="form-control" name="vigencia" readonly>
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>

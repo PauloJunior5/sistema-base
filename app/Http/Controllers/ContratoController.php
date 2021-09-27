@@ -66,10 +66,12 @@ class ContratoController extends Controller
         $cidades  = $this->cidadeRepository->mostrarTodos();
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
+        $pacientes  = $this->pacienteRepository->mostrarTodos();
+        $pacientesContrato = $this->contratoRepository->mostrarTodosPacientes();
         $clientesFisicos = $this->clienteRepository->mostrarTodosFisicos();
         $clientesJuridicos = $this->clienteRepository->mostrarTodosJuridicos();
         $contrato = $this->contratoService->buscarEInstanciar($id);
-        return view('contratos.edit', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'clientesFisicos', 'clientesJuridicos', 'contrato'));
+        return view('contratos.edit', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'pacientes', 'pacientesContrato', 'clientesFisicos', 'clientesJuridicos', 'contrato'));
     }
 
     public function update(ContratoRequest $request)
