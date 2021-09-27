@@ -116,6 +116,7 @@
                                                 <button class="btn btn-primary" type="button" value="Salvar-paciente" id="btnSalvarPaciente"><i class="material-icons">add</i></button>
                                             </div>
                                             <input type="hidden" id="pacientes" name="pacientes" value="{{ $pacientesContrato }}">
+                                            <input type="hidden" id="input-pacientes-exluidos" name="pacientesExluidos" value="">
                                         </form>
                                         <table class="table table-hover table-sm" id="contrato-pacientes-table"></table>
                                     </div>

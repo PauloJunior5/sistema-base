@@ -41,6 +41,7 @@
         localStorage.setItem("pacientes", pacientes);
         var pacientes = localStorage.getItem("pacientes");// Recupera os dados armazenados
         pacientes = JSON.parse(pacientes); // Converte string para objeto
+        var excluidos = [];
         //Fim editar
 
         $("#btnSalvarPaciente").on("click",function(){
@@ -163,11 +164,12 @@
 
         function Excluir()
         {
+            excluidos.push(pacientes[indice_selecionado]);
             pacientes.splice(indice_selecionado, 1);
-
             localStorage.setItem("pacientes", JSON.stringify(pacientes));
 
             $("#pacientes").val(JSON.stringify(pacientes));
+            $('#input-pacientes-exluidos').val(JSON.stringify(excluidos));
 
             swal({
                     title:"Excluido com sucesso!",
