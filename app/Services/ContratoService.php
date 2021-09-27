@@ -67,14 +67,14 @@ class ContratoService
 
     public function instanciarEAtualizar(ContratoRequest $request)
     {
-
-        $pacientesExluidos = json_decode($request->pacientesExluidos);
-        $dados = [
-            'pacientesExluidos' => $pacientesExluidos,
-            'contrato_id' => $request->id
-        ];
-
-        $this->contratoRepository->removerPacientes($dados);
+        if (isset($request->pacientesExluidos)) {
+            $pacientesExluidos = json_decode($request->pacientesExluidos);
+            $dados = [
+                'pacientesExluidos' => $pacientesExluidos,
+                'contrato_id' => $request->id
+            ];
+            $this->contratoRepository->removerPacientes($dados);
+        }
 
         $contrato = new Contrato;
         $contrato->setId($request->id);
@@ -87,7 +87,21 @@ class ContratoService
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
         $dados = $this->getDados($contrato);
-        return $this->contratoRepository->atualizar($dados);
+        $contrato = $this->contratoRepository->atualizar($dados);
+
+        $objectsArray = json_decode($request->pacientes);
+
+        foreach ($objectsArray as $objeto) {
+            DB::table('contratos_pacientes')->insert(
+                [
+                    'id_contrato' => $contrato,
+                    'id_paciente' => $objeto,
+                    'created_at' => now()->toDateTimeString()
+                ]
+            );
+        }
+
+        return $contrato;
     }
 
     /**
