@@ -95,7 +95,7 @@ class ContratoService
             DB::table('contratos_pacientes')->insert(
                 [
                     'id_contrato' => $contrato,
-                    'id_paciente' => $objeto,
+                    'id_paciente' => $objeto->id,
                     'created_at' => now()->toDateTimeString()
                 ]
             );

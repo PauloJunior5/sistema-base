@@ -17,7 +17,7 @@ class ContratoRepository
         return DB::table('pacientes')
                 ->join('contratos_pacientes', 'pacientes.id', '=', 'contratos_pacientes.id_paciente')
                 ->join('contratos', 'contratos.id', '=', 'contratos_pacientes.id_contrato')
-                ->select('pacientes.id')
+                ->select('pacientes.*')
                 ->get();
     }
 
