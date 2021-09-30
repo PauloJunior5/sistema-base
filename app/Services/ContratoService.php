@@ -6,7 +6,6 @@ use App\Http\Requests\ContratoRequest;
 use App\Models\Contrato;
 use App\Repositories\ContratoRepository;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class ContratoService
 {
@@ -67,15 +66,6 @@ class ContratoService
 
     public function instanciarEAtualizar(ContratoRequest $request)
     {
-        if (isset($request->pacientesExluidos)) {
-            $pacientesExluidos = json_decode($request->pacientesExluidos);
-            $dados = [
-                'pacientesExluidos' => $pacientesExluidos,
-                'contrato_id' => $request->id
-            ];
-            $this->contratoRepository->removerPacientes($dados);
-        }
-
         $contrato = new Contrato;
         $contrato->setId($request->id);
         $contrato->setCreated_at($request->created_at);
@@ -89,25 +79,31 @@ class ContratoService
         $dados = $this->getDados($contrato);
         $contrato = $this->contratoRepository->atualizar($dados);
 
-        $objectsArray = json_decode($request->pacientes);
+        if (isset($request->pacientesExluidos)) {
+            $pacientesExluidos = json_decode($request->pacientesExluidos);
+            $dados = [
+                'pacientesExluidos' => array_column($pacientesExluidos, 'id'),
+                'contrato_id' => $request->id
+            ];
+            $this->contratoRepository->removerPacientes($dados);
+        }
 
-        foreach ($objectsArray as $objeto) {
-            DB::table('contratos_pacientes')->insert(
-                [
-                    'id_contrato' => $contrato,
-                    'id_paciente' => $objeto->id,
-                    'created_at' => now()->toDateTimeString()
-                ]
-            );
+        $pacientes = json_decode($request->pacientes);
+        foreach ($pacientes as $paciente) {
+            $dados = [
+                'id_contrato' => $contrato,
+                'id_paciente' => $paciente->id,
+                'created_at' => now()->toDateTimeString()
+            ];
+
+            if (!$this->contratoRepository->findByIdPaciente($dados['id_contrato'], $dados['id_paciente'])) {
+                $this->contratoRepository->adicionarPaciente($dados);
+            }
         }
 
         return $contrato;
     }
 
-    /**
-     *  Retorna objeto a partir do id passado
-     * como parametro. Para instanciar o objeto.
-     */
     public function buscarEInstanciar(int $id)
     {
         $result = $this->contratoRepository->findById($id);
@@ -124,10 +120,6 @@ class ContratoService
         return $contrato;
     }
 
-    /**
-     *  Retorna array a partir do objeto passado
-     * como parametro, para inserir dados no banco.
-     */
     private function getDados(Contrato $contrato)
     {
         $dados = [
