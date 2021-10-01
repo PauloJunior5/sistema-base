@@ -81,6 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('cliente.')->group(function () {
         Route::post('cliente/fisico', 'ClienteController@createClienteFisico')->name('createClienteFisico');
         Route::post('cliente/juridico', 'ClienteController@createClienteJuridico')->name('createClienteJuridico');
+        Route::get('cliente/fisico/{id}', 'ClienteController@showFisico')->name('showClienteFisico');
+        Route::get('cliente/juridico/{id}', 'ClienteController@showJuridico')->name('showClienteJuridico');
     });
     Route::resource('paciente', 'PacienteController');
     Route::resource('exame', 'ExameController');

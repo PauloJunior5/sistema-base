@@ -51,9 +51,21 @@ class ClienteController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show(int $id)
     {
-        $cliente = $this->clienteRepository->findById($request->id_cliente);
+        $cliente = $this->clienteRepository->findById($id);
+        return response()->json($cliente);
+    }
+
+    public function showFisico(int $id)
+    {
+        $cliente = $this->clienteRepository->findByIdFisicos($id);
+        return response()->json($cliente);
+    }
+
+    public function showJuridico(int $id)
+    {
+        $cliente = $this->clienteRepository->findByIdJuridicos($id);
         return response()->json($cliente);
     }
 

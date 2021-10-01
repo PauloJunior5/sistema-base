@@ -1,6 +1,45 @@
-{{-- URL ATUAL --}}
 <script>
         var url_atual = '<?php echo URL::to(''); ?>';
+</script>
+
+<script>
+    //Função que mostra o responsavel conforme é inserido
+    function myFunctionResponsavel(id_responsavel) {
+        $.ajax({
+            method: "GET",
+            url: url_atual + "/cliente/fisico/" + id_responsavel,
+            dataType: "JSON",
+            async: false,
+            success: function(response){
+                responsavel = response;
+            }
+        });
+
+        if (!id_responsavel || jQuery.isEmptyObject(responsavel)) {
+            document.getElementById("input-responsavel").value = "";
+        } else {
+            document.getElementById("input-responsavel").value = responsavel.cliente + " " + responsavel.apelido;
+        }
+    }
+
+    //Função que mostra o responsavel conforme é inserido
+    function myFunctionCliente(id_cliente) {
+    $.ajax({
+        method: "GET",
+        url: url_atual + "/cliente/juridico/" + id_cliente,
+        dataType: "JSON",
+        async: false,
+        success: function(response){
+            cliente = response;
+        }
+    });
+
+    if (!id_cliente || jQuery.isEmptyObject(cliente)) {
+        document.getElementById("input-cliente").value = "";
+    } else {
+        document.getElementById("input-cliente").value = cliente.cliente + " " + cliente.apelido;
+    }
+    }
 </script>
 
 {{-- CLIENTES FISICOS --}}
