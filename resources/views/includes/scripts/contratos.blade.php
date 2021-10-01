@@ -46,12 +46,12 @@
 
 <script>
     $('.idClienteFisico').click(function() {
-        var id_cliente = $(this).val();
+        var id_responsavel = $(this).val();
         $.ajax({
             method: "GET",
-            url: url_atual + '/cliente/show',
-            data: { id_cliente : id_cliente },
+            url: url_atual + '/cliente/fisico/' + id_responsavel,
             dataType: "JSON",
+            async: false,
             success: function(response){
                 $('#input-id-responsavel').val(response.id);
                 $('#input-responsavel').val(response.cliente + ' ' + response.apelido);
@@ -76,9 +76,9 @@
         var id_cliente = $(this).val();
         $.ajax({
             method: "GET",
-            url: url_atual + '/cliente/show',
-            data: { id_cliente : id_cliente },
+            url: url_atual + '/cliente/juridico/' + id_cliente,
             dataType: "JSON",
+            async: false,
             success: function(response){
                 $('#input-id-cliente').val(response.id);
                 $('#input-cliente').val(response.cliente + ' ' + response.apelido);

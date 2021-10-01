@@ -54,7 +54,7 @@ class ContratoService
         if (!is_null($pacientes)) {
             foreach ($pacientes as $paciente) {
                 $dados = [
-                    'id_contrato' => $contrato,
+                    'id_contrato' => $request->id,
                     'id_paciente' => $paciente->id,
                     'created_at' => now()->toDateTimeString()
                 ];
@@ -96,13 +96,13 @@ class ContratoService
         if (!is_null($pacientes)) {
             foreach ($pacientes as $paciente) {
                 $dados = [
-                    'id_contrato' => $contrato,
+                    'id_contrato' => $request->id,
                     'id_paciente' => $paciente->id,
                     'created_at' => now()->toDateTimeString()
                 ];
 
                 if (!$this->contratoRepository->findByIdPaciente($dados['id_contrato'], $dados['id_paciente'])) {
-                    $this->contratoRepository->adicionarPaciente($dados);
+                    $teste = $this->contratoRepository->adicionarPaciente($dados);
                 }
             }
         }

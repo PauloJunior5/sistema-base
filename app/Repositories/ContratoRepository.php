@@ -94,7 +94,7 @@ class ContratoRepository
     {
         $result = null;
         try {
-            $result=  DB::table('contratos_pacientes')->insert($dados);
+            $result = DB::table('contratos_pacientes')->insert($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();

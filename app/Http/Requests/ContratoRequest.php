@@ -28,6 +28,8 @@ class ContratoRequest extends FormRequest
             'contrato' => [
                 Rule::unique('contratos', 'contrato')->ignore($this->id),
             ],
+            'id_responsável' => 'exists:clientes,id',
+            'id_cliente' => 'exists:clientes,id',
         ];
     }
 }

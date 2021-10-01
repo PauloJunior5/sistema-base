@@ -54,7 +54,7 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Id do responsável</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-id-responsavel"  name="id_responsavel" value="{{$contrato->getResponsavel()->getId()}}" type="text" required/>
+                                        <input class="form-control" id="input-id-responsavel"  name="id_responsavel" value="{{$contrato->getResponsavel()->getId()}}" type="text" oninput="myFunctionResponsavel(this.value)" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -74,7 +74,7 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Id do cliente</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-id-cliente"  name="id_cliente" value="{{$contrato->getCliente()->getId()}}" type="text" required/>
+                                        <input class="form-control" id="input-id-cliente"  name="id_cliente" value="{{$contrato->getCliente()->getId()}}" type="text" oninput="myFunctionCliente(this.value)" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
