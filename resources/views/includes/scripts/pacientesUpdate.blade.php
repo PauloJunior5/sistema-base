@@ -51,19 +51,7 @@
             }
         });
 
-        $("#contrato-pacientes-table").html("");
-        $("#contrato-pacientes-table").html(
-            "<thead>"+
-            "   <tr>"+
-            "    <th scope='col'>#</th>"+
-            "    <th scope='col'>Paciente</th>"+
-            "    <th scope='col'>Apelido</th>"+
-            "    <th scope='col'>CPF</th>"+
-            "    <th scope='col'>Ações</th>"+
-            "   </tr>"+
-            "</thead>"+
-            "<tbody>"+"</tbody>"
-        );
+        Listar();
 
         function Adicionar()
         {
@@ -146,7 +134,6 @@
 
             document.getElementById("input-paciente").value = "";
             document.getElementById("input-id-paciente").value = "";
-
             Listar();
             return;
         };
@@ -205,34 +192,6 @@
                 $("#contrato-pacientes-table tbody").append("</tr>");
             }
         };
-
-        $(function() {
-            var n = 0;
-
-            $("#contrato-pacientes-table").html("");
-            $("#contrato-pacientes-table").html(
-                "<thead>"+
-                "   <tr>"+
-                "    <th scope='col'>#</th>"+
-                "    <th scope='col'>Paciente</th>"+
-                "    <th scope='col'>CPF</th>"+
-                "    <th scope='col'>Ações</th>"+
-                "   </tr>"+
-                "</thead>"+
-                "<tbody>"+"</tbody>"
-            );
-
-            for(var i in pacientes){
-                n++;
-
-                $("#contrato-pacientes-table tbody").append("<tr>");
-                $("#contrato-pacientes-table tbody").append("<td>" + n + "</td>");
-                $("#contrato-pacientes-table tbody").append("<td>" + pacientes[i].paciente + " " + pacientes[i].apelido + "</td>");
-                $("#contrato-pacientes-table tbody").append("<td>" + pacientes[i].cpf + "</td>");
-                $("#contrato-pacientes-table tbody").append("<td><a class='btn btn-sm btn-danger btnExcluirPaciente' alt='"+i+"'>Excluir</a></td>");
-                $("#contrato-pacientes-table tbody").append("</tr>");
-            }
-        });
     });
 
 </script>

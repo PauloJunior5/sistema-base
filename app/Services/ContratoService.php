@@ -49,16 +49,20 @@ class ContratoService
         $dados = $this->getDados($contrato);
         $contrato =  $this->contratoRepository->adicionar($dados);
 
-        $objectsArray = json_decode($request->pacientes);
+        $pacientes = json_decode($request->pacientes);
 
-        foreach ($objectsArray as $objeto) {
-            DB::table('contratos_pacientes')->insert(
-                [
+        if (!is_null($pacientes)) {
+            foreach ($pacientes as $paciente) {
+                $dados = [
                     'id_contrato' => $contrato,
-                    'id_paciente' => $objeto,
+                    'id_paciente' => $paciente->id,
                     'created_at' => now()->toDateTimeString()
-                ]
-            );
+                ];
+
+                if (!$this->contratoRepository->findByIdPaciente($dados['id_contrato'], $dados['id_paciente'])) {
+                    $this->contratoRepository->adicionarPaciente($dados);
+                }
+            }
         }
 
         return $contrato;
@@ -89,15 +93,17 @@ class ContratoService
         }
 
         $pacientes = json_decode($request->pacientes);
-        foreach ($pacientes as $paciente) {
-            $dados = [
-                'id_contrato' => $contrato,
-                'id_paciente' => $paciente->id,
-                'created_at' => now()->toDateTimeString()
-            ];
+        if (!is_null($pacientes)) {
+            foreach ($pacientes as $paciente) {
+                $dados = [
+                    'id_contrato' => $contrato,
+                    'id_paciente' => $paciente->id,
+                    'created_at' => now()->toDateTimeString()
+                ];
 
-            if (!$this->contratoRepository->findByIdPaciente($dados['id_contrato'], $dados['id_paciente'])) {
-                $this->contratoRepository->adicionarPaciente($dados);
+                if (!$this->contratoRepository->findByIdPaciente($dados['id_contrato'], $dados['id_paciente'])) {
+                    $this->contratoRepository->adicionarPaciente($dados);
+                }
             }
         }
 

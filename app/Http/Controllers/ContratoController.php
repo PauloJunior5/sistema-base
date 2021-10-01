@@ -20,7 +20,7 @@ class ContratoController extends Controller
     {
         $this->contratoRepository = new ContratoRepository;
         $this->contratoService = new ContratoService;
-        
+
         $this->paisRepository = new PaisRepository;
         $this->estadoRepository = new EstadoRepository;
         $this->cidadeRepository = new CidadeRepository;
@@ -59,7 +59,7 @@ class ContratoController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $paises  = $this->paisRepository->mostrarTodos();
         $estados  = $this->estadoRepository->mostrarTodos();
@@ -67,7 +67,7 @@ class ContratoController extends Controller
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
         $pacientes  = $this->pacienteRepository->mostrarTodos();
-        $pacientesContrato = $this->contratoRepository->mostrarTodosPacientes();
+        $pacientesContrato = $this->contratoRepository->mostrarTodosPacientes($id);
         $clientesFisicos = $this->clienteRepository->mostrarTodosFisicos();
         $clientesJuridicos = $this->clienteRepository->mostrarTodosJuridicos();
         $contrato = $this->contratoService->buscarEInstanciar($id);
@@ -80,11 +80,11 @@ class ContratoController extends Controller
         if ($contrato) {
             return redirect()->route('contrato.index')->with('Success', 'Contrato alterado com sucesso.');
         } else {
-            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel editar contrato.');
+            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel alterar contrato.');
         }
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $contrato = $this->contratoRepository->remover($id);
         if ($contrato) {

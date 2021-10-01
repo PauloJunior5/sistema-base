@@ -12,11 +12,12 @@ class ContratoRepository
         return DB::table('contratos')->get();
     }
 
-    public function mostrarTodosPacientes()
+    public function mostrarTodosPacientes(int $id)
     {
         return DB::table('pacientes')
                 ->join('contratos_pacientes', 'pacientes.id', '=', 'contratos_pacientes.id_paciente')
                 ->join('contratos', 'contratos.id', '=', 'contratos_pacientes.id_contrato')
+                ->where('contratos.id', $id)
                 ->select('pacientes.*')
                 ->get();
     }
