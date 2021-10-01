@@ -4,8 +4,7 @@
     function myFunction(id_paciente) {
         $.ajax({
             method: "GET",
-            url: url_atual + "/paciente/show",
-            data: { id : id_paciente },
+            url: url_atual + "/paciente/" + id_paciente,
             dataType: "JSON",
             async: false,
             success: function(response){
