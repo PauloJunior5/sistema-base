@@ -61,6 +61,7 @@ class ContratoRepository
         $result = null;
         DB::beginTransaction();
         try {
+            DB::table('contratos_pacientes')->where('id_contrato', $id)->delete();
             $result = DB::table('contratos')->where('id', $id)->delete();
             DB::commit();
         } catch (\Throwable $th) {

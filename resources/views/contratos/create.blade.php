@@ -115,7 +115,7 @@
                                             <div class="col-md-1">
                                                 <button class="btn btn-primary" type="button" value="Salvar-paciente" id="btnSalvarPaciente"><i class="material-icons">add</i></button>
                                             </div>
-                                            <input type="hidden" id="pacientes" name="pacientes" value="">
+                                            <input type="hidden" id="pacientes" name="pacientes" value="{{ old('pacientes') }}">
                                         </form>
                                         <table class="table table-hover table-sm" id="contrato-pacientes-table"></table>
                                     </div>

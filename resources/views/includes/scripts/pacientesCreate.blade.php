@@ -25,6 +25,7 @@
 
     $(function()
     {
+        localStorage.clear();
         var operacao = "";
 
         //Índice do item selecionado na lista
@@ -34,10 +35,12 @@
         localStorage.setItem("pacientes", pacientes);
 
         var pacientes = localStorage.getItem("pacientes");// Recupera os dados armazenados
-        pacientes = JSON.parse(pacientes);
 
-        if(pacientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
+        if(pacientes == null || pacientes.length === 0){ // Caso não haja conteúdo, iniciamos um vetor vazio
             pacientes = [];
+        } else {
+            pacientes = JSON.parse(pacientes);
+        }
 
         $("#btnSalvarPaciente").on("click",function(){
             return Adicionar();
@@ -157,6 +160,10 @@
 
         function Listar()
         {
+            if (!typeof pacientes === 'object') {
+                pacientes = JSON.parse(pacientes);
+            }
+
             var n = 0;
 
             $("#contrato-pacientes-table").html("");
@@ -173,6 +180,7 @@
             );
 
             for(var i in pacientes){
+                console.log(pacientes);
                 n++;
 
                 $("#contrato-pacientes-table tbody").append("<tr>");

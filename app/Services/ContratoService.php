@@ -54,7 +54,7 @@ class ContratoService
         if (!is_null($pacientes)) {
             foreach ($pacientes as $paciente) {
                 $dados = [
-                    'id_contrato' => $request->id,
+                    'id_contrato' => $contrato,
                     'id_paciente' => $paciente->id,
                     'created_at' => now()->toDateTimeString()
                 ];

@@ -25,6 +25,7 @@
 
     $(function()
     {
+        localStorage.clear();
         var operacao = "";
 
         //Índice do item selecionado na lista
