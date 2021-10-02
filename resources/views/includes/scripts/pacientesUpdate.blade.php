@@ -25,8 +25,7 @@
 
     $(function()
     {
-        //"A"=Adição; "E"=Edição
-        var operacao = "A";
+        var operacao = "";
 
         //Índice do item selecionado na lista
         var indice_selecionado = -1;
@@ -34,21 +33,19 @@
         //Inicia um array vazio
         var pacientes = [];
 
-        //Inicio editar
-        localStorage.clear();
         var pacientes = $('#pacientes').val();
         localStorage.setItem("pacientes", pacientes);
+
         var pacientes = localStorage.getItem("pacientes");// Recupera os dados armazenados
         pacientes = JSON.parse(pacientes); // Converte string para objeto
+
+        if(pacientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
+            pacientes = [];
+
         var excluidos = [];
-        //Fim editar
 
         $("#btnSalvarPaciente").on("click",function(){
-            if(operacao == "A"){
-                return Adicionar();
-            } else {
-                return Editar();
-            }
+            return Adicionar();
         });
 
         Listar();

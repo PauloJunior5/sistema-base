@@ -25,36 +25,25 @@
 
     $(function()
     {
-        //"A"=Adição; "E"=Edição
-        var operacao = "A";
+        var operacao = "";
 
         //Índice do item selecionado na lista
         var indice_selecionado = -1;
 
-        //Inicia um array vazio
-        var pacientes = [];
+        var pacientes = $('#pacientes').val();
+        localStorage.setItem("pacientes", pacientes);
+
+        var pacientes = localStorage.getItem("pacientes");// Recupera os dados armazenados
+        pacientes = JSON.parse(pacientes);
+
+        if(pacientes == null) // Caso não haja conteúdo, iniciamos um vetor vazio
+            pacientes = [];
 
         $("#btnSalvarPaciente").on("click",function(){
-            if(operacao == "A"){
-                return Adicionar();
-            } else {
-                return Editar();
-            }
+            return Adicionar();
         });
 
-        $("#contrato-pacientes-table").html("");
-        $("#contrato-pacientes-table").html(
-            "<thead>"+
-            "   <tr>"+
-            "    <th scope='col'>#</th>"+
-            "    <th scope='col'>Paciente</th>"+
-            "    <th scope='col'>Apelido</th>"+
-            "    <th scope='col'>CPF</th>"+
-            "    <th scope='col'>Ações</th>"+
-            "   </tr>"+
-            "</thead>"+
-            "<tbody>"+"</tbody>"
-        );
+        Listar();
 
         function Adicionar()
         {

@@ -46,7 +46,7 @@
                                 <div class="col-sm-6">
                                     <label class="col-form-label">Contrato</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="contrato" id="input-contrato" type="text" required />
+                                        <input class="form-control" name="contrato" id="input-contrato" type="text" value="{{ old('contrato') }}" required />
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Id do responsável</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-id-responsavel"  name="id_responsavel" type="text" oninput="myFunctionResponsavel(this.value)" required/>
+                                        <input class="form-control" id="input-id-responsavel"  name="id_responsavel" type="text" oninput="myFunctionResponsavel(this.value)" value="{{ old('id_responsavel') }}" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -74,7 +74,7 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Id do cliente</label>
                                     <div class="form-group">
-                                        <input class="form-control" id="input-id-cliente"  name="id_cliente" type="text" oninput="myFunctionCliente(this.value)" required/>
+                                        <input class="form-control" id="input-id-cliente"  name="id_cliente" type="text" oninput="myFunctionCliente(this.value)" value="{{ old('id_cliente') }}" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
