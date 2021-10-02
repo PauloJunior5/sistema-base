@@ -13,6 +13,18 @@ class ClienteRepository
         return $clientes;
     }
 
+    public function mostrarTodosFisicos()
+    {
+        $clientes = DB::table('clientes')->where('tipo', 'pessoaFisica')->get();
+        return $clientes;
+    }
+
+    public function mostrarTodosJuridicos()
+    {
+        $clientes = DB::table('clientes')->where('tipo', 'pessoaJuridica')->get();
+        return $clientes;
+    }
+
     public function adicionar($dados)
     {
         $result = null;
@@ -30,6 +42,18 @@ class ClienteRepository
     public function findById(int $id)
     {
         $cliente = DB::table('clientes')->where('id', $id)->first();
+        return $cliente;
+    }
+
+    public function findByIdFisicos(int $id)
+    {
+        $cliente = DB::table('clientes')->where('id', $id)->where('tipo', 'pessoaFisica')->first();
+        return $cliente;
+    }
+
+    public function findByIdJuridicos(int $id)
+    {
+        $cliente = DB::table('clientes')->where('id', $id)->where('tipo', 'pessoaJuridica')->first();
         return $cliente;
     }
 

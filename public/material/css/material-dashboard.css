@@ -5762,7 +5762,7 @@ button.close {
   outline : 0;
 }
 
-.modal-open .modal {
+.modal {
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -9922,10 +9922,10 @@ a.text-dark:focus {
 }
 
 .btn.btn-danger {
-  color           : #fff;
+  color           : #f44336;
   background-color: #f44336;
   border-color    : #f44336;
-  box-shadow      : 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12);
+  /* box-shadow      : 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12); */
 }
 
 .btn.btn-danger:hover {
@@ -9938,7 +9938,7 @@ a.text-dark:focus {
 .btn.btn-danger.focus,
 .btn.btn-danger:hover {
   color           : #fff;
-  background-color: #f33527;
+  background-color: #8a130a;
   border-color    : #e11b0c;
 }
 
@@ -9996,6 +9996,7 @@ a.text-dark:focus {
 .btn.btn-danger:active,
 .btn.btn-danger:hover {
   box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2);
+  
 }
 
 .btn.btn-danger.btn-link {
@@ -13847,7 +13848,7 @@ fieldset[disabled] .form-group .form-control {
 
 .navbar .navbar-brand {
   position   : relative;
-  color      : #3C4858;
+  color      : #ffffff;
   height     : 50px;
   font-size  : 1.125rem;
   line-height: 30px;
@@ -14051,7 +14052,7 @@ fieldset[disabled] .form-group .form-control {
   font-size     : 12px;
   text-transform: uppercase;
   border-radius : 3px;
-  color         : #3C4858;
+  color         : #ffffff;
   margin        : 0 15px;
 }
 
@@ -16999,7 +17000,7 @@ thead.thead-inverse th,
 }
 
 body {
-  background-color: #0E1822;
+  background-color: #8d9ca6;
   color           : #3C4858;
   font-weight     : 300;
 }

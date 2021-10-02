@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Clientes') }}</h4>
-                        <p class="card-category"> {{ __('Aqui você pode gerenciar Clientes') }}</p>
+                        <h4 class="card-title ">{{ __('Pacientes') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar pacientes') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -31,25 +31,22 @@
                             </div>
                         </div>
                         @endif
-                        <div class="row">
-                            <div class="col-12 text-right">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#" style="margin-top: 2.7rem;">Novo</button>
-                            </div>
-                        </div>
                         <div class="table-responsive">
-                            <table class="table" id="tableClientes">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePacientes">
                                 <thead class=" text-primary">
-                                    <th>{{ __('CPF/CNPJ') }}</th>
-                                    <th>{{ __('Cliente') }}</th>
+                                    <th>{{ __('Paciente') }}</th>
+                                    <th>{{ __('Data de Criação') }}</th>
+                                    <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($clientes as $cliente)
+                                    @foreach($pacientes as $paciente)
                                     <tr>
-                                        <td>{{ !empty($cliente->cpf) ? $cliente->cpf : $cliente->cnpj }}</td>
-                                        <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
+                                        <td>{{ $paciente->paciente. " " .$paciente->apelido }}</td>
+                                        <td>{{ $paciente->created_at }}</td>
+                                        <td>{{ $paciente->updated_at }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link idCliente" value="{{$cliente->id}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idPaciente" value="{{$paciente->id}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i> Selecionar
                                                 <div class="ripple-container"></div>
                                             </button>
@@ -65,4 +62,4 @@
         </div>
     </div>
 </div>
-@include('includes.datatables.script-datatables', ['tableId' => '#tableClientes'])
+@include('includes.datatables.script-datatables', ['tableId' => '#tablePacientes'])

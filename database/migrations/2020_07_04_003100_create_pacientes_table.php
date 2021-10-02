@@ -25,7 +25,7 @@ class CreatePacientesTable extends Migration
             $table->string('bairro')->nullable();
             $table->string('cep')->nullable();
             $table->unsignedTinyInteger('id_cidade'); // foreign_key cidades
-            $table->integer('sexo')->nullable();
+            $table->string('sexo')->nullable();
             $table->string('nascimento')->nullable();
             $table->string('estado_civil')->nullable();
             $table->string('nacionalidade')->nullable();

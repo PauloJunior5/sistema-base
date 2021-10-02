@@ -1,6 +1,6 @@
 <script>
-   $( document ).ready(function() {
-        if($("#tipo").val() == "pessoaFisica") {
+    $( document ).ready(function() {
+        if($(".tipo").val() == "pessoaFisica") {
             $(".campoPessoaFisica").show();
             $(".campoPessoaJuridica").hide();
             $('.inputPessoaJuridica').prop('required',false);

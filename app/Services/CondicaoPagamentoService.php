@@ -33,7 +33,7 @@ class CondicaoPagamentoService
         $result = null;
         DB::beginTransaction();
         try {
-            $condicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
+            $idCondicaoPagamento =  $this->condicaoPagamentoRepository->adicionar($dados);
             if ($condicaoPagamento) {
                 $objectsArray = json_decode($request->parcelas);
                 foreach ($objectsArray as $objeto) {
@@ -43,7 +43,7 @@ class CondicaoPagamentoService
                     $parcela->setPorcentual($objeto->porcentual);
                     $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($objeto->forma_pagamento);
                     $parcela->setFormaPagamento($formaPagamento);
-                    $condicaoPagamento = $this->buscarEInstanciar($condicaoPagamento);
+                    $condicaoPagamento = $this->buscarEInstanciar($idCondicaoPagamento);
                     $parcela->setCondicaoPagamento($condicaoPagamento);
                     $parcela->setCreated_at(now()->toDateTimeString());
                     $dados = $this->parcelaService->getDados($parcela);
@@ -71,6 +71,14 @@ class CondicaoPagamentoService
         $condicaoPagamento->setQtdParcelas($request->qtd_parcelas);
         $dados = $this->getDados($condicaoPagamento);
         $result = null;
+
+        if (isset($request->parcelasExluidas)) {
+            $parcelasExluidas = json_decode($request->parcelasExluidas);
+            foreach ($parcelasExluidas as $parcela) {
+                DB::table('parcelas')->where('id_condicao_pagamento', $parcela->id_condicao_pagamento)->where('parcela', $parcela->parcela)->delete();
+            }
+        }
+        
         DB::beginTransaction();
         try {
             $condicaoPagamento =  $this->condicaoPagamentoRepository->atualizar($dados);
@@ -85,13 +93,11 @@ class CondicaoPagamentoService
                     $parcela->setFormaPagamento($formaPagamento);
                     $condicaoPagamento = $this->buscarEInstanciar($request->id);
                     $parcela->setCondicaoPagamento($condicaoPagamento);
-                    if (isset($objeto->parcela) and isset($objeto->id_condicao_pagamento)) {
-                        $parcela->setUpdated_at(now()->toDateTimeString());
-                        $parcela->setCreated_at($objeto->created_at);
+
+                    if (isset($objeto->id_condicao_pagamento)) {
                         $dados = $this->parcelaService->getDados($parcela);
                         $result = $this->parcelaRepository->atualizar($dados);
                     } else {
-                        $parcela->setCreated_at(now()->toDateTimeString());
                         $dados = $this->parcelaService->getDados($parcela);
                         $result = $this->parcelaRepository->adicionar($dados);
                     }

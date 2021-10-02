@@ -48,18 +48,19 @@
                                 </div>
                                 <input type="hidden" id="input-parcelas" name="parcelas" value="{{old('parcelas', $parcelas)}}">
                                 <input type="hidden" id="qtd_parcelas" name="qtd_parcelas" value="">
+                                <input type="hidden" id="input-parcelas-exluidas" name="parcelasExluidas" value="">
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Created_at</label>
                                     <div class="form-group">
-                                        <input type="datetime" name="created_at" value="{{old('parcelas', $condicaoPagamento->getCreated_at())}}" class="form-control" readonly>
+                                        <input type="datetime" name="created_at" value="{{old('created_at', $condicaoPagamento->getCreated_at())}}" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Updated_at</label>
                                     <div class="form-group">
-                                        <input type="datetime" name="updated_at" value="{{old('parcelas', $condicaoPagamento->getUpdated_at())}}" class="form-control" readonly>
+                                        <input type="datetime" name="updated_at" value="{{old('updated_at', $condicaoPagamento->getUpdated_at())}}" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>

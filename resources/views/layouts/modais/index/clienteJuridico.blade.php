@@ -1,5 +1,3 @@
-@extends('layouts.app', ['activePage' => 'cliente-management', 'titlePage' => __('Cliente Management')])
-@section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -35,43 +33,26 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('cliente.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#clienteJuridicoCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientes">
+                            <table class="table" id="tableClientesJuridicos">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Tipo') }}</th>
+                                    <th>{{ __('CNPJ') }}</th>
                                     <th>{{ __('Cliente') }}</th>
-                                    <th>{{ __('Data de Criação') }}</th>
-                                    <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($clientes as $cliente)
+                                    @foreach($clientesJuridicos as $cliente)
                                     <tr>
-                                        {{-- <td>{{ !empty($cliente->getCPF()) ? $cliente->getCPF() : $cliente->getCNPJ() }}</td> --}}
-                                        @if($cliente->getTipo() == "pessoaFisica")
-                                            <td>Pessoa Física</td>
-                                        @else
-                                            <td>Pessoa Jurídica</td>
-                                        @endif
-                                        <td>{{ $cliente->getCliente() . " " . $cliente->getApelido() }}</td>
-                                        <td>{{$cliente->getCreated_at()}}</td>
-                                        <td>{{$cliente->getUpdated_at()}}</td>
+                                        <td>{{ $cliente->cnpj }}</td>
+                                        <td>{{ $cliente->cliente . " " . $cliente->apelido }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('cliente.destroy', $cliente->getId()) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('cliente.edit', $cliente->getId()) }}" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Voce tem certeza que deseja excluir?") }}') ? this.parentElement.submit() : ''">
-                                                    <i class="material-icons">close</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>
-                                            </form>
+                                            <button rel="tooltip" class="btn btn-success btn-link idClienteJuridico" value="{{$cliente->id}}" data-original-title="" title="">
+                                                <i class="material-icons">check</i> Selecionar
+                                                <div class="ripple-container"></div>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -84,5 +65,4 @@
         </div>
     </div>
 </div>
-@include('includes.datatables.script-datatables', ['tableId' => '#tableClientes'])
-@endsection
+@include('includes.datatables.script-datatables', ['tableId' => '#tableClientesJuridicos'])

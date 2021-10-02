@@ -51,9 +51,21 @@ class ClienteController extends Controller
         }
     }
 
-    public function show(Request $request)
+    public function show(int $id)
     {
-        $cliente = $this->clienteRepository->findById($request->id_cliente);
+        $cliente = $this->clienteRepository->findById($id);
+        return response()->json($cliente);
+    }
+
+    public function showFisico(int $id)
+    {
+        $cliente = $this->clienteRepository->findByIdFisicos($id);
+        return response()->json($cliente);
+    }
+
+    public function showJuridico(int $id)
+    {
+        $cliente = $this->clienteRepository->findByIdJuridicos($id);
         return response()->json($cliente);
     }
 
@@ -86,6 +98,42 @@ class ClienteController extends Controller
             return redirect()->route('cliente.index')->with('Success', 'Cliente excluído com sucesso.')->send();
         } else {
             return redirect()->route('cliente.index')->with('Warning', 'Não foi possivel excluir cliente. Verifique se existem vínculos')->send();
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createClienteFisico(ClienteRequest $request)
+    {
+        $cliente = $this->clienteService->instanciarECriar($request);
+        if ($cliente) {
+            return redirect()->back()->withInput()->with('error_code', 1)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createClienteJuridico(ClienteRequest $request)
+    {
+        $cliente = $this->clienteService->instanciarECriar($request);
+        if ($cliente) {
+            return redirect()->back()->withInput()->with('error_code', 2)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
         }
     }
 }

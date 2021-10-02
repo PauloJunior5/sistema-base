@@ -109,6 +109,10 @@
                                     <label class="col-form-label" for="nascimento">@include('includes.required')Nascimento</label>
                                     <input type="date" class="form-control" name="nascimento" required>
                                 </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label" for="nacionalidade">@include('includes.required')Nacionalidade</label>
+                                    <input type="text" class="form-control" name="nacionalidade" required>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">

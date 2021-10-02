@@ -100,8 +100,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <label class="col-form-label">Sexo</label>
-                                    <input type="text" class="form-control" name="sexo">
+                                    <label class="col-form-label" for="sexo-id">Sexo</label>
+                                    <select id="sexo-id" name="sexo" class="form-control">
+                                        <option value="" selected disabled hidden>Selecionar</option>
+                                        <option value='Indefinido'>Indefinido</option>
+                                        <option value='Masculino'>Masculino</option>
+                                        <option value='Feminino'>Feminino</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label" for="nascimento">@include('includes.required')Nascimento</label>

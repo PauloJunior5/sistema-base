@@ -26,10 +26,12 @@ class PacienteRequest extends FormRequest
     {
         return [
             'cpf' => [
-                Rule::unique('pacientes', 'cpf')->ignore($this->cpf),
+                'required',
+                Rule::unique('pacientes')->ignore($this->id),
             ],
             'rg' => [
-                Rule::unique('pacientes', 'rg')->ignore($this->rg),
+                'required',
+                Rule::unique('pacientes')->ignore($this->id),
             ],
         ];
     }

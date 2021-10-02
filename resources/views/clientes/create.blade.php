@@ -142,7 +142,7 @@
                             <div class="row campoPessoaJuridica">
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Inscricão Estadual</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricaoEstadual" value="{{ old('inscricao_estadual') }}" required>
+                                    <input type="text" class="form-control inputPessoaJuridica" name="inscricaoEstadual" value="{{ old('inscricaoEstadual') }}" required>
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')CNPJ</label>
@@ -152,7 +152,7 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">@include('includes.required')Limite de Crédito</label>
-                                    <input class="form-control" type="number" name="limite_credito" step="0.01" value="{{ old('limiteCredito') }}" required>
+                                    <input class="form-control" type="number" name="limiteCredito" step="0.01" value="{{ old('limiteCredito') }}" required>
                                 </div>
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
                                 <div class="col-md-1">
@@ -161,7 +161,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
-                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento" value="{{ old('condicao_pagamento_input') }}" readonly>
+                                    <input class="form-control" id='condicao_pagamento-input' name="condicao_pagamento" value="{{ old('condicao_pagamento') }}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">

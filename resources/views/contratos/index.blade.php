@@ -43,7 +43,7 @@
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableContratos">
                                 <thead class=" text-primary">
                                     <th>{{ __('Contrato') }}</th>
-                                    <th>{{ __('Responsavel') }}</th>
+                                    <th>{{ __('Cliente') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
                                     <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
@@ -52,7 +52,7 @@
                                     @foreach($contratos as $contrato)
                                     <tr>
                                         <td>{{$contrato->getContrato()}}</td>
-                                        <td>{{$contrato->getResponsavel()->getCliente()}}</td>
+                                        <td>{{$contrato->getCliente()->getCliente() . " " . $contrato->getCliente()->getApelido()}}</td>
                                         <td>{{$contrato->getCreated_at()}}</td>
                                         <td>{{$contrato->getUpdated_at()}}</td>
                                         <td class="td-actions text-right">
