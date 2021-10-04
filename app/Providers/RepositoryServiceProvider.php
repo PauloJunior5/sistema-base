@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\CategoriaRepository;
+use App\Repositories\Contracts\CategoriaRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -17,9 +19,14 @@ class RepositoryServiceProvider extends ServiceProvider
          * Binding - Países
          * 
          */
+        // $this->app->bind(
+        //     'App\Interfaces\PaisInterface',
+        //     'App\Repositories\PaisRepository'
+        // );
+
         $this->app->bind(
-            'App\Interfaces\PaisInterface',
-            'App\Repositories\PaisRepository'
+            CategoriaRepositoryInterface::class,
+            CategoriaRepository::class
         );
     }
 }
