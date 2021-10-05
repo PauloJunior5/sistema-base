@@ -26,7 +26,7 @@ class StoreUpdateCategoria extends FormRequest
     {
         return [
             'categoria' => [
-                Rule::unique('categorias')->ignore($this->id),
+                Rule::unique('categorias', 'categoria')->ignore($this->id),
             ]
         ];
     }

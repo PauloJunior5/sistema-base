@@ -40,9 +40,6 @@ class CategoriaService
     */
     public function makeCategory(array $categorie)
     {
-        $categorie['url'] = Str::kebab($categorie['name']);
-        $categorie['uuid'] = Str::uuid();
-
         return $this->categoryRepository->createCategorie($categorie);
     }
 

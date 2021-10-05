@@ -18,14 +18,24 @@ class CategoriaController extends Controller
 
     public function index()
     {
-        $categories = $this->categoriaService->getAllCategories();
-        return CategoriaResource::collection($categories);
+        $categorias = $this->categoriaService->getAllCategories();
+        return view('categorias.index', compact('categorias'));
+    }
+
+    public function create()
+    {
+        return view('categorias.create', 
+    );
     }
 
     public function store(StoreUpdateCategoria $request)
     {
-        $category = $this->categoriaService->makeCategory($request->all());
-        return new CategoriaResource($category);
+        $category = $this->categoriaService->makeCategory($request->except(['_token', '_method']));
+        if ($category) {
+            return redirect()->route('categoria.index')->with('Success', 'Categoria criada com sucesso.')->send();
+        } else {
+            return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel criar categoria.')->send();
+        }
     }
 
     public function show($id)

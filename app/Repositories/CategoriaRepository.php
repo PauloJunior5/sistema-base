@@ -40,7 +40,7 @@ class CategoriaRepository implements CategoriaRepositoryInterface
      */
     public function createCategorie(array $category)
     {
-        return $this->entity->create($category);
+        return $this->entity->insert($category);
     }
 
     /**
