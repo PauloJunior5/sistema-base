@@ -15,13 +15,9 @@ class CategoriaService
         $this->categoryRepository = $categoryRepository;
     }
 
-    /**
-     * Seleciona todas as categorias
-     * @return array
-    */
     public function getAllCategories()
     {
-        $results = $this->categoryRepository->getAllCategories();
+        $results = $this->categoryRepository->mostrarTodos();
 
         $categorias = collect();
 
@@ -37,36 +33,21 @@ class CategoriaService
          return $categorias;
     }
 
-    /**
-     * Seleciona uma categoria pelo ID
-     * @param int $id
-     * @return object
-    */
+
     public function getCategorieById(int $id)
     {
-        return $this->categoryRepository->getCategorieById($id);
+        return $this->categoryRepository->findById($id);
     }
 
-    /**
-     * Cria uma nova categoria
-     * @param array $categorie
-     * @return object 
-    */
     public function makeCategory(array $categoria)
     {
         $categoria['created_at'] = now()->toDateTimeString();
-        return $this->categoryRepository->createCategorie($categoria);
+        return $this->categoryRepository->adicionar($categoria);
     }
 
-    /**
-     * Atualiza uma categoria
-     * @param int $id
-     * @param arrray $dados
-     * @return json response
-    */
     public function updateCategory(int $id, array $dados)
     {
-        $category = $this->categoryRepository->getCategorieById($id);
+        $category = $this->categoryRepository->findById($id);
 
         if (!$category) {
             return response()->json(['message' => 'Category Not Found'], 404);
@@ -74,23 +55,17 @@ class CategoriaService
 
         $dados['updated_at'] = now()->toDateTimeString();
 
-        return $this->categoryRepository->updateCategorie($dados);
+        return $this->categoryRepository->atualizar($dados);
     }
 
-    /**
-     * Deleta uma categoria
-     * @param int $id
-     * @return json response
-    */
     public function destroyCategorie(int $id)
     {
-        $category = $this->categoryRepository->getCategorieById($id);
+        $category = $this->categoryRepository->findById($id);
 
         if (!$category) {
             return response()->json(['message' => 'Category Not Found'], 404);
         }
-        $this->categoryRepository->destroyCategorie($category);
 
-        return response()->json(['message' => 'Category Deleted'], 200);
+        return $this->categoryRepository->remover($id);
     }
 }

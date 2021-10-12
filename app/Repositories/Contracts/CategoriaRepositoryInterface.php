@@ -4,9 +4,9 @@ namespace App\Repositories\Contracts;
 
 interface CategoriaRepositoryInterface
 {
-    public function getAllCategories();
-    public function getCategorieById(int $id);
-    public function createCategorie(array $categorie);
-    public function updateCategorie(array $categorie);
-    public function destroyCategorie(object $category);
+    public function mostrarTodos();
+    public function findById(int $id);
+    public function adicionar(array $categorie);
+    public function atualizar(array $categorie);
+    public function remover(int $id);
 }

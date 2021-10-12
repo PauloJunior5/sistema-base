@@ -14,52 +14,28 @@ class CategoriaRepository implements CategoriaRepositoryInterface
         $this->entity = DB::table('categorias');
     }
 
-    /**
-     * Get all Categories
-     * @return array
-     */
-    public function getAllCategories()
+    public function mostrarTodos()
     {
         return $this->entity->get();
     }
 
-    /**
-     * Seleciona a Categoria por ID
-     * @param int $id
-     * @return object
-     */
-    public function getCategorieById(int $id)
+    public function findById(int $id)
     {
         return $this->entity->where('id', $id)->first();
     }
 
-    /**
-     * Cria uma nova categoria
-     * @param array $category
-     * @return object
-     */
-    public function createCategorie(array $category)
+    public function adicionar(array $categoria)
     {
-        return $this->entity->insert($category);
+        return $this->entity->insert($categoria);
     }
 
-    /**
-     * Atualiza os dados da categoria
-     * @param object $category
-     * @param array $categorie
-     * @return object
-     */
-    public function updateCategorie(array $category)
+    public function atualizar(array $category)
     {
         return $this->entity->where('id', $category['id'])->update($category);
     }
 
-    /**
-     * Deleta uma categoria
-     * @param object $category
-     */
-    public function destroyCategorie(object $category)
+    public function remover(int $id)
     {
-        return $category->delete();
+        return $this->entity->where('id', $id)->delete();
     }
 }

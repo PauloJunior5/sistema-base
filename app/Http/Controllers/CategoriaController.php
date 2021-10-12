@@ -8,7 +8,6 @@ use App\Http\Resources\CategoriaResource;
 
 class CategoriaController extends Controller
 {
-
     protected $categoriaService;
 
     public function __construct(CategoriaService $categoriaService)
@@ -39,19 +38,19 @@ class CategoriaController extends Controller
 
     public function show($id)
     {
-        $category = $this->categoriaService->getCategorieById($id);
-        return new CategoriaResource($category);
+        $categoria = $this->categoriaService->getCategorieById($id);
+        return $categoria;
     }
 
     public function edit($id)
     {
-        $categoria = $this->show($id);
+        $categoria = $this->categoriaService->getCategorieById($id);
         return view('categorias.edit', compact('categoria'));
     }
 
-    public function update(StoreUpdateCategoria $request, $id)
+    public function update(StoreUpdateCategoria $request)
     {
-        $category = $this->categoriaService->updateCategory($id, $request->except(['_token', '_method']));
+        $category = $this->categoriaService->updateCategory($request->id, $request->except(['_token', '_method']));
         if ($category) {
             return redirect()->route('categoria.index')->with('Success', 'Categoria alterada com sucesso.')->send();
         } else {
@@ -62,6 +61,10 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         $category = $this->categoriaService->destroyCategorie($id);
-        return $category;
+        if ($category) {
+            return redirect()->route('categoria.index')->with('Success', 'Categoria excluida com sucesso.')->send();
+        } else {
+            return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel excluir categoria.')->send();
+        }
     }
 }
