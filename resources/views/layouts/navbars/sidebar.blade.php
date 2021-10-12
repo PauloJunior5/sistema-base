@@ -84,7 +84,7 @@
                     </p>
                 </a>
                 <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'exame-management' ||
-                                        $activePage == 'paciente-management')
+                                        $activePage == 'paciente-management' || $activePage == 'categoria-management')
                                     ? ' show' : '' }}" id="geral">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
