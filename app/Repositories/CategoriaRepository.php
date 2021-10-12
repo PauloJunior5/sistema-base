@@ -14,7 +14,7 @@ class CategoriaRepository implements CategoriaRepositoryInterface
         $this->entity = DB::table('categorias');
     }
 
-    public function mostrarTodos()
+    public function listar()
     {
         return $this->entity->get();
     }

@@ -16,7 +16,7 @@ class CategoriaController extends Controller
 
     public function index()
     {
-        $categorias = $this->categoriaService->mostrarTodos();
+        $categorias = $this->categoriaService->listar();
         return view('categorias.index', compact('categorias'));
     }
 

@@ -14,16 +14,16 @@ class CategoriaService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function mostrarTodos()
+    public function listar()
     {
-        $results = $this->categoryRepository->mostrarTodos();
+        $results = $this->categoryRepository->listar();
 
         $categorias = collect();
 
         foreach ($results as $result) {
             $categoria = new Categoria();
             $categoria->setId($result->id);
-            $categoria->setCreated_at($result->created_at ?? null);
+            $categoria->setCreated_at($result->created_at ?? null); #Null coalescing operator
             $categoria->setUpdated_at($result->updated_at ?? null);
             $categoria->setCategoria($result->categoria);
             $categorias->push($categoria);
@@ -45,25 +45,14 @@ class CategoriaService
 
     public function atualizar(array $dados)
     {
-        $categoria = $this->categoryRepository->findById($dados['id']);
-
-        if (!$categoria) {
-            return response()->json(['message' => 'Category Not Found'], 404);
-        }
-
         $dados['updated_at'] = now()->toDateTimeString();
-
+        $categoria = $this->categoryRepository->findById($dados['id']);
         return $this->categoryRepository->atualizar($dados);
     }
 
     public function remover(int $id)
     {
         $category = $this->categoryRepository->findById($id);
-
-        if (!$category) {
-            return response()->json(['message' => 'Category Not Found'], 404);
-        }
-
         return $this->categoryRepository->remover($id);
     }
 }
