@@ -20,7 +20,7 @@ class CategoriaRepository implements CategoriaRepositoryInterface
      */
     public function getAllCategories()
     {
-        return $this->entity->paginate();
+        return $this->entity->get();
     }
 
     /**
@@ -49,9 +49,9 @@ class CategoriaRepository implements CategoriaRepositoryInterface
      * @param array $categorie
      * @return object
      */
-    public function updateCategorie(object $category, array $categorie)
+    public function updateCategorie(array $category)
     {
-        return $category->update($categorie);
+        return $this->entity->where('id', $category['id'])->update($category);
     }
 
     /**

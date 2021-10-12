@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Categoria;
 use App\Repositories\Contracts\CategoriaRepositoryInterface;
 use Illuminate\Support\Str;
 
@@ -15,12 +16,25 @@ class CategoriaService
     }
 
     /**
-     * Selecione todas as categorias
+     * Seleciona todas as categorias
      * @return array
     */
     public function getAllCategories()
     {
-        return $this->categoryRepository->getAllCategories();
+        $results = $this->categoryRepository->getAllCategories();
+
+        $categorias = collect();
+
+        foreach ($results as $result) {
+            $categoria = new Categoria();
+            $categoria->setId($result->id);
+            $categoria->setCreated_at($result->created_at ?? null);
+            $categoria->setUpdated_at($result->updated_at ?? null);
+            $categoria->setCategoria($result->categoria);
+            $categorias->push($categoria);
+        }
+
+         return $categorias;
     }
 
     /**
@@ -38,18 +52,19 @@ class CategoriaService
      * @param array $categorie
      * @return object 
     */
-    public function makeCategory(array $categorie)
+    public function makeCategory(array $categoria)
     {
-        return $this->categoryRepository->createCategorie($categorie);
+        $categoria['created_at'] = now()->toDateTimeString();
+        return $this->categoryRepository->createCategorie($categoria);
     }
 
     /**
      * Atualiza uma categoria
      * @param int $id
-     * @param arrray $categorie
+     * @param arrray $dados
      * @return json response
     */
-    public function updateCategory(int $id, array $categorie)
+    public function updateCategory(int $id, array $dados)
     {
         $category = $this->categoryRepository->getCategorieById($id);
 
@@ -57,11 +72,9 @@ class CategoriaService
             return response()->json(['message' => 'Category Not Found'], 404);
         }
 
-        if ($categorie['name']) {
-            $categorie['url'] = Str::kebab($categorie['name']);
-        }
-        $this->categoryRepository->updateCategorie($category, $categorie);
-        return response()->json(['message' => 'Category Updated'], 200);
+        $dados['updated_at'] = now()->toDateTimeString();
+
+        return $this->categoryRepository->updateCategorie($dados);
     }
 
     /**

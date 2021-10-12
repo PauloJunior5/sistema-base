@@ -13,12 +13,12 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('categoria.store') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('categoria.update', $categoria->id) }}" autocomplete="off" class="form-horizontal">
                     @csrf
-                    @method('post')
+                    @method('put')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Nova Categoria') }}</h4>
+                            <h4 class="card-title">{{ __('Editar Categoria') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -26,13 +26,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input class="form-control" readonly/>
+                                        <input class="form-control" name="id" value="{{ $categoria->id }}" readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Categoria</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="categoria" type="text" required/>
+                                        <input class="form-control" name="categoria" value="{{ $categoria->categoria }}" type="text" required/>
                                     </div>
                                 </div>
                             </div>
@@ -40,13 +40,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input type="datetime" name="created_at" class="form-control" readonly>
+                                        <input type="datetime" name="created_at" value="{{ $categoria->created_at }}" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input type="datetime" name="updated_at" class="form-control" readonly>
+                                        <input type="datetime" name="updated_at" value="{{ $categoria->updated_at }}" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>

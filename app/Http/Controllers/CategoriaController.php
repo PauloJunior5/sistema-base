@@ -24,8 +24,7 @@ class CategoriaController extends Controller
 
     public function create()
     {
-        return view('categorias.create', 
-    );
+        return view('categorias.create');
     }
 
     public function store(StoreUpdateCategoria $request)
@@ -44,10 +43,20 @@ class CategoriaController extends Controller
         return new CategoriaResource($category);
     }
 
+    public function edit($id)
+    {
+        $categoria = $this->show($id);
+        return view('categorias.edit', compact('categoria'));
+    }
+
     public function update(StoreUpdateCategoria $request, $id)
     {
-        $category = $this->categoriaService->updateCategory($id, $request->all());
-        return $category;
+        $category = $this->categoriaService->updateCategory($id, $request->except(['_token', '_method']));
+        if ($category) {
+            return redirect()->route('categoria.index')->with('Success', 'Categoria alterada com sucesso.')->send();
+        } else {
+            return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel alterada categoria.')->send();
+        }
     }
 
     public function destroy($id)
