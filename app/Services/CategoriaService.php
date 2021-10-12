@@ -45,9 +45,9 @@ class CategoriaService
 
     public function atualizar(array $dados)
     {
-        $category = $this->categoryRepository->findById($dados['id']);
+        $categoria = $this->categoryRepository->findById($dados['id']);
 
-        if (!$category) {
+        if (!$categoria) {
             return response()->json(['message' => 'Category Not Found'], 404);
         }
 

@@ -50,7 +50,7 @@ class CategoriaController extends Controller
 
     public function update(CategoriaRequest $request)
     {
-        $category = $this->categoriaService->atualizar($request->id, $request->except(['_token', '_method']));
+        $category = $this->categoriaService->atualizar($request->except(['_token', '_method']));
 
         if (!$category) {
             return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel alterar categoria.')->send();
