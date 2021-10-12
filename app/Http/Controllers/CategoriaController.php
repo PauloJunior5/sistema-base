@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\CategoriaService;
-use App\Http\Requests\StoreUpdateCategoria;
-use App\Http\Resources\CategoriaResource;
+use App\Http\Requests\CategoriaRequest;
 
 class CategoriaController extends Controller
 {
@@ -17,7 +16,7 @@ class CategoriaController extends Controller
 
     public function index()
     {
-        $categorias = $this->categoriaService->getAllCategories();
+        $categorias = $this->categoriaService->mostrarTodos();
         return view('categorias.index', compact('categorias'));
     }
 
@@ -26,45 +25,48 @@ class CategoriaController extends Controller
         return view('categorias.create');
     }
 
-    public function store(StoreUpdateCategoria $request)
+    public function store(CategoriaRequest $request)
     {
-        $category = $this->categoriaService->makeCategory($request->except(['_token', '_method']));
-        if ($category) {
-            return redirect()->route('categoria.index')->with('Success', 'Categoria criada com sucesso.')->send();
-        } else {
+        $category = $this->categoriaService->adicionar($request->except(['_token', '_method']));
+
+        if (!$category) {
             return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel criar categoria.')->send();
         }
+
+        return redirect()->route('categoria.index')->with('Success', 'Categoria criada com sucesso.')->send();
     }
 
     public function show($id)
     {
-        $categoria = $this->categoriaService->getCategorieById($id);
+        $categoria = $this->categoriaService->findById($id);
         return $categoria;
     }
 
     public function edit($id)
     {
-        $categoria = $this->categoriaService->getCategorieById($id);
+        $categoria = $this->categoriaService->findById($id);
         return view('categorias.edit', compact('categoria'));
     }
 
-    public function update(StoreUpdateCategoria $request)
+    public function update(CategoriaRequest $request)
     {
-        $category = $this->categoriaService->updateCategory($request->id, $request->except(['_token', '_method']));
-        if ($category) {
-            return redirect()->route('categoria.index')->with('Success', 'Categoria alterada com sucesso.')->send();
-        } else {
-            return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel alterada categoria.')->send();
+        $category = $this->categoriaService->atualizar($request->id, $request->except(['_token', '_method']));
+
+        if (!$category) {
+            return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel alterar categoria.')->send();
         }
+
+        return redirect()->route('categoria.index')->with('Success', 'Categoria alterada com sucesso.')->send();
     }
 
     public function destroy($id)
     {
-        $category = $this->categoriaService->destroyCategorie($id);
-        if ($category) {
-            return redirect()->route('categoria.index')->with('Success', 'Categoria excluida com sucesso.')->send();
-        } else {
+        $category = $this->categoriaService->remover($id);
+
+        if (!$category) {
             return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel excluir categoria.')->send();
         }
+
+        return redirect()->route('categoria.index')->with('Success', 'Categoria excluida com sucesso.')->send();
     }
 }

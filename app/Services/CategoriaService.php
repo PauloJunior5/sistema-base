@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Categoria;
 use App\Repositories\Contracts\CategoriaRepositoryInterface;
-use Illuminate\Support\Str;
 
 class CategoriaService
 {
@@ -15,7 +14,7 @@ class CategoriaService
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function getAllCategories()
+    public function mostrarTodos()
     {
         $results = $this->categoryRepository->mostrarTodos();
 
@@ -33,21 +32,20 @@ class CategoriaService
          return $categorias;
     }
 
-
-    public function getCategorieById(int $id)
+    public function findById(int $id)
     {
         return $this->categoryRepository->findById($id);
     }
 
-    public function makeCategory(array $categoria)
+    public function adicionar(array $categoria)
     {
         $categoria['created_at'] = now()->toDateTimeString();
         return $this->categoryRepository->adicionar($categoria);
     }
 
-    public function updateCategory(int $id, array $dados)
+    public function atualizar(array $dados)
     {
-        $category = $this->categoryRepository->findById($id);
+        $category = $this->categoryRepository->findById($dados['id']);
 
         if (!$category) {
             return response()->json(['message' => 'Category Not Found'], 404);
@@ -58,7 +56,7 @@ class CategoriaService
         return $this->categoryRepository->atualizar($dados);
     }
 
-    public function destroyCategorie(int $id)
+    public function remover(int $id)
     {
         $category = $this->categoryRepository->findById($id);
 
