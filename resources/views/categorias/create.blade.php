@@ -24,10 +24,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código</label>
+                                    <label class="col-form-label">Código @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input class="form-control" readonly placeholder="#"/>
-                                        <p class="read-only">Campo apenas para consulta.</p>
+                                        <input class="form-control" readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -39,17 +38,15 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Data de Criação</label>
+                                    <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
-                                        <p class="read-only">Campo apenas para consulta.</p>
+                                        <input type="datetime" class="form-control" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Data de Alteração</label>
+                                    <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input type="date" class="form-control" readonly>
-                                        <p class="read-only">Campo apenas para consulta.</p>
+                                        <input type="datetime" class="form-control" readonly>
                                     </div>
                                 </div>
                             </div>
