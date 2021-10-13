@@ -119,6 +119,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('cliente/juridico/{id}', 'ClienteController@showJuridico')->name('showClienteJuridico');
     });
 
+    Route::name('categoria.')->group(function () {
+        Route::post('categoria/createCategoria', 'CategoriaController@createCategoria')->name('createCategoria');
+    });
+
 });
 
 /*

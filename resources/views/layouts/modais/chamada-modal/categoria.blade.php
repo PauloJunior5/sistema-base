@@ -8,9 +8,6 @@
             <div class="modal-body">
                 @include('layouts.modais.index.categoria')
             </div>
-            <div class="container" style="margin: 7px">
-                <button class="btn btn-secondary float-right" data-dismiss="modal">Voltar</button>
-            </div>
         </div>
     </div>
 </div>
@@ -24,9 +21,6 @@
             </button>
             <div class="modal-body">
                 @include('layouts.modais.create.categoria')
-            </div>
-            <div class="container" style="margin: 7px">
-                <button class="btn btn-secondary float-right" data-dismiss="modal">Voltar</button>
             </div>
         </div>
     </div>

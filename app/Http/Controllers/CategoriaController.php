@@ -69,4 +69,21 @@ class CategoriaController extends Controller
 
         return redirect()->route('categoria.index')->with('Success', 'Categoria excluida com sucesso.')->send();
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createCategoria(CategoriaRequest $request)
+    {
+        $categoria = $this->categoriaService->adicionar($request->except(['_token', '_method']));
+        if (!$categoria) {
+            return redirect()->back()->withInput()->send();
+        }
+        return redirect()->back()->withInput()->with('error_code', 10)->send();
+    }
 }
