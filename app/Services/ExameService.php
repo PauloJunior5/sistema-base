@@ -5,12 +5,15 @@ namespace App\Services;
 use App\Http\Requests\ExameRequest;
 use App\Models\Exame;
 use App\Repositories\ExameRepository;
+use App\Services\CategoriaService;
+use App\Models\Categoria;
 
 class ExameService
 {
-    public function __construct()
+    public function __construct(CategoriaService $categoriaService)
     {
         $this->exameRepository = new ExameRepository;
+        $this->categoriaService = $categoriaService;
     }
 
     public function instanciarECriar(ExameRequest $request)
@@ -48,7 +51,9 @@ class ExameService
         $exame->setId($result->id);
         $exame->setExame($result->exame);
         $exame->setValor($result->valor);
-        $exame->setCategoria($result->categoria);
+        $categoria = $this->categoriaService->findById($result->id_categoria);
+        dd($categoria);
+        $exame->setCategoria($categoria);
         $exame->setCreated_at($result->created_at ?? null);
         $exame->setUpdated_at($result->updated_at ?? null);
         return $exame;

@@ -12,8 +12,7 @@ class ExameController extends Controller
     public function __construct(CategoriaService $categoriaService)
     {
         $this->exameRepository = new ExameRepository;
-        $this->exameService = new ExameService;
-        $this->categoriaService = $categoriaService;
+        $this->exameService = new ExameService($categoriaService);
     }
 
     public function index()
