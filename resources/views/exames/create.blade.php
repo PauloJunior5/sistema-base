@@ -1,5 +1,6 @@
 @extends('layouts.app', ['activePage' => 'exame-management', 'titlePage' => __('Exame Management')])
 @section('content')
+@include('layouts.modais.chamada-modal.categoria')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -40,10 +41,9 @@
                                 <div class="col-md-6">
                                     <label class="col-form-label">Categoria</label>
                                     <input class="form-control" name="categoria" />
-                                    {{-- <input type="hidden" id="input-categoria" name="categoria"> --}}
                                 </div>
                                 <div class="col-md-1 mt-auto">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"><i class="material-icons">search</i></button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#categoriaModal"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
                             <div class="row new-row">

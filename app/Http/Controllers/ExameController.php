@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ExameRequest;
 use App\Repositories\ExameRepository;
 use App\Services\ExameService;
+use App\Services\CategoriaService;
 
 class ExameController extends Controller
 {
-    public function __construct()
+    public function __construct(CategoriaService $categoriaService)
     {
         $this->exameRepository = new ExameRepository;
         $this->exameService = new ExameService;
+        $this->categoriaService = $categoriaService;
     }
 
     public function index()
@@ -22,7 +24,8 @@ class ExameController extends Controller
 
     public function create()
     {
-        return view('exames.create');
+        $categorias = $this->categoriaService->listar();
+        return view('exames.create', compact('categorias'));
     }
 
     public function store(ExameRequest $request)
