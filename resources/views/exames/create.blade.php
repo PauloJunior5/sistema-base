@@ -49,11 +49,11 @@
                             <div class="row new-row">
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
-                                    <input type="date" class="form-control" readonly>
+                                    <input type="datetime" class="form-control" readonly>
                                 </div>
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
-                                    <input type="date" class="form-control" readonly>
+                                    <input type="datetime" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
