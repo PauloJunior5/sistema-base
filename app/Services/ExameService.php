@@ -18,7 +18,7 @@ class ExameService
         $exame = new Exame;
         $exame->setExame($request->exame);
         $exame->setValor($request->valor);
-        $exame->setCategoria($request->categoria);
+        $exame->setCategoria($request->id_categoria);
         $exame->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($exame);
         return $this->exameRepository->adicionar($dados);
@@ -64,7 +64,7 @@ class ExameService
             'id' => $exame->getId(),
             'exame' => $exame->getExame(),
             'valor' => $exame->getValor(),
-            'categoria' => $exame->getCategoria(), 
+            'id_categoria' => $exame->getCategoria(), 
             'created_at' => $exame->getCreated_at(),
             'updated_at' => $exame->getUpdated_at()
         ];

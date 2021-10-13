@@ -40,8 +40,9 @@
                             <div class="row new-row">
                                 <div class="col-md-6">
                                     <label class="col-form-label">Categoria</label>
-                                    <input class="form-control" name="categoria" />
+                                    <input class="form-control" id="input-categoria"/>
                                 </div>
+                                <input type="hidden" id="input-id-categoria" name="id_categoria">
                                 <div class="col-md-1 mt-auto">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#categoriaModal"><i class="material-icons">search</i></button>
                                 </div>

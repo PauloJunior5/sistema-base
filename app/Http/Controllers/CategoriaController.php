@@ -39,7 +39,7 @@ class CategoriaController extends Controller
     public function show($id)
     {
         $categoria = $this->categoriaService->findById($id);
-        return $categoria;
+        return response()->json($categoria);
     }
 
     public function edit($id)
