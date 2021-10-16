@@ -9,10 +9,12 @@ use App\Services\CategoriaService;
 
 class ExameController extends Controller
 {
-    public function __construct(CategoriaService $categoriaService)
+    public function __construct()
     {
         $this->exameRepository = new ExameRepository;
-        $this->exameService = new ExameService($categoriaService);
+        $this->exameService = new ExameService;
+        $this->categoriaService = new CategoriaService;
+
     }
 
     public function index()
@@ -23,7 +25,7 @@ class ExameController extends Controller
 
     public function create()
     {
-        $categorias = $this->categoriaService->listar();
+        $categorias = $this->categoriaService->instanciarTodos();
         return view('exames.create', compact('categorias'));
     }
 
