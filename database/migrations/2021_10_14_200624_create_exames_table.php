@@ -18,9 +18,11 @@ class CreateExamesTable extends Migration
 
             $table->string('exame');
             $table->double('valor', 8, 2);
-            $table->string('categoria');
+            $table->unsignedTinyInteger('id_categoria');
 
             $table->timestamps();
+
+            $table->foreign('id_categoria')->references('id')->on('categorias');
         });
     }
 
