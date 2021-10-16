@@ -20,6 +20,10 @@ class CategoriaController extends Controller
     {
     }
 
+    public function show(ExameRequest $request)
+    {
+    }
+
     public function edit(int $id)
     {
     }
