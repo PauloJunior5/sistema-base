@@ -39,7 +39,7 @@ class CategoriaService
 
         $dados = $this->getDados($categoria);
 
-        $this->categoriaRepository->adicionar($dados);
+        return $this->categoriaRepository->adicionar($dados);
     }
 
     public function buscarEInstanciar(int $id)

@@ -10,10 +10,10 @@ use App\Models\Categoria;
 
 class ExameService
 {
-    public function __construct(CategoriaService $categoriaService)
+    public function __construct()
     {
         $this->exameRepository = new ExameRepository;
-        $this->categoriaService = $categoriaService;
+        $this->categoriaService = new CategoriaService;
     }
 
     public function instanciarECriar(ExameRequest $request)
@@ -69,7 +69,7 @@ class ExameService
             'id' => $exame->getId(),
             'exame' => $exame->getExame(),
             'valor' => $exame->getValor(),
-            'id_categoria' => $exame->getCategoria(), 
+            'id_categoria' => $exame->getCategoria(),
             'created_at' => $exame->getCreated_at(),
             'updated_at' => $exame->getUpdated_at()
         ];

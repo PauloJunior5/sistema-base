@@ -27,7 +27,14 @@ class CategoriaController extends Controller
 
     public function store(CategoriaRequest $request)
     {
-        $this->categoriaService->instanciarECriar($request);
+        $categoria = $this->categoriaService->instanciarECriar($request);
+
+        if (!$categoria) {
+            return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel criar categoria!');
+        }
+
+        return redirect()->route('categoria.index')->with('Success', 'Categoria criada com sucesso!')->send();
+
     }
 
     public function show(int $id)
@@ -48,11 +55,17 @@ class CategoriaController extends Controller
 
     public function destroy(int $id)
     {
-        $categoria = $this->categoriaRepository->remover($id);
-        if ($pais) {
-            return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
-        } else {
-            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Verifique se existe vínculo com cidades e/ou estados.');
+        $this->categoriaRepository->remover($id);
+    }
+
+    public function createCategoria(CategoriaRequest $request)
+    {
+        $cidade = $this->categoriaService->instanciarECriar($request);
+
+        if (!$cidade) {
+            return redirect()->back()->withInput()->send();
         }
+
+        return redirect()->back()->withInput()->with('error_code', 10)->send();
     }
 }

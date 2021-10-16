@@ -16,16 +16,16 @@ class CategoriaRepository
 
     public function adicionar(array $dados)
     {
+        $result = null;
         DB::beginTransaction();
         try {
-            DB::table('categorias')->insert($dados);
+            $result = DB::table('categorias')->insert($dados);
             DB::commit();
-            return redirect()->route('categoria.index')->with('Success', 'Categoria criada com sucesso!')->send();
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::debug('Warning - (CategoriaRepository) Não foi possivel criar categoria: ' . $th);
-            return redirect()->route('categoria.index')->with('Warning', 'Não foi possivel criar categoria!')->send();
         }
+        return $result;
     }
 
     public function findById(int $id)
