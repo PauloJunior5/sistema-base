@@ -24,9 +24,9 @@ class RepositoryServiceProvider extends ServiceProvider
         //     'App\Repositories\PaisRepository'
         // );
 
-        $this->app->bind(
-            CategoriaRepositoryInterface::class,
-            CategoriaRepository::class
-        );
+        // $this->app->bind(
+        //     CategoriaRepositoryInterface::class,
+        //     CategoriaRepository::class
+        // );
     }
 }
