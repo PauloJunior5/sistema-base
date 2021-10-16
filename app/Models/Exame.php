@@ -16,7 +16,7 @@ class Exame extends Model
         $this->exame = '';
         $this->valor = 0;
         $this->plano = '';
-        $this->categoria = '';
+        $this->pais = new Categoria();
     }
 
     /*
@@ -73,12 +73,12 @@ class Exame extends Model
     |--------------------------------------------------------------------------
     |
     */
-    public function getCategoria(): string
+    public function getCategoria(): Categoria
     {
         return $this->categoria;
     }
 
-    public function setCategoria(string $categoria)
+    public function setCategoria(Categoria $categoria)
     {
         $this->categoria = $categoria;
     }

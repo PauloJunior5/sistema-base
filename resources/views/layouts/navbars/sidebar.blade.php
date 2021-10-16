@@ -84,7 +84,7 @@
                     </p>
                 </a>
                 <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'exame-management' ||
-                                        $activePage == 'paciente-management')
+                                        $activePage == 'paciente-management' || $activePage == 'categoria-management')
                                     ? ' show' : '' }}" id="geral">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
@@ -105,7 +105,12 @@
                                 <span class="sidebar-normal">{{ __('Exames') }} </span>
                             </a>
                         </li>
-                       
+                        <li class="nav-item {{ $activePage == 'categoria-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('categoria.index') }}">
+                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-normal">{{ __('Categorias') }} </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
