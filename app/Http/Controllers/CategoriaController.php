@@ -37,6 +37,8 @@ class CategoriaController extends Controller
 
     public function edit(int $id)
     {
+        $categoria = $this->categoriaService->buscarEInstanciar($id);
+        return view('categorias.edit', compact('categoria'));
     }
 
     public function update(CategoriaRequest $request)

@@ -42,11 +42,18 @@ class CategoriaService
         $this->categoriaRepository->adicionar($dados);
     }
 
-    public function instanciarEAtualizar(CategoriaRequest $request)
+    public function buscarEInstanciar(int $id)
     {
+        $result = $this->categoriaRepository->findById($id);
+        $categoria = new Categoria;
+        $categoria->setId($result->id);
+        $categoria->setCategoria($result->categoria);
+        $categoria->setCreated_at($result->created_at ?? null);
+        $categoria->setUpdated_at($result->updated_at ?? null);
+        return $categoria;
     }
 
-    public function buscarEInstanciar(int $id)
+    public function instanciarEAtualizar(CategoriaRequest $request)
     {
     }
 
