@@ -29,7 +29,7 @@ class CategoriaService
 
         return $categorias;
     }
-    
+
     public function instanciarECriar(CategoriaRequest $request)
     {
         $categoria = new Categoria;
@@ -55,6 +55,16 @@ class CategoriaService
 
     public function instanciarEAtualizar(CategoriaRequest $request)
     {
+        $categoria = new Categoria;
+
+        $categoria->setId($request->id);
+        $categoria->setCategoria($request->categoria);
+        $categoria->setCreated_at($request->created_at);
+        $categoria->setUpdated_at(now()->toDateTimeString());
+
+        $dados = $this->getDados($categoria);
+
+        $this->categoriaRepository->atualizar($dados);
     }
 
     public function getDados(Categoria $categoria)

@@ -27,7 +27,7 @@ class CategoriaController extends Controller
 
     public function store(CategoriaRequest $request)
     {
-        $categoria = $this->categoriaService->instanciarECriar($request);
+        $this->categoriaService->instanciarECriar($request);
     }
 
     public function show(int $id)
@@ -43,9 +43,16 @@ class CategoriaController extends Controller
 
     public function update(CategoriaRequest $request)
     {
+        $this->categoriaService->instanciarEAtualizar($request);
     }
 
     public function destroy(int $id)
     {
+        $categoria = $this->categoriaRepository->remover($id);
+        if ($pais) {
+            return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
+        } else {
+            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Verifique se existe vínculo com cidades e/ou estados.');
+        }
     }
 }
