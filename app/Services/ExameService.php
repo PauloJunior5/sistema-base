@@ -2,11 +2,14 @@
 
 namespace App\Services;
 
-use App\Http\Requests\ExameRequest;
 use App\Models\Exame;
-use App\Repositories\ExameRepository;
-use App\Services\CategoriaService;
 use App\Models\Categoria;
+
+use App\Http\Requests\ExameRequest;
+
+use App\Repositories\ExameRepository;
+
+use App\Services\CategoriaService;
 
 class ExameService
 {
@@ -21,10 +24,25 @@ class ExameService
         $exame = new Exame;
         $exame->setExame($request->exame);
         $exame->setValor($request->valor);
-        $exame->setCategoria($request->id_categoria);
+        $categoria = $this->categoriaService->buscarEInstanciar($request->id_categoria);
+        $exame->setCategoria($categoria);
         $exame->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($exame);
         return $this->exameRepository->adicionar($dados);
+    }
+
+    public function buscarEInstanciar(int $id)
+    {
+        $result = $this->exameRepository->findById($id);
+        $exame = new Exame;
+        $exame->setId($result->id);
+        $exame->setExame($result->exame);
+        $exame->setValor($result->valor);
+        $categoria = $this->categoriaService->buscarEInstanciar($result->id_categoria);
+        $exame->setCategoria($categoria);
+        $exame->setCreated_at($result->created_at ?? null);
+        $exame->setUpdated_at($result->updated_at ?? null);
+        return $exame;
     }
 
     public function instanciarEAtualizar(ExameRequest $request)
@@ -33,43 +51,21 @@ class ExameService
         $exame->setId($request->id);
         $exame->setExame($request->exame);
         $exame->setValor($request->valor);
-        $exame->setCategoria($request->categoria);
+        $categoria = $this->categoriaService->buscarEInstanciar($request->id_categoria);
+        $exame->setCategoria($categoria);
         $exame->setCreated_at($request->created_at);
         $exame->setUpdated_at(now()->toDateTimeString());
         $dados = $this->getDados($exame);
         return $this->exameRepository->atualizar($dados);
     }
 
-    /**
-     *  Retorna objeto a partir do id passado
-     * como parametro. Para instanciar o objeto.
-     */
-    public function buscarEInstanciar(int $id)
-    {
-        $result = $this->exameRepository->findById($id);
-        $exame = new Exame;
-        $exame->setId($result->id);
-        $exame->setExame($result->exame);
-        $exame->setValor($result->valor);
-        $categoria = $this->categoriaService->findById($result->id_categoria);
-        dd($categoria);
-        $exame->setCategoria($categoria);
-        $exame->setCreated_at($result->created_at ?? null);
-        $exame->setUpdated_at($result->updated_at ?? null);
-        return $exame;
-    }
-
-    /**
-     *  Retorna array a partir do objeto passado
-     * como parametro, para inserir dados no banco.
-     */
     public function getDados(Exame $exame)
     {
         $dados = [
             'id' => $exame->getId(),
             'exame' => $exame->getExame(),
             'valor' => $exame->getValor(),
-            'id_categoria' => $exame->getCategoria(),
+            'id_categoria' => $exame->getCategoria()->getId(),
             'created_at' => $exame->getCreated_at(),
             'updated_at' => $exame->getUpdated_at()
         ];

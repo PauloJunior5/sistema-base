@@ -39,8 +39,8 @@
                             <div class="row new-row">
                                 <div class="col-md-4">
                                     <label class="col-form-label">Categoria</label>
-                                    <input class="form-control" id="input-categoria" value="{{$exame->getCategoria()}}" />
-                                    <input type="hidden" id="input-id-categoria" value="{{$exame->getCategoria()}} name="id_categoria">
+                                    <input class="form-control" id="input-categoria" value="{{$exame->getCategoria()->getCategoria()}}" />
+                                    <input type="hidden" id="input-id-categoria" value="{{$exame->getCategoria()->getId()}}" name="id_categoria">
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
