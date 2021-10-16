@@ -2,33 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoriaRequest;
+use App\Repositories\CategoriaRepository;
+use App\Services\CategoriaService;
+
 class CategoriaController extends Controller
 {
     public function __construct()
     {
+        $this->categoriaRepository = new CategoriaRepository;
+        $this->categoriaService = new CategoriaService;
     }
 
     public function index()
     {
+        $categorias = $this->categoriaService->instanciarTodos();
+        return view('categorias.index', compact('categorias'));
     }
 
     public function create()
     {
+        return view('categorias.create');
     }
 
-    public function store(ExameRequest $request)
+    public function store(CategoriaRequest $request)
     {
+        $categoria = $this->categoriaService->instanciarECriar($request);
     }
 
-    public function show(ExameRequest $request)
+    public function show(int $id)
     {
+        return response()->json($this->categoriaRepository->findById($id));
     }
 
     public function edit(int $id)
     {
     }
 
-    public function update(ExameRequest $request)
+    public function update(CategoriaRequest $request)
     {
     }
 
