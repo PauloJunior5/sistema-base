@@ -42,7 +42,8 @@ class ExameController extends Controller
     public function edit(int $id)
     {
         $exame = $this->exameService->buscarEInstanciar($id);
-        return view('exames.edit', compact('exame'));
+        $categorias = $this->categoriaService->instanciarTodos();
+        return view('exames.edit', compact('exame', 'categorias'));
     }
 
     public function update(ExameRequest $request)
