@@ -14,7 +14,6 @@ class ExameController extends Controller
         $this->exameRepository = new ExameRepository;
         $this->exameService = new ExameService;
         $this->categoriaService = new CategoriaService;
-
     }
 
     public function index()
@@ -32,11 +31,10 @@ class ExameController extends Controller
     public function store(ExameRequest $request)
     {
         $exame = $this->exameService->instanciarECriar($request);
-        if ($exame) {
-            return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.')->send();
-        } else {
+        if (!$exame)
             return redirect()->route('exame.index')->with('Warning', 'Não foi possivel criar exame.')->send();
-        }
+
+        return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.')->send();
     }
 
     public function edit(int $id)
@@ -49,20 +47,18 @@ class ExameController extends Controller
     public function update(ExameRequest $request)
     {
         $exame = $this->exameService->instanciarEAtualizar($request);
-        if ($exame) {
-            return redirect()->route('exame.index')->with('Success', 'Exame alterado com sucesso.')->send();
-        } else {
+        if (!$exame)
             return redirect()->route('exame.index')->with('Warning', 'Não foi possivel alterar exame.')->send();
-        }
+
+        return redirect()->route('exame.index')->with('Success', 'Exame alterado com sucesso.')->send();
     }
 
     public function destroy(int $id)
     {
         $exame = $this->exameRepository->remover($id);
-        if ($exame) {
-            return redirect()->route('exame.index')->with('Success', 'Exame excluído com sucesso.')->send();
-        } else {
+        if (!$exame)
             return redirect()->route('exame.index')->with('Warning', 'Não foi possivel excluir exame.')->send();
-        }
+
+        return redirect()->route('exame.index')->with('Success', 'Exame excluído com sucesso.')->send();
     }
 }
