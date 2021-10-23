@@ -20,7 +20,6 @@ class CreateParcelasTable extends Migration
             $table->integer('dias');
             $table->float('porcentual');
             $table->unsignedTinyInteger('id_forma_pagamento')->nullable();
-            $table->timestamp('vigencia');
 
             $table->timestamps();
 
