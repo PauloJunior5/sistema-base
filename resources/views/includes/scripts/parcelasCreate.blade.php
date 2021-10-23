@@ -70,7 +70,14 @@ $(function(){
         var objParcela = JSON.parse(parcela);
 
         if ((objParcela.dias === "") || (objParcela.porcentual === "") || (objParcela.forma_pagamento === "")) {
-            alert("Preencha todos os campos.");
+            swal({
+                title:"Preencha todos os campos!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"info"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
             return true;
         };
 
@@ -80,7 +87,14 @@ $(function(){
             parcelas.push(objParcela);
             localStorage.setItem("parcelas", parcelas);
             $('#input-parcelas').val(JSON.stringify(parcelas));
-            alert("Registro adicionado.");
+            swal({
+                title:"Registro inserido!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"success"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
             Listar();
             document.getElementById("id_dias").value = '';
             document.getElementById("id_porcentual").value = '';
@@ -91,7 +105,14 @@ $(function(){
 
             return true;
         } else {
-            alert("Parcela inserida ultrapassa os 100%");
+            swal({
+                title:"Parcela inserida ultrapassa os 100%!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"warning"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
             Listar();
             return true;
         };
@@ -135,7 +156,14 @@ $(function(){
         parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
 
         if ((parcelas[indice_selecionado].dias === "") || (parcelas[indice_selecionado].porcentual === "") || (parcelas[indice_selecionado].forma_pagamento === "")) {
-            alert("Preencha todos os campos.");
+            swal({
+                title:"Preencha todos os campos!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"info"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
             return true;
         };
 
@@ -146,7 +174,14 @@ $(function(){
             porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
             localStorage.setItem("parcelas", parcelas);
             $('#input-parcelas').val(JSON.stringify(parcelas));
-            alert("Informações editadas.")
+            swal({
+                title:"Registro editado!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"info"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
             $("#id_dias").val('');
             $("#id_porcentual").val('');
             $("#id-forma_pagamento-input").val('');
@@ -157,7 +192,14 @@ $(function(){
         } else {
             porcentual = porcentualReserva;
             porcentualReserva = 0;
-            alert("Parcela inserida ultrapassa os 100%");
+            swal({
+                title:"Parcela inserida ultrapassa os 100%!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"warning"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
             Listar();
             return true;
         };
@@ -179,7 +221,14 @@ $(function(){
         parcelas.splice(indice_selecionado, 1);
         localStorage.setItem("parcelas", JSON.stringify(parcelas));
         $('#input-parcelas').val(JSON.stringify(parcelas));
-        alert("Registro excluído.");
+        swal({
+            title:"Registro excluído!",
+            text:"{{Session::get('success')}}",
+            timer:5000,
+            type:"info"
+        }).then((value) => {
+            //location.reload();
+        }).catch(swal.noop);
 
         $("#qtd_parcelas").val(contador);
     };
@@ -286,7 +335,15 @@ $(function(){
 
     $("#condicaoPagamentoForm").submit(function() {
         if(parseFloat(porcentual) < 100){
-            alert("Parcelas não atingem os 100%");
+             swal({
+                    title:"Erro! Parcelas não atingem os 100%",
+                    text:"{{Session::get('fail')}}",
+                    type:"error",
+                    timer:5000
+                }).then((value) => {
+                    //location.reload();
+                }).catch(swal.noop);
+
             return false;
         }
     });
