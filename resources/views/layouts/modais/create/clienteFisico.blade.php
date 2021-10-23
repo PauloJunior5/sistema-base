@@ -45,10 +45,6 @@
                                     <label class="col-form-label">@include('includes.required')Apelido</label>
                                     <input type="text" class="form-control inputPessoaFisica" name="apelido" value="{{ old('apelido') }}" required>
                                 </div>
-                                <div class="col-md-4 campoPessoaJuridica">
-                                    <label class="col-form-label">@include('includes.required')Nome Fantasia</label>
-                                    <input type="text" class="form-control inputPessoaJuridica" name="nomeFantasia" value="{{ old('nomeFantasia') }}" required>
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
