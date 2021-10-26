@@ -162,38 +162,7 @@ $(function(){
         var parcelaPorcentual = parseFloat($("#id_porcentual").val());
         var somaPorcentual = (porcentual + parcelaPorcentual) - porcentualReserva;
 
-        if (somaPorcentual <= 100) {
-
-            parcelas[indice_selecionado].dias = $("#id_dias").val();
-            parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
-            parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
-
-            porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
-            localStorage.setItem("parcelas", parcelas);
-            $('#input-parcelas').val(JSON.stringify(parcelas));
-
-            swal({
-                title:"Registro editado!",
-                text:"{{Session::get('success')}}",
-                timer:5000,
-                type:"success"
-            }).then((value) => {
-                //location.reload();
-            }).catch(swal.noop);
-
-            porcentual = somaPorcentual;
-            porcentualReserva = 0;
-
-            $("#id_dias").val('');
-            $("#id_porcentual").val('');
-            $("#id-forma_pagamento-input").val('');
-            $("#forma_pagamento-input").val('');
-
-            operacao = "A"; //Volta ao padrão
-            Listar();
-            return true;
-
-        } else {
+        if (somaPorcentual > 100) {
             porcentual = somaPorcentual;
             porcentualReserva = 0;
 
@@ -213,7 +182,37 @@ $(function(){
 
             Listar();
             return false;
-        };
+        }
+
+        parcelas[indice_selecionado].dias = $("#id_dias").val();
+        parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
+        parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
+
+        porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
+        localStorage.setItem("parcelas", parcelas);
+        $('#input-parcelas').val(JSON.stringify(parcelas));
+
+        swal({
+            title:"Registro editado!",
+            text:"{{Session::get('success')}}",
+            timer:5000,
+            type:"success"
+        }).then((value) => {
+            //location.reload();
+        }).catch(swal.noop);
+
+        porcentual = somaPorcentual;
+        porcentualReserva = 0;
+
+        $("#id_dias").val('');
+        $("#id_porcentual").val('');
+        $("#id-forma_pagamento-input").val('');
+        $("#forma_pagamento-input").val('');
+
+        operacao = "A"; //Volta ao padrão
+        Listar();
+        return true;
+
     };
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
@@ -228,11 +227,14 @@ $(function(){
     });
 
     function Excluir(){
+
         excluidas.push(parcelas[indice_selecionado]);
         parcelas.splice(indice_selecionado, 1);
+
         localStorage.setItem("parcelas", JSON.stringify(parcelas));
         $('#input-parcelas').val(JSON.stringify(parcelas));
         $('#input-parcelas-exluidas').val(JSON.stringify(excluidas));
+
         swal({
             title:"Registro excluído!",
             text:"{{Session::get('success')}}",
@@ -241,7 +243,9 @@ $(function(){
         }).then((value) => {
             //location.reload();
         }).catch(swal.noop);
+
         $("#qtd_parcelas").val(contador);
+
     };
 
     function Listar(){
