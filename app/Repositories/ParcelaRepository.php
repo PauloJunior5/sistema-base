@@ -35,7 +35,8 @@ class ParcelaRepository
         $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('parcelas')->where('id_condicao_pagamento', $dados['id_condicao_pagamento'])->where('parcela', $dados['parcela'])->update($dados);
+            DB::table('parcelas')->where('id_condicao_pagamento', $dados['id_condicao_pagamento'])->where('parcela', $dados['parcela'])->update($dados);
+            $result = true;
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();

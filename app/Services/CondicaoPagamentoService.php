@@ -78,7 +78,7 @@ class CondicaoPagamentoService
                 DB::table('parcelas')->where('id_condicao_pagamento', $parcela->id_condicao_pagamento)->where('parcela', $parcela->parcela)->delete();
             }
         }
-        
+
         DB::beginTransaction();
         try {
             $condicaoPagamento =  $this->condicaoPagamentoRepository->atualizar($dados);

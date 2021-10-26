@@ -38,16 +38,16 @@
     });
 
 $(function(){
-        localStorage.clear();
-        var operacao = "A"; //"A"=Adição; "E"=Edição
-        var indice_selecionado = -1; //Índice do item selecionado na lista
-        var parcelas = localStorage.getItem("parcelas");// Recupera os dados armazenados
-        parcelas = JSON.parse(parcelas); // Converte string para objeto
-        if(parcelas == null) // Caso não haja conteúdo, iniciamos um vetor vazio
-        parcelas = [];
-        var porcentual = 0;
-        var porcentualReserva = 0;
-        var contador = Object.keys(parcelas).length;
+    localStorage.clear();
+    var operacao = "A"; //"A"=Adição; "E"=Edição
+    var indice_selecionado = -1; //Índice do item selecionado na lista
+    var parcelas = localStorage.getItem("parcelas");// Recupera os dados armazenados
+    parcelas = JSON.parse(parcelas); // Converte string para objeto
+    if(parcelas == null) // Caso não haja conteúdo, iniciamos um vetor vazio
+    parcelas = [];
+    var porcentual = 0;
+    var porcentualReserva = 0;
+    var contador = Object.keys(parcelas).length;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -61,10 +61,10 @@ $(function(){
         contador++;
 
         var parcela = JSON.stringify({
-            parcela : contador,
-            dias   : $("#id_dias").val(),
-            porcentual     : $("#id_porcentual").val(),
-            forma_pagamento : $("#id-forma_pagamento-input").val(),
+            parcela: contador,
+            dias: $("#id_dias").val(),
+            porcentual: $("#id_porcentual").val(),
+            forma_pagamento: $("#id-forma_pagamento-input").val(),
         });
 
         var objParcela = JSON.parse(parcela);
@@ -82,7 +82,7 @@ $(function(){
         };
 
         var objParcelaPorcentual = parseFloat(objParcela.porcentual);
-        if ((porcentual + objParcelaPorcentual ) <= 100) {
+        if ((parseFloat(porcentual) + objParcelaPorcentual ) <= 100) {
             porcentual += objParcelaPorcentual;
             parcelas.push(objParcela);
             localStorage.setItem("parcelas", parcelas);
@@ -95,14 +95,13 @@ $(function(){
             }).then((value) => {
                 //location.reload();
             }).catch(swal.noop);
-            Listar();
             document.getElementById("id_dias").value = '';
             document.getElementById("id_porcentual").value = '';
             document.getElementById("id-forma_pagamento-input").value = '';
             document.getElementById("forma_pagamento-input").value = '';
 
             $("#qtd_parcelas").val(contador);
-
+            Listar();
             return true;
         } else {
             swal({
@@ -116,12 +115,9 @@ $(function(){
             Listar();
             return true;
         };
-
     };
 
-
     $("#condicao-table").on("click", ".btnEditar", function(){
-
         operacao = "E";
         indice_selecionado = parseInt($(this).attr("alt"));
         var cli = parcelas[indice_selecionado];
@@ -129,7 +125,6 @@ $(function(){
         $("#id_porcentual").val(cli.porcentual);
         $("#id-forma_pagamento-input").val(cli.forma_pagamento);
         porcentualReserva = porcentual;
-        porcentual -= cli.porcentual;
 
         var id_forma_pagamento = cli.forma_pagamento;
         $.ajax({
@@ -143,19 +138,12 @@ $(function(){
                 $('#forma_pagamentoModal').modal('hide')
             }
         });
-
         $("#id_dias").focus();
-
     });
-
 
     function Editar(){
 
-        parcelas[indice_selecionado].dias = $("#id_dias").val();
-        parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
-        parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
-
-        if ((parcelas[indice_selecionado].dias === "") || (parcelas[indice_selecionado].porcentual === "") || (parcelas[indice_selecionado].forma_pagamento === "")) {
+        if ( (!$("#id_dias").val()) || (!$("#id_porcentual").val()) || (!$("#id-forma_pagamento-input").val()) ) {
             swal({
                 title:"Preencha todos os campos!",
                 text:"{{Session::get('success')}}",
@@ -164,34 +152,47 @@ $(function(){
             }).then((value) => {
                 //location.reload();
             }).catch(swal.noop);
-            return true;
+            return;
         };
 
-        var parcelaPorcentual = parseInt(parcelas[indice_selecionado].porcentual);
-        var somaPorcentual = porcentual + parcelaPorcentual;
+        var parcelaPorcentual = parseFloat($("#id_porcentual").val());
+        var somaPorcentual = (porcentual + parcelaPorcentual) - porcentualReserva;
 
         if (somaPorcentual <= 100) {
+
+            parcelas[indice_selecionado].dias = $("#id_dias").val();
+            parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
+            parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
+
             porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
             localStorage.setItem("parcelas", parcelas);
             $('#input-parcelas').val(JSON.stringify(parcelas));
+
             swal({
                 title:"Registro editado!",
                 text:"{{Session::get('success')}}",
                 timer:5000,
-                type:"info"
+                type:"success"
             }).then((value) => {
                 //location.reload();
             }).catch(swal.noop);
+
+            porcentual = somaPorcentual;
+            porcentualReserva = 0;
+
             $("#id_dias").val('');
             $("#id_porcentual").val('');
             $("#id-forma_pagamento-input").val('');
             $("#forma_pagamento-input").val('');
+
             operacao = "A"; //Volta ao padrão
             Listar();
             return true;
+
         } else {
             porcentual = porcentualReserva;
             porcentualReserva = 0;
+
             swal({
                 title:"Parcela inserida ultrapassa os 100%!",
                 text:"{{Session::get('success')}}",
@@ -200,10 +201,10 @@ $(function(){
             }).then((value) => {
                 //location.reload();
             }).catch(swal.noop);
+
             Listar();
             return true;
         };
-
     };
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
@@ -225,11 +226,10 @@ $(function(){
             title:"Registro excluído!",
             text:"{{Session::get('success')}}",
             timer:5000,
-            type:"info"
+            type:"success"
         }).then((value) => {
             //location.reload();
         }).catch(swal.noop);
-
         $("#qtd_parcelas").val(contador);
     };
 
@@ -277,9 +277,7 @@ $(function(){
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"' onclick='changeBtnToEdit()'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
-
         }
-
     };
 
     $(function() {
@@ -328,26 +326,22 @@ $(function(){
             $("#condicao-table tbody").append("<td>"+forma_pagamento.forma_pagamento+"</td>");
             $("#condicao-table tbody").append("<td><a class='btn btn-sm btn-warning btnEditar' alt='"+i+"' onclick='changeBtnToEdit()'>Editar</a><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
             $("#condicao-table tbody").append("</tr>");
-
         };
-
     });
 
     $("#condicaoPagamentoForm").submit(function() {
-        if(parseFloat(porcentual) < 100){
-             swal({
-                    title:"Erro! Parcelas não atingem os 100%",
-                    text:"{{Session::get('fail')}}",
-                    type:"error",
-                    timer:5000
-                }).then((value) => {
-                    //location.reload();
-                }).catch(swal.noop);
-
+        if(parseFloat(porcentual).toFixed(2) < 100){
+            swal({
+                title:"Erro! Parcelas não atingem os 100%",
+                text:"{{Session::get('fail')}}",
+                type:"error",
+                timer:5000
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
             return false;
         }
     });
-
 });
 
 </script>

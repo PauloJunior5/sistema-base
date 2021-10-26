@@ -18,8 +18,6 @@ class ParcelaService
             'dias' => $parcela->getDias(),
             'porcentual' => $parcela->getPorcentual(),
             'id_forma_pagamento' => $parcela->getFormaPagamento()->getId(),
-            'created_at' => $parcela->getCreated_at(),
-            'updated_at' => $parcela->getUpdated_at()
         ];
         return $dados;
     }
