@@ -85,29 +85,8 @@ $(function(){
         };
 
         var objParcelaPorcentual = parseFloat(objParcela.porcentual);
-        if ((parseFloat(porcentual) + objParcelaPorcentual) <= 100) {
-            porcentual += objParcelaPorcentual;
-            parcelas.push(objParcela);
-            localStorage.setItem("parcelas", parcelas);
-            $('#input-parcelas').val(JSON.stringify(parcelas));
-            swal({
-                title:"Registro inserido!",
-                text:"{{Session::get('success')}}",
-                timer:5000,
-                type:"success"
-            }).then((value) => {
-                //location.reload();
-            }).catch(swal.noop);
-            document.getElementById("id_dias").value = '';
-            document.getElementById("id_porcentual").value = '';
-            document.getElementById("id-forma_pagamento-input").value = '';
-            document.getElementById("forma_pagamento-input").value = '';
 
-            $("#qtd_parcelas").val(contador);
-
-            Listar();
-            return true;
-        } else {
+        if ((parseFloat(porcentual) + objParcelaPorcentual) > 100) {
             swal({
                 title:"Parcela inserida ultrapassa os 100%!",
                 text:"{{Session::get('success')}}",
@@ -117,8 +96,32 @@ $(function(){
                 //location.reload();
             }).catch(swal.noop);
             Listar();
-            return true;
+            return;
         };
+
+        porcentual += objParcelaPorcentual;
+        parcelas.push(objParcela);
+        localStorage.setItem("parcelas", parcelas);
+        $('#input-parcelas').val(JSON.stringify(parcelas));
+
+        swal({
+            title:"Registro inserido!",
+            text:"{{Session::get('success')}}",
+            timer:5000,
+            type:"success"
+        }).then((value) => {
+            //location.reload();
+        }).catch(swal.noop);
+
+        document.getElementById("id_dias").value = '';
+        document.getElementById("id_porcentual").value = '';
+        document.getElementById("id-forma_pagamento-input").value = '';
+        document.getElementById("forma_pagamento-input").value = '';
+
+        $("#qtd_parcelas").val(contador);
+
+        Listar();
+        return true;
     };
 
     $("#condicao-table").on("click", ".btnEditar", function(){
@@ -163,6 +166,7 @@ $(function(){
         var somaPorcentual = (porcentual + parcelaPorcentual) - porcentualReserva;
 
         if (somaPorcentual > 100) {
+
             porcentual = somaPorcentual;
             porcentualReserva = 0;
 
@@ -181,8 +185,8 @@ $(function(){
             $("#forma_pagamento-input").val('');
 
             Listar();
-            return false;
-        }
+            return;
+        };
 
         parcelas[indice_selecionado].dias = $("#id_dias").val();
         parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
@@ -212,7 +216,6 @@ $(function(){
         operacao = "A"; //Volta ao padrão
         Listar();
         return true;
-
     };
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
@@ -246,6 +249,10 @@ $(function(){
 
         $("#qtd_parcelas").val(contador);
 
+        $("#id_dias").val('');
+        $("#id_porcentual").val('');
+        $("#id-forma_pagamento-input").val('');
+        $("#forma_pagamento-input").val('');
     };
 
     function Listar(){
