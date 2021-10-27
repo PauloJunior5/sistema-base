@@ -179,7 +179,6 @@ $(function(){
 
         if (somaPorcentual > 100) {
 
-            porcentual = porcentualReserva;
             porcentualReserva = 0;
 
             swal({
