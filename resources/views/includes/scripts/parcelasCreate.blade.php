@@ -261,9 +261,12 @@ $(function(){
     });
 
     function Excluir(){
+
         parcelas.splice(indice_selecionado, 1);
+
         localStorage.setItem("parcelas", JSON.stringify(parcelas));
         $('#input-parcelas').val(JSON.stringify(parcelas));
+
         swal({
             title:"Registro excluído!",
             text:"{{Session::get('success')}}",
