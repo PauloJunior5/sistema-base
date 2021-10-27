@@ -45,7 +45,6 @@ class CondicaoPagamentoService
                     $parcela->setFormaPagamento($formaPagamento);
                     $condicaoPagamento = $this->buscarEInstanciar($idCondicaoPagamento);
                     $parcela->setCondicaoPagamento($condicaoPagamento);
-                    $parcela->setCreated_at(now()->toDateTimeString());
                     $dados = $this->parcelaService->getDados($parcela);
                     $result = $this->parcelaRepository->adicionar($dados);
                 }
