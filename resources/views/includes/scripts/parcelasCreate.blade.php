@@ -48,6 +48,7 @@ $(function(){
     var porcentual = 0;
     var porcentualReserva = 0;
     var contador = Object.keys(parcelas).length;
+    var maiorDia = 0;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -81,6 +82,18 @@ $(function(){
             return true;
         };
 
+        if (objParcela.dias <= maiorDia) {
+            swal({
+            title:"Numero de dias deve ser maior que o da parcela anterior!",
+            text:"{{Session::get('fail')}}",
+            timer:5000,
+            type:"error"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
+            return;
+        };
+
         var objParcelaPorcentual = parseFloat(objParcela.porcentual);
 
         if ((parseFloat(porcentual) + objParcelaPorcentual ) > 100) {
@@ -100,6 +113,8 @@ $(function(){
         parcelas.push(objParcela);
         localStorage.setItem("parcelas", parcelas);
         $('#input-parcelas').val(JSON.stringify(parcelas));
+
+        maiorDia = objParcela.dias;
 
         swal({
             title:"Registro inserido!",
@@ -159,7 +174,8 @@ $(function(){
         };
 
         var parcelaPorcentual = parseFloat($("#id_porcentual").val());
-        var somaPorcentual = (porcentual + parcelaPorcentual) - porcentualReserva;
+        porcentualReserva = porcentual - parcelas[indice_selecionado].porcentual;
+        var somaPorcentual = parcelaPorcentual + porcentualReserva;
 
         if (somaPorcentual > 100) {
 
@@ -180,15 +196,35 @@ $(function(){
             $("#id-forma_pagamento-input").val('');
             $("#forma_pagamento-input").val('');
 
+            operacao = "A"; //Volta ao padrão
             Listar();
             return;
         };
+
+        if ( parcelas[indice_selecionado].dias != $("#id_dias").val() ) {
+            swal({
+                title:"Numero de dias não pode ser editado! Porfavor crie uma nova parcela.",
+                text:"{{Session::get('fail')}}",
+                timer:5000,
+                type:"error"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
+
+            $("#id_dias").val('');
+            $("#id_porcentual").val('');
+            $("#id-forma_pagamento-input").val('');
+            $("#forma_pagamento-input").val('');
+
+            operacao = "A"; //Volta ao padrão
+            return;
+        }
 
         parcelas[indice_selecionado].dias = $("#id_dias").val();
         parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
         parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
 
-        porcentual += parseFloat(parcelas[indice_selecionado].porcentual);
+        porcentual = somaPorcentual;
         localStorage.setItem("parcelas", parcelas);
         $('#input-parcelas').val(JSON.stringify(parcelas));
 
@@ -211,7 +247,7 @@ $(function(){
 
         operacao = "A"; //Volta ao padrão
         Listar();
-        return true;
+        return;
     };
 
     $("#condicao-table").on("click", ".btnExcluir",function(){
@@ -244,6 +280,13 @@ $(function(){
         $("#id_porcentual").val('');
         $("#id-forma_pagamento-input").val('');
         $("#forma_pagamento-input").val('');
+
+        if (parcelas != "") {
+            maiorDia = parcelas.at(-1).dias;
+            return;
+        };
+
+        maiorDia = 0;
     };
 
     function Listar(){
