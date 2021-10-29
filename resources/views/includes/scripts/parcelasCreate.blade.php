@@ -48,7 +48,7 @@ $(function(){
     var porcentual = 0;
     var porcentualReserva = 0;
     var contador = Object.keys(parcelas).length;
-    var parseInt(maiorDia) = 0;
+    var maiorDia = 0;
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -114,7 +114,7 @@ $(function(){
         localStorage.setItem("parcelas", parcelas);
         $('#input-parcelas').val(JSON.stringify(parcelas));
 
-        parseInt(maiorDia) = objParcela.dias;
+        maiorDia = parseInt(objParcela.dias);
 
         swal({
             title:"Registro inserido!",
@@ -283,11 +283,11 @@ $(function(){
         $("#forma_pagamento-input").val('');
 
         if (parcelas != "") {
-            parseInt(maiorDia) = parcelas.at(-1).dias;
+            maiorDia = parseInt(parcelas.at(-1).dias);
             return;
         };
 
-        parseInt(maiorDia) = 0;
+        maiorDia = 0;
     };
 
     function Listar(){

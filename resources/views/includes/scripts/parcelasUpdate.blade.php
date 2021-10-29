@@ -51,7 +51,7 @@ $(function(){
     var porcentualReserva = 0;
     var contador = Object.keys(parcelas).length;
     var excluidas = [];
-    var maiorDia = parcelas.at(-1).dias;
+    var maiorDia = parseInt(parcelas.at(-1).dias);
 
     $("#btnSalvar").on("click",function(){
         if(operacao == "A")
@@ -85,9 +85,6 @@ $(function(){
             return true;
         };
 
-        console.log("objParcela.dias - " + objParcela.dias);
-        console.log("maiorDia - " + maiorDia);
-
         if (objParcela.dias <= parseInt(maiorDia)) {
             swal({
             title:"Numero de dias deve ser maior que o da parcela anterior!",
@@ -120,7 +117,7 @@ $(function(){
         localStorage.setItem("parcelas", parcelas);
         $('#input-parcelas').val(JSON.stringify(parcelas));
 
-        maiorDia = objParcela.dias;
+        maiorDia = parseInt(objParcela.dias);
 
         swal({
             title:"Registro inserido!",
@@ -291,7 +288,7 @@ $(function(){
         $("#forma_pagamento-input").val('');
 
         if (parcelas != "") {
-            maiorDia = parcelas.at(-1).dias;
+            maiorDia = parseInt(parcelas.at(-1).dias);
             return;
         };
 
