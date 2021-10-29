@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{ __('Condições de Pagamento') }}</h4>
-                        <p class="card-category"> {{ __('Aqui você pode gerenciar Condições de Pagamento') }}</p>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar condições de pagamento') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
