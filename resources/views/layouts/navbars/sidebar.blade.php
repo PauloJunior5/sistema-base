@@ -10,7 +10,8 @@
     <div class="logo">
         <a href="{{ route('home') }}" class="simple-text logo-normal">
             <img src="{{ asset('material') }}/img/favicon.png" alt="" style="height: 30px;">
-            {{ __('Sistema Base 2.0') }}
+            <h3>Sistema Base 2.0</h3>
+            <h6>Saúde Ocupacional</h6>
         </a>
     </div>
     <div class="sidebar-wrapper">
