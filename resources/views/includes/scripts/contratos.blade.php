@@ -22,7 +22,7 @@
         }
     }
 
-    //Função que mostra o responsavel conforme é inserido
+    //Função que mostra o cliente conforme é inserido
     function myFunctionCliente(id_cliente) {
     $.ajax({
         method: "GET",

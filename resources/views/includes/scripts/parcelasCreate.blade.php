@@ -79,8 +79,34 @@ $(function(){
             }).then((value) => {
                 //location.reload();
             }).catch(swal.noop);
-            return true;
+            return;
         };
+        
+        $.ajax({
+            method: "GET",
+            url: url_atual + '/formaPagamento/show',
+            data: { id_forma_pagamento : objParcela.forma_pagamento },
+            dataType: "JSON",
+            async: false,
+            success: function(response){
+                formaPagamento = response;
+            },
+            error: function(response){
+                formaPagamento = response;
+            }
+        });
+
+        if (jQuery.isEmptyObject(formaPagamento)) {
+            swal({
+                title:"Forma de pagamento inserida, não existe!",
+                text:"{{Session::get('fail')}}",
+                timer:5000,
+                type:"error"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
+            return;
+        }
 
         if (objParcela.dias <= parseInt(maiorDia)) {
             swal({
@@ -172,6 +198,32 @@ $(function(){
             }).catch(swal.noop);
             return;
         };
+
+        $.ajax({
+            method: "GET",
+            url: url_atual + '/formaPagamento/show',
+            data: { id_forma_pagamento : $("#id-forma_pagamento-input").val() },
+            dataType: "JSON",
+            async: false,
+            success: function(response){
+                formaPagamento = response;
+            },
+            error: function(response){
+                formaPagamento = response;
+            }
+        });
+
+        if (jQuery.isEmptyObject(formaPagamento)) {
+            swal({
+                title:"Forma de pagamento inserida, não existe!",
+                text:"{{Session::get('fail')}}",
+                timer:5000,
+                type:"error"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
+            return;
+        }
 
         var parcelaPorcentual = parseFloat($("#id_porcentual").val());
         porcentualReserva = porcentual - parcelas[indice_selecionado].porcentual;
