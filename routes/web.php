@@ -109,7 +109,8 @@ Route::group(['middleware' => 'auth'], function () {
         'cliente' => 'ClienteController',
         'paciente' => 'PacienteController',
         'exame' => 'ExameController',
-        'categoria' => 'CategoriaController'
+        'categoria' => 'CategoriaController',
+        'plano' => 'PlanoController'
     ]);
 
     Route::name('cliente.')->group(function () {
