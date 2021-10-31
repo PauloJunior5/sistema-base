@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'categoria-management', 'titlePage' => __('Categoria Management')])
+@extends('layouts.app', ['activePage' => 'plano-management', 'titlePage' => __('Plano Management')])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -13,12 +13,12 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('categoria.store') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('plano.store') }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Nova Categoria') }}</h4>
+                            <h4 class="card-title">{{ __('Novo Plano') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -30,9 +30,9 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="col-form-label">Categoria</label>
+                                    <label class="col-form-label">Plano</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="categoria" type="text" required/>
+                                        <input class="form-control" name="plano" type="text" required/>
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <a href="{{ route('categoria.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                            <a href="{{ route('plano.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
