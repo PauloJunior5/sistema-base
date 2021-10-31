@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Categorias') }}</h4>
-                        <p class="card-category"> {{ __('Aqui você pode gerenciar categorias') }}</p>
+                        <h4 class="card-title ">{{ __('Planos') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar planos') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -47,7 +47,7 @@
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($categorias as $plano)
+                                    @foreach($planos as $plano)
                                     <tr>
                                         <td>{{ $plano->getCategoria() }}</td>
                                         <td>{{ $plano->getCreated_at() }}</td>
