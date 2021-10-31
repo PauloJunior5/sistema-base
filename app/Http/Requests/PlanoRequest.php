@@ -24,11 +24,10 @@ class PlanoRequest extends FormRequest
      */
     public function rules()
     {
-        // return [
-        //     'categoria' => [
-        //         Rule::unique('categorias', 'categoria')->ignore($this->id),
-        //     ]
-        // ];
-        return true;
+        return [
+            'plano' => [
+                Rule::unique('planos', 'plano')->ignore($this->id),
+            ]
+        ];
     }
 }

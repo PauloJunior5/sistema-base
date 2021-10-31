@@ -49,7 +49,7 @@
                                 <tbody>
                                     @foreach($planos as $plano)
                                     <tr>
-                                        <td>{{ $plano->getCategoria() }}</td>
+                                        <td>{{ $plano->getPlano() }}</td>
                                         <td>{{ $plano->getCreated_at() }}</td>
                                         <td>{{ $plano->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
