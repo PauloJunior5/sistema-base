@@ -11,6 +11,7 @@ class PlanoService
     public function __construct()
     {
         $this->planoRepository = new PlanoRepository;
+        $this->condicaoPagamentoService = new CondicaoPagamentoService;
     }
 
     public function instanciarTodos()
@@ -35,11 +36,13 @@ class PlanoService
         $plano = new Plano;
 
         $plano->setPlano($request->plano);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
+        $plano->setCondicaoPagamento($condicaoPagamento);
         $plano->setCreated_at(now()->toDateTimeString());
 
         $dados = $this->getDados($plano);
 
-        return $this->planoRepository->adicionar($dados);
+        $this->planoRepository->adicionar($dados);
     }
 
     public function buscarEInstanciar(int $id)
@@ -48,6 +51,8 @@ class PlanoService
         $plano = new Plano;
         $plano->setId($result->id);
         $plano->setPlano($result->plano);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
+        $plano->setCondicaoPagamento($condicaoPagamento);
         $plano->setCreated_at($result->created_at ?? null);
         $plano->setUpdated_at($result->updated_at ?? null);
         return $plano;
@@ -59,6 +64,8 @@ class PlanoService
 
         $plano->setId($request->id);
         $plano->setPlano($request->plano);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
+        $plano->setCondicaoPagamento($condicaoPagamento);
         $plano->setCreated_at($request->created_at);
         $plano->setUpdated_at(now()->toDateTimeString());
 
@@ -72,6 +79,7 @@ class PlanoService
         $dados = [
             'id' => $plano->getId(),
             'plano' => $plano->getPlano(),
+            'id_condicao_pagamento' => $plano->getCondicaoPagamento()->getId(),
             'created_at' => $plano->getCreated_at(),
             'updated_at' => $plano->getUpdated_at()
         ];

@@ -16,16 +16,17 @@ class PlanoRepository
 
     public function adicionar(array $dados)
     {
-        $result = null;
         DB::beginTransaction();
         try {
-            $result = DB::table('planos')->insert($dados);
+            DB::table('planos')->insert($dados);
+            DB::commit();
+            return redirect()->route('plano.index')->with('Success', 'Plano criado com sucesso!')->send();
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::debug('Warning - (PlanoRepository) Não foi possivel criar plano: ' . $th);
+            return redirect()->route('plano.index')->with('Warning', 'Não foi possivel criar plano!')->send();
         }
-        return $result;
     }
 
     public function findById(int $id)
@@ -42,7 +43,7 @@ class PlanoRepository
             return redirect()->route('plano.index')->with('Success', 'Plano alterado com sucesso!')->send();
         } catch (\Throwable $th) {
             DB::rollBack();
-            Log::debug('Warning - (PlanoRepository) Não foi possivel editar plano: ' . $th);
+            Log::debug('Warning - (PlanoRepository) Não foi possivel alterar plano: ' . $th);
             return redirect()->route('plano.index')->with('Warning', 'Não foi possivel alterar plano!')->send();
         }
     }

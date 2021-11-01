@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PlanoRequest;
 use App\Repositories\PlanoRepository;
 use App\Services\PlanoService;
+use App\Repositories\FormaPagamentoRepository;
+use App\Repositories\CondicaoPagamentoRepository;
 
 class PlanoController extends Controller
 {
@@ -12,6 +14,8 @@ class PlanoController extends Controller
     {
         $this->planoRepository = new PlanoRepository;
         $this->planoService = new PlanoService;
+        $this->formasPagamentoRepository = new FormaPagamentoRepository;
+        $this->condicoesPagamentoRepository = new CondicaoPagamentoRepository;
     }
 
     public function index()
@@ -22,19 +26,14 @@ class PlanoController extends Controller
 
     public function create()
     {
-        return view('planos.create');
+        $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
+        $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
+        return view('planos.create', compact('formasPagamento', 'condicoesPagamento'));
     }
 
     public function store(PlanoRequest $request)
     {
-        $plano = $this->planoService->instanciarECriar($request);
-
-        if (!$plano) {
-            return redirect()->route('plano.index')->with('Warning', 'Não foi possivel criar plano!');
-        }
-
-        return redirect()->route('plano.index')->with('Success', 'Plano criado com sucesso!')->send();
-
+        $this->planoService->instanciarECriar($request);
     }
 
     public function show(int $id)
@@ -45,7 +44,9 @@ class PlanoController extends Controller
     public function edit(int $id)
     {
         $plano = $this->planoService->buscarEInstanciar($id);
-        return view('planos.edit', compact('plano'));
+        $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
+        $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
+        return view('planos.edit', compact('plano','formasPagamento', 'condicoesPagamento'));
     }
 
     public function update(PlanoRequest $request)

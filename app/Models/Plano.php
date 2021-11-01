@@ -7,10 +7,12 @@ use App\Models\Model;
 class Plano extends Model
 {
     protected $plano;
+    protected $condicaoPagamento;
 
     public function __construct()
     {
         $this->plano = '';
+        $this->condicaoPagamento = new CondicaoPagamento();
     }
 
     /*
@@ -27,5 +29,21 @@ class Plano extends Model
     public function setPlano(string $plano)
     {
         $this->plano = $plano;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Condição de Pagamento
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getCondicaoPagamento(): CondicaoPagamento
+    {
+        return $this->condicaoPagamento;
+    }
+
+    public function setCondicaoPagamento($condicaoPagamento)
+    {
+        $this->condicaoPagamento = $condicaoPagamento;
     }
 }

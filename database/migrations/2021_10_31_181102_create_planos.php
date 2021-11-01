@@ -16,7 +16,12 @@ class CreatePlanos extends Migration
         Schema::create('planos', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('plano');
+            $table->unsignedTinyInteger('id_condicao_pagamento');
+
             $table->timestamps();
+
+            $table->foreign('id_condicao_pagamento')->references('id')->on('condicao_pagamentos'); 
+
         });
     }
 
