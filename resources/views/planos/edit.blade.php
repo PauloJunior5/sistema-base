@@ -45,9 +45,8 @@
                                     <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ $plano->getCondicaoPagamento()->getId() }}" readonly>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
+                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
                                     <input class="form-control" id='condicao_pagamento-input' value="{{ $plano->getCondicaoPagamento()->getCondicaoPagamento() }}" readonly>
-                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>

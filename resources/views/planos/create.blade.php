@@ -52,9 +52,8 @@
                                     <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" readonly>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento</label>
+                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento  @include('includes.tooltips-campo-consulta')</label>
                                     <input class="form-control" id='condicao_pagamento-input' value="{{ old('condicao_pagamento') }}" readonly>
-                                    <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-sm-1">
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.2rem;" data-target="#condicaoPagamentoModal">
