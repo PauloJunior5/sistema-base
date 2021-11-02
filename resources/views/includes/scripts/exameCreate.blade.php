@@ -9,7 +9,6 @@
             async: false,
             success: function(response){
                 exame = response;
-                console.log(exame);
             }
         });
 
@@ -24,114 +23,146 @@
 
 <script>
 
-    // $(function()
-    // {
-    //     localStorage.clear();
-    //     var operacao = "";
+    $(function()
+    {
+        localStorage.clear();
+        var operacao = "";
 
-    //     //Índice do item selecionado na lista
-    //     var indice_selecionado = -1;
+        //Índice do item selecionado na lista
+        var indice_selecionado = -1;
 
-    //     var pacientes = $('#pacientes').val();
-    //     localStorage.setItem("pacientes", pacientes);
+        var exames = $('#exames').val();
+        localStorage.setItem("exames", exames);
 
-    //     var pacientes = localStorage.getItem("pacientes");// Recupera os dados armazenados
+        var exames = localStorage.getItem("exames");// Recupera os dados armazenados
 
-    //     if(pacientes == null || pacientes.length === 0){ // Caso não haja conteúdo, iniciamos um vetor vazio
-    //         pacientes = [];
-    //     } else {
-    //         pacientes = JSON.parse(pacientes);
-    //     }
+        if(exames == null || exames.length === 0){ // Caso não haja conteúdo, iniciamos um vetor vazio
+            exames = [];
+        } else {
+            exames = JSON.parse(exames);
+        }
 
-    //     $("#btnSalvarPaciente").on("click",function(){
-    //         return Adicionar();
-    //     });
+        $("#btnSalvarExame").on("click",function(){
+            return Adicionar();
+        });
 
-    //     Listar();
+        Listar();
 
-    //     function Adicionar()
-    //     {
-    //         var paciente = JSON.stringify({
-    //             id : $("#input-id-paciente").val(),
-    //             paciente : $("#input-paciente").val()
-    //         });
+        function Adicionar()
+        {
+            var exame = JSON.stringify({
+                id : $("#input-id-exame").val(),
+                paciente : $("#exame-input").val()
+            });
 
-    //         var paciente = JSON.parse(paciente);
+            var exame = JSON.parse(exame);
 
-    //         $.ajax({
-    //             method: "GET",
-    //             url: url_atual + "/paciente/" + paciente.id,
-    //             dataType: "JSON",
-    //             async: false,
-    //             success: function(response){
-    //                 paciente = response;
-    //             }
-    //         });
+            $.ajax({
+                method: "GET",
+                url: url_atual + "/exame/" + exame.id,
+                dataType: "JSON",
+                async: false,
+                success: function(response){
+                    exame = response;
+                }
+            });
 
-    //         if (paciente.id === "" || paciente.paciente === "") {
-    //             swal({
-    //                 title:"Erro! Preencha todos os campos",
-    //                 text:"{{Session::get('fail')}}",
-    //                 type:"error",
-    //                 timer:5000
-    //             }).then((value) => {
-    //                 //location.reload();
-    //             }).catch(swal.noop);
+            if ( $("#input-id-exame").val() === "" || $("#exame-input").val() === "" ) {
+                swal({
+                    title:"Erro! Preencha todos os campos",
+                    text:"{{Session::get('fail')}}",
+                    type:"error",
+                    timer:5000
+                }).then((value) => {
+                    //location.reload();
+                }).catch(swal.noop);
 
-    //             return;
-    //         };
+                return;
+            };
 
-    //         if (Object.keys(paciente).length === 0) {
-    //             swal({
-    //                 title:"Erro! Selecione um paciente existente no sistema.",
-    //                 text:"{{Session::get('fail')}}",
-    //                 type:"error",
-    //                 timer:5000
-    //             }).then((value) => {
-    //                 //location.reload();
-    //             }).catch(swal.noop);
+            if (Object.keys(exame).length === 0) {
+                swal({
+                    title:"Erro! Selecione um exame existente no sistema.",
+                    text:"{{Session::get('fail')}}",
+                    type:"error",
+                    timer:5000
+                }).then((value) => {
+                    //location.reload();
+                }).catch(swal.noop);
 
-    //             document.getElementById("input-paciente").value = "";
-    //             document.getElementById("input-id-paciente").value = "";
-    //             Listar();
-    //             return;
-    //         }
+                document.getElementById("exame-input").value = "";
+                document.getElementById("input-id-exame").value = "";
+                Listar();
+                return;
+            }
 
-    //         var existePaciente = pacientes.filter(key => (key.id === paciente.id));
+            var existeExame = exames.filter(key => (key.id === exame.id));
 
-    //         if (Object.keys(existePaciente).length != 0) {
-    //             swal({
-    //                 title:"Erro! Paciente já se econtra incluído no contrato.",
-    //                 text:"{{Session::get('fail')}}",
-    //                 type:"error",
-    //                 timer:5000
-    //             }).then((value) => {
-    //                 //location.reload();
-    //             }).catch(swal.noop);
+            if (Object.keys(existeExame).length != 0) {
+                swal({
+                    title:"Erro! Exame já se econtra incluído no plano.",
+                    text:"{{Session::get('fail')}}",
+                    type:"error",
+                    timer:5000
+                }).then((value) => {
+                    //location.reload();
+                }).catch(swal.noop);
 
-    //             document.getElementById("input-paciente").value = "";
-    //             document.getElementById("input-id-paciente").value = "";
-    //             Listar();
-    //             return;
-    //         }
+                document.getElementById("exame-input").value = "";
+                document.getElementById("input-id-exame").value = "";
+                Listar();
+                return;
+            }
 
-    //         pacientes.push(paciente);
-    //         localStorage.setItem("pacientes", JSON.stringify(pacientes));
-    //         $("#pacientes").val(JSON.stringify(pacientes));
+            exames.push(exame);
+            localStorage.setItem("exames", JSON.stringify(exames));
+            $("#exames").val(JSON.stringify(exames));
 
-    //         swal({
-    //                 title:"Incluído com sucesso!",
-    //                 text:"{{Session::get('success')}}",
-    //                 timer:5000,
-    //                 type:"success"
-    //             }).then((value) => {
-    //                 //location.reload();
-    //             }).catch(swal.noop);
+            swal({
+                title:"Incluído com sucesso!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"success"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
 
-    //         document.getElementById("input-paciente").value = "";
-    //         document.getElementById("input-id-paciente").value = "";
-    //         Listar();
-    //         return;
-    //     };
-    // });
+            document.getElementById("exame-input").value = "";
+            document.getElementById("input-id-exame").value = "";
+            Listar();
+            return;
+        };
+
+        function Listar(){
+
+            var n = 0;
+
+            $("#planos-exames-table").html("");
+            $("#planos-exames-table").html(
+                "<thead>"+
+                "    <tr>"+
+                "    <th scope='col'>#</th>"+
+                "    <th scope='col'>Exame</th>"+
+                "    <th scope='col'>Ações</th>"+
+                "   </tr>"+
+                "</thead>"+
+                "<tbody>"+
+                "</tbody>"
+            );
+
+            for(var i in exames){
+
+                var cli = exames[i];
+                n++;
+
+                $("#planos-exames-table tbody").append("<tr>");
+                $("#planos-exames-table tbody").append("<td>"+n+"</td>");
+                $("#planos-exames-table tbody").append("<td>"+cli.exame+"</td>");
+                $("#planos-exames-table tbody").append("<td><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
+                $("#planos-exames-table tbody").append("</tr>");
+            }
+        };
+
+    });
+
 </script>
