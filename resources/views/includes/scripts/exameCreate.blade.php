@@ -1,6 +1,6 @@
 <script>
 
-    //Função que mostra o nome e apelido conforme o id do paciente inserido
+    //Função que mostra o nome e apelido conforme o id do exame inserido
     function myFunction(id_exame) {
         $.ajax({
             method: "GET",
@@ -52,7 +52,7 @@
         {
             var exame = JSON.stringify({
                 id : $("#input-id-exame").val(),
-                paciente : $("#exame-input").val()
+                exame : $("#exame-input").val()
             });
 
             var exame = JSON.parse(exame);
