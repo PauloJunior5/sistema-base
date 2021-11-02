@@ -70,7 +70,6 @@ class ExameController extends Controller
     public function createExame(ExameRequest $request)
     {
         $exame = $this->exameService->instanciarECriar($request);
-
         if (!$exame) {
             return redirect()->back()->withInput()->send();
         }

@@ -124,6 +124,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('categoria/createCategoria', 'CategoriaController@createCategoria')->name('createCategoria');
     });
 
+    Route::name('exame.')->group(function () {
+        Route::post('exame/createExame', 'ExameController@createExame')->name('createExame');
+    });
+
 });
 
 /*

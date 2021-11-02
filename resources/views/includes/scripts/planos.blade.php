@@ -22,7 +22,7 @@
     </script>
 @endif
 
-<script>
+{{-- <script>
     $('.idCategoria').click(function() {
         var id_categoria = $(this).val();
         $.ajax({
@@ -51,4 +51,4 @@
             $('#categoriaModal').modal('show');
         });
     </script>
-@endif
+@endif --}}
