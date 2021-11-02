@@ -3,6 +3,8 @@
 @include('layouts.modais.chamada-modal.condicaoPagamento')
 @include('layouts.modais.chamada-modal.formaPagamento')
 
+@include('layouts.modais.chamada-modal.exame')
+
 <style>
 .swal2-container {
     z-index: 99999;
