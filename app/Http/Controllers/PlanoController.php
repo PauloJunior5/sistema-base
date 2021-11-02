@@ -39,7 +39,11 @@ class PlanoController extends Controller
 
     public function store(PlanoRequest $request)
     {
-        $this->planoService->instanciarECriar($request);
+        $planos = $this->planoService->instanciarECriar($request);
+        if (!$planos) {
+            return redirect()->route('plano.index')->with('Warning', 'Não foi possivel criar plano!')->send();
+        }
+        return redirect()->route('plano.index')->with('Success', 'Plano criado com sucesso!')->send();
     }
 
     public function show(int $id)
@@ -64,15 +68,4 @@ class PlanoController extends Controller
     {
         $this->planoRepository->remover($id);
     }
-
-    // public function createCategoria(PlanoRequest $request)
-    // {
-    //     $cidade = $this->planoService->instanciarECriar($request);
-
-    //     if (!$cidade) {
-    //         return redirect()->back()->withInput()->send();
-    //     }
-
-    //     return redirect()->back()->withInput()->with('error_code', 10)->send();
-    // }
 }

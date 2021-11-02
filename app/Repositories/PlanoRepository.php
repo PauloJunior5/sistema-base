@@ -16,17 +16,16 @@ class PlanoRepository
 
     public function adicionar(array $dados)
     {
+        $result = null;
         DB::beginTransaction();
         try {
-            DB::table('planos')->insert($dados);
-            DB::commit();
-            return redirect()->route('plano.index')->with('Success', 'Plano criado com sucesso!')->send();
+            $result = DB::table('planos')->insertGetId($dados);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::debug('Warning - (PlanoRepository) Não foi possivel criar plano: ' . $th);
-            return redirect()->route('plano.index')->with('Warning', 'Não foi possivel criar plano!')->send();
         }
+        return $result;
     }
 
     public function findById(int $id)
@@ -60,5 +59,24 @@ class PlanoRepository
             Log::debug('Warning - (PlanoRepository) Não foi possivel excluir plano: ' . $th);
             return redirect()->route('plano.index')->with('Warning', 'Não foi possivel excluir plano!')->send();
         }
+    }
+
+    public function findByIdExame(int $id_exame, int $id_plano)
+    {
+        $exame = DB::table('exames_planos')->where('id_exame', $id_exame)->where('id_plano', $id_plano)->get()->first();
+        return $exame;
+    }
+
+    public function adicionarExame(Array $dados)
+    {
+        $result = null;
+        try {
+            $result = DB::table('exames_planos')->insert($dados);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - (PlanoRepository) Não foi inserir exames: ' . $th);
+        }
+        return $result;
     }
 }

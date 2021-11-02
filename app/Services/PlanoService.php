@@ -39,10 +39,26 @@ class PlanoService
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $plano->setCondicaoPagamento($condicaoPagamento);
         $plano->setCreated_at(now()->toDateTimeString());
-
         $dados = $this->getDados($plano);
+        $idPlano = $this->planoRepository->adicionar($dados);
 
-        $this->planoRepository->adicionar($dados);
+        $exames = json_decode($request->exames);
+
+        if (!is_null($exames)) {
+            foreach ($exames as $exame) {
+                $dados = [
+                    'id_plano' => $idPlano,
+                    'id_exame' => $exame->id,
+                    'created_at' => now()->toDateTimeString()
+                ];
+
+                if (!$this->planoRepository->findByIdExame($dados['id_exame'], $dados['id_plano'])) {
+                    $this->planoRepository->adicionarExame($dados);
+                }
+            }
+        }
+
+        return $plano;
     }
 
     public function buscarEInstanciar(int $id)
