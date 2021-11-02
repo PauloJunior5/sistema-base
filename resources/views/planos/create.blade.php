@@ -124,5 +124,4 @@
 @include('includes.scripts.condicoesPagamento')
 @include('includes.scripts.parcelasCreate')
 @include('includes.scripts.planos')
-@include('includes.scripts.categorias')
 @endsection

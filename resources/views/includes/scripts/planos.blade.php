@@ -22,7 +22,7 @@
     </script>
 @endif
 
-{{-- <script>
+<script>
     $('.idCategoria').click(function() {
         var id_categoria = $(this).val();
         $.ajax({
@@ -39,7 +39,7 @@
     });
 </script>
 
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 12)
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 10)
     <script>
         $(function() {
             $('#exameModal').modal('show');
@@ -51,4 +51,4 @@
             $('#categoriaModal').modal('show');
         });
     </script>
-@endif --}}
+@endif
