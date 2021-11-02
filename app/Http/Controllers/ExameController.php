@@ -66,4 +66,15 @@ class ExameController extends Controller
 
         return redirect()->route('exame.index')->with('Success', 'Exame excluído com sucesso.')->send();
     }
+
+    public function createExame(ExameRequest $request)
+    {
+        $exame = $this->exameService->instanciarECriar($request);
+
+        if (!$exame) {
+            return redirect()->back()->withInput()->send();
+        }
+
+        return redirect()->back()->withInput()->with('error_code', 11)->send();
+    }
 }

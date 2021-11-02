@@ -4,7 +4,7 @@
 @include('layouts.modais.chamada-modal.formaPagamento')
 
 @include('layouts.modais.chamada-modal.exame')
-
+@include('layouts.modais.chamada-modal.categoria')
 <style>
 .swal2-container {
     z-index: 99999;
@@ -124,4 +124,5 @@
 @include('includes.scripts.condicoesPagamento')
 @include('includes.scripts.parcelasCreate')
 @include('includes.scripts.planos')
+@include('includes.scripts.categorias')
 @endsection

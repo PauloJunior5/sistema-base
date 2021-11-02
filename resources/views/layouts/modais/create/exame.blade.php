@@ -1,4 +1,3 @@
-@include('layouts.modais.chamada-modal.categoria')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -66,4 +65,3 @@
         </div>
     </div>
 </div>
-@include('includes.scripts.categorias')
