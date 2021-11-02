@@ -74,13 +74,13 @@
                                             <div class="col-sm-2">
                                                 <label class="col-form-label">Id do exame</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="input-id-exame"  name="" type="text" oninput="myFunction(this.value)"/>
+                                                    <input class="form-control" id="input-id-exame" type="text" oninput="myFunction(this.value)"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
                                                 <label class="col-form-label">Exame</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="input-exame" placeholder="Pesquisa de exame" readonly/>
+                                                    <input class="form-control" id="exame-input" placeholder="Pesquisa de exame" readonly/>
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
@@ -123,5 +123,5 @@
 </div>
 @include('includes.scripts.condicoesPagamento')
 @include('includes.scripts.parcelasCreate')
-
+@include('includes.scripts.planos')
 @endsection

@@ -37,6 +37,11 @@ class ExameController extends Controller
         return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.')->send();
     }
 
+    public function show(int $id)
+    {
+        return response()->json($this->exameRepository->findById($id));
+    }
+
     public function edit(int $id)
     {
         $exame = $this->exameService->buscarEInstanciar($id);
