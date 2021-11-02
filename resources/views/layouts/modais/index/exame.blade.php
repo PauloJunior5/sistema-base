@@ -33,7 +33,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('exame.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exameCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
