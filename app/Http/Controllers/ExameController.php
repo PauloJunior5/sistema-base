@@ -18,7 +18,7 @@ class ExameController extends Controller
 
     public function index()
     {
-        $exames = $this->exameRepository->mostrarTodos();
+        $exames = $this->exameService->instanciarTodos();
         return view('exames.index', compact('exames'));
     }
 

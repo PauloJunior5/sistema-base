@@ -19,6 +19,26 @@ class ExameService
         $this->categoriaService = new CategoriaService;
     }
 
+    public function instanciarTodos()
+    {
+        $results = $this->exameRepository->mostrarTodos();
+        $exames = collect();
+
+        foreach ($results as $result) {
+            $exame = new Exame;
+            $exame->setId($result->id);
+            $exame->setExame($result->exame);
+            $exame->setValor($result->valor);
+            $categoria = $this->categoriaService->buscarEInstanciar($result->id_categoria);
+            $exame->setCategoria($categoria);
+            $exame->setCreated_at($result->created_at ?? null);
+            $exame->setUpdated_at($result->updated_at ?? null);
+            $exames->push($exame);
+        }
+
+        return $exames;
+    }
+
     public function instanciarECriar(ExameRequest $request)
     {
         $exame = new Exame;

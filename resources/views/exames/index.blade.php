@@ -49,14 +49,14 @@
                                 <tbody>
                                     @foreach($exames as $exame)
                                     <tr>
-                                        <td>{{$exame->exame}}</td>
-                                        <td>{{$exame->created_at}}</td>
-                                        <td>{{$exame->updated_at}}</td>
+                                        <td>{{$exame->getExame()}}</td>
+                                        <td>{{$exame->getCreated_at()}}</td>
+                                        <td>{{$exame->getUpdated_at()}}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('exame.destroy', $exame->id) }}" method="post">
+                                            <form action="{{ route('exame.destroy', $exame->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('exame.edit', $exame->id) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('exame.edit', $exame->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
