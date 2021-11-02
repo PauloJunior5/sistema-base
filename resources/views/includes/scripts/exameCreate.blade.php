@@ -125,12 +125,35 @@
                 type:"success"
             }).then((value) => {
                 //location.reload();
-            }).catch(swal.noop);
+            }).catch(swal.noop); 
 
             document.getElementById("exame-input").value = "";
             document.getElementById("input-id-exame").value = "";
             Listar();
             return;
+        };
+
+        $("#planos-exames-table").on("click", ".btnExcluir",function(){
+            indice_selecionado = parseInt($(this).attr("alt"));
+            Excluir();
+            Listar();
+        });
+
+        function Excluir(){
+
+            exames.splice(indice_selecionado, 1);
+
+            localStorage.setItem("exames", JSON.stringify(exames));
+            $('#exames').val(JSON.stringify(exames));
+
+            swal({
+                title:"Registro excluído!",
+                text:"{{Session::get('success')}}",
+                timer:5000,
+                type:"success"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
         };
 
         function Listar(){
