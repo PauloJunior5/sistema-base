@@ -7,6 +7,7 @@ use App\Repositories\PlanoRepository;
 use App\Services\PlanoService;
 use App\Repositories\FormaPagamentoRepository;
 use App\Repositories\CondicaoPagamentoRepository;
+use App\Repositories\ExameRepository;
 
 class PlanoController extends Controller
 {
@@ -16,6 +17,7 @@ class PlanoController extends Controller
         $this->planoService = new PlanoService;
         $this->formasPagamentoRepository = new FormaPagamentoRepository;
         $this->condicoesPagamentoRepository = new CondicaoPagamentoRepository;
+        $this->exameRepository = new ExameRepository;
     }
 
     public function index()
@@ -28,7 +30,8 @@ class PlanoController extends Controller
     {
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
-        return view('planos.create', compact('formasPagamento', 'condicoesPagamento'));
+        $exames = $this->exameRepository->mostrarTodos();
+        return view('planos.create', compact('formasPagamento', 'condicoesPagamento', 'exames'));
     }
 
     public function store(PlanoRequest $request)
