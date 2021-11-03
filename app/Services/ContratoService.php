@@ -102,7 +102,7 @@ class ContratoService
                 ];
 
                 if (!$this->contratoRepository->findByIdPaciente($dados['id_contrato'], $dados['id_paciente'])) {
-                    $teste = $this->contratoRepository->adicionarPaciente($dados);
+                    $this->contratoRepository->adicionarPaciente($dados);
                 }
             }
         }

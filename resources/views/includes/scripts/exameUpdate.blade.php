@@ -42,6 +42,8 @@
             exames = JSON.parse(exames);
         }
 
+        var excluidos = [];
+
         $("#btnSalvarExame").on("click",function(){
             return Adicionar();
         });
@@ -141,10 +143,12 @@
 
         function Excluir(){
 
+            excluidos.push(exames[indice_selecionado]);
             exames.splice(indice_selecionado, 1);
 
             localStorage.setItem("exames", JSON.stringify(exames));
             $('#exames').val(JSON.stringify(exames));
+            $('#input-exames-exluidos').val(JSON.stringify(excluidos));
 
             swal({
                 title:"Registro excluído!",

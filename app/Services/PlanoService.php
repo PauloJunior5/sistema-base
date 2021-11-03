@@ -88,6 +88,32 @@ class PlanoService
         $dados = $this->getDados($plano);
 
         $this->planoRepository->atualizar($dados);
+
+        if (isset($request->examesExluidos)) {
+            $examesExluidos = json_decode($request->examesExluidos);
+            $dados = [
+                'examesExluidos' => array_column($examesExluidos, 'id'),
+                'plano_id' => $request->id
+            ];
+            $this->planoRepository->removerExames($dados);
+        }
+
+        $exames = json_decode($request->exames);
+        if (!is_null($exames)) {
+            foreach ($exames as $exame) {
+                $dados = [
+                    'id_plano' => $request->id,
+                    'id_exame' => $exame->id,
+                    'created_at' => now()->toDateTimeString()
+                ];
+
+                if (!$this->planoRepository->findByIdExame($dados['id_exame'], $dados['id_plano'])) {
+                    $this->planoRepository->adicionarExame($dados);
+                }
+            }
+        }
+
+        return $plano;
     }
 
     public function getDados(Plano $plano)

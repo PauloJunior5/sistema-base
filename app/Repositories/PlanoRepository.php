@@ -14,6 +14,16 @@ class PlanoRepository
         return $planos;
     }
 
+    public function mostrarTodosExames(int $id)
+    {
+        return DB::table('exames')
+                ->join('exames_planos', 'exames.id', '=', 'exames_planos.id_exame')
+                ->join('planos', 'planos.id', '=', 'exames_planos.id_plano')
+                ->where('planos.id', $id)
+                ->select('exames.*')
+                ->get();
+    }
+
     public function adicionar(array $dados)
     {
         $result = null;
@@ -76,6 +86,20 @@ class PlanoRepository
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::debug('Warning - (PlanoRepository) Não foi inserir exames: ' . $th);
+        }
+        return $result;
+    }
+
+    public function removerExames(Array $dados)
+    {
+        $result = null;
+        DB::beginTransaction();
+        try {
+            $result = DB::table('exames_planos')->where('id_plano', $dados['plano_id'])->whereIn('id_exame', $dados['examesExluidos'])->delete();
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel excluir pacientes: ' . $th);
         }
         return $result;
     }

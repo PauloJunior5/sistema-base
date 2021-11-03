@@ -78,7 +78,8 @@
                                             <div class="col-md-1">
                                                 <button class="btn btn-primary" type="button" value="Salvar-exame" id="btnSalvarExame"><i class="material-icons">add</i></button>
                                             </div>
-                                            <input type="hidden" id="exames" name="exames" value="{{ old('exames') }}">
+                                            <input type="hidden" id="exames" name="exames" value="{{ $examesPlano }}">
+                                            <input type="hidden" id="input-exames-exluidos" name="examesExluidos" value="">
                                         </form>
                                         <table class="table table-hover table-sm" id="planos-exames-table"></table>
                                     </div>
@@ -111,4 +112,7 @@
     </div>
 </div>
 @include('includes.scripts.condicoesPagamento')
+@include('includes.scripts.parcelasCreate')
+@include('includes.scripts.planos')
+@include('includes.scripts.exameUpdate')
 @endsection
