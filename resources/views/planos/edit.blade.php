@@ -52,7 +52,39 @@
                                     <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#condicaoPagamentoModal" style="margin-top: 2.2rem;"><i class="material-icons">search</i></button>
                                 </div>
                             </div>
-                            {{-- FIM CONDICAO PAGAMENTO --}}    
+                            {{-- FIM CONDICAO PAGAMENTO --}}
+
+                            <div class="card">
+                                <div style="text-align: center"><h3>Exames</h3></div>
+                                <hr>
+                                <div class="card-body">
+                                    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+                                        <form id="frmCadastroExame" class="form-horizontal">
+                                            <div class="col-sm-2">
+                                                <label class="col-form-label">Id do exame</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="input-id-exame" type="text" oninput="myFunction(this.value)"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <label class="col-form-label">Exame</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" id="exame-input" placeholder="Pesquisa de exame" readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exameModal"><i class="material-icons">search</i></button>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button class="btn btn-primary" type="button" value="Salvar-exame" id="btnSalvarExame"><i class="material-icons">add</i></button>
+                                            </div>
+                                            <input type="hidden" id="exames" name="exames" value="{{ old('exames') }}">
+                                        </form>
+                                        <table class="table table-hover table-sm" id="planos-exames-table"></table>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
