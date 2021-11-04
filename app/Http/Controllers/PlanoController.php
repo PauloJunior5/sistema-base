@@ -56,8 +56,10 @@ class PlanoController extends Controller
         $plano = $this->planoService->buscarEInstanciar($id);
         $formasPagamento =  $this->formasPagamentoRepository->mostrarTodos();
         $condicoesPagamento = $this->condicoesPagamentoRepository->mostrarTodos();
+        $exames = $this->exameRepository->mostrarTodos();
+        $categorias = $this->categoriaService->instanciarTodos();
         $examesPlano = $this->planoRepository->mostrarTodosExames($id);
-        return view('planos.edit', compact('plano','formasPagamento', 'condicoesPagamento', 'examesPlano'));
+        return view('planos.edit', compact('plano','formasPagamento', 'condicoesPagamento', 'exames', 'categorias', 'examesPlano'));
     }
 
     public function update(PlanoRequest $request)

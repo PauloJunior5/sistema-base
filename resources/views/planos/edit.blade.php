@@ -2,6 +2,9 @@
 @section('content')
 @include('layouts.modais.chamada-modal.condicaoPagamento')
 @include('layouts.modais.chamada-modal.formaPagamento')
+
+@include('layouts.modais.chamada-modal.exame')
+@include('layouts.modais.chamada-modal.categoria')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
