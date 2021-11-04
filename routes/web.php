@@ -109,7 +109,8 @@ Route::group(['middleware' => 'auth'], function () {
         'cliente' => 'ClienteController',
         'paciente' => 'PacienteController',
         'exame' => 'ExameController',
-        'categoria' => 'CategoriaController'
+        'categoria' => 'CategoriaController',
+        'plano' => 'PlanoController'
     ]);
 
     Route::name('cliente.')->group(function () {
@@ -121,6 +122,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::name('categoria.')->group(function () {
         Route::post('categoria/createCategoria', 'CategoriaController@createCategoria')->name('createCategoria');
+    });
+
+    Route::name('exame.')->group(function () {
+        Route::post('exame/createExame', 'ExameController@createExame')->name('createExame');
     });
 
 });

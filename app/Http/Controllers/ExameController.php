@@ -18,7 +18,7 @@ class ExameController extends Controller
 
     public function index()
     {
-        $exames = $this->exameRepository->mostrarTodos();
+        $exames = $this->exameService->instanciarTodos();
         return view('exames.index', compact('exames'));
     }
 
@@ -35,6 +35,11 @@ class ExameController extends Controller
             return redirect()->route('exame.index')->with('Warning', 'Não foi possivel criar exame.')->send();
 
         return redirect()->route('exame.index')->with('Success', 'Exame criado com sucesso.')->send();
+    }
+
+    public function show(int $id)
+    {
+        return response()->json($this->exameRepository->findById($id));
     }
 
     public function edit(int $id)
@@ -60,5 +65,15 @@ class ExameController extends Controller
             return redirect()->route('exame.index')->with('Warning', 'Não foi possivel excluir exame.')->send();
 
         return redirect()->route('exame.index')->with('Success', 'Exame excluído com sucesso.')->send();
+    }
+
+    public function createExame(ExameRequest $request)
+    {
+        $exame = $this->exameService->instanciarECriar($request);
+        if (!$exame) {
+            return redirect()->back()->withInput()->send();
+        }
+
+        return redirect()->back()->withInput()->with('error_code', 11)->send();
     }
 }

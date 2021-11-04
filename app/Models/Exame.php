@@ -16,7 +16,7 @@ class Exame extends Model
         $this->exame = '';
         $this->valor = 0;
         $this->plano = '';
-        $this->pais = new Categoria();
+        $this->categoria = new Categoria();
     }
 
     /*

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'exame-management', 'titlePage' => __('Exame Management')])
+@extends('layouts.app', ['activePage' => 'plano-management', 'titlePage' => __('Plano Management')])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -6,8 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Exames') }}</h4>
-                        <p class="card-category"> {{ __('Aqui você pode gerenciar exames') }}</p>
+                        <h4 class="card-title ">{{ __('Planos') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar planos') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -35,28 +35,28 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('exame.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
+                                <a href="{{ route('plano.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableExames">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePlanos">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Exame') }}</th>
+                                    <th>{{ __('Plano') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
                                     <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($exames as $exame)
+                                    @foreach($planos as $plano)
                                     <tr>
-                                        <td>{{$exame->getExame()}}</td>
-                                        <td>{{$exame->getCreated_at()}}</td>
-                                        <td>{{$exame->getUpdated_at()}}</td>
+                                        <td>{{ $plano->getPlano() }}</td>
+                                        <td>{{ $plano->getCreated_at() }}</td>
+                                        <td>{{ $plano->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('exame.destroy', $exame->getId()) }}" method="post">
+                                            <form action="{{ route('plano.destroy', $plano->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('exame.edit', $exame->getId()) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('plano.edit', $plano->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
@@ -77,5 +77,5 @@
         </div>
     </div>
 </div>
-@include('includes.datatables.script-datatables', ['tableId' => '#tableExames'])
+@include('includes.datatables.script-datatables', ['tableId' => '#tablePlanos'])
 @endsection

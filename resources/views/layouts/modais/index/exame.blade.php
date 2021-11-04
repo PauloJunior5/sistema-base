@@ -1,5 +1,3 @@
-@extends('layouts.app', ['activePage' => 'exame-management', 'titlePage' => __('Exame Management')])
-@section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -35,7 +33,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('exame.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exameCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -49,22 +47,14 @@
                                 <tbody>
                                     @foreach($exames as $exame)
                                     <tr>
-                                        <td>{{$exame->getExame()}}</td>
-                                        <td>{{$exame->getCreated_at()}}</td>
-                                        <td>{{$exame->getUpdated_at()}}</td>
+                                        <td>{{$exame->exame}}</td>
+                                        <td>{{$exame->created_at}}</td>
+                                        <td>{{$exame->updated_at}}</td>
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('exame.destroy', $exame->getId()) }}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('exame.edit', $exame->getId()) }}" data-original-title="" title="">
-                                                    <i class="material-icons">edit</i>
-                                                    <div class="ripple-container"></div>
-                                                </a>
-                                                <button type="button" class="btn btn-danger btn-link" data-original-title="" title="" onclick="confirm('{{ __("Voce tem certeza que deseja excluir?") }}') ? this.parentElement.submit() : ''">
-                                                    <i class="material-icons">close</i>
-                                                    <div class="ripple-container"></div>
-                                                </button>
-                                            </form>
+                                            <button rel="tooltip" class="btn btn-success btn-link idExame" value="{{$exame->id}}" data-original-title="" title="">
+                                                <i class="material-icons">check</i> Selecionar
+                                                <div class="ripple-container"></div>
+                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -78,4 +68,3 @@
     </div>
 </div>
 @include('includes.datatables.script-datatables', ['tableId' => '#tableExames'])
-@endsection
