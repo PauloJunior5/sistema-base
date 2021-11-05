@@ -93,4 +93,22 @@ class EstadoController extends Controller
             return redirect()->back()->withInput()->send();
         }
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createEstadoMedico(EstadoRequest $request)
+    {
+        $estado = $this->estadoService->instanciarECriar($request);
+        if ($estado) {
+            return redirect()->back()->withInput()->with('error_code', 12)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
+    }
 }

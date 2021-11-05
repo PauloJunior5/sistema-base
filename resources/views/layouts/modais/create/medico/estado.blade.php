@@ -11,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('estado.createEstado') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('estado.createEstadoMedico') }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">

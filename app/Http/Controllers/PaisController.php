@@ -63,7 +63,7 @@ class PaisController extends Controller
         if ($pais) {
             return redirect()->route('pais.index')->with('Success', 'País excluído com sucesso.');
         } else {
-            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Verifique se existe vínculo com cidades e/ou estados.');
+            return redirect()->route('pais.index')->with('Warning', 'Não foi possivel excluir país. Verifique se existe vínculo com cidades e/ou paiss.');
         }
     }
 
@@ -80,6 +80,24 @@ class PaisController extends Controller
         $pais = $this->paisService->instanciarECriar($request);
         if ($pais) {
             return redirect()->back()->withInput()->with('error_code', 4)->send();
+        } else {
+            return redirect()->back()->withInput()->send();
+        }
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Create Modal
+    |--------------------------------------------------------------------------
+    |
+    | Cria obj para ser retornado para dentro de uma modal
+    |
+    */
+    public function createPaisMedico(PaisRequest $request)
+    {
+        $pais = $this->paisService->instanciarECriar($request);
+        if ($pais) {
+            return redirect()->back()->withInput()->with('error_code', 13)->send();
         } else {
             return redirect()->back()->withInput()->send();
         }
