@@ -185,3 +185,47 @@
         });
     </script>
 @endif
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 12)
+    <script>
+        $(function() {
+            $('#medicoModal').modal('show');
+        });
+        $(function() {
+            $('#medicoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#medico-cidadeModal').modal('show');
+        });
+        $(function() {
+            $('#medico-cidadeCreateModal').modal('show');
+        });
+        $(function() {
+            $('#medico-estadoModal').modal('show');
+        });
+    </script>
+@endif
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 13)
+    <script>
+        $(function() {
+            $('#medicoModal').modal('show');
+        });
+        $(function() {
+            $('#medicoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#medico-cidadeModal').modal('show');
+        });
+        $(function() {
+            $('#medico-cidadeCreateModal').modal('show');
+        });
+        $(function() {
+            $('#medico-estadoModal').modal('show');
+        });
+        $(function() {
+            $('#medico-estadoCreateModal').modal('show');
+        });
+        $(function() {
+            $('#medico-paisModal').modal('show');
+        });
+    </script>
+@endif

@@ -61,10 +61,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::name('pais.')->group(function () {
         Route::post('pais/createPais', 'PaisController@createPais')->name('createPais');
+        Route::post('pais/createPaisMedico', 'PaisController@createPaisMedico')->name('createPaisMedico');
     });
 
     Route::name('estado.')->group(function () {
         Route::post('estado/createEstado', 'EstadoController@createEstado')->name('createEstado');
+        Route::post('estado/createEstadoMedico', 'EstadoController@createEstadoMedico')->name('createEstadoMedico');
     });
 
     Route::name('cidade.')->group(function () {
