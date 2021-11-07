@@ -49,6 +49,12 @@
                                         <input class="form-control" name="contrato" id="input-contrato" type="text" value="{{ old('contrato') }}" required />
                                     </div>
                                 </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Valor (R$)</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="valor" id="input-valor" type="number" required />
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
