@@ -43,7 +43,7 @@
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     <label class="col-form-label">Contrato</label>
                                     <div class="form-group">
                                         <input class="form-control" name="contrato" id="input-contrato" type="text" value="{{$contrato->getContrato()}}" required />
@@ -52,7 +52,7 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Valor (R$)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="valor" id="input-valor" type="number" required />
+                                        <input class="form-control" name="valor" id="input-valor" type="number" value="{{$contrato->getValor()}}" required />
                                     </div>
                                 </div>
                             </div>

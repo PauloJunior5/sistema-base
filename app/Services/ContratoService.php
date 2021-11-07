@@ -26,6 +26,7 @@ class ContratoService
             $contrato->setCreated_at($result->created_at ?? null);
             $contrato->setUpdated_at($result->updated_at ?? null);
             $contrato->setContrato($result->contrato);
+            $contrato->setValor($result->valor);
             $clienteFisico = $this->clienteService->buscarEInstanciar($result->id_responsavel);
             $clienteJuridico = $this->clienteService->buscarEInstanciar($result->id_cliente);
             $contrato->setResponsavel($clienteFisico);
@@ -121,6 +122,7 @@ class ContratoService
         $contrato->setUpdated_at($result->updated_at ?? null);
         $contrato->setVigencia($result->vigencia);
         $contrato->setContrato($result->contrato);
+        $contrato->setValor($result->valor);
         $clienteFisico = $this->clienteService->buscarEInstanciar($result->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($result->id_cliente);
         $contrato->setResponsavel($clienteFisico);
