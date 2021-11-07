@@ -8,13 +8,11 @@ class Plano extends Model
 {
     protected $plano;
     protected $valor;
-    protected $condicaoPagamento;
 
     public function __construct()
     {
         $this->plano = '';
         $this->valor = 0;
-        $this->condicaoPagamento = new CondicaoPagamento();
     }
 
     /*
@@ -47,21 +45,5 @@ class Plano extends Model
     public function setValor(string $valor)
     {
         $this->valor = $valor;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Get e Set Condição de Pagamento
-    |--------------------------------------------------------------------------
-    |
-    */
-    public function getCondicaoPagamento(): CondicaoPagamento
-    {
-        return $this->condicaoPagamento;
-    }
-
-    public function setCondicaoPagamento($condicaoPagamento)
-    {
-        $this->condicaoPagamento = $condicaoPagamento;
     }
 }

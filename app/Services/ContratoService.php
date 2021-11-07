@@ -2,10 +2,9 @@
 
 namespace App\Services;
 
-use App\Http\Requests\ContratoRequest;
 use App\Models\Contrato;
+use App\Http\Requests\ContratoRequest;
 use App\Repositories\ContratoRepository;
-use Illuminate\Support\Facades\DB;
 
 class ContratoService
 {
@@ -13,6 +12,7 @@ class ContratoService
     {
         $this->contratoRepository = new ContratoRepository;
         $this->clienteService = new ClienteService;
+        $this->condicaoPagamentoService = new CondicaoPagamentoService;
     }
 
     public function instanciarTodos()
@@ -44,8 +44,10 @@ class ContratoService
         $contrato->setValor($request->valor);
         $clienteFisico = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($request->id_cliente);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
+        $contrato->setCondicaoPagamento($condicaoPagamento);
         $contrato->setCreated_at(now()->toDateTimeString());
         $contrato->setVigencia(now()->addYear()->toDateTimeString());
         $dados = $this->getDados($contrato);
@@ -81,8 +83,10 @@ class ContratoService
         $contrato->setValor($request->valor);
         $clienteFisico = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($request->id_cliente);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
+        $contrato->setCondicaoPagamento($condicaoPagamento);
         $dados = $this->getDados($contrato);
         $contrato = $this->contratoRepository->atualizar($dados);
 
@@ -125,8 +129,10 @@ class ContratoService
         $contrato->setValor($result->valor);
         $clienteFisico = $this->clienteService->buscarEInstanciar($result->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($result->id_cliente);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
+        $contrato->setCondicaoPagamento($condicaoPagamento);
         return $contrato;
     }
 
@@ -138,6 +144,7 @@ class ContratoService
             'valor' => $contrato->getValor(),
             'id_responsavel' => $contrato->getResponsavel()->getId(),
             'id_cliente' => $contrato->getCliente()->getId(),
+            'id_condicao_pagamento' => $plano->getCondicaoPagamento()->getId(),
             'created_at' => $contrato->getCreated_at(),
             'updated_at' => $contrato->getUpdated_at(),
             'vigencia' => $contrato->getVigencia()

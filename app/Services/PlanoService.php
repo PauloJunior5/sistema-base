@@ -38,8 +38,6 @@ class PlanoService
 
         $plano->setPlano($request->plano);
         $plano->setValor($request->valor);
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
-        $plano->setCondicaoPagamento($condicaoPagamento);
         $plano->setCreated_at(now()->toDateTimeString());
         $dados = $this->getDados($plano);
         $idPlano = $this->planoRepository->adicionar($dados);
@@ -70,8 +68,6 @@ class PlanoService
         $plano->setId($result->id);
         $plano->setPlano($result->plano);
         $plano->setValor($result->valor);
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
-        $plano->setCondicaoPagamento($condicaoPagamento);
         $plano->setCreated_at($result->created_at ?? null);
         $plano->setUpdated_at($result->updated_at ?? null);
         return $plano;
@@ -84,8 +80,6 @@ class PlanoService
         $plano->setId($request->id);
         $plano->setPlano($request->plano);
         $plano->setValor($request->valor);
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
-        $plano->setCondicaoPagamento($condicaoPagamento);
         $plano->setCreated_at($request->created_at);
         $plano->setUpdated_at(now()->toDateTimeString());
 
@@ -124,7 +118,6 @@ class PlanoService
             'id' => $plano->getId(),
             'plano' => $plano->getPlano(),
             'valor' => $plano->getValor(),
-            'id_condicao_pagamento' => $plano->getCondicaoPagamento()->getId(),
             'created_at' => $plano->getCreated_at(),
             'updated_at' => $plano->getUpdated_at()
         ];

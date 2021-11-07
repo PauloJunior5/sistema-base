@@ -1,4 +1,5 @@
 <script>
+    var url_atual = '<?php echo URL::to(''); ?>';
     $('.idExame').click(function() {
         $.ajax({
             method: "GET",

@@ -8,6 +8,7 @@ class Contrato extends Model
     protected $valor;
     protected $responsavel;
     protected $cliente;
+    protected $condicaoPagamento;
     protected $vigencia;
 
     function __construct()
@@ -16,6 +17,7 @@ class Contrato extends Model
         $this->valor = 0;
         $this->responsavel = new Cliente;
         $this->cliente = new Cliente;
+        $this->condicaoPagamento = new CondicaoPagamento();
         $this->vigencia = '';
     }
 
@@ -81,6 +83,22 @@ class Contrato extends Model
     public function setCliente(Cliente $cliente)
     {
         $this->cliente = $cliente;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Condição de Pagamento
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getCondicaoPagamento(): CondicaoPagamento
+    {
+        return $this->condicaoPagamento;
+    }
+
+    public function setCondicaoPagamento($condicaoPagamento)
+    {
+        $this->condicaoPagamento = $condicaoPagamento;
     }
 
     /*
