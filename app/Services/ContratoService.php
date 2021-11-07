@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Contrato;
 use App\Http\Requests\ContratoRequest;
 use App\Repositories\ContratoRepository;
+use App\Services\PlanoService;
 
 class ContratoService
 {
@@ -13,6 +14,7 @@ class ContratoService
         $this->contratoRepository = new ContratoRepository;
         $this->clienteService = new ClienteService;
         $this->condicaoPagamentoService = new CondicaoPagamentoService;
+        $this->planoService = new PlanoService;
     }
 
     public function instanciarTodos()
@@ -84,9 +86,11 @@ class ContratoService
         $clienteFisico = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($request->id_cliente);
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
+        $plano = $this->planoService->buscarEInstanciar($request->id_plano);
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
         $contrato->setCondicaoPagamento($condicaoPagamento);
+        $contrato->setPlano($plano);
         $dados = $this->getDados($contrato);
         $contrato = $this->contratoRepository->atualizar($dados);
 
@@ -130,9 +134,11 @@ class ContratoService
         $clienteFisico = $this->clienteService->buscarEInstanciar($result->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($result->id_cliente);
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
+        $plano = $this->planoService->buscarEInstanciar($result->id_plano);
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
         $contrato->setCondicaoPagamento($condicaoPagamento);
+        $contrato->setPlano($plano);
         return $contrato;
     }
 
@@ -145,6 +151,7 @@ class ContratoService
             'id_responsavel' => $contrato->getResponsavel()->getId(),
             'id_cliente' => $contrato->getCliente()->getId(),
             'id_condicao_pagamento' => $contrato->getCondicaoPagamento()->getId(),
+            'id_plano' => $contrato->getPlano()->getId(),
             'created_at' => $contrato->getCreated_at(),
             'updated_at' => $contrato->getUpdated_at(),
             'vigencia' => $contrato->getVigencia()

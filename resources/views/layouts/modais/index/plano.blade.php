@@ -51,7 +51,7 @@
                                         <td>{{ $plano->getCreated_at() }}</td>
                                         <td>{{ $plano->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link idCategoria" value="{{$plano->getId()}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idPlano" value="{{$plano->getId()}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i> Selecionar
                                                 <div class="ripple-container"></div>
                                             </button>

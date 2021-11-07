@@ -114,3 +114,30 @@
         });
     });
 </script>
+
+{{-- PLANOS --}}
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 14)
+    <script>
+        $(function() {
+            $('#planoModal').modal('show');
+        });
+    </script>
+@endif
+
+<script>
+    $('.idPlano').click(function() {
+        var idPlano = $(this).val();
+        $.ajax({
+            method: "GET",
+            url: url_atual + '/plano/' + idPlano,
+            dataType: "JSON",
+            async: false,
+            success: function(response){
+                $('#id-plano-input').val(response.id);
+                $('#plano-input').val(response.plano);
+                $('#planoModal').modal('hide')
+            }
+        });
+    });
+</script>

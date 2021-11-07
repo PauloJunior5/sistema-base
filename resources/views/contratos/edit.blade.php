@@ -90,13 +90,13 @@
                                 <div class="col-sm-1">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" id='id-plano-input' name="id_plano">
+                                        <input class="form-control" id='id-plano-input' name="id_plano" value="{{$contrato->getPlano()->getId()}}">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="col-form-label">Plano @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input class="form-control" id='plano-input' readonly>
+                                        <input class="form-control" id='plano-input' value="{{$contrato->getPlano()->getPlano()}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">

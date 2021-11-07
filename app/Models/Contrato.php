@@ -9,6 +9,7 @@ class Contrato extends Model
     protected $responsavel;
     protected $cliente;
     protected $condicaoPagamento;
+    protected $plano;
     protected $vigencia;
 
     function __construct()
@@ -18,6 +19,7 @@ class Contrato extends Model
         $this->responsavel = new Cliente;
         $this->cliente = new Cliente;
         $this->condicaoPagamento = new CondicaoPagamento();
+        $this->plano = new Plano();
         $this->vigencia = '';
     }
 
@@ -115,5 +117,21 @@ class Contrato extends Model
     public function setVigencia(string $vigencia = null)
     {
         $this->vigencia = $vigencia;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Plano
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getPlano(): Plano
+    {
+        return $this->plano;
+    }
+
+    public function setPlano($plano)
+    {
+        $this->plano = $plano;
     }
 }
