@@ -41,6 +41,12 @@
                                         <input class="form-control" name="plano" value="{{ $plano->getPlano() }}" type="text" required/>
                                     </div>
                                 </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Valor (R$)</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="valor" id="input-valor" type="number" value="{{ $plano->getValor() }}" required />
+                                    </div>
+                                </div>
                             </div>
                             {{-- INICIO CONDICAO PAGAMENTO --}}
                             <div class="row">
