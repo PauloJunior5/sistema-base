@@ -38,6 +38,8 @@ $('.idCondição_pagamento-cliente').click(function() {
             if(window.location.href == url_atual + '{{ "/contrato/create" }}') {
                 $('#id-condicao_pagamento-input-juridico').val(response.id);
                 $('#condicao_pagamento-input-juridico').val(response.condicao_pagamento);
+                $('#id-condicao_pagamento-input-contrato').val(response.id);
+                $('#condicao_pagamento-input-contrato').val(response.condicao_pagamento);
             }
             $('#condicaoPagamentoModal').modal('hide')
         }

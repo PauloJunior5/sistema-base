@@ -66,13 +66,13 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" required>
+                                        <input class="form-control" id='id-condicao_pagamento-input-contrato' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input class="form-control" id='condicao_pagamento-input' value="{{ old('condicao_pagamento') }}" readonly>
+                                        <input class="form-control" id='condicao_pagamento-input-contrato' value="{{ old('condicao_pagamento') }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
