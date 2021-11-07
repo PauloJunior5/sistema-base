@@ -49,13 +49,13 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="col-form-label">Contrato</label>
+                                    <label class="col-form-label">@include('includes.required')Contrato</label>
                                     <div class="form-group">
                                         <input class="form-control" name="contrato" id="input-contrato" type="text" value="{{ old('contrato') }}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Valor (R$)</label>
+                                    <label class="col-form-label">@include('includes.required')Valor (R$)</label>
                                     <div class="form-group">
                                         <input class="form-control" name="valor" id="input-valor" type="number" required />
                                     </div>
@@ -66,7 +66,7 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}">
+                                        <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="col-form-label">Responsável @include('includes.tooltips-campo-consulta')</label>
+                                    <label class="col-form-label">@include('includes.required')Responsável @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-responsavel" readonly />
                                     </div>
@@ -111,7 +111,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="col-form-label">Cliente @include('includes.tooltips-campo-consulta')</label>
+                                    <label class="col-form-label">@include('includes.required')Cliente @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-cliente" readonly />
                                     </div>
