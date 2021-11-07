@@ -7,11 +7,13 @@ use App\Models\Model;
 class Plano extends Model
 {
     protected $plano;
+    protected $valor;
     protected $condicaoPagamento;
 
     public function __construct()
     {
         $this->plano = '';
+        $this->valor = 0;
         $this->condicaoPagamento = new CondicaoPagamento();
     }
 
@@ -29,6 +31,22 @@ class Plano extends Model
     public function setPlano(string $plano)
     {
         $this->plano = $plano;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Valor
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getValor(): string
+    {
+        return $this->valor;
+    }
+
+    public function setValor(string $valor)
+    {
+        $this->valor = $valor;
     }
 
     /*
