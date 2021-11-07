@@ -17,12 +17,8 @@ class CreatePlanos extends Migration
             $table->tinyIncrements('id');
             $table->string('plano');
             $table->double('valor', 8, 2);
-            $table->unsignedTinyInteger('id_condicao_pagamento');
 
             $table->timestamps();
-
-            $table->foreign('id_condicao_pagamento')->references('id')->on('condicao_pagamentos'); 
-
         });
     }
 

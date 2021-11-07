@@ -19,10 +19,12 @@ class CreateContratosTable extends Migration
             $table->double('valor', 8, 2);
             $table->unsignedTinyInteger('id_responsavel');
             $table->unsignedTinyInteger('id_cliente');
+            $table->unsignedTinyInteger('id_condicao_pagamento');
             $table->timestamps();
             $table->timestamp('vigencia');
             $table->foreign('id_responsavel')->references('id')->on('clientes');
             $table->foreign('id_cliente')->references('id')->on('clientes');
+            $table->foreign('id_condicao_pagamento')->references('id')->on('condicao_pagamentos'); 
         });
     }
 
