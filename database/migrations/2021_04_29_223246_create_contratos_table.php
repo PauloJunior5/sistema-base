@@ -16,6 +16,7 @@ class CreateContratosTable extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('contrato');
+            $table->double('valor', 8, 2);
             $table->unsignedTinyInteger('id_responsavel');
             $table->unsignedTinyInteger('id_cliente');
             $table->timestamps();
