@@ -83,7 +83,7 @@ class ContratoService
         $contrato->setValor($request->valor);
         $clienteFisico = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($request->id_cliente);
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
         $contrato->setCondicaoPagamento($condicaoPagamento);
@@ -129,7 +129,7 @@ class ContratoService
         $contrato->setValor($result->valor);
         $clienteFisico = $this->clienteService->buscarEInstanciar($result->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($result->id_cliente);
-        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
+        $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
         $contrato->setCondicaoPagamento($condicaoPagamento);
