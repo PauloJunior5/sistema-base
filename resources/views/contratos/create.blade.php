@@ -43,10 +43,9 @@
                         <div class="card-body ">
                             <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Código</label>
+                                    <label class="col-form-label">Código @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" readonly placeholder="#"/>
-                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -63,17 +62,37 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-3">
+                                {{-- INICIO CONDICAO PAGAMENTO --}}
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Código</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id='condicao_pagamento-input' value="{{ old('condicao_pagamento') }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.2rem;" data-target="#condicaoPagamentoModal">
+                                        <i class="material-icons" style="margin: auto">search</i>
+                                    </button>
+                                </div>
+                                {{-- FIM CONDICAO PAGAMENTO --}}
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2">
                                     <label class="col-form-label">Id do responsável</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-id-responsavel"  name="id_responsavel" type="text" oninput="myFunctionResponsavel(this.value)" value="{{ old('id_responsavel') }}" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="col-form-label">Responsável</label>
+                                    <label class="col-form-label">Responsável @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-responsavel" readonly />
-                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -83,17 +102,16 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <label class="col-form-label">Id do cliente</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-id-cliente"  name="id_cliente" type="text" oninput="myFunctionCliente(this.value)" value="{{ old('id_cliente') }}" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="col-form-label">Cliente</label>
+                                    <label class="col-form-label">Cliente @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-cliente" readonly />
-                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
