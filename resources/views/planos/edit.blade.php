@@ -5,11 +5,7 @@
 
 @include('layouts.modais.chamada-modal.exame')
 @include('layouts.modais.chamada-modal.categoria')
-<style>
-    .swal2-container {
-        z-index: 99999;
-    }
-    </style>
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -39,7 +35,7 @@
                                         <input class="form-control" name="id" value="{{ $plano->getId() }}" readonly/>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <label class="col-form-label">Plano</label>
                                     <div class="form-group">
                                         <input class="form-control" name="plano" value="{{ $plano->getPlano() }}" type="text" required/>

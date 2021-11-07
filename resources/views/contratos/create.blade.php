@@ -13,6 +13,12 @@
 
 @include('layouts.modais.chamada-modal.paciente')
 
+<style>
+    .swal2-container {
+        z-index: 99999;
+    }
+</style>
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">

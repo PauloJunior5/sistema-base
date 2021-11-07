@@ -5,11 +5,6 @@
 
 @include('layouts.modais.chamada-modal.exame')
 @include('layouts.modais.chamada-modal.categoria')
-<style>
-.swal2-container {
-    z-index: 99999;
-}
-</style>
 
 <div class="content">
     <div class="container-fluid">
@@ -40,10 +35,16 @@
                                         <input class="form-control" readonly/>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <label class="col-form-label">Plano</label>
                                     <div class="form-group">
                                         <input class="form-control" name="plano" type="text" required/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Valor (R$)</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="valor" id="input-valor" type="number" required />
                                     </div>
                                 </div>
                             </div>
