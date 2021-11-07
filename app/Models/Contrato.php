@@ -5,6 +5,7 @@ namespace App\Models;
 class Contrato extends Model
 {
     protected $contrato;
+    protected $valor;
     protected $responsavel;
     protected $cliente;
     protected $vigencia;
@@ -12,6 +13,7 @@ class Contrato extends Model
     function __construct()
     {
         $this->contrato = '';
+        $this->valor = 0;
         $this->responsavel = new Cliente;
         $this->cliente = new Cliente;
         $this->vigencia = '';
@@ -31,6 +33,22 @@ class Contrato extends Model
     public function setContrato(string $contrato)
     {
         $this->contrato = $contrato;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Valor
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getValor(): string
+    {
+        return $this->valor;
+    }
+
+    public function setValor(string $valor)
+    {
+        $this->valor = $valor;
     }
 
     /*
