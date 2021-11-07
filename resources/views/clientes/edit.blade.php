@@ -5,6 +5,11 @@
 @include('layouts.modais.chamada-modal.pais')
 @include('layouts.modais.chamada-modal.condicaoPagamento')
 @include('layouts.modais.chamada-modal.formaPagamento')
+<style>
+    .swal2-container {
+        z-index: 99999;
+    }
+    </style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">

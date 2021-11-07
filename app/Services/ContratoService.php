@@ -40,6 +40,7 @@ class ContratoService
     {
         $contrato = new Contrato;
         $contrato->setContrato($request->contrato);
+        $contrato->setValor($request->valor);
         $clienteFisico = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($request->id_cliente);
         $contrato->setResponsavel($clienteFisico);
@@ -76,6 +77,7 @@ class ContratoService
         $contrato->setUpdated_at(now()->toDateTimeString());
         $contrato->setVigencia($request->vigencia);
         $contrato->setContrato($request->contrato);
+        $contrato->setValor($request->valor);
         $clienteFisico = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($request->id_cliente);
         $contrato->setResponsavel($clienteFisico);
@@ -131,6 +133,7 @@ class ContratoService
         $dados = [
             'id' => $contrato->getId(),
             'contrato' => $contrato->getContrato(),
+            'valor' => $contrato->getValor(),
             'id_responsavel' => $contrato->getResponsavel()->getId(),
             'id_cliente' => $contrato->getCliente()->getId(),
             'created_at' => $contrato->getCreated_at(),

@@ -5,6 +5,11 @@
 
 @include('layouts.modais.chamada-modal.exame')
 @include('layouts.modais.chamada-modal.categoria')
+<style>
+    .swal2-container {
+        z-index: 99999;
+    }
+    </style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
