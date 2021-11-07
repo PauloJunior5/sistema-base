@@ -87,7 +87,7 @@
                                 <div class="col-sm-1">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" id='id-plano-input' name="id_plano" required>
+                                        <input class="form-control" id='id-plano-input' name="id_plano">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
