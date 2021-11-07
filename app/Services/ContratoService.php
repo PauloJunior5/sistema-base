@@ -144,7 +144,7 @@ class ContratoService
             'valor' => $contrato->getValor(),
             'id_responsavel' => $contrato->getResponsavel()->getId(),
             'id_cliente' => $contrato->getCliente()->getId(),
-            'id_condicao_pagamento' => $plano->getCondicaoPagamento()->getId(),
+            'id_condicao_pagamento' => $contrato->getCondicaoPagamento()->getId(),
             'created_at' => $contrato->getCreated_at(),
             'updated_at' => $contrato->getUpdated_at(),
             'vigencia' => $contrato->getVigencia()
