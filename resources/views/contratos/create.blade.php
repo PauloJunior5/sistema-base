@@ -63,13 +63,13 @@
                             </div>
                             <div class="row">
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
                                         <input class="form-control" id='id-condicao_pagamento-input-contrato' name="id_condicao_pagamento" value="{{ old('id_condicaoPagamento') }}" required>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id='condicao_pagamento-input-contrato' value="{{ old('condicao_pagamento') }}" readonly>
@@ -83,15 +83,36 @@
                                     </div>
                                 </div>
                                 {{-- FIM CONDICAO PAGAMENTO --}}
+                                {{-- INICIO PLANOS --}}
+                                <div class="col-sm-1">
+                                    <label class="col-form-label">Código</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id='id-plano-input' name="id_plano" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Plano @include('includes.tooltips-campo-consulta')</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id='plano-input' readonly>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.7rem;" data-target="#condicaoPagamentoModal">
+                                            <i class="material-icons" style="margin: auto">search</i>
+                                        </button>
+                                    </div>
+                                </div>
+                                {{-- FIM PLANOS --}}
                             </div>
                             <div class="row">
-                                <div class="col-sm-2">
-                                    <label class="col-form-label">Id do responsável</label>
+                                <div class="col-sm-1">
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-id-responsavel"  name="id_responsavel" type="text" oninput="myFunctionResponsavel(this.value)" value="{{ old('id_responsavel') }}" required/>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label class="col-form-label">@include('includes.required')Responsável @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-responsavel" readonly />
@@ -102,15 +123,13 @@
                                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteFisicoModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <label class="col-form-label">Id do cliente</label>
+                                <div class="col-sm-1">
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-id-cliente"  name="id_cliente" type="text" oninput="myFunctionCliente(this.value)" value="{{ old('id_cliente') }}" required/>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label class="col-form-label">@include('includes.required')Cliente @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-cliente" readonly />

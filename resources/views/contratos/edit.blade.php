@@ -43,13 +43,13 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <label class="col-form-label">Contrato</label>
+                                    <label class="col-form-label">@include('includes.required')Contrato</label>
                                     <div class="form-group">
                                         <input class="form-control" name="contrato" id="input-contrato" type="text" value="{{$contrato->getContrato()}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Valor (R$)</label>
+                                    <label class="col-form-label">@include('includes.required')Valor (R$)</label>
                                     <div class="form-group">
                                         <input class="form-control" name="valor" id="input-valor" type="number" value="{{$contrato->getValor()}}" required />
                                     </div>
@@ -57,16 +57,16 @@
                             </div>
                             <div class="row">
                                 {{-- INICIO CONDICAO PAGAMENTO --}}
-                                <div class="col-sm-2">
+                                <div class="col-sm-1">
                                     <label class="col-form-label">Código</label>
                                     <div class="form-group">
-                                        <input class="form-control" id='id-condicao_pagamento-input' name="id_condicao_pagamento" value="{{$contrato->getCondicaoPagamento()->getId()}}">
+                                        <input class="form-control" id='id-condicao_pagamento-input-contrato' name="id_condicao_pagamento" value="{{$contrato->getCondicaoPagamento()->getId()}}">
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label class="col-form-label">@include('includes.required')Condição de Pagamento @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
-                                        <input class="form-control" id='condicao_pagamento-input' value="{{$contrato->getCondicaoPagamento()->getCondicaoPagamento()}}" readonly>
+                                        <input class="form-control" id='condicao_pagamento-input-contrato' value="{{$contrato->getCondicaoPagamento()->getCondicaoPagamento()}}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -77,16 +77,37 @@
                                     </div>
                                 </div>
                                 {{-- FIM CONDICAO PAGAMENTO --}}
+                                {{-- INICIO PLANOS --}}
+                                <div class="col-sm-1">
+                                    <label class="col-form-label">Código</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id='id-plano-input' name="id_plano" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Plano @include('includes.tooltips-campo-consulta')</label>
+                                    <div class="form-group">
+                                        <input class="form-control" id='plano-input' readonly>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.7rem;" data-target="#condicaoPagamentoModal">
+                                            <i class="material-icons" style="margin: auto">search</i>
+                                        </button>
+                                    </div>
+                                </div>
+                                {{-- FIM PLANOS --}}
                             </div>
                             <div class="row">
-                                <div class="col-sm-2">
-                                    <label class="col-form-label">Id do responsável</label>
+                                <div class="col-sm-1">
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-id-responsavel"  name="id_responsavel" value="{{$contrato->getResponsavel()->getId()}}" type="text" oninput="myFunctionResponsavel(this.value)" required/>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label class="col-form-label">Responsável @include('includes.tooltips-campo-consulta')</label>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">@include('includes.required')Responsável @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-responsavel" value="{{$contrato->getResponsavel()->getCliente()}}" readonly />
                                     </div>
@@ -96,16 +117,14 @@
                                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteFisicoModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <label class="col-form-label">Id do cliente</label>
+                                <div class="col-sm-1">
+                                    <label class="col-form-label">Código</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-id-cliente"  name="id_cliente" value="{{$contrato->getCliente()->getId()}}" type="text" oninput="myFunctionCliente(this.value)" required/>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label class="col-form-label">Cliente @include('includes.tooltips-campo-consulta')</label>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">@include('includes.required')Cliente @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input class="form-control" id="input-cliente" value="{{$contrato->getCliente()->getCliente()}}" readonly />
                                     </div>
