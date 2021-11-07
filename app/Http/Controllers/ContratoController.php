@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ContratoRequest;
 use App\Repositories\ContratoRepository;
 use App\Services\ContratoService;
+use App\Services\PlanoService;
+use App\Services\CategoriaService;
 
 use App\Repositories\PaisRepository;
 use App\Repositories\EstadoRepository;
@@ -13,6 +15,8 @@ use App\Repositories\FormaPagamentoRepository;
 use App\Repositories\CondicaoPagamentoRepository;
 use App\Repositories\ClienteRepository;
 use App\Repositories\PacienteRepository;
+use App\Repositories\ExameRepository;
+use App\Repositories\PlanoRepository;
 
 class ContratoController extends Controller
 {
@@ -20,6 +24,8 @@ class ContratoController extends Controller
     {
         $this->contratoRepository = new ContratoRepository;
         $this->contratoService = new ContratoService;
+        $this->planoService = new PlanoService;
+        $this->categoriaService = new CategoriaService;
 
         $this->paisRepository = new PaisRepository;
         $this->estadoRepository = new EstadoRepository;
@@ -28,6 +34,8 @@ class ContratoController extends Controller
         $this->condicoesPagamentoRepository = new CondicaoPagamentoRepository;
         $this->clienteRepository = new ClienteRepository;
         $this->pacienteRepository = new PacienteRepository;
+        $this->exameRepository = new ExameRepository;
+        $this->planoRepository = new PlanoRepository;
     }
 
     public function index()
@@ -46,7 +54,8 @@ class ContratoController extends Controller
         $pacientes  = $this->pacienteRepository->mostrarTodos();
         $clientesFisicos = $this->clienteRepository->mostrarTodosFisicos();
         $clientesJuridicos = $this->clienteRepository->mostrarTodosJuridicos();
-        return view('contratos.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'pacientes', 'clientesFisicos', 'clientesJuridicos'));
+        return view('contratos.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento',
+        'pacientes', 'clientesFisicos', 'clientesJuridicos'));
     }
 
     public function store(ContratoRequest $request)
@@ -70,13 +79,20 @@ class ContratoController extends Controller
         $pacientesContrato = $this->contratoRepository->mostrarTodosPacientes($id);
         $clientesFisicos = $this->clienteRepository->mostrarTodosFisicos();
         $clientesJuridicos = $this->clienteRepository->mostrarTodosJuridicos();
+
+        $planos = $this->planoService->instanciarTodos();
+        $exames = $this->exameRepository->mostrarTodos();
+        $categorias = $this->categoriaService->instanciarTodos();
+        $examesPlano = $this->planoRepository->mostrarTodosExames($id);
+
         $contrato = $this->contratoService->buscarEInstanciar($id);
-        return view('contratos.edit', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'pacientes', 'pacientesContrato', 'clientesFisicos', 'clientesJuridicos', 'contrato'));
+
+        return view('contratos.edit', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'pacientes',
+        'pacientesContrato', 'clientesFisicos', 'clientesJuridicos', 'planos', 'contrato', 'exames', 'categorias', 'examesPlano'));
     }
 
     public function update(ContratoRequest $request)
     {
-        dd($request->all());
         $contrato = $this->contratoService->instanciarEAtualizar($request);
         if ($contrato) {
             return redirect()->route('contrato.index')->with('Success', 'Contrato alterado com sucesso.');

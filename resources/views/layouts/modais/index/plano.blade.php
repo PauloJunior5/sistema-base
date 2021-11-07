@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Categorias') }}</h4>
-                        <p class="card-category"> {{ __('Aqui você pode gerenciar categorias') }}</p>
+                        <h4 class="card-title ">{{ __('Planos') }}</h4>
+                        <p class="card-category"> {{ __('Aqui você pode gerenciar planos') }}</p>
                     </div>
                     <div class="card-body">
                         @if (session('Success'))
@@ -33,25 +33,25 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#categoriaCreateModal" style="margin-top: 2.7rem;">Novo</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#planoCreateModal" style="margin-top: 2.7rem;">Novo</button>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableCategorias">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePlanos">
                                 <thead class=" text-primary">
-                                    <th>{{ __('Categoria') }}</th>
+                                    <th>{{ __('Plano') }}</th>
                                     <th>{{ __('Data de Criação') }}</th>
                                     <th>{{ __('Data de Alteração') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    @foreach($categorias as $categoria)
+                                    @foreach($planos as $plano)
                                     <tr>
-                                        <td>{{ $categoria->getCategoria() }}</td>
-                                        <td>{{ $categoria->getCreated_at() }}</td>
-                                        <td>{{ $categoria->getUpdated_at() }}</td>
+                                        <td>{{ $plano->getPlano() }}</td>
+                                        <td>{{ $plano->getCreated_at() }}</td>
+                                        <td>{{ $plano->getUpdated_at() }}</td>
                                         <td class="td-actions text-right">
-                                            <button rel="tooltip" class="btn btn-success btn-link idCategoria" value="{{$categoria->getId()}}" data-original-title="" title="">
+                                            <button rel="tooltip" class="btn btn-success btn-link idCategoria" value="{{$plano->getId()}}" data-original-title="" title="">
                                                 <i class="material-icons">check</i> Selecionar
                                                 <div class="ripple-container"></div>
                                             </button>
@@ -67,4 +67,4 @@
         </div>
     </div>
 </div>
-@include('includes.datatables.script-datatables', ['tableId' => '#tableCategorias'])
+@include('includes.datatables.script-datatables', ['tableId' => '#tablePlanos'])

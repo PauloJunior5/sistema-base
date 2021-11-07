@@ -130,6 +130,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('exame/createExame', 'ExameController@createExame')->name('createExame');
     });
 
+    Route::name('plano.')->group(function () {
+        Route::post('plano/createPlano', 'ExameController@createPlano')->name('createPlano');
+    });
+
 });
 
 /*

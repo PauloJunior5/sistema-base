@@ -71,4 +71,16 @@ class PlanoController extends Controller
     {
         $this->planoRepository->remover($id);
     }
+
+
+    public function createPlano(CategoriaRequest $request)
+    {
+        $cidade = $this->planoService->instanciarECriar($request);
+
+        if (!$cidade) {
+            return redirect()->back()->withInput()->send();
+        }
+
+        return redirect()->back()->withInput()->with('error_code', 14)->send();
+    }
 }
