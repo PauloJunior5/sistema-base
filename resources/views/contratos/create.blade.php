@@ -76,9 +76,11 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.2rem;" data-target="#condicaoPagamentoModal">
-                                        <i class="material-icons" style="margin: auto">search</i>
-                                    </button>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.7rem;" data-target="#condicaoPagamentoModal">
+                                            <i class="material-icons" style="margin: auto">search</i>
+                                        </button>
+                                    </div>
                                 </div>
                                 {{-- FIM CONDICAO PAGAMENTO --}}
                             </div>
