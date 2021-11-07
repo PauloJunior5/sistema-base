@@ -149,11 +149,11 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label class="col-form-label">Data de Criação</label>
-                                    <input type="datetime-local" class="form-control" value="{{$paciente->getCreated_at()}}" readonly>
+                                    <input type="datetime" class="form-control" value="{{$paciente->getCreated_at()}}" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label class="col-form-label">Data de Alteração</label>
-                                    <input type="datetime-local" class="form-control" value="{{$paciente->getUpdated_at()}}" readonly>
+                                    <input type="datetime" class="form-control" value="{{$paciente->getUpdated_at()}}" readonly>
                                 </div>
                             </div>
                         </div>

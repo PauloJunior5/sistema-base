@@ -48,7 +48,7 @@ class ClienteService
             $cliente->setNascimento ($result->nascimento);
             $cliente->setObservacao ($result->observacao);
             $cliente->setLimiteCredito ($result->limite_credito);
-            $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->condicao_pagamento);
+            $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
             $cliente->setCondicaoPagamento($condicaoPagamento);
             $cliente->setCreated_at($result->created_at ?? null);
             $cliente->setUpdated_at($result->updated_at ?? null);
@@ -157,7 +157,7 @@ class ClienteService
             $cliente->setNascimento ($result->nascimento);
             $cliente->setObservacao ($result->observacao);
             $cliente->setLimiteCredito ($result->limite_credito);
-            $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->condicao_pagamento);
+            $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($result->id_condicao_pagamento);
             $cliente->setCondicaoPagamento($condicaoPagamento);
             $cliente->setCreated_at($result->created_at ?? null);
             $cliente->setUpdated_at($result->updated_at ?? null);
@@ -206,7 +206,7 @@ class ClienteService
             'cnpj' => $cliente->getCNPJ(),
             'observacao' => $cliente->getObservacao(),
             'limite_credito' => $cliente->getLimiteCredito(),
-            'condicao_pagamento' => $cliente->getCondicaoPagamento()->getId(),
+            'id_condicao_pagamento' => $cliente->getCondicaoPagamento()->getId(),
             'created_at' => $cliente->getCreated_at(),
             'updated_at' => $cliente->getUpdated_at()
         ];

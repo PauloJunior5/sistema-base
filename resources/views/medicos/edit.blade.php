@@ -127,12 +127,12 @@
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Data de Criação</label>
-                                    <input type="datetime-local" class="form-control" value="{{$medico->getCreated_at()}}" readonly>
+                                    <input type="datetime" class="form-control" value="{{$medico->getCreated_at()}}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                                 <div class="col-md-2">
                                     <label>Data de Alteração</label>
-                                    <input type="datetime-local" class="form-control" value="{{$medico->getUpdated_at()}}" readonly>
+                                    <input type="datetime" class="form-control" value="{{$medico->getUpdated_at()}}" readonly>
                                     <p class="read-only">Campo apenas para consulta.</p>
                                 </div>
                             </div>

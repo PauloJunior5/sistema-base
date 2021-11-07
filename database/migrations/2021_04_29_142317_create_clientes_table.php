@@ -41,12 +41,12 @@ class CreateClientesTable extends Migration
 
             $table->string('observacao')->nullable();
             $table->float('limite_credito')->nullable();
-            $table->unsignedTinyInteger('condicao_pagamento')->nullable(); // foreign_key condições de pagamento
+            $table->unsignedTinyInteger('id_condicao_pagamento')->nullable(); // foreign_key condições de pagamento
 
             $table->timestamps();
 
             $table->foreign('id_cidade')->references('id')->on('cidades');
-            $table->foreign('condicao_pagamento')->references('id')->on('condicao_pagamentos');
+            $table->foreign('id_condicao_pagamento')->references('id')->on('condicao_pagamentos');
         });
     }
 
