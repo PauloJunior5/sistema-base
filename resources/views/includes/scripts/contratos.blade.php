@@ -103,9 +103,9 @@
         var id_paciente = $(this).val();
         $.ajax({
             method: "GET",
-            url: url_atual + '/paciente/show',
-            data: { id : id_paciente },
+            url: url_atual + '/paciente/' + id_paciente,
             dataType: "JSON",
+            async: false,
             success: function(response){
                 $('#input-id-paciente').val(response.id);
                 $('#input-paciente').val(response.paciente + ' ' + response.apelido);
