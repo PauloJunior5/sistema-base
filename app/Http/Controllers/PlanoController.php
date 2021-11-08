@@ -73,7 +73,7 @@ class PlanoController extends Controller
     }
 
 
-    public function createPlano(CategoriaRequest $request)
+    public function createPlano(PlanoRequest $request)
     {
         $cidade = $this->planoService->instanciarECriar($request);
 

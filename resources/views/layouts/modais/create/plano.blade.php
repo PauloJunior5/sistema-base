@@ -1,8 +1,5 @@
 @section('content')
 
-@include('layouts.modais.chamada-modal.exame')
-@include('layouts.modais.chamada-modal.categoria')
-
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -65,10 +62,14 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exameModal"><i class="material-icons">search</i></button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exameModal">
+                                                    <i class="material-icons" style="margin: auto">search</i>
+                                                </button>
                                             </div>
                                             <div class="col-md-1">
-                                                <button class="btn btn-primary" type="button" value="Salvar-exame" id="btnSalvarExame"><i class="material-icons">add</i></button>
+                                                <button class="btn btn-primary" type="button" value="Salvar-exame" id="btnSalvarExame">
+                                                    <i class="material-icons" style="margin: auto">add</i>
+                                                </button>
                                             </div>
                                             <input type="hidden" id="exames" name="exames" value="{{ old('exames') }}">
                                         </form>
@@ -78,13 +79,13 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Data de Criação @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input type="datetime" name="created_at" class="form-control" readonly>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <label class="col-form-label">Data de Alteração @include('includes.tooltips-campo-consulta')</label>
                                     <div class="form-group">
                                         <input type="datetime" name="updated_at" class="form-control" readonly>
@@ -102,5 +103,3 @@
         </div>
     </div>
 </div>
-@include('includes.scripts.planos')
-@include('includes.scripts.exameCreate')

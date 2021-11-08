@@ -13,6 +13,8 @@
 
 @include('layouts.modais.chamada-modal.paciente')
 @include('layouts.modais.chamada-modal.plano')
+@include('layouts.modais.chamada-modal.exame')
+@include('layouts.modais.chamada-modal.categoria')
 
 <div class="content">
     <div class="container-fluid">
@@ -218,4 +220,6 @@
 @include('includes.scripts.condicoesPagamento')
 @include('includes.scripts.parcelasCreate')
 @include('includes.scripts.pacientesUpdate')
+@include('includes.scripts.planos')
+@include('includes.scripts.exameCreate')
 @endsection

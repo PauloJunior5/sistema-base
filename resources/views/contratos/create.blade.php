@@ -13,6 +13,8 @@
 
 @include('layouts.modais.chamada-modal.paciente')
 @include('layouts.modais.chamada-modal.plano')
+@include('layouts.modais.chamada-modal.exame')
+@include('layouts.modais.chamada-modal.categoria')
 
 <style>
     .swal2-container {
@@ -223,4 +225,6 @@
 @include('includes.scripts.condicoesPagamento')
 @include('includes.scripts.parcelasCreate')
 @include('includes.scripts.pacientesCreate')
+@include('includes.scripts.planos')
+@include('includes.scripts.exameCreate')
 @endsection
