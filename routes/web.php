@@ -149,7 +149,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resources([
         'condicaoPagamento' => 'CondicaoPagamentoController',
         'formaPagamento' => 'FormaPagamentoController',
-        'contrato' => 'ContratoController'
+        'contrato' => 'ContratoController',
+        'contasReceber' => 'ContasReceberController'
     ]);
 
     Route::name('condicaoPagamento.')->group(function () {

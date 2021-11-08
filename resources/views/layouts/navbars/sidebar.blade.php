@@ -140,14 +140,20 @@
                         </li>
                         <li class="nav-item {{ $activePage == 'condicao-pagamento-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('condicaoPagamento.index') }}">
-                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-mini"> CP </span>
                                 <span class="sidebar-normal">{{ __('Condições de pagamento') }} </span>
                             </a>
                         </li>
                         <li class="nav-item {{ $activePage == 'forma-pagamento-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('formaPagamento.index') }}">
-                                <span class="sidebar-mini"> F </span>
+                                <span class="sidebar-mini"> FP </span>
                                 <span class="sidebar-normal">{{ __('Formas de pagamento') }} </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {{ $activePage == 'contas-receber-management' ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('contasReceber.index') }}">
+                                <span class="sidebar-mini"> CR </span>
+                                <span class="sidebar-normal">{{ __('Contas a Receber') }} </span>
                             </a>
                         </li>
                     <ul class="nav">
