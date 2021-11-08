@@ -79,13 +79,6 @@
                                 </div>
                                 {{-- FIM CONDICAO PAGAMENTO --}}
 
-
-
-
-
-
-
-
                                 {{-- INICIO PLANOS --}}
                                 <div class="col-sm-1">
                                     <label class="col-form-label">Código</label>
@@ -107,16 +100,7 @@
                                     </div>
                                 </div>
                                 {{-- FIM PLANOS --}}
-
-
-
-
-
-
-
-
-
-
+                                
                             </div>
                             <div class="row">
                                 <div class="col-sm-1">

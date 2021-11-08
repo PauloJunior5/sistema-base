@@ -54,8 +54,13 @@ class ContratoController extends Controller
         $pacientes  = $this->pacienteRepository->mostrarTodos();
         $clientesFisicos = $this->clienteRepository->mostrarTodosFisicos();
         $clientesJuridicos = $this->clienteRepository->mostrarTodosJuridicos();
+
+        $planos = $this->planoService->instanciarTodos();
+        $exames = $this->exameRepository->mostrarTodos();
+        $categorias = $this->categoriaService->instanciarTodos();
+
         return view('contratos.create', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento',
-        'pacientes', 'clientesFisicos', 'clientesJuridicos'));
+        'pacientes', 'clientesFisicos', 'clientesJuridicos', 'planos', 'exames', 'categorias'));
     }
 
     public function store(ContratoRequest $request)
@@ -83,12 +88,11 @@ class ContratoController extends Controller
         $planos = $this->planoService->instanciarTodos();
         $exames = $this->exameRepository->mostrarTodos();
         $categorias = $this->categoriaService->instanciarTodos();
-        $examesPlano = $this->planoRepository->mostrarTodosExames($id);
 
         $contrato = $this->contratoService->buscarEInstanciar($id);
 
         return view('contratos.edit', compact('paises', 'estados', 'cidades', 'formasPagamento', 'condicoesPagamento', 'pacientes',
-        'pacientesContrato', 'clientesFisicos', 'clientesJuridicos', 'planos', 'contrato', 'exames', 'categorias', 'examesPlano'));
+        'pacientesContrato', 'clientesFisicos', 'clientesJuridicos', 'planos', 'contrato', 'exames', 'categorias'));
     }
 
     public function update(ContratoRequest $request)

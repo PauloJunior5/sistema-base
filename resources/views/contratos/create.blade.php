@@ -12,6 +12,7 @@
 {{-- fim - includes para clientes --}}
 
 @include('layouts.modais.chamada-modal.paciente')
+@include('layouts.modais.chamada-modal.plano')
 
 <style>
     .swal2-container {
@@ -83,6 +84,7 @@
                                     </div>
                                 </div>
                                 {{-- FIM CONDICAO PAGAMENTO --}}
+
                                 {{-- INICIO PLANOS --}}
                                 <div class="col-sm-1">
                                     <label class="col-form-label">Código</label>
@@ -98,12 +100,13 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.7rem;" data-target="#condicaoPagamentoModal">
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" style="margin-top: 2.7rem;" data-target="#planoModal">
                                             <i class="material-icons" style="margin: auto">search</i>
                                         </button>
                                     </div>
                                 </div>
                                 {{-- FIM PLANOS --}}
+
                             </div>
                             <div class="row">
                                 <div class="col-sm-1">
@@ -120,7 +123,9 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteFisicoModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteFisicoModal" style="margin-top: 2.7rem;">
+                                            <i class="material-icons" style="margin: auto">search</i>
+                                        </button>
                                     </div>
                                 </div>
                                 <div class="col-sm-1">
@@ -137,7 +142,9 @@
                                 </div>
                                 <div class="col-sm-1">
                                     <div class="form-group">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteJuridicoModal" style="margin-top: 2.7rem;"><i class="material-icons">search</i></button>
+                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#clienteJuridicoModal" style="margin-top: 2.7rem;">
+                                            <i class="material-icons" style="margin: auto">search</i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -161,10 +168,14 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-1">
-                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#pacienteModal"><i class="material-icons">search</i></button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#pacienteModal">
+                                                    <i class="material-icons" style="margin: auto">search</i>
+                                                </button>
                                             </div>
                                             <div class="col-md-1">
-                                                <button class="btn btn-primary" type="button" value="Salvar-paciente" id="btnSalvarPaciente"><i class="material-icons">add</i></button>
+                                                <button class="btn btn-primary" type="button" value="Salvar-paciente" id="btnSalvarPaciente">
+                                                    <i class="material-icons" style="margin: auto">add</i>
+                                                </button>
                                             </div>
                                             <input type="hidden" id="pacientes" name="pacientes" value="{{ old('pacientes') }}">
                                         </form>

@@ -31,8 +31,10 @@ class ContratoService
             $contrato->setValor($result->valor);
             $clienteFisico = $this->clienteService->buscarEInstanciar($result->id_responsavel);
             $clienteJuridico = $this->clienteService->buscarEInstanciar($result->id_cliente);
+            $plano = $this->planoService->buscarEInstanciar($result->id_plano);
             $contrato->setResponsavel($clienteFisico);
             $contrato->setCliente($clienteJuridico);
+            $contrato->setPlano($plano);
             $contratos->push($contrato);
         }
 
@@ -47,9 +49,11 @@ class ContratoService
         $clienteFisico = $this->clienteService->buscarEInstanciar($request->id_responsavel);
         $clienteJuridico = $this->clienteService->buscarEInstanciar($request->id_cliente);
         $condicaoPagamento = $this->condicaoPagamentoService->buscarEInstanciar($request->id_condicao_pagamento);
+        $plano = $this->planoService->buscarEInstanciar($request->id_plano);
         $contrato->setResponsavel($clienteFisico);
         $contrato->setCliente($clienteJuridico);
         $contrato->setCondicaoPagamento($condicaoPagamento);
+        $contrato->setPlano($plano);
         $contrato->setCreated_at(now()->toDateTimeString());
         $contrato->setVigencia(now()->addYear()->toDateTimeString());
         $dados = $this->getDados($contrato);
