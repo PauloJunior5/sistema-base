@@ -41,7 +41,9 @@
                                     <input type="hidden" id="input-id-categoria" name="id_categoria">
                                 </div>
                                 <div class="col-md-1 mt-auto">
-                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#categoriaModal"><i class="material-icons">search</i></button>
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"  data-target="#categoriaModal">
+                                        <i class="material-icons" style="margin: auto">search</i>
+                                    </button>
                                 </div>
                             </div>
                             <div class="row new-row">

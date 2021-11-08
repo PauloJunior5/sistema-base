@@ -1,20 +1,23 @@
 @extends('layouts.app', ['activePage' => 'contrato-management', 'titlePage' => __('Contrato Management')])
 @section('content')
-@include('layouts.modais.chamada-modal.clienteFisico')
-@include('layouts.modais.chamada-modal.clienteJuridico')
 
-{{-- inicio - includes para clientes --}}
 @include('layouts.modais.chamada-modal.cidade')
 @include('layouts.modais.chamada-modal.estado')
 @include('layouts.modais.chamada-modal.pais')
-@include('layouts.modais.chamada-modal.condicaoPagamento')
-@include('layouts.modais.chamada-modal.formaPagamento')
-{{-- fim - includes para clientes --}}
-
 @include('layouts.modais.chamada-modal.paciente')
 @include('layouts.modais.chamada-modal.plano')
 @include('layouts.modais.chamada-modal.exame')
 @include('layouts.modais.chamada-modal.categoria')
+@include('layouts.modais.chamada-modal.clienteFisico')
+@include('layouts.modais.chamada-modal.clienteJuridico')
+@include('layouts.modais.chamada-modal.condicaoPagamento')
+@include('layouts.modais.chamada-modal.formaPagamento')
+
+<style>
+    .swal2-container {
+        z-index: 99999;
+    }
+</style>
 
 <div class="content">
     <div class="container-fluid">

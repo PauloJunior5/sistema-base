@@ -37,7 +37,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table" id="tableClientesJuridicos">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableClientesJuridicos">
                                 <thead class=" text-primary">
                                     <th>{{ __('CNPJ') }}</th>
                                     <th>{{ __('Cliente') }}</th>
