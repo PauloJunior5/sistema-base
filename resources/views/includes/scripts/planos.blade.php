@@ -18,6 +18,9 @@
 @if(!empty(Session::get('error_code')) && Session::get('error_code') == 11)
     <script>
         $(function() {
+            $('#planoCreateModal').modal('show');
+        });
+        $(function() {
             $('#exameModal').modal('show');
         });
     </script>
