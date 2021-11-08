@@ -1,9 +1,6 @@
 @extends('layouts.app', ['activePage' => 'contrato-management', 'titlePage' => __('Contrato Management')])
 @section('content')
 
-@include('layouts.modais.chamada-modal.cidade')
-@include('layouts.modais.chamada-modal.estado')
-@include('layouts.modais.chamada-modal.pais')
 @include('layouts.modais.chamada-modal.plano')
 @include('layouts.modais.chamada-modal.exame')
 @include('layouts.modais.chamada-modal.categoria')
@@ -12,6 +9,9 @@
 @include('layouts.modais.chamada-modal.condicaoPagamento')
 @include('layouts.modais.chamada-modal.formaPagamento')
 @include('layouts.modais.chamada-modal.paciente')
+@include('layouts.modais.chamada-modal.cidade')
+@include('layouts.modais.chamada-modal.estado')
+@include('layouts.modais.chamada-modal.pais')
 
 <style>
     .swal2-container {
