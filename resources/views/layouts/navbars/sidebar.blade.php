@@ -130,7 +130,8 @@
                     </p>
                 </a>
                 <div class="collapse {{ ($activePage == 'contrato-management' || $activePage == 'condicao-pagamento-management' ||
-                                        $activePage == 'forma-pagamento-management') ? ' show' : '' }}" id="contratos">
+                                        $activePage == 'forma-pagamento-management') || $activePage == 'forma-pagamento-management'
+                                        ? ' show' : '' }}" id="contratos">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'contrato-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('contrato.index') }}">
@@ -153,7 +154,7 @@
                         <li class="nav-item {{ $activePage == 'contas-receber-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('contasReceber.index') }}">
                                 <span class="sidebar-mini"> CR </span>
-                                <span class="sidebar-normal">{{ __('Contas a Receber') }} </span>
+                                <span class="sidebar-normal">{{ __('Contas à Receber') }} </span>
                             </a>
                         </li>
                     <ul class="nav">

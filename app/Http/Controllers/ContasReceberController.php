@@ -10,6 +10,7 @@ class ContasReceberController extends Controller
 
     public function index()
     {
+        return view('contasReceber.index');
     }
 
     public function create()
