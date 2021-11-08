@@ -170,6 +170,7 @@
                 "    <tr>"+
                 "    <th scope='col'>#</th>"+
                 "    <th scope='col'>Exame</th>"+
+                "    <th scope='col'>Valor</th>"+
                 "    <th scope='col'>Ações</th>"+
                 "   </tr>"+
                 "</thead>"+
@@ -185,6 +186,7 @@
                 $("#planos-exames-table tbody").append("<tr>");
                 $("#planos-exames-table tbody").append("<td>"+n+"</td>");
                 $("#planos-exames-table tbody").append("<td>"+cli.exame+"</td>");
+                $("#planos-exames-table tbody").append("<td>"+cli.valor+"</td>");
                 $("#planos-exames-table tbody").append("<td><a class='btn btn-sm btn-danger btnExcluir' alt='"+i+"'>Excluir</a></td>");
                 $("#planos-exames-table tbody").append("</tr>");
             }
