@@ -41,7 +41,11 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableContasReceber">
                                 <thead class=" text-primary">
+                                    <th>{{ __('Parcela') }}</th>
                                     <th>{{ __('Contrato') }}</th>
+                                    <th>{{ __('Multa') }}</th>
+                                    <th>{{ __('Juros') }}</th>
+                                    <th>{{ __('Desconto') }}</th>
                                     <th>{{ __('Dt Emissão') }}</th>
                                     <th>{{ __('Dt Vencimento') }}</th>
                                     <th>{{ __('Cliente') }}</th>
