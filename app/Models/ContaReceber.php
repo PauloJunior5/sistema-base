@@ -6,44 +6,188 @@ use App\Models\Model;
 
 class ContaReceber extends Model
 {
-    protected $pais;
-    protected $sigla;
+    protected $parcela;
+    protected $valor;
+    protected $multa;
+    protected $juro;
+    protected $desconto;
+    protected $contrato;
+    protected $cliente;
+    protected $formaPagamento;
+    protected $dataEmissao;
+    protected $dataVencimento;
 
     public function __construct()
     {
-        $this->pais = '';
-        $this->sigla = '';
+        $this->parcela = 0;
+        $this->valor = 0;
+        $this->multa = 0;
+        $this->juro = 0;
+        $this->desconto = 0;
+        $this->contrato = new Contrato();
+        $this->cliente = new Cliente();
+        $this->formaPagamento = new FormaPagamento();
+        $this->dataEmissao = '';
+        $this->dataVencimento = '';
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Get e Set País
+    | Get e Set Parcela
     |--------------------------------------------------------------------------
     |
     */
-    public function getPais(): string
+    public function getParcela(): int
     {
-        return $this->pais;
+        return $this->parcela;
     }
 
-    public function setPais(string $pais)
+    public function setParcela(int $parcela)
     {
-        $this->pais = $pais;
+        $this->parcela = $parcela;
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Get e Set Sigla
+    | Get e Set Valor
     |--------------------------------------------------------------------------
     |
     */
-    public function getSigla(): string
+    public function getValor(): string
     {
-        return $this->sigla;
+        return $this->valor;
     }
 
-    public function setSigla(string $sigla)
+    public function setValor(string $valor)
     {
-        $this->sigla = $sigla;
+        $this->valor = $valor;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Multa
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getMulta(): float
+    {
+        return $this->multa;
+    }
+
+    public function setMulta(string $multa)
+    {
+        $this->multa = $multa;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Juro
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getJuro(): float
+    {
+        return $this->juro;
+    }
+
+    public function setJuro(float $juro)
+    {
+        $this->juro = $juro;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Desconto
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getDesconto(): float
+    {
+        return $this->desconto;
+    }
+
+    public function setDesconto(float $desconto)
+    {
+        $this->desconto = $desconto;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Contrato
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getContrato(): Contrato
+    {
+        return $this->contrato;
+    }
+
+    public function setContrato(Contrato $contrato)
+    {
+        $this->contrato = $contrato;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Cliente
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getCliente(): Cliente
+    {
+        return $this->cliente;
+    }
+
+    public function setCliente(Cliente $cliente)
+    {
+        $this->cliente = $cliente;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Forma de Pagamento
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getFormaPagamento(): FormaPagamento
+    {
+        return $this->formaPagamento;
+    }
+
+    public function setFormaPagamento(FormaPagamento $formaPagamento)
+    {
+        $this->formaPagamento = $formaPagamento;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Data de Emissão
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getDataEmissao()
+    {
+        return $this->dataEmissao;
+    }
+
+    public function setDataEmissao(string $dataEmissao = null)
+    {
+        $this->dataEmissao = $dataEmissao;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Data de Vencimento
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getDataVencimento()
+    {
+        return $this->dataVencimento;
+    }
+
+    public function setDataVencimento(string $dataVencimento = null)
+    {
+        $this->dataVencimento = $dataVencimento;
     }
 }
