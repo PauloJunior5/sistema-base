@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tablePaises">
+                            <table class="table table-striped table-no-bordered table-hover dataTable dtr-inline" id="tableContasReceber">
                                 <thead class=" text-primary">
                                     <th>{{ __('Contrato') }}</th>
                                     <th>{{ __('Dt Emissão') }}</th>
@@ -81,5 +81,5 @@
         </div>
     </div>
 </div>
-@include('includes.datatables.script-datatables', ['tableId' => '#tablePaises'])
+@include('includes.datatables.script-datatables', ['tableId' => '#tableContasReceber'])
 @endsection
