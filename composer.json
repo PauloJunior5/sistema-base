@@ -14,7 +14,8 @@
         "laravel-frontend-presets/material-dashboard": "^1.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
-        "laravelcollective/html": "^6.0"
+        "laravelcollective/html": "^6.0",
+        "yajra/laravel-datatables-editor": "^1.25"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

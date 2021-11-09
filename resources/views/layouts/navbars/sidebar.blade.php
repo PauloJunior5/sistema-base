@@ -130,7 +130,7 @@
                     </p>
                 </a>
                 <div class="collapse {{ ($activePage == 'contrato-management' || $activePage == 'condicao-pagamento-management' ||
-                                        $activePage == 'forma-pagamento-management') || $activePage == 'forma-pagamento-management'
+                                        $activePage == 'forma-pagamento-management') || $activePage == 'contas-receber-management'
                                         ? ' show' : '' }}" id="contratos">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'contrato-management' ? ' active' : '' }}">

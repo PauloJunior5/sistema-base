@@ -19,9 +19,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('material') }}/node_modules/datatables.net-dt/css/jquery.dataTables.css">
     <script src="{{ asset('material') }}/node_modules/jquery/dist/jquery.js"></script>
     <script src="{{ asset('material') }}/node_modules/datatables.net/js/jquery.dataTables.js"></script>
-
-
-
 </head>
 
 <body class="{{ $class ?? '' }}">
@@ -81,5 +78,4 @@
     {{-- <script src="{{ asset('material') }}/js/settings.js"></script> --}}
     @stack('js')
 </body>
-
 </html>
