@@ -150,7 +150,7 @@ Route::group(['middleware' => 'auth'], function () {
         'condicaoPagamento' => 'CondicaoPagamentoController',
         'formaPagamento' => 'FormaPagamentoController',
         'contrato' => 'ContratoController',
-        'contasReceber' => 'ContasReceberController'
+        'contaReceber' => 'ContaReceberController'
     ]);
 
     Route::name('condicaoPagamento.')->group(function () {

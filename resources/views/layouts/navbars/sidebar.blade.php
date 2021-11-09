@@ -152,7 +152,7 @@
                             </a>
                         </li>
                         <li class="nav-item {{ $activePage == 'contas-receber-management' ? ' active' : '' }}">
-                            <a class="nav-link" href="{{ route('contasReceber.index') }}">
+                            <a class="nav-link" href="{{ route('contaReceber.index') }}">
                                 <span class="sidebar-mini"> CR </span>
                                 <span class="sidebar-normal">{{ __('Contas a Receber') }} </span>
                             </a>
