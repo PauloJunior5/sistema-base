@@ -37,6 +37,8 @@ class ContaReceberService
             $contaReceber->setMulta($result->multa);
             $contaReceber->setJuro($result->juro);
             $contaReceber->setDesconto($result->desconto);
+            $contaReceber->setStatus($result->status);
+
             $contaReceber->setDataEmissao($result->data_emissao);
             $contaReceber->setDataVencimento($result->data_vencimento);
 

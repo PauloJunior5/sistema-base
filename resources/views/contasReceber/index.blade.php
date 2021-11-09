@@ -43,14 +43,14 @@
                                 <thead class=" text-primary">
                                     <th>{{ __('Parcela') }}</th>
                                     <th>{{ __('Contrato') }}</th>
+                                    <th>{{ __('Valor') }}</th>
+                                    <th>{{ __('Status') }}</th>
                                     <th>{{ __('Multa') }}</th>
                                     <th>{{ __('Juros') }}</th>
                                     <th>{{ __('Desconto') }}</th>
                                     <th>{{ __('Dt Emissão') }}</th>
                                     <th>{{ __('Dt Vencimento') }}</th>
                                     <th>{{ __('Cliente') }}</th>
-                                    <th>{{ __('Valor') }}</th>
-                                    <th>{{ __('Status') }}</th>
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
@@ -58,18 +58,18 @@
                                     <tr>
                                         <td>{{ $contaReceber->getParcela() }}</td>
                                         <td>{{ $contaReceber->getContrato()->getContrato() }}</td>
+                                        <td>{{ "R$" . $contaReceber->getValor() }}</td>
+                                        @if($contaReceber->getStatus() == 0)
+                                            <td>{{ "Pendente" }}</td>
+                                        @else
+                                            <td>{{ "Pago" }}</td>
+                                        @endif
                                         <td>{{ $contaReceber->getMulta() }}</td>
                                         <td>{{ $contaReceber->getJuro() }}</td>
                                         <td>{{ $contaReceber->getDesconto() }}</td>
                                         <td>{{ $contaReceber->getDataEmissao() }}</td>
                                         <td>{{ $contaReceber->getDataVencimento() }}</td>
                                         <td>{{ $contaReceber->getCliente()->getCliente() }}</td>
-                                        <td>{{ $contaReceber->getValor() }}</td>
-                                        @if($contaReceber->getStatus() == 0)
-                                            <td>{{ "Pendente" }}</td>
-                                        @else
-                                            <td>{{ "Pago" }}</td>
-                                        @endif
                                         <td class="td-actions text-right">
                                             <form action="{{ route('contaReceber.destroy', $contaReceber->getId()) }}" method="post">
                                                 @csrf
