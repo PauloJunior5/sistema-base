@@ -17,7 +17,7 @@ class ContaReceberController extends Controller
     public function index()
     {
         $contasReceber = $this->contaReceberService->instanciarTodos();
-        return view('contasReceber.index');
+        return view('contasReceber.index', compact('contasReceber'));
     }
 
     public function create()

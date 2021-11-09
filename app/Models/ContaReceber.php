@@ -11,6 +11,7 @@ class ContaReceber extends Model
     protected $multa;
     protected $juro;
     protected $desconto;
+    protected $status;
     protected $contrato;
     protected $cliente;
     protected $formaPagamento;
@@ -24,6 +25,7 @@ class ContaReceber extends Model
         $this->multa = 0;
         $this->juro = 0;
         $this->desconto = 0;
+        $this->status = 0;
         $this->contrato = new Contrato();
         $this->cliente = new Cliente();
         $this->formaPagamento = new FormaPagamento();
@@ -93,6 +95,22 @@ class ContaReceber extends Model
     public function setJuro(float $juro)
     {
         $this->juro = $juro;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Desconto
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status)
+    {
+        $this->status = $status;
     }
 
     /*

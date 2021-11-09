@@ -35,7 +35,7 @@
                         @endif
                         <div class="row">
                             <div class="col-12 text-right">
-                                <a href="{{ route('pais.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
+                                <a href="{{ route('contaReceber.create') }}" class="btn btn-primary">{{ __('Novo') }}</a>
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -54,17 +54,27 @@
                                     <th class="text-right sorting_asc_disabled sorting_desc_disabled">{{ __('Ações') }}</th>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach($paises as $pais)
+                                    @foreach($contasReceber as $contaReceber)
                                     <tr>
-                                        <td>{{ $pais->getSigla() }}</td>
-                                        <td>{{ $pais->getPais() }}</td>
-                                        <td>{{ $pais->getCreated_at() }}</td>
-                                        <td>{{ $pais->getUpdated_at() }}</td>
+                                        <td>{{ $contaReceber->getParcela() }}</td>
+                                        <td>{{ $contaReceber->getContrato()->getContrato() }}</td>
+                                        <td>{{ $contaReceber->getMulta() }}</td>
+                                        <td>{{ $contaReceber->getJuro() }}</td>
+                                        <td>{{ $contaReceber->getDesconto() }}</td>
+                                        <td>{{ $contaReceber->getDataEmissao() }}</td>
+                                        <td>{{ $contaReceber->getDataVencimento() }}</td>
+                                        <td>{{ $contaReceber->getCliente()->getCliente() }}</td>
+                                        <td>{{ $contaReceber->getValor() }}</td>
+                                        @if($contaReceber->getStatus() == 0)
+                                            <td>{{ "Pendente" }}</td>
+                                        @else
+                                            <td>{{ "Pago" }}</td>
+                                        @endif
                                         <td class="td-actions text-right">
-                                            <form action="{{ route('pais.destroy', $pais->getId()) }}" method="post">
+                                            <form action="{{ route('contaReceber.destroy', $contaReceber->getId()) }}" method="post">
                                                 @csrf
                                                 @method('delete')
-                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('pais.edit', $pais->getId()) }}" data-original-title="" title="">
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('contaReceber.edit', $contaReceber->getId()) }}" data-original-title="" title="">
                                                     <i class="material-icons">edit</i>
                                                     <div class="ripple-container"></div>
                                                 </a>
@@ -75,7 +85,7 @@
                                             </form>
                                         </td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

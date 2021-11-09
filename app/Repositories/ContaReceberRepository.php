@@ -9,7 +9,7 @@ class ContaReceberRepository
 {
     public function mostrarTodos()
     {
-        $contasReceber = DB::table('contasReceber')->get();
+        $contasReceber = DB::table('contas_receber')->get();
         return $contasReceber;
     }
 
