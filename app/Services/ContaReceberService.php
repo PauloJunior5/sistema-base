@@ -78,7 +78,13 @@ class ContaReceberService
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    private function getDados(ContaReceber $pais)
+    private function getDados(ContaReceber $contaReceber)
     {
+    }
+
+    public function createByEvent($contaReceber)
+    {
+        dd($contaReceber);
+        // $this->contaReceberRepository->adicionar();
     }
 }
