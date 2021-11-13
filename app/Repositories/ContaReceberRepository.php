@@ -15,7 +15,16 @@ class ContaReceberRepository
 
     public function adicionar($dados)
     {
-        dd($dados);
+        $result = null;
+        DB::beginTransaction();
+        try {
+            $result = DB::table('contas_receber')->insert($dados);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel criar contas a receber: ' . $th);
+        }
+        return $result;
     }
 
     public function findById($id)

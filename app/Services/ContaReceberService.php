@@ -13,6 +13,7 @@ use App\Repositories\ParcelaRepository;
 use App\Services\ContratoService;
 use App\Services\ClienteService;
 use App\Services\FormaPagamentoService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
 class ContaReceberService
@@ -86,54 +87,64 @@ class ContaReceberService
      */
     private function getDados(ContaReceber $contaReceber)
     {
-        $dados = [
-            'id' => $event->getId(),
-            'contrato' => $event->getContrato(),
-            'valor' => $event->getValor(),
-            'id_responsavel' => $event->getResponsavel()->getId(),
-            'id_cliente' => $event->getCliente()->getId(),
-            'id_condicao_pagamento' => $event->getCondicaoPagamento()->getId(),
-            'id_plano' => $event->getPlano()->getId(),
-            'created_at' => $event->getCreated_at(),
-            'updated_at' => $event->getUpdated_at(),
-            'vigencia' => $event->getVigencia()
+        $dado = [
+            'id' => $contaReceber->getId(),
+            'parcela' => $contaReceber->getParcela(),
+            'valor' => $contaReceber->getValor(),
+            'multa' => $contaReceber->getMulta(),
+            'juro' => $contaReceber->getJuro(),
+            'desconto' => $contaReceber->getDesconto(),
+            'status' => $contaReceber->getStatus(),
+            'id_contrato' => $contaReceber->getContrato()->getId(),
+            'id_cliente' => $contaReceber->getCliente()->getId(),
+            'id_forma_pagamento' => $contaReceber->getFormaPagamento()->getId(),
+
+            'data_emissao' => $contaReceber->getDataEmissao(),
+            'data_vencimento' => $contaReceber->getDataVencimento(),
+
+            'created_at' => $contaReceber->getCreated_at(),
+            'updated_at' => $contaReceber->getUpdated_at()
         ];
 
-        // $dados = [];
-
-        return $dados;
+        return $dado;
     }
 
     public function createByEvent(EventCreatedContasReceber $event)
     {
-        $contaReceber = new ContaReceber();
+        $contasReceber = collect();
         $contrato = $event->contrato;
         $parcelas = $this->parcelaRepository->findById($contrato->getCondicaoPagamento()->getId());
         $parcelas = json_decode($parcelas);
+        $dados = [];
 
         foreach ($parcelas as $parcela) {
-            Log::debug(json_encode($parcela));
-            $contaReceber->setParcela($result->parcela);
-            $contaReceber->setValor($result->valor);
-            $contaReceber->setMulta($result->multa);
-            $contaReceber->setJuro($result->juro);
-            $contaReceber->setDesconto($result->desconto);
-            $contaReceber->setStatus($result->status);
+            $contaReceber = new ContaReceber();
+            $contaReceber->setParcela($parcela->parcela);
+            $contaReceber->setValor((float) 1);
+            $contaReceber->setMulta($contrato->getCondicaoPagamento()->getMulta());
+            $contaReceber->setJuro((float) $contrato->getCondicaoPagamento()->getJuro());
+            $contaReceber->setDesconto((float) $contrato->getCondicaoPagamento()->getDesconto());
+            $contaReceber->setStatus(1);
 
-            $contaReceber->setDataEmissao($result->data_emissao);
-            $contaReceber->setDataVencimento($result->data_vencimento);
+            $contaReceber->setDataEmissao($contrato->getCondicaoPagamento()->getCreated_at());
 
-            $contrato = $this->contratoService->buscarEInstanciar($result->id_contrato);
+            $vencimento = Carbon::parse($contrato->getCondicaoPagamento()->getCreated_at())->addDays($parcela->dias);
+            $contaReceber->setDataVencimento($vencimento);
+
+            $contrato = $this->contratoService->buscarEInstanciar($contrato->getId());
             $contaReceber->setContrato($contrato);
-            $cliente = $this->clienteService->buscarEInstanciar($result->id_cliente);
+            $cliente = $this->clienteService->buscarEInstanciar($contrato->getCliente()->getId());
             $contaReceber->setCliente($cliente);
+            $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($parcela->id_forma_pagamento);
+            $contaReceber->setFormaPagamento($formaPagamento);
 
-            $contaReceber->setCreated_at($result->created_at ?? null);
-            $contaReceber->setUpdated_at($result->updated_at ?? null);
+            $contaReceber->setCreated_at(now()->toDateTimeString());
+
+            $contasReceber->push($contaReceber);
+            $dado = $this->getDados($contaReceber);
+            array_push($dados, $dado);
         }
         
-
-        $dados = $this->getDados($contaReceber);
         $this->contaReceberRepository->adicionar($dados);
     }
 }
