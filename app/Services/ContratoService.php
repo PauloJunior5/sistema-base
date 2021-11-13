@@ -5,14 +5,20 @@ namespace App\Services;
 use App\Events\EventCreatedContasReceber;
 use App\Models\Contrato;
 use App\Http\Requests\ContratoRequest;
+
 use App\Repositories\ContratoRepository;
+use App\Repositories\ContaReceberRepository;
+
 use App\Services\PlanoService;
+use Illuminate\Support\Facades\Log;
 
 class ContratoService
 {
     public function __construct()
     {
         $this->contratoRepository = new ContratoRepository;
+        $this->contaReceberRepository = new ContaReceberRepository;
+
         $this->clienteService = new ClienteService;
         $this->condicaoPagamentoService = new CondicaoPagamentoService;
         $this->planoService = new PlanoService;
@@ -166,4 +172,21 @@ class ContratoService
         ];
         return $dados;
     }
+
+    public function delete($id)
+    {
+        $contasReceber = $this->contaReceberRepository->mostrarTodosContrato($id);
+
+        foreach ($contasReceber as $key => $value) {
+            if ($value->status == 0) {
+                Log::debug('Warning - Não foi possivel excluir contas a receber - Verifique as pendências');
+                return false;
+            }
+        }
+
+        $this->contaReceberRepository->remover($id);
+        $contrato = $this->contratoRepository->remover($id);
+        return $contrato;
+    }
+    
 }

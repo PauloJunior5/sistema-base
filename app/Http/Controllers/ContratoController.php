@@ -107,11 +107,11 @@ class ContratoController extends Controller
 
     public function destroy(int $id)
     {
-        $contrato = $this->contratoRepository->remover($id);
+        $contrato = $this->contratoService->delete($id);
         if ($contrato) {
             return redirect()->route('contrato.index')->with('Success', 'Contrato excluído com sucesso.');
         } else {
-            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel excluir contrato');
+            return redirect()->route('contrato.index')->with('Warning', 'Não foi possivel excluir contrato (Verifique as pendências)');
         }
     }
 }

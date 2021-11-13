@@ -13,6 +13,12 @@ class ContaReceberRepository
         return $contasReceber;
     }
 
+    public function mostrarTodosContrato($idContrato)
+    {
+        $contasReceberContrato = DB::table('contas_receber')->where('id_contrato', $idContrato)->get();
+        return $contasReceberContrato;
+    }
+
     public function adicionar($dados)
     {
         $result = null;
@@ -27,15 +33,21 @@ class ContaReceberRepository
         return $result;
     }
 
-    public function findById($id)
-    {
-    }
-
     public function atualizar($dados)
     {
     }
 
     public function remover($id)
     {
+        $result = null;
+        DB::beginTransaction();
+        try {
+            DB::table('contas_receber')->where('id_contrato', $id)->delete();
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel excluir contas a receber - Verifique as pendências: ' . $th);
+        }
+        return $result;
     }
 }

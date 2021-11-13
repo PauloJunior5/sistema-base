@@ -124,7 +124,7 @@ class ContaReceberService
             $contaReceber->setMulta($contrato->getCondicaoPagamento()->getMulta());
             $contaReceber->setJuro((float) $contrato->getCondicaoPagamento()->getJuro());
             $contaReceber->setDesconto((float) $contrato->getCondicaoPagamento()->getDesconto());
-            $contaReceber->setStatus(1);
+            $contaReceber->setStatus(0);
 
             $contaReceber->setDataEmissao($contrato->getCondicaoPagamento()->getCreated_at());
 
