@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\EventCreatedContasReceber;
 use App\Models\Contrato;
 use App\Http\Requests\ContratoRequest;
 use App\Repositories\ContratoRepository;
@@ -58,6 +59,9 @@ class ContratoService
         $contrato->setVigencia(now()->addYear()->toDateTimeString());
         $dados = $this->getDados($contrato);
         $contrato =  $this->contratoRepository->adicionar($dados);
+
+        $contratoObj = $this->buscarEInstanciar($contrato);
+        event(new EventCreatedContasReceber($contratoObj));
 
         $pacientes = json_decode($request->pacientes);
 

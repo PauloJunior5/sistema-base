@@ -22,6 +22,7 @@ class ContaReceberController extends Controller
 
     public function create()
     {
+        return view('contasReceber.create');
     }
 
     public function store(ContaReceberRequest $request)

@@ -18,7 +18,7 @@
                     @method('post')
                     <div class="card ">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title">{{ __('Novo País') }}</h4>
+                            <h4 class="card-title">{{ __('Contas a Receber') }}</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body">
@@ -30,14 +30,34 @@
                                         <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
+                                    <div class="col-sm-2">
+                                        <label class="col-form-label">Parcela</label>
+                                        <div class="form-group">
+                                            <input class="form-control" name="sigla" id="input-name" type="text" required />
+                                        </div>
+                                    </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Contrato</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="pais" id="input-pais" type="text" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Sigla</label>
+                                    <label class="col-form-label">Parcela</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="sigla" id="input-name" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Parcela</label>
                                     <div class="form-group">
                                         <input class="form-control" name="sigla" id="input-name" type="text" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <label class="col-form-label">País</label>
+                                    <label class="col-form-label">Contrato</label>
                                     <div class="form-group">
                                         <input class="form-control" name="pais" id="input-pais" type="text" required />
                                     </div>
