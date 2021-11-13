@@ -7,6 +7,7 @@ use App\Models\Model;
 class ContaReceber extends Model
 {
     protected $parcela;
+    protected $dias;
     protected $valor;
     protected $multa;
     protected $juro;
@@ -21,6 +22,7 @@ class ContaReceber extends Model
     public function __construct()
     {
         $this->parcela = 0;
+        $this->dias = 0;
         $this->valor = 0;
         $this->multa = 0;
         $this->juro = 0;
@@ -47,6 +49,22 @@ class ContaReceber extends Model
     public function setParcela(int $parcela)
     {
         $this->parcela = $parcela;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Parcela
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getDias(): int
+    {
+        return $this->dias;
+    }
+
+    public function setDias(int $dias)
+    {
+        $this->dias = $dias;
     }
 
     /*

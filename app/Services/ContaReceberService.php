@@ -14,7 +14,6 @@ use App\Services\ContratoService;
 use App\Services\ClienteService;
 use App\Services\FormaPagamentoService;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Log;
 
 class ContaReceberService
 {
@@ -38,8 +37,9 @@ class ContaReceberService
             $contaReceber = new ContaReceber();
             
             $contaReceber->setId($result->id);
-            
+
             $contaReceber->setParcela($result->parcela);
+            $contaReceber->setDias($result->dias);
             $contaReceber->setValor($result->valor);
             $contaReceber->setMulta($result->multa);
             $contaReceber->setJuro($result->juro);
@@ -120,6 +120,7 @@ class ContaReceberService
         foreach ($parcelas as $parcela) {
             $contaReceber = new ContaReceber();
             $contaReceber->setParcela($parcela->parcela);
+            $contaReceber->setDias($parcela->dias);
             $contaReceber->setValor((float) 1);
             $contaReceber->setMulta($contrato->getCondicaoPagamento()->getMulta());
             $contaReceber->setJuro((float) $contrato->getCondicaoPagamento()->getJuro());

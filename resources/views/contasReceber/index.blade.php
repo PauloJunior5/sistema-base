@@ -43,6 +43,7 @@
                                 <thead class=" text-primary">
                                     <th>{{ __('Parcela') }}</th>
                                     <th>{{ __('Contrato') }}</th>
+                                    <th>{{ __('Dias') }}</th>
                                     <th>{{ __('Valor') }}</th>
                                     <th>{{ __('Status') }}</th>
                                     <th>{{ __('Multa') }}</th>
@@ -58,6 +59,7 @@
                                     <tr>
                                         <td>{{ $contaReceber->getParcela() }}</td>
                                         <td>{{ $contaReceber->getContrato()->getContrato() }}</td>
+                                        <td>{{ $contaReceber->getDias() }}</td>
                                         <td>{{ "R$" . $contaReceber->getValor() }}</td>
                                         @if($contaReceber->getStatus() == 0)
                                             <td>{{ "Pendente" }}</td>
