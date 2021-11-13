@@ -15,6 +15,7 @@ class ContaReceberRepository
 
     public function adicionar($dados)
     {
+        dd($dados);
     }
 
     public function findById($id)

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\EventCreatedContasReceber;
 use App\Models\ContaReceber;
 use App\Http\Requests\ContaReceberRequest;
 use App\Repositories\ContaReceberRepository;
@@ -78,13 +79,27 @@ class ContaReceberService
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    private function getDados(ContaReceber $contaReceber)
+    private function getDados($event)
     {
+        $dados = [
+            'id' => $event->getId(),
+            'contrato' => $event->getContrato(),
+            'valor' => $event->getValor(),
+            'id_responsavel' => $event->getResponsavel()->getId(),
+            'id_cliente' => $event->getCliente()->getId(),
+            'id_condicao_pagamento' => $event->getCondicaoPagamento()->getId(),
+            'id_plano' => $event->getPlano()->getId(),
+            'created_at' => $event->getCreated_at(),
+            'updated_at' => $event->getUpdated_at(),
+            'vigencia' => $event->getVigencia()
+        ];
+
+        return $dados;
     }
 
-    public function createByEvent($contaReceber)
+    public function createByEvent(EventCreatedContasReceber $event)
     {
-        dd($contaReceber);
-        // $this->contaReceberRepository->adicionar();
+        $dados = $this->getDados($event->contrato);
+        $this->contaReceberRepository->adicionar($dados);
     }
 }
