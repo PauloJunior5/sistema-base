@@ -3,19 +3,24 @@
 namespace App\Services;
 
 use App\Events\EventCreatedContasReceber;
+
 use App\Models\ContaReceber;
+
 use App\Http\Requests\ContaReceberRequest;
 use App\Repositories\ContaReceberRepository;
+use App\Repositories\ParcelaRepository;
 
 use App\Services\ContratoService;
 use App\Services\ClienteService;
 use App\Services\FormaPagamentoService;
+use Illuminate\Support\Facades\Log;
 
 class ContaReceberService
 {
     public function __construct()
     {
         $this->contaReceberRepository = new ContaReceberRepository;
+        $this->parcelaRepository = new ParcelaRepository;
 
         $this->contratoService = new ContratoService;
         $this->clienteService = new ClienteService;
@@ -79,7 +84,7 @@ class ContaReceberService
      *  Retorna array a partir do objeto passado
      * como parametro, para inserir dados no banco.
      */
-    private function getDados($event)
+    private function getDados(ContaReceber $contaReceber)
     {
         $dados = [
             'id' => $event->getId(),
@@ -94,12 +99,41 @@ class ContaReceberService
             'vigencia' => $event->getVigencia()
         ];
 
+        // $dados = [];
+
         return $dados;
     }
 
     public function createByEvent(EventCreatedContasReceber $event)
     {
-        $dados = $this->getDados($event->contrato);
+        $contaReceber = new ContaReceber();
+        $contrato = $event->contrato;
+        $parcelas = $this->parcelaRepository->findById($contrato->getCondicaoPagamento()->getId());
+        $parcelas = json_decode($parcelas);
+
+        foreach ($parcelas as $parcela) {
+            Log::debug(json_encode($parcela));
+            $contaReceber->setParcela($result->parcela);
+            $contaReceber->setValor($result->valor);
+            $contaReceber->setMulta($result->multa);
+            $contaReceber->setJuro($result->juro);
+            $contaReceber->setDesconto($result->desconto);
+            $contaReceber->setStatus($result->status);
+
+            $contaReceber->setDataEmissao($result->data_emissao);
+            $contaReceber->setDataVencimento($result->data_vencimento);
+
+            $contrato = $this->contratoService->buscarEInstanciar($result->id_contrato);
+            $contaReceber->setContrato($contrato);
+            $cliente = $this->clienteService->buscarEInstanciar($result->id_cliente);
+            $contaReceber->setCliente($cliente);
+
+            $contaReceber->setCreated_at($result->created_at ?? null);
+            $contaReceber->setUpdated_at($result->updated_at ?? null);
+        }
+        
+
+        $dados = $this->getDados($contaReceber);
         $this->contaReceberRepository->adicionar($dados);
     }
 }
