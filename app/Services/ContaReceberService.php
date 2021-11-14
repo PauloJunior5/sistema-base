@@ -90,6 +90,7 @@ class ContaReceberService
         $dado = [
             'id' => $contaReceber->getId(),
             'parcela' => $contaReceber->getParcela(),
+            'dias' => $contaReceber->getDias(),
             'valor' => $contaReceber->getValor(),
             'multa' => $contaReceber->getMulta(),
             'juro' => $contaReceber->getJuro(),
@@ -127,9 +128,9 @@ class ContaReceberService
             $contaReceber->setDesconto((float) $contrato->getCondicaoPagamento()->getDesconto());
             $contaReceber->setStatus(0);
 
-            $contaReceber->setDataEmissao($contrato->getCondicaoPagamento()->getCreated_at());
+            $contaReceber->setDataEmissao($contrato->getCreated_at());
 
-            $vencimento = Carbon::parse($contrato->getCondicaoPagamento()->getCreated_at())->addDays($parcela->dias);
+            $vencimento = Carbon::parse($contrato->getCreated_at())->addDays($parcela->dias);
             $contaReceber->setDataVencimento($vencimento);
 
             $contrato = $this->contratoService->buscarEInstanciar($contrato->getId());
@@ -145,7 +146,7 @@ class ContaReceberService
             $dado = $this->getDados($contaReceber);
             array_push($dados, $dado);
         }
-        
+
         $this->contaReceberRepository->adicionar($dados);
     }
 }
