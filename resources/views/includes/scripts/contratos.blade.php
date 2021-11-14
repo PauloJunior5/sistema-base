@@ -40,6 +40,25 @@
         document.getElementById("input-cliente").value = cliente.cliente + " " + cliente.apelido;
     }
     }
+
+    //Função que mostra o paciente conforme é inserido
+    function myFunctionPaciente(id_paciente) {
+    $.ajax({
+        method: "GET",
+        url: url_atual + "/paciente/" + id_paciente,
+        dataType: "JSON",
+        async: false,
+        success: function(response){
+            paciente = response;
+        }
+    });
+
+    if (!id_paciente || jQuery.isEmptyObject(paciente)) {
+        document.getElementById("input-paciente").value = "";
+    } else {
+        document.getElementById("input-paciente").value = paciente.paciente + " " + paciente.apelido;
+    }
+    }
 </script>
 
 {{-- CLIENTES FISICOS --}}

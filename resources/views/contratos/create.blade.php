@@ -157,7 +157,7 @@
                                             <div class="col-sm-2">
                                                 <label class="col-form-label">Id do paciente</label>
                                                 <div class="form-group">
-                                                    <input class="form-control" id="input-id-paciente"  name="" type="text" oninput="myFunction(this.value)"/>
+                                                    <input class="form-control" id="input-id-paciente"  name="" type="text" oninput="myFunctionPaciente(this.value)"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
