@@ -77,11 +77,17 @@
                                         <input type="datetime" value="{{ $contaReceber->getDataVencimento() }}" class="form-control" readonly>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <label class="col-form-label">Data de Alteração</label>
+                                    <div class="form-group">
+                                        <input type="datetime" class="form-control" value="{{$contaReceber->getUpdated_at()}}" readonly>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
-                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                             <button class="btn btn-secondary float-right" data-dismiss="modal">Voltar</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
                         </div>
                     </div>
                 </form>
