@@ -45,12 +45,12 @@ class Contrato extends Model
     |--------------------------------------------------------------------------
     |
     */
-    public function getValor(): string
+    public function getValor(): float
     {
         return $this->valor;
     }
 
-    public function setValor(string $valor)
+    public function setValor(float $valor)
     {
         $this->valor = $valor;
     }

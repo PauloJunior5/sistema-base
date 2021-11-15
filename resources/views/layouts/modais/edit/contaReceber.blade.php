@@ -22,9 +22,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Código de Referência</label>
+                                    <label class="col-form-label">Código da Parcela</label>
                                     <div class="form-group">
-                                        <input class="form-control" readonly />
+                                        <input class="form-control" name="parcela" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">

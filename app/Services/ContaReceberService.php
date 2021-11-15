@@ -14,6 +14,7 @@ use App\Services\ContratoService;
 use App\Services\ClienteService;
 use App\Services\FormaPagamentoService;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ContaReceberService
 {
@@ -25,7 +26,7 @@ class ContaReceberService
         $this->contratoService = new ContratoService;
         $this->clienteService = new ClienteService;
         $this->formaPagamentoService = new FormaPagamentoService;
-        
+
     }
 
     public function instanciarTodos()
@@ -35,7 +36,7 @@ class ContaReceberService
 
         foreach ($results as $result) {
             $contaReceber = new ContaReceber();
-            
+
             $contaReceber->setId($result->id);
 
             $contaReceber->setParcela($result->parcela);
@@ -65,20 +66,70 @@ class ContaReceberService
         return $contasReceber;
     }
 
-    public function instanciarECriar(ContaReceberRequest $request)
+    public function instanciarECriar(Request $request)
     {
     }
 
-    public function instanciarEAtualizar(ContaReceberRequest $request)
+    public function instanciarEAtualizar($id, Request $request)
     {
+        $result = $this->contaReceberRepository->findById($id);
+        $contaReceber = new ContaReceber();
+        $contaReceber->setId($result->id);
+        $contaReceber->setParcela($result->parcela);
+        $contaReceber->setDias($result->dias);
+        $contaReceber->setDataEmissao($result->data_emissao);
+        $contaReceber->setDataVencimento($result->data_vencimento);
+        $contrato = $this->contratoService->buscarEInstanciar($result->id_contrato);
+        $contaReceber->setContrato($contrato);
+        $cliente = $this->clienteService->buscarEInstanciar($result->id_cliente);
+        $contaReceber->setCliente($cliente);
+        $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($result->id_forma_pagamento);
+        $contaReceber->setFormaPagamento($formaPagamento);
+        $contaReceber->setCreated_at($result->created_at ?? null);
+
+        $contaReceber->setValor($request->valor);
+        $contaReceber->setMulta($request->multa);
+        $contaReceber->setJuro($request->juro);
+        $contaReceber->setDesconto($request->desconto);
+        $contaReceber->setStatus($request->status);
+        $contaReceber->setUpdated_at(now()->toDateTimeString());
+        $dados = $this->getDados($contaReceber);
+
+        $contaReceber = $this->contaReceberRepository->atualizar($dados);
+        return $contaReceber;
     }
 
     /**
      *  Retorna objeto a partir do id passado
      * como parametro. Para instanciar o objeto.
      */
-    public function buscarEInstanciar(int $id)
+    public function buscarEInstanciar($id)
     {
+        $result = $this->contaReceberRepository->findById($id);
+        $contaReceber = new ContaReceber;
+        $contaReceber->setId($result->id);
+        $contaReceber->setParcela($result->parcela);
+        $contaReceber->setDias($result->dias);
+        $contaReceber->setValor($result->valor);
+        $contaReceber->setMulta($result->multa);
+        $contaReceber->setJuro($result->juro);
+        $contaReceber->setDesconto($result->desconto);
+        $contaReceber->setStatus($result->status);
+
+        $contaReceber->setDataEmissao($result->data_emissao);
+        $contaReceber->setDataVencimento($result->data_vencimento);
+
+        $contrato = $this->contratoService->buscarEInstanciar($result->id_contrato);
+        $contaReceber->setContrato($contrato);
+        $cliente = $this->clienteService->buscarEInstanciar($result->id_cliente);
+        $contaReceber->setCliente($cliente);
+        $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($result->id_forma_pagamento);
+        $contaReceber->setFormaPagamento($formaPagamento);
+
+        $contaReceber->setCreated_at($result->created_at ?? null);
+        $contaReceber->setUpdated_at($result->updated_at ?? null);
+
+        return $contaReceber;
     }
 
     /**
@@ -122,7 +173,10 @@ class ContaReceberService
             $contaReceber = new ContaReceber();
             $contaReceber->setParcela($parcela->parcela);
             $contaReceber->setDias($parcela->dias);
-            $contaReceber->setValor((float) 1);
+
+            $valorParcela = ($parcela->porcentual / 100) * $contrato->getValor();
+            $contaReceber->setValor($valorParcela);
+
             $contaReceber->setMulta($contrato->getCondicaoPagamento()->getMulta());
             $contaReceber->setJuro((float) $contrato->getCondicaoPagamento()->getJuro());
             $contaReceber->setDesconto((float) $contrato->getCondicaoPagamento()->getDesconto());

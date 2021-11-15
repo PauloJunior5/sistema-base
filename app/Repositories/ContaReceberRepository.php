@@ -33,8 +33,24 @@ class ContaReceberRepository
         return $result;
     }
 
-    public function atualizar($dados)
+    public function findById($id)
     {
+        $contaReceber = DB::table('contas_receber')->where('id', $id)->first();
+        return $contaReceber;
+    }
+
+    public function atualizar($dados)
+    {        
+        $result = null;
+        DB::beginTransaction();
+        try {
+            $result = DB::table('contas_receber')->where('id', $dados['id'])->update($dados);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::debug('Warning - Não foi possivel editar contrato: ' . $th);
+        }
+        return $result;
     }
 
     public function remover($id)
