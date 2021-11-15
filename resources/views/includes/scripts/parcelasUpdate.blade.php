@@ -145,7 +145,7 @@ $(function(){
         $("#id_dias").val(cli.dias);
         $("#id_porcentual").val(cli.porcentual);
         $("#id-forma_pagamento-input").val(cli.forma_pagamento);
-        porcentualReserva = cli.porcentual;
+        porcentualReserva = porcentual;
 
         var id_forma_pagamento = cli.id_forma_pagamento;
         $.ajax({
@@ -156,7 +156,7 @@ $(function(){
             success: function(response){
                 $('#id-forma_pagamento-input').val(response.id);
                 $('#forma_pagamento-input').val(response.forma_pagamento);
-                $('#forma_pagamentoModal').modal('hide')
+                $('#forma_pagamentoModal').modal('hide');
             }
         });
         $("#id_dias").focus();
@@ -175,6 +175,32 @@ $(function(){
             }).catch(swal.noop);
             return;
         };
+
+        $.ajax({
+            method: "GET",
+            url: url_atual + '/formaPagamento/show',
+            data: { id_forma_pagamento : $("#id-forma_pagamento-input").val() },
+            dataType: "JSON",
+            async: false,
+            success: function(response){
+                formaPagamento = response;
+            },
+            error: function(response){
+                formaPagamento = response;
+            }
+        });
+
+        if (jQuery.isEmptyObject(formaPagamento)) {
+            swal({
+                title:"Forma de pagamento inserida, não existe!",
+                text:"{{Session::get('fail')}}",
+                timer:5000,
+                type:"error"
+            }).then((value) => {
+                //location.reload();
+            }).catch(swal.noop);
+            return;
+        }
 
         var parcelaPorcentual = parseFloat($("#id_porcentual").val());
         porcentualReserva = porcentual - parcelas[indice_selecionado].porcentual;
@@ -224,7 +250,7 @@ $(function(){
 
         parcelas[indice_selecionado].dias = $("#id_dias").val();
         parcelas[indice_selecionado].porcentual = $("#id_porcentual").val();
-        parcelas[indice_selecionado].forma_pagamento = $("#id-forma_pagamento-input").val();
+        parcelas[indice_selecionado].id_forma_pagamento = $("#id-forma_pagamento-input").val();
 
         porcentual = somaPorcentual;
         localStorage.setItem("parcelas", parcelas);

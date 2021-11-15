@@ -179,7 +179,7 @@ $(function(){
             success: function(response){
                 $('#id-forma_pagamento-input').val(response.id);
                 $('#forma_pagamento-input').val(response.forma_pagamento);
-                $('#forma_pagamentoModal').modal('hide')
+                $('#forma_pagamentoModal').modal('hide');
             }
         });
         $("#id_dias").focus();
