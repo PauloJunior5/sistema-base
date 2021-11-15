@@ -49,6 +49,7 @@
                                     <th>{{ __('Multa') }}</th>
                                     <th>{{ __('Juros') }}</th>
                                     <th>{{ __('Desconto') }}</th>
+                                    <th>{{ __('Forma de Pgto.') }}</th>
                                     <th>{{ __('Dt Emissão') }}</th>
                                     <th>{{ __('Dt Vencimento') }}</th>
                                     <th>{{ __('Cliente') }}</th>
@@ -69,6 +70,7 @@
                                         <td>{{ $contaReceber->getMulta() }}</td>
                                         <td>{{ $contaReceber->getJuro() }}</td>
                                         <td>{{ $contaReceber->getDesconto() }}</td>
+                                        <td>{{ $contaReceber->getFormaPagamento()->getFormaPagamento() }}</td>
                                         <td>{{ $contaReceber->getDataEmissao() }}</td>
                                         <td>{{ $contaReceber->getDataVencimento() }}</td>
                                         <td>{{ $contaReceber->getCliente()->getCliente() }}</td>
