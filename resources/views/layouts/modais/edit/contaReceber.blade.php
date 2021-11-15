@@ -11,7 +11,7 @@
                     </ul>
                 </div>
                 @endif
-                <form method="post" action="{{ route('pais.createPais') }}" autocomplete="off" class="form-horizontal">
+                <form method="post" action="{{ route('contaReceber.store') }}" autocomplete="off" class="form-horizontal">
                     @csrf
                     @method('post')
                     <div class="card ">
@@ -27,13 +27,6 @@
                                         <input class="form-control" readonly />
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Condição de Pagamento</label>
-                                    <div class="form-group">
-                                        <input class="form-control" name="condicao_pagamento" id="input-condicao-pagamento" type="text" value="{{old('condicao_pagamento')}}" required />
-                                    </div>
-                                </div>
-
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Multa (%)</label>
                                     <div class="form-group">
@@ -52,37 +45,42 @@
                                         <input class="form-control" name="desconto" id="input-desconto" type="number" value="{{old('desconto')}}" required />
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-sm-2">
+                                    <label class="col-form-label">Valor (R$)</label>
                                     <div class="form-group">
-                                        {{-- <input id="id-status" value=0 name="status" type="checkbox" checked data-toggle="toggle" data-on="" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> --}}
-                                        {{-- <input id="id-status" value=0 name="status" type="checkbox" checked data-toggle="toggle" data-width="100" data-on="" data-off="" data-onstyle="success" data-offstyle="danger"> --}}
-                                        <input id="id-status" value=0 name="status" data-width="150" data-height="40" type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger">
+                                        <input class="form-control" name="valor" id="input-valor" type="number" value="{{old('valor')}}" required />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Data de Criação</label>
+                                    <label class="col-form-label">Status</label>
+                                    <div class="form-group">
+                                        <input id="id-status" value=0 name="status" data-width="150" data-height="40" type="checkbox" data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success">
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label class="col-form-label">Data de Emissão</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
-                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Data de Alteração</label>
+                                    <label class="col-form-label">Data de Vencimento</label>
                                     <div class="form-group">
                                         <input type="date" class="form-control" readonly>
-                                        <p class="read-only">Campo apenas para consulta.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer ml-auto pull-right">
                             <button type="submit" class="btn btn-primary">{{ __('Salvar') }}</button>
+                            <button class="btn btn-secondary float-right" data-dismiss="modal">Voltar</button>
                         </div>
                     </div>
                 </form>
@@ -90,6 +88,7 @@
         </div>
     </div>
 </div>
+
 <script>
     document.getElementById('id-status').dataset.on = 'Pago';
     document.getElementById('id-status').dataset.off = 'Pendente';
@@ -110,5 +109,13 @@
 
     .toggle-off {
         left: 60%;
+    }
+
+    html body.modal-open div.wrapper div.main-panel div#contaReceberEditModal.modal.fade.show div.modal-dialog.modal-xl div.modal-content div.modal-body div.content div.container-fluid div.row div.col-md-12 form.form-horizontal div.card div.card-body div.row div.col-sm-2 div.form-group div.toggle.btn.btn-light.off div.toggle-group span.toggle-handle.btn.btn-light {
+        background-color: #fff;
+    }
+
+    html body.modal-open div.wrapper div.main-panel div#contaReceberEditModal.modal.fade.show div.modal-dialog.modal-xl div.modal-content div.modal-body div.content div.container-fluid div.row div.col-md-12 form.form-horizontal div.card div.card-body div.row div.col-sm-2 div.form-group div.toggle.btn.btn-success div.toggle-group span.toggle-handle.btn.btn-light {
+        background-color: #fff;
     }
 </style>

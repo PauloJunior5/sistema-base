@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContaReceberRequest;
 use App\Repositories\ContaReceberRepository;
 use App\Services\ContaReceberService;
+use Illuminate\Http\Request;
 
 class ContaReceberController extends Controller
 {
@@ -24,8 +24,9 @@ class ContaReceberController extends Controller
     {
     }
 
-    public function store(ContaReceberRequest $request)
+    public function store(Request $request)
     {
+        dd($request->all());
     }
 
     public function show($id)

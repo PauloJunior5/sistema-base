@@ -8,9 +8,6 @@
             <div class="modal-body">
                 @include('layouts.modais.edit.contaReceber')
             </div>
-            <div class="container" style="margin: 7px">
-                <button class="btn btn-secondary float-right" data-dismiss="modal">Voltar</button>
-            </div>
         </div>
     </div>
 </div>
