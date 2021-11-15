@@ -9750,7 +9750,7 @@ a.text-dark:focus {
 
 .btn.btn-success:hover {
   color           : #fff;
-  background-color: #47a44b;
+  background-color: #275e29;
   border-color    : #39843c;
 }
 
@@ -9758,7 +9758,7 @@ a.text-dark:focus {
 .btn.btn-success.focus,
 .btn.btn-success:hover {
   color           : #fff;
-  background-color: #47a44b;
+  background-color: #275e29;
   border-color    : #39843c;
 }
 
@@ -9922,7 +9922,7 @@ a.text-dark:focus {
 }
 
 .btn.btn-danger {
-  color           : #f44336;
+  color           : #fff;
   background-color: #f44336;
   border-color    : #f44336;
   /* box-shadow      : 0 2px 2px 0 rgba(244, 67, 54, 0.14), 0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12); */

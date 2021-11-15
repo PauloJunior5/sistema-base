@@ -22,38 +22,45 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Código</label>
+                                    <label class="col-form-label">Código de Referência</label>
                                     <div class="form-group">
-                                        <input class="form-control" readonly placeholder="#"/>
-                                        <p class="read-only">Campo apenas para consulta.</p>
+                                        <input class="form-control" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Sigla</label>
+                                    <label class="col-form-label">Condição de Pagamento</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="sigla" id="input-sigla" type="text" required />
+                                        <input class="form-control" name="condicao_pagamento" id="input-condicao-pagamento" type="text" value="{{old('condicao_pagamento')}}" required />
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <label class="col-form-label">País</label>
+
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Multa (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="pais" id="input-pais" type="text" required />
+                                        <input class="form-control" name="multa" id="input-multa" type="number" value="{{old('multa')}}" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Juros (%)</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="juro" id="input-juro" type="number" value="{{old('juro')}}" required />
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Desconto (%)</label>
+                                    <div class="form-group">
+                                        <input class="form-control" name="desconto" id="input-desconto" type="number" value="{{old('desconto')}}" required />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-3">
-                                    <div class="form-check">
-                                        <label class="form-check-label" for="id-status">
-                                            <span class="form-check-label" id="id-label-status">Pendente</span>
-                                            <input class="form-check-input" id="id-status" type="checkbox" value="0">
-                                            <span class="form-check-sign">
-                                                <span class="check"></span>
-                                            </span>
-                                        </label>
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        {{-- <input id="id-status" value=0 name="status" type="checkbox" checked data-toggle="toggle" data-on="" data-off="Not Ready" data-onstyle="success" data-offstyle="danger"> --}}
+                                        {{-- <input id="id-status" value=0 name="status" type="checkbox" checked data-toggle="toggle" data-width="100" data-on="" data-off="" data-onstyle="success" data-offstyle="danger"> --}}
+                                        <input id="id-status" value=0 name="status" data-width="150" data-height="40" type="checkbox" checked data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success" data-offstyle="danger">
                                     </div>
-
                                 </div>
                             </div>
 
@@ -84,13 +91,24 @@
     </div>
 </div>
 <script>
+    document.getElementById('id-status').dataset.on = 'Pago';
+    document.getElementById('id-status').dataset.off = 'Pendente';
+
     $("#id-status").on("change", function () {
         if ($(this).is(":checked")) {
-            $('#id-label-status').text("Pago");
             $('#id-status').val(1);
         } else {
-            $('#id-label-status').text("Pendente");
             $('#id-status').val(0);
         }
     });
 </script>
+
+<style>
+    .toggle-on{
+        right: 60%;
+    }
+
+    .toggle-off {
+        left: 60%;
+    }
+</style>

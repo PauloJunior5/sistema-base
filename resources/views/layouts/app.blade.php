@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('material') }}/node_modules/datatables.net-dt/css/jquery.dataTables.css">
     <script src="{{ asset('material') }}/node_modules/jquery/dist/jquery.js"></script>
     <script src="{{ asset('material') }}/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+
+    <!---- Bootstrap Toggle is a jQuery plugin/widget that converts plain checkboxes into responsive toggle switch buttons.---->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 
 <body class="{{ $class ?? '' }}">
