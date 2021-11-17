@@ -56,11 +56,13 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#equipe" aria-expanded="true">
                     <i class="material-icons">work</i>
-                    <p>{{ __('Equipe') }}
+                    <p>{{ __('Pessoas') }}
                         <b class="caret"></b>
                     </p>
                 </a>
-                <div class="collapse {{ ($activePage == 'fornecedor-management' || $activePage == 'medico-management') ? ' show' : '' }}" id="equipe">
+                <div class="collapse {{ ($activePage == 'fornecedor-management' || $activePage == 'medico-management') ||
+                                            $activePage == 'cliente-management' || $activePage == 'paciente-management' ?
+                                            ' show' : '' }}" id="equipe">
                     <ul class="nav">
                         <li class="nav-item {{ $activePage == 'fornecedor-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('fornecedor.index') }}">
@@ -74,21 +76,6 @@
                                 <span class="sidebar-normal">{{ __('Médicos') }} </span>
                             </a>
                         </li>
-                    <ul class="nav">
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#geral" aria-expanded="true">
-                    <i class="material-icons">label_important</i>
-                    <p>{{ __('Geral') }}
-                        <b class="caret"></b>
-                    </p>
-                </a>
-                <div class="collapse {{ ($activePage == 'cliente-management' || $activePage == 'exame-management' ||
-                                        $activePage == 'paciente-management' || $activePage == 'categoria-management' ||
-                                        $activePage == 'exame-management') || $activePage == 'plano-management'
-                                        ? ' show' : '' }}" id="geral">
-                    <ul class="nav">
                         <li class="nav-item {{ $activePage == 'cliente-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('cliente.index') }}">
                                 <span class="sidebar-mini"> C </span>
@@ -101,6 +88,19 @@
                                 <span class="sidebar-normal">{{ __('Pacientes') }} </span>
                             </a>
                         </li>
+                    <ul class="nav">
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#geral" aria-expanded="true">
+                    <i class="material-icons">label_important</i>
+                    <p>{{ __('Negócio') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse {{ $activePage == 'exame-management' || $activePage == 'categoria-management' ||
+                                        $activePage == 'plano-management' ? ' show' : '' }}" id="geral">
+                    <ul class="nav">
                         <li class="nav-item {{ $activePage == 'exame-management' ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('exame.index') }}">
                                 <span class="sidebar-mini"> E </span>
@@ -125,7 +125,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#contratos" aria-expanded="true">
                     <i class="material-icons">work</i>
-                    <p>{{ __('Negócio') }}
+                    <p>{{ __('Financeiro') }}
                         <b class="caret"></b>
                     </p>
                 </a>
