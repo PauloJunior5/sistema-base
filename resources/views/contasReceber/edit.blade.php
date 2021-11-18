@@ -26,31 +26,31 @@
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Código da Parcela</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="parcela" value="{{ $contaReceber->getParcela() }}" readonly />
+                                        <input class="form-control" value="{{ $contaReceber->getParcela() }}" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Multa (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="multa" value="{{ $contaReceber->getMulta() }}" id="input-multa" type="number" required />
+                                        <input class="form-control" value="{{ $contaReceber->getMulta() }}" id="input-multa" type="number" required readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Juros (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="juro" value="{{ $contaReceber->getJuro() }}" id="input-juro" type="number" required />
+                                        <input class="form-control" value="{{ $contaReceber->getJuro() }}" id="input-juro" type="number" required readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Desconto (%)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="desconto" value="{{ $contaReceber->getDesconto() }}" id="input-desconto" type="number" required />
+                                        <input class="form-control" value="{{ $contaReceber->getDesconto() }}" id="input-desconto" type="number" required readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Valor (R$)</label>
                                     <div class="form-group">
-                                        <input class="form-control" name="valor" value="{{ $contaReceber->getValor() }}" id="input-valor" type="number" required />
+                                        <input class="form-control" value="{{ $contaReceber->getValor() }}" id="input-valor" type="number" required readonly/>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +62,18 @@
                                         <input id="id-status" data-width="150" data-height="40" type="checkbox" data-toggle="toggle" data-on="Ready" data-off="Not Ready" data-onstyle="success">
                                     </div>
                                 </div>
-                                
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Responsavel</label>
+                                    <div class="form-group">
+                                        <input class="form-control" value="{{ $contaReceber->getCliente()->getCliente() . " " . $contaReceber->getCliente()->getApelido() }}" id="input-cliente" type="text" required readonly/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="col-form-label">Cliente</label>
+                                    <div class="form-group">
+                                        <input class="form-control" value="{{ $contaReceber->getCliente()->getCliente() . " - " . $contaReceber->getCliente()->getNomeFantasia() }}" id="input-cliente" type="text" required readonly/>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-3">
@@ -104,6 +115,7 @@
         $('#id-status').removeAttr("checked");
     } else {
         $('#id-status').attr("checked", "checked");
+        $("#id-status").attr("disabled", true);
     }
 
     $("#id-status").on("change", function () {

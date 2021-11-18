@@ -162,7 +162,7 @@ class ClienteService
             $cliente->setCreated_at($result->created_at ?? null);
             $cliente->setUpdated_at($result->updated_at ?? null);
 
-            if ($result->tipo == 'pessoaFisica') {
+            if ($result->tipo == 'pessoaJuridica') {
                 $cliente->setNomeFantasia($result->nome_fantasia);
                 $cliente->setInscricaoEstadual($result->inscricao_estadual);
                 $cliente->setCNPJ($result->cnpj);

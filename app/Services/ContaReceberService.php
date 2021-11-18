@@ -54,6 +54,8 @@ class ContaReceberService
             $contaReceber->setContrato($contrato);
             $cliente = $this->clienteService->buscarEInstanciar($result->id_cliente);
             $contaReceber->setCliente($cliente);
+            $responsavel = $this->clienteService->buscarEInstanciar($result->id_responsavel);
+            $contaReceber->setResponsavel($responsavel);
             $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($result->id_forma_pagamento);
             $contaReceber->setFormaPagamento($formaPagamento);
 
@@ -75,25 +77,14 @@ class ContaReceberService
         $result = $this->contaReceberRepository->findById($id);
         $contaReceber = new ContaReceber();
         $contaReceber->setId($result->id);
-        $contaReceber->setParcela($result->parcela);
-        $contaReceber->setDias($result->dias);
-        $contaReceber->setDataEmissao($result->data_emissao);
-        $contaReceber->setDataVencimento($result->data_vencimento);
-        $contrato = $this->contratoService->buscarEInstanciar($result->id_contrato);
-        $contaReceber->setContrato($contrato);
-        $cliente = $this->clienteService->buscarEInstanciar($result->id_cliente);
-        $contaReceber->setCliente($cliente);
-        $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($result->id_forma_pagamento);
-        $contaReceber->setFormaPagamento($formaPagamento);
-        $contaReceber->setCreated_at($result->created_at ?? null);
-
-        $contaReceber->setValor($request->valor);
-        $contaReceber->setMulta($request->multa);
-        $contaReceber->setJuro($request->juro);
-        $contaReceber->setDesconto($request->desconto);
         $contaReceber->setStatus($request->status);
         $contaReceber->setUpdated_at(now()->toDateTimeString());
-        $dados = $this->getDados($contaReceber);
+
+        $dados = [
+            'id' => $contaReceber->getId(),
+            'status' => $contaReceber->getStatus(),
+            'updated_at' => $contaReceber->getUpdated_at()
+        ];
 
         $contaReceber = $this->contaReceberRepository->atualizar($dados);
         return $contaReceber;
@@ -121,8 +112,12 @@ class ContaReceberService
 
         $contrato = $this->contratoService->buscarEInstanciar($result->id_contrato);
         $contaReceber->setContrato($contrato);
+
         $cliente = $this->clienteService->buscarEInstanciar($result->id_cliente);
         $contaReceber->setCliente($cliente);
+        $responsavel = $this->clienteService->buscarEInstanciar($result->id_responsavel);
+        $contaReceber->setResponsavel($responsavel);
+
         $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($result->id_forma_pagamento);
         $contaReceber->setFormaPagamento($formaPagamento);
 
@@ -149,6 +144,7 @@ class ContaReceberService
             'status' => $contaReceber->getStatus(),
             'id_contrato' => $contaReceber->getContrato()->getId(),
             'id_cliente' => $contaReceber->getCliente()->getId(),
+            'id_responsavel' => $contaReceber->getResponsavel()->getId(),
             'id_forma_pagamento' => $contaReceber->getFormaPagamento()->getId(),
 
             'data_emissao' => $contaReceber->getDataEmissao(),
@@ -191,6 +187,8 @@ class ContaReceberService
             $contaReceber->setContrato($contrato);
             $cliente = $this->clienteService->buscarEInstanciar($contrato->getCliente()->getId());
             $contaReceber->setCliente($cliente);
+            $responsavel = $this->clienteService->buscarEInstanciar($contrato->getResponsavel()->getId());
+            $contaReceber->setResponsavel($responsavel);
             $formaPagamento = $this->formaPagamentoService->buscarEInstanciar($parcela->id_forma_pagamento);
             $contaReceber->setFormaPagamento($formaPagamento);
 

@@ -15,6 +15,7 @@ class ContaReceber extends Model
     protected $status;
     protected $contrato;
     protected $cliente;
+    protected $responsavel;
     protected $formaPagamento;
     protected $dataEmissao;
     protected $dataVencimento;
@@ -29,6 +30,7 @@ class ContaReceber extends Model
         $this->desconto = 0;
         $this->status = 0;
         $this->contrato = new Contrato();
+        $this->cliente = new Cliente();
         $this->cliente = new Cliente();
         $this->formaPagamento = new FormaPagamento();
         $this->dataEmissao = '';
@@ -177,6 +179,22 @@ class ContaReceber extends Model
     public function setCliente(Cliente $cliente)
     {
         $this->cliente = $cliente;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get e Set Responsável
+    |--------------------------------------------------------------------------
+    |
+    */
+    public function getResponsavel(): Cliente
+    {
+        return $this->responsavel;
+    }
+
+    public function setResponsavel(Cliente $responsavel)
+    {
+        $this->responsavel = $responsavel;
     }
 
     /*
