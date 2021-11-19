@@ -23,39 +23,45 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <label class="col-form-label">Código da Parcela</label>
                                     <div class="form-group">
                                         <input class="form-control" value="{{ $contaReceber->getParcela() }}" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Multa (%)</label>
+                                    <label class="col-form-label">Multa (R$)</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{ $contaReceber->getMulta() }}" id="input-multa" type="number" required readonly/>
+                                        <input class="form-control" name="multa" value="{{ number_format($contaReceber->getMulta(), 2, '.', '') }}" id="input-multa" type="number" required readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Juros (%)</label>
+                                    <label class="col-form-label">Juros (R$)</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{ $contaReceber->getJuro() }}" id="input-juro" type="number" required readonly/>
+                                        <input class="form-control" name="juro" value="{{ number_format($contaReceber->getJuro(), 2, '.', '') }}" id="input-juro" type="number" required readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Desconto (%)</label>
+                                    <label class="col-form-label">Desconto (R$)</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{ $contaReceber->getDesconto() }}" id="input-desconto" type="number" required readonly/>
+                                        <input class="form-control" name="desconto" value="{{ number_format($contaReceber->getDesconto(), 2, '.', '') }}" id="input-desconto" type="number" required readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Valor (R$)</label>
+                                    <label class="col-form-label">Valor Atualizado(R$)</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{ $contaReceber->getValor() }}" id="input-valor" type="number" required readonly/>
+                                        <input class="form-control" value="{{ number_format($contaReceber->getValor(), 2, '.', '') }}" id="input-valor" type="number" required readonly/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="col-form-label">Dias</label>
+                                    <div class="form-group">
+                                        <input class="form-control" value="{{ $contaReceber->getDias() }}" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <label class="col-form-label">Status</label>
                                     <div class="form-group">
                                         <input id="id-status-value" type="hidden" value="{{ $contaReceber->getStatus() }}" name="status">

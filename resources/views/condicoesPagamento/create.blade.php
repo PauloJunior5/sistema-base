@@ -38,19 +38,19 @@
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Multa (%)</label>
+                                    <label class="col-form-label">Multa % <small style="color: #ef5261">(sob. valor)</small></label>
                                     <div class="form-group">
                                         <input class="form-control" name="multa" id="input-multa" type="number" value="{{old('multa')}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Juros (%)</label>
+                                    <label class="col-form-label">Juros % <small style="color: #ef5261">(a.m)</small></label>
                                     <div class="form-group">
                                         <input class="form-control" name="juro" id="input-juro" type="number" value="{{old('juro')}}" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <label class="col-form-label">Desconto (%)</label>
+                                    <label class="col-form-label">Desconto % <small style="color: #ef5261">(sob. valor)</small></label>
                                     <div class="form-group">
                                         <input class="form-control" name="desconto" id="input-desconto" type="number" value="{{old('desconto')}}" required />
                                     </div>

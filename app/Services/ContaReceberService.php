@@ -14,6 +14,7 @@ use App\Services\ContratoService;
 use App\Services\ClienteService;
 use App\Services\FormaPagamentoService;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 
 class ContaReceberService
@@ -78,11 +79,17 @@ class ContaReceberService
         $contaReceber = new ContaReceber();
         $contaReceber->setId($result->id);
         $contaReceber->setStatus($request->status);
+        $contaReceber->setMulta($request->multa);
+        $contaReceber->setJuro($request->juro);
+        $contaReceber->setDesconto($request->desconto);
         $contaReceber->setUpdated_at(now()->toDateTimeString());
 
         $dados = [
             'id' => $contaReceber->getId(),
             'status' => $contaReceber->getStatus(),
+            'juro' => $contaReceber->getJuro(),
+            'desconto' => $contaReceber->getDesconto(),
+            'multa' => $contaReceber->getMulta(),
             'updated_at' => $contaReceber->getUpdated_at()
         ];
 
@@ -101,14 +108,54 @@ class ContaReceberService
         $contaReceber->setId($result->id);
         $contaReceber->setParcela($result->parcela);
         $contaReceber->setDias($result->dias);
-        $contaReceber->setValor($result->valor);
-        $contaReceber->setMulta($result->multa);
-        $contaReceber->setJuro($result->juro);
-        $contaReceber->setDesconto($result->desconto);
+        $contaReceber->setValor(0);
+        $contaReceber->setMulta(0);
+        $contaReceber->setJuro(0);
+        $contaReceber->setDesconto(0);
         $contaReceber->setStatus($result->status);
 
         $contaReceber->setDataEmissao($result->data_emissao);
         $contaReceber->setDataVencimento($result->data_vencimento);
+
+        $vencido = now()->gt($result->data_vencimento);
+        if ($vencido && ($result->status == 0)) {
+            // multa
+            $multa = $result->multa / 100;
+            $multaTotal = $result->valor * $multa;
+            $contaReceber->setMulta($multaTotal + $result->valor);
+
+            // juros
+            $entrada = now();
+            $saida = new DateTime($result->data_vencimento);
+            $intervalo = $saida->diff($entrada);
+
+            $juro = $result->juro / 30;
+            $juroDia = round( $juro * $intervalo->d , 2);
+            $juroTotal = ($result->valor * ($juroDia / 100));
+            $contaReceber->setJuro($result->valor + $juroTotal);
+
+            // valor total
+            $valorTotal = $result->valor + $multaTotal + $juroTotal;
+            $contaReceber->setValor($valorTotal);
+        }
+
+        if ($vencido && ($result->status == 1)) {
+            $contaReceber->setValor($result->valor);
+            $contaReceber->setMulta($result->multa);
+            $contaReceber->setJuro($result->juro);
+        }
+
+        $antecipado = now()->lt($result->data_vencimento);
+        if ($antecipado && ($result->status == 0)) {
+            // desconto
+            $desconto = $result->valor * ((100 - $result->desconto) / 100);
+            $contaReceber->setDesconto($result->valor * ($result->desconto / 100));
+            $contaReceber->setValor($desconto);
+        }
+
+        if ($antecipado && ($result->status == 1)) {
+            $contaReceber->setDesconto($result->desconto);
+        }
 
         $contrato = $this->contratoService->buscarEInstanciar($result->id_contrato);
         $contaReceber->setContrato($contrato);

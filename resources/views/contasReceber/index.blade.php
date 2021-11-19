@@ -41,9 +41,6 @@
                                     <th>{{ __('Dias') }}</th>
                                     <th>{{ __('Valor') }}</th>
                                     <th>{{ __('Status') }}</th>
-                                    <th>{{ __('Multa') }}</th>
-                                    <th>{{ __('Juros') }}</th>
-                                    <th>{{ __('Desconto') }}</th>
                                     <th>{{ __('Forma de Pgto.') }}</th>
                                     <th>{{ __('Dt Emissão') }}</th>
                                     <th>{{ __('Dt Vencimento') }}</th>
@@ -62,9 +59,6 @@
                                         @else
                                             <td>{{ "Pago" }}</td>
                                         @endif
-                                        <td>{{ $contaReceber->getMulta() }}</td>
-                                        <td>{{ $contaReceber->getJuro() }}</td>
-                                        <td>{{ $contaReceber->getDesconto() }}</td>
                                         <td>{{ $contaReceber->getFormaPagamento()->getFormaPagamento() }}</td>
                                         <td>{{ $contaReceber->getDataEmissao() }}</td>
                                         <td>{{ $contaReceber->getDataVencimento() }}</td>
