@@ -122,7 +122,7 @@ class ContaReceberService
             // multa
             $multa = $result->multa / 100;
             $multaTotal = $result->valor * $multa;
-            $contaReceber->setMulta($multaTotal + $result->valor);
+            $contaReceber->setMulta($multaTotal);
 
             // juros
             $entrada = now();
@@ -132,7 +132,7 @@ class ContaReceberService
             $juro = $result->juro / 30;
             $juroDia = round( $juro * $intervalo->d , 2);
             $juroTotal = ($result->valor * ($juroDia / 100));
-            $contaReceber->setJuro($result->valor + $juroTotal);
+            $contaReceber->setJuro($juroTotal);
 
             // valor total
             $valorTotal = $result->valor + $multaTotal + $juroTotal;
