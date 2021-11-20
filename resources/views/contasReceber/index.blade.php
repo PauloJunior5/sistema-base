@@ -66,7 +66,7 @@
                                         <td class="td-actions text-right">
                                             <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('contaReceber.edit', $contaReceber->getId()) }}">
                                                 <i class="material-icons">edit</i>
-                                                Atualizar
+                                                Receber
                                                 <div class="ripple-container"></div>
                                             </a>
                                         </td>
