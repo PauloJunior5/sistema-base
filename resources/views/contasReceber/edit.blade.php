@@ -50,7 +50,7 @@
                                 <div class="col-sm-2">
                                     <label class="col-form-label">Valor Atualizado(R$)</label>
                                     <div class="form-group">
-                                        <input class="form-control" value="{{ number_format($contaReceber->getValor(), 2, '.', '') }}" id="input-valor" type="number" required readonly/>
+                                        <input class="form-control" name="valor" value="{{ number_format($contaReceber->getValor(), 2, '.', '') }}" id="input-valor" type="number" required readonly/>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">

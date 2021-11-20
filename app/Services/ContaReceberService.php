@@ -82,6 +82,7 @@ class ContaReceberService
         $contaReceber->setMulta($request->multa);
         $contaReceber->setJuro($request->juro);
         $contaReceber->setDesconto($request->desconto);
+        $contaReceber->setValor($request->valor);
         $contaReceber->setUpdated_at(now()->toDateTimeString());
 
         $dados = [
@@ -90,6 +91,7 @@ class ContaReceberService
             'juro' => $contaReceber->getJuro(),
             'desconto' => $contaReceber->getDesconto(),
             'multa' => $contaReceber->getMulta(),
+            'valor' => $contaReceber->getValor(),
             'updated_at' => $contaReceber->getUpdated_at()
         ];
 
@@ -139,10 +141,11 @@ class ContaReceberService
             $contaReceber->setValor($valorTotal);
         }
 
-        if ($vencido && ($result->status == 1)) {
+        if ($result->status == 1) {
             $contaReceber->setValor($result->valor);
             $contaReceber->setMulta($result->multa);
             $contaReceber->setJuro($result->juro);
+            $contaReceber->setDesconto($result->desconto);
         }
 
         $antecipado = now()->lt($result->data_vencimento);
@@ -151,10 +154,6 @@ class ContaReceberService
             $desconto = $result->valor * ((100 - $result->desconto) / 100);
             $contaReceber->setDesconto($result->valor * ($result->desconto / 100));
             $contaReceber->setValor($desconto);
-        }
-
-        if ($antecipado && ($result->status == 1)) {
-            $contaReceber->setDesconto($result->desconto);
         }
 
         $contrato = $this->contratoService->buscarEInstanciar($result->id_contrato);
